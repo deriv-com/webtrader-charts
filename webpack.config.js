@@ -21,6 +21,15 @@ module.exports = {
                   presets: ['env'],
                },
             }
+         },
+         {
+            test: /\.html$/,
+            use: [ {
+               loader: 'html-loader',
+               options: {
+                  minimize: true
+               }
+            }],
          }
       ]
    },
