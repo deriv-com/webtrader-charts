@@ -1,7 +1,9 @@
 var path = require('path');
+var webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+	devtool: 'source-map',
    entry: './src/index.js',
    output: {
       filename: 'webtrader-charts.js',
@@ -17,7 +19,7 @@ module.exports = {
             exclude: /(node_modules|bower_components)/,
             use: {
                loader: 'babel-loader',
-               options: { presets: ['env'], },
+               options: { presets: ['env', 'stage-2'], },
             }
          },
          {
@@ -37,7 +39,11 @@ module.exports = {
 			}
       ]
    },
-   plugins: [
-      new UglifyJSPlugin()
-   ]
+	plugins: [
+		// new UglifyJSPlugin(),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
+		})
+	]
 };

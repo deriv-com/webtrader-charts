@@ -1,10 +1,6 @@
-import $ from "jquery";
-import _ from "lodash";
-import html from './indicatorBuilder.html';
-import './indicatorBuilder.scss';
+import indicatorBuilder from './indicatorBuilder'; 
 
-export const init = () => {
-   console.warn(html);
+export {default as indicatorBuilder} from './indicatorBuilder'; 
+export default {
+	indicatorBuilder,
 };
-
-export default { init };
