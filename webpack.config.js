@@ -5,14 +5,22 @@ module.exports = {
    entry: './src/index.js',
    output: {
       filename: 'webtrader-charts.js',
-      path: path.resolve(__dirname, 'dist'),
+      // path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, '../src/webtrader-charts'),
+      library: 'WebtraderCharts',
+      libraryTarget: 'umd'
    },
    module: {
       rules: [
          {
             test: /\.js$/,
-            exclude: /(node_modules)/,
-            loader: 'babel-loader?presets[]=env'
+            exclude: /(node_modules|bower_components)/,
+            use: {
+               loader: 'babel-loader',
+               options: {
+                  presets: ['env'],
+               },
+            }
          }
       ]
    },
