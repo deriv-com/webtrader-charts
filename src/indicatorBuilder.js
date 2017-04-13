@@ -91,7 +91,7 @@ const init = (chart_series, indicator) => {
          my: 'center',
          at: 'center',
          of: window,
-         dialogClass:'indicator-builder-ui-dialog',
+         dialogClass:'indicator-builder-ui-dialog webtrader-charts-dialog',
          buttons: [
             {
                text: "OK",

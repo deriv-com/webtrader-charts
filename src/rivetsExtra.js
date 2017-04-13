@@ -143,7 +143,6 @@ rv.binders['is-valid-number'] = {
    routine: (el, value) => { }
 };
 rv.binders['css-*'] = function (el, value) {
-   console.warn(this.model, value);
    const style = {};
    style[this.args[0]] = value;
    $(el).css(style);
