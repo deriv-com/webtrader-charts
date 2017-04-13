@@ -9,10 +9,12 @@ A charting library extracted from [Webtrader](https://github.com/binary-com/webt
 ## How to use it
 
 Using npm
-- npm i binary-com/webtrader-charts
+        
+        npm i binary-com/webtrader-charts
 
 Using yarn
-- yarn add binary-com/webtrader-charts
+        
+        yarn add binary-com/webtrader-charts
 
 ### ES6 style
 
