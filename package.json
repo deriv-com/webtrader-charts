@@ -2,7 +2,7 @@
   "name": "webtrader-charts",
   "version": "0.0.1",
   "description": "webtrader charts",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "webpack --progress",
     "watch": "webpack --watch --progress",
@@ -17,8 +17,8 @@
     "charts",
     "binary.com"
   ],
-  "author": "amin.roosta@outlook.com",
-  "license": "ISC",
+  "author": "aminroosta@binary.com",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/binary-com/webtrader-charts/issues"
   },
