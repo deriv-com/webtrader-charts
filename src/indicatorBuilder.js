@@ -4,7 +4,7 @@ import rv from 'rivets';
 import html from './indicatorBuilder.html';
 import './indicatorBuilder.scss';
 import 'jquery-ui/ui/widgets/dialog';
-import './rivetsExtra.js';
+import './common/rivetsExtra.js';
 import images from './images/images.js';
 
 let before_add_callback = null;

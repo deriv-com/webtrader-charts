@@ -7,12 +7,20 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		filename: 'webtrader-charts.js',
-		// path: path.resolve(__dirname, 'dist'),
-		path: path.resolve(__dirname, '../src/webtrader-charts'),
+		path: path.resolve(__dirname, 'dist'),
+		// path: path.resolve(__dirname, '../src/webtrader-charts'),
 		library: 'WebtraderCharts',
 		libraryTarget: 'umd'
-	},
-	module: {
+   },
+   externals: {
+      'jquery' : {
+         commonjs: "jquery",
+         commonjs2: "jquery",
+         amd: "jquery",
+         root: "jQuery"
+      }
+   },
+   module: {
 		rules: [
 			{
 				test: /\.js$/,
@@ -40,7 +48,11 @@ module.exports = {
 					{ loader: "css-loader" /* translates CSS into CommonJS */ },
 					{ loader: "sass-loader" /* compiles Sass to CSS */ }
 				]
-			}
+         },
+         {
+            test: /\.json$/,
+            use: 'json-loader'
+         }
 		]
 	},
 	plugins: [

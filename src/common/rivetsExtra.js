@@ -2,8 +2,8 @@ import $ from 'jquery';
 import _ from 'lodash';
 import rv from 'rivets';
 import 'jquery-ui/ui/widgets/slider';
-import './lib/jquery.ddslick.js';
 import 'vanderlee-colorpicker';
+import '../lib/jquery.ddslick.js';
 
 rv.binders['attr-*'] = {
    priority: 10*1000,
@@ -147,6 +147,17 @@ rv.binders['css-*'] = function (el, value) {
    style[this.args[0]] = value;
    $(el).css(style);
 }
+rv.binders['dialog-*'] = function (el, value) {
+   $(el).dialog('option', this.args[0], value);
+}
+rv.binders['show'] = (el, value) => {
+   el.style.display = value ? '' : 'none';
+   return value;
+};
+rv.binders['visible'] = (el, value) => {
+   el.style.visibility = value ? 'visible' : 'hidden';
+   return value;
+};
 
 rv.formatters.eq = (value, other) => value === other;
 rv.formatters['negate'] = (value) => !value;
@@ -154,4 +165,7 @@ rv.formatters['bind'] = (fn, value) => fn.bind(undefined, value);
 rv.formatters['ternary'] = (condition, first, second) => condition ? first : second;
 rv.formatters['prepend'] = (value, other) => (other && value) ? other + value : value;
 rv.formatters['append'] = (value, other) => (other && value) ? value + other : value;
+rv.formatters['prop'] = (value, prop) => value && value[prop];
+rv.formatters['bind'] = (fn, value) => fn.bind(undefined, value);
+rv.formatters['i18n'] = (value) => (value && value.i18n) ? value.i18n() : value;
 

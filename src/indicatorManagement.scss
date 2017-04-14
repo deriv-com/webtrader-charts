@@ -1,0 +1,118 @@
+.indicator-dialog {
+     background: white;
+     padding: 10px !important;
+
+   span.title-big {
+     display: block;
+     font-size: 1.4em;
+     font-weight: lighter;
+     margin-bottom: 10px;
+   }
+
+   span.title {
+     font-size: 1.1em;
+     font-weight: bolder;
+     display: block;
+     margin-bottom: 15px;
+   }
+
+   div.current div.table div.table span {
+     padding-right: 5px;
+   }
+
+   div.current a {
+     position: relative;
+     left: 12px;
+     font-weight: normal;
+     text-decoration: underline;
+   }
+
+   div.category > div span,
+   div.current span {
+     display: inline-block;
+     vertical-align: top;
+   }
+
+   div.category > div > span:nth-child(1),
+   div.current > div.table > div.row:nth-child(1) > div.cell:nth-child(1) {
+     width: 170px;
+     font-size: 0.925em;
+   }
+
+   div.current > div.table {
+     padding-top: 10px;
+     padding-bottom: 10px;
+     display: inline-block;
+     margin-right: 18px;
+     vertical-align: middle;
+   }
+
+   div.current > div.table > div.row:nth-child(1) > div.cell:nth-child(2) {
+     cursor: pointer;
+   }
+
+   div.category > div {
+     padding-top: 10px;
+     padding-bottom: 10px;
+     display: inline-block;
+     margin-right: 18px;
+     vertical-align: middle;
+     cursor: pointer;
+   }
+
+   div.category > div > span.question-mark,
+   div.category > div > span.remove {
+     color: #777;
+     font-size: 1.1em;
+     line-height : 1.1em;
+   }
+
+   .favorite span.ui-icon {
+     color: #E98024;
+   }
+
+   .add-indicators { position: relative; }
+   .add-indicators span.ui-icon {
+     color: #777;
+     position: absolute;
+     right: 7px;
+     top: 6px;
+     cursor: pointer;
+   }
+   span.ui-icon-star-b:hover { color:#E98024; }
+   span.ui-icon-star:hover::before { content: '\e6bb'; }
+   .add-indicators input {
+     max-width: 200px;
+     padding-right: 25px;
+     padding-left: 5px;
+     float: right;
+   }
+
+   .add-indicators span { display: inline-block; }
+
+   .categories:not(:nth-last-child(-n+2)) div:nth-of-type(3n) [data-balloon]:nth-child(2n):before,
+   .favorite div:nth-of-type(3n) [data-balloon]:nth-child(2n):before {
+     -webkit-transform: translate(-90%,0);
+     -ms-transform: translate(-90%,0);
+     transform: translate(-90%,0);
+   }
+
+   .categories:nth-last-child(1) [data-balloon]:nth-child(2n):after,
+   .categories:nth-last-child(2) [data-balloon]:nth-child(2n):after {
+     display: none;
+   }
+   .categories:nth-last-child(1) div:nth-of-type(3n) [data-balloon]:nth-child(2n):before,
+   .categories:nth-last-child(2) div:nth-of-type(3n) [data-balloon]:nth-child(2n):before {
+     transform: translate(-90%,-115%);
+   }
+   .categories:nth-last-child(1) [data-balloon]:nth-child(2n):before,
+   .categories:nth-last-child(2) [data-balloon]:nth-child(2n):before {
+     transform: translate(-50%,-114%);
+   }
+
+}
+.rtl-direction .indicator-dialog .add-indicators input {
+  float: left;
+  padding-left: 25px;
+  padding-right: 5px;
+}
