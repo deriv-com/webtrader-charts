@@ -1,0 +1,73 @@
+.overlay-dialog {
+     background: white;
+     padding: 10px !important;
+   span.title-big {
+     display: block;
+     font-size: 1.4em;
+     font-weight: lighter;
+     margin-bottom: 10px;
+   }
+   span.title {
+     font-size: 1.2em;
+     font-weight: bolder;
+     display: block;
+     padding: 5px;
+   }
+   span.title-sub {
+     font-size: 1.0em;
+     font-weight: bolder;
+     display: block;
+     padding: 5px 5px 5px 20px;
+   }
+
+   .overlay_symbol {
+     padding: 10px 10px 10px 20px;
+     display: inline-block;
+     cursor: pointer;
+     font-size: 0.9em;
+   }
+
+   div.category {
+     margin-bottom: 10px;
+   }
+
+   div.categories {
+     display: block;
+     vertical-align: top;
+   }
+
+   div.categories div.category > div {
+     display: inline-block;
+     width: 150px;
+     vertical-align: text-top;
+   }
+
+   div.category > div > span.remove {
+     color: #777;
+     font-size: 1.1em;
+   }
+
+   .add-overlays {
+      position: relative;
+      span.ui-icon {
+         color: #777;
+         position: absolute;
+         right: 7px;
+         top: 6px;
+         cursor: pointer;
+      }
+      input {
+         max-width: 200px;
+         padding-right: 25px;
+         padding-left: 5px;
+         float: right;
+      }
+      span { display: inline-block; }
+    }
+}
+
+.rtl-direction .overlay-dialog .add-overlays input {
+  float: left;
+  padding-right: 5px;
+  padding-left: 25px;
+}
