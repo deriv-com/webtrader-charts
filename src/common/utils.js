@@ -15,10 +15,15 @@ export const local_storage = {
   }
 }
 
-export const isTick = (ohlc) => {
-   return ohlc.indexOf('t') != -1;
-}
+export const isTick = (ohlc) => ohlc.indexOf('t') != -1;
+export const isDotType = (type) => type === 'dot';
+export const isLineDotType = (type) => type === 'linedot';
+export const isDataTypeClosePriceOnly = (type) => !(type === 'candlestick' || type === 'ohlc');
+
 export default {
+   local_storage,
    isTick,
-   local_storage
+   isDotType,
+   isLineDotType,
+   isDataTypeClosePriceOnly
 };
