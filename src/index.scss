@@ -1,0 +1,29 @@
+
+.webtrader-charts-dialog {
+   .ui-dialog-titlebar {
+      padding: 5px 5px;
+      .ui-dialog-titlebar-close {
+         text-indent: 100%;
+         white-space: nowrap;
+         overflow: hidden;
+         background: transparent;
+         cursor: pointer;
+         background-image: url('./images/close.svg')!important;
+         margin: -7px 0 0 0;
+
+         .ui-icon-closethick { display: none; } 
+      }
+   }
+   .webtrader-charts-icon-maximize {
+       cursor: pointer;
+       background-image: url('./images/maximize.svg')!important;
+       position: relative;
+       right: 3px;
+   }
+   .webtrader-charts-icon-minimize {
+       cursor: pointer;
+       background-image: url('./images/minimize.svg')!important;
+       position: relative;
+       right: 6px;
+   }
+}

@@ -1,10 +1,10 @@
 import $ from 'jquery';
-import _ from 'lodash';
+import {each, find, cloneDeep, minby, maxBy} from 'lodash';
 import rv from 'rivets';
 import html from './indicatorBuilder.html';
 import './indicatorBuilder.scss';
 import 'jquery-ui/ui/widgets/dialog';
-import './rivetsExtra.js';
+import './common/rivetsExtra.js';
 import images from './images/images.js';
 
 let before_add_callback = null;
@@ -66,16 +66,16 @@ const init = (chart_series, indicator) => {
       };
 
       if(indicator.editable && indicator.current_options) {
-         _.forEach(indicator.current_options, (opt_val, opt_key) => {
-            const field = _.find(state.fields, {key: opt_key})
+         each(indicator.current_options, (opt_val, opt_key) => {
+            const field = find(state.fields, {key: opt_key})
             field && (field.value = opt_val);
          });
 
          if(indicator.current_options.levels) {
-            state.levels.values = _.cloneDeep(indicator.current_options.levels);
+            state.levels.values = cloneDeep(indicator.current_options.levels);
          }
       }
-      _.each(state.levels && state.levels.values, (value)  => {
+      each(state.levels && state.levels.values, (value)  => {
          value.dashUrl = `url(${images[value.dashStyle]})`;
       });
 
@@ -88,10 +88,7 @@ const init = (chart_series, indicator) => {
          width: 350,
          height: 400,
          modal: true,
-         my: 'center',
-         at: 'center',
-         of: window,
-         dialogClass:'indicator-builder-ui-dialog',
+         dialogClass:'indicator-builder-ui-dialog webtrader-charts-dialog',
          buttons: [
             {
                text: "OK",
@@ -112,8 +109,8 @@ const init = (chart_series, indicator) => {
                         if(options.levels && options.levels.length > 0) {
                            options[field.key].push({
                               color: field.value,
-                              from: _.minBy(options.levels, 'value').value,
-                              to: _.maxBy(options.levels, 'value').value
+                              from: minBy(options.levels, 'value').value,
+                              to: maxBy(options.levels, 'value').value
                            });
                         }
                      });
@@ -144,14 +141,11 @@ const init = (chart_series, indicator) => {
                text: "Cancel",
                click: () => closeDialog($html)
             }
-         ],
-         icons: {
-            close: 'custom-icon-close',
-            minimize: 'custom-icon-minimize',
-            maximize: 'custom-icon-maximize'
-         }
+         ]
       };
-      $html.dialog(options).dialogExtend && $html.dialog(options).dialogExtend(_.extend(options, {maximizable:false, minimizable:false, collapsable:false}));
+      $html.dialog(options);
+      $(".indicator-builder").dialog('open');
+      $(".indicator-builder").animate({ scrollTop: 0 }, 800);
       resolve($html);
    });
 }
@@ -164,9 +158,6 @@ const init = (chart_series, indicator) => {
 export const open = (indicator, chart_series, before_add_cb) => {
    before_add_callback = before_add_cb || before_add_callback;
 
-   return init(chart_series, indicator).then(() => {
-      $(".indicator-builder").dialog('open');
-      $(".indicator-builder").animate({ scrollTop: 0 }, 800);
-   });
+   return init(chart_series, indicator);
 }
 export default { open };
