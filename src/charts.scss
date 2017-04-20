@@ -1,0 +1,54 @@
+.chart-dialog {
+   min-width: 350px;
+   min-height: 400px;
+   background-color: white !important;
+   padding: 0 !important;
+   overflow-x: hidden !important;
+
+   .chart-view,
+   .table-view {
+      height: 100%;
+      position: absolute;
+   }
+   .table-view {
+      width: 100%;
+      left: 100%;
+      overflow-y: auto;
+
+      table {
+         padding: 15px 0 0 0;
+
+         th.sorting_desc { background-image: none !important; cursor: inherit !important; }
+         th, td { text-align: left; padding: 1px 3px !important; }
+         td { font-size: 14px; }
+
+         th:nth-child(1),
+         td:nth-child(1) { text-align: center; min-width: 75px; }
+      }
+      .arrow-images {
+         margin-bottom: -2px;
+         margin-left: -5px;
+         width: 10px;
+         height: 10px;
+      }
+   }
+   .close {
+      display:none;
+      position: absolute;
+      z-index: +1;
+      background: #e98024;
+      border: 1px solid #e98024;
+      border-radius: 0 0 0 4px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0px 10px;
+   }
+}
+
+.chartSubContainerHeader {
+  margin-left: 10px;
+}
+.dataTables_processing {
+  z-index: 1; /* fix for processing message wile refreshing databases */
+} 

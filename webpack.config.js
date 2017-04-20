@@ -1,9 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-   devtool: 'source-map',
+   devtool: 'inline-source-map',
    entry: './src/index.js',
    output: {
       filename: 'webtrader-charts.js',
@@ -18,6 +18,12 @@ module.exports = {
          commonjs2: "jquery",
          amd: "jquery",
          root: "jQuery"
+      },
+      'highstock-release' : {
+         commonjs: "highstock-release",
+         commonjs2: "highstock-release",
+         amd: "highstock-release",
+         root: "Highcharts"
       }
    },
    module: {
@@ -61,5 +67,11 @@ module.exports = {
          $: 'jquery',
          jQuery: 'jquery'
       })
-   ]
+   ],
+   node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      'crypto': 'empty'
+   }
 };
