@@ -56,6 +56,11 @@ const chartableMarkets = () => {
       });
 };
 const activeSymbols = () => {
+   const last_promise = activeSymbols.last_promise;
+   const last_promise_time = activeSymbols.last_promise_time;
+   if(last_promise  && (new Date() - last_promise_time) > 5*1000) {
+      return last_promise;
+   }
    const promise = liveapi
       .send({ active_symbols: 'brief' })
       .then((data) => {
@@ -79,13 +84,48 @@ const activeSymbols = () => {
          });
          return active_symbols;
       });
-   const perv_promise = activeSymbols.perv_promise;
-   activeSymbols.perv_promise = promise;
-   return perv_promise;
+   activeSymbols.last_promise = promise;
+   activeSymbols.last_promise_time = new Date();
+   return promise;
 };
 
 chartableMarkets();
 activeSymbols();
+
+export const marketData = () => {
+   return chartableMarkets().then(
+      (chartable_markets) => activeSymbols().then(
+         (active_symbols) => _.map(chartable_markets, (m) => ({
+               display_name: m.display_name,
+               name: m.name,
+               submarkets: _.map(m.submarkets, (sm) => {
+                  return {
+                     display_name: sm.display_name,
+                     instruments: _.filter(sm.instruments,
+                        (ins) => active_symbols.indexOf(ins.symbol) !== -1
+                     )
+                  }
+               }).filter((sm) => sm.instruments.length !== 0)
+            })
+         ).filter((m) => m.submarkets.length !== 0)
+      )
+   );
+};
+
+export const specificMarketDataSync = function(marketDataDisplayName, marketData) {
+    let present = {};
+    $.each(marketData, function(key, value) {
+        if (value.submarkets || value.instruments) {
+            present = specificMarketDataSync(marketDataDisplayName, value.submarkets || value.instruments);
+        } else {
+            if ($.trim(value.display_name) == $.trim(marketDataDisplayName)) {
+                present = value;
+            }
+        }
+        return $.isEmptyObject(present);
+    });
+    return present;
+}
 
 const init = () => {
    if(!win) {
@@ -226,23 +266,9 @@ const init_state = (root) =>{
    win_view = rv.bind(root[0], state);
 }
 
-const update_overlays = (chart, chartable_markets) => {
-   activeSymbols().then((active_symbols) => {
-      const markets = _.map(chartable_markets, (m) => {
-         return {
-            display_name: m.display_name,
-            name: m.name,
-            submarkets: _.map(m.submarkets, (sm) => {
-               return {
-                  display_name: sm.display_name,
-                  instruments: _.filter(sm.instruments,
-                     (ins) => active_symbols.indexOf(ins.symbol) !== -1
-                  )
-               }
-            }).filter((sm) => sm.instruments.length !== 0)
-         }
-      }).filter((m) => m.submarkets.length !== 0);
 
+const update_overlays = (chart) => {
+   marketData().then((markets) => {
       const mainSeriesName = chart.series[0].options.name;
       const current = _.filter(chart.series, (s, index) => {
          return s.options.isInstrument && s.options.id !== 'navigator' && index !== 0;
@@ -270,7 +296,7 @@ export const openDialog = ( containerIDWithHash, title ) => {
       state.overlays.current = $(containerIDWithHash).data('overlays-current') || [];
 
       const chart = $(containerIDWithHash).highcharts();
-      chartableMarkets().then((chartable_markets) => update_overlays(chart, chartable_markets));
+      update_overlays(chart);
       const normal_open = first_time || isAffiliates();
       win.dialog('open');
       first_time = false;
@@ -280,6 +306,7 @@ export const openDialog = ( containerIDWithHash, title ) => {
 export const events = $('<div/>');
 export default { 
    openDialog,
+   specificMarketDataSync,
    events
 }
 

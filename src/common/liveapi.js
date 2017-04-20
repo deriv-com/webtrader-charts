@@ -135,7 +135,7 @@ export const events = $('<div/>'); // use jquery in memory object for events.
 /* execute callback when the connection is ready */
 export const execute = (cb) => {
    if (is_connected())
-      settimeout(cb, 0);// always run the callback async
+      setTimeout(cb, 0);// always run the callback async
    else
       buffered_execs.push(cb);
 }
@@ -156,7 +156,6 @@ export const cached  = {
          });
    }
 }
-
 
 /* sends a request and returns an es6-promise */
 export const send = (data, timeout) => {
