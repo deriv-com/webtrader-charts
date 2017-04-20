@@ -8,9 +8,10 @@ import Parallel from './lib/parallel.js';
 import chartingRequestMap from './common/chartingRequestMap.js';
 import liveapi from './common/liveapi.js';
 import ohlc_handler from './common/ohlc_handler.js';
-import currentPrice from './indicators/currentprice.js';
-import indicators from './indicators/indicators.js';
+import currentPrice from './common/currentprice.js';
+import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
+// TODO: hicharts mousewheel
 // import $Hmw from 'common/highchartsMousewheel';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import './charts.scss';
