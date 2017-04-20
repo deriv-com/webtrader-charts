@@ -6,6 +6,7 @@ import stream_handler from './common/stream_handler';
 import ohlc_handler from './common/ohlc_handler';
 import charts from './charts';
 import {init} from './common/liveapi'; 
+import './indicators/index.js';
 import './index.scss';
 
 export {default as indicatorBuilder} from './indicatorBuilder'; 
