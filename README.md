@@ -2,19 +2,15 @@
 
 A charting library extracted from [Webtrader](https://github.com/binary-com/webtrader) so that other projects can use it as nodejs package
 
-## Pre-requisite to use this library
-
-- npm/yarn
-
 ## How to use it
 
-Using npm
+Use npm / yarn
         
         npm i binary-com/webtrader-charts
-
-Using yarn
-        
         yarn add binary-com/webtrader-charts
+
+All dependecies except `jquery`, `moment` and `highstock#4.2.6` are packaged into the library.
+You must provide these dependencies in your application. Take a look at `webpack.config.js -> externals`.
 
 ### ES6 style
 
