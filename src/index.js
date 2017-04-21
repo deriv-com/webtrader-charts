@@ -5,6 +5,7 @@ import chartingRequestMap from './common/chartingRequestMap';
 import stream_handler from './common/stream_handler';
 import ohlc_handler from './common/ohlc_handler';
 import tableView from './tableView';
+import chartOptions from './chartOptions';
 import charts from './charts';
 import {init} from './common/liveapi'; 
 import './indicators/index.js';
@@ -14,6 +15,7 @@ export {default as indicatorBuilder} from './indicatorBuilder';
 export {default as indicatorManagement} from './indicatorManagement'; 
 export {default as overlayManagement} from './overlayManagement'; 
 export {default as chartingRequestMap} from './common/chartingRequestMap'; 
+export {default as chartOptions} from './chartOptions'; 
 export {default as charts} from './charts'; 
 export {default as tableView} from './tableView'; 
 export {init} from './common/liveapi'; 
@@ -32,6 +34,7 @@ export default {
    indicatorManagement,
    overlayManagement,
    chartingRequestMap,
+   chartOptions,
    charts,
    tableView,
    init
