@@ -10,12 +10,8 @@ import html from './chartOptions.html';
 import './chartOptions.scss';
 import {isTick} from './common/utils.js';
 
-// TODO: chart template manager
-// import templateManager from 'charts/chartTemplateManager';
-
 const state = [],
     view = [],
-    template_manager = {},
     stringWidth = {};
 let isListenerAdded = false;
 
@@ -445,9 +441,7 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
 
     view[m_newTabId] = rv.bind($html[0], state[m_newTabId]);
 
-   // TODO: chart template manager
-    // const root = $html.find('.chart-template-manager-root');
-    // template_manager[m_newTabId] = templateManager.init(root, m_newTabId);
+    events.trigger('chart-options-add', [m_newTabId]);
 
     // Stop event propagation for these overlays.
     $html.find(".loadSaveOverlay").on("click", (e) => e.stopPropagation());
@@ -499,8 +493,7 @@ overlayManagement.events.on('ohlc-update', (e, { tabId, enable}) => {
 export const cleanBinding = (newTabId) => {
     if (view[newTabId]) {
         view[newTabId].unbind();
-        template_manager[newTabId] && template_manager[newTabId].unbind();
-        delete template_manager[newTabId];
+        events.trigger('chart-options-remove', [newTabId]);
         delete view[newTabId];
         delete state[newTabId];
     }
@@ -516,8 +509,10 @@ export const getAllChartsWithTheirTypes = () => {
     });
 }
 
+export const events = $('<div/>');
 export default {
     init,
+    events,
     updateOptions,
     cleanBinding,
     setIndicatorsCount,
