@@ -238,7 +238,7 @@ export const register = function(options) {
             if (req.subscribe && up.code == 'MarketIsClosed') {
                 // TODO: use the new event
                 //$.growl.notice({ message: options.symbol + ' market is presently closed.'.i18n() }); 
-                events.trigger('market-is-close', [{symbol}]);
+                events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
                 map[key].subscribers -= 1;
                 return liveapi.send(req, 30 * 1000);
