@@ -9,6 +9,8 @@ import indicatorManagement from './indicatorManagement.js';
 import html from './chartOptions.html';
 import './chartOptions.scss';
 import {isTick} from './common/utils.js';
+import vertical_line from './draw/vertical_line.js';
+import horizontal_line from './draw/horizontal_line.js';
 
 const state = [],
     view = [],
@@ -326,12 +328,10 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
     state[m_newTabId].addDrawingTool = (event, scope) => {
         const drawingTool = event.target.dataset.drawingtool;
         if (drawingTool) {
-            // TODO: charts/draw/*
-            // require(["charts/draw/highcharts_custom/" + drawingTool], (draw) => {
-            //     const refererChartID = '#' + scope.newTabId + '_chart';
-            //     $(refererChartID).highcharts().annotate = true;
-            //     draw.init(refererChartID);
-            // });
+           const draw = {horizontal_line, vertical_line}[drawingTool];
+           const refererChartID = '#' + scope.newTabId + '_chart';
+           $(refererChartID).highcharts().annotate = true;
+           draw.init(refererChartID);
         }
     };
 
