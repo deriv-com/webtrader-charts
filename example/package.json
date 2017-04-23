@@ -1,0 +1,24 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "description": "example using webtrader-charts",
+  "main": "index.js",
+  "author": "amin@binary.com",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.3"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/webpack-dev-server"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1"
+  }
+}
