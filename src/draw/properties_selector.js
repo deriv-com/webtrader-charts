@@ -47,7 +47,9 @@ export const open = (options, callback) => {
       }
       ele = $("<tr><td><strong>" + input.name + "</strong></td><td></td></tr>");
       inputElement.appendTo(ele.find('td')[1]);
-      $(ele).i18n().appendTo(table);
+      // TODO: i18n
+      // $(ele).i18n().appendTo(table);
+      $(ele).appendTo(table);
    });
    win = $html.dialog({
       title: options.title,
@@ -72,8 +74,10 @@ export const open = (options, callback) => {
                   value = parseInt(value);
                   if (value > max || value < min) {
                      $.growl.error({
-                        message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
-                           min + ' and '.i18n() + max + "."
+                        // TODO: i18n
+                        // message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
+                        //    min + ' and '.i18n() + max + "."
+                        message: `Please enter a value for "${name}" between ${min} and ${max}.`
                      });
                      error = true;
                   }

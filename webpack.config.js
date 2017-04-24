@@ -7,7 +7,8 @@ module.exports = {
    entry: './src/index.js',
    output: {
       filename: 'webtrader-charts.js',
-      path: path.resolve(__dirname, 'dist'),
+      // path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, './example/node_modules/webtrader-charts'),
       // path: path.resolve(__dirname, '../src/webtrader-charts'),
       library: 'WebtraderCharts',
       libraryTarget: 'umd'
@@ -66,7 +67,8 @@ module.exports = {
       // new UglifyJSPlugin(),
       new webpack.ProvidePlugin({
          $: 'jquery',
-         jQuery: 'jquery'
+         jQuery: 'jquery',
+         Highcharts: 'highstock-release'
       })
    ],
    node: {

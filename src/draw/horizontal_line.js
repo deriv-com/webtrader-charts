@@ -22,16 +22,22 @@ export const init = function(refererChartID) {
    const chart = $(refererChartID).highcharts();
 
    let options = {};
-   options.title = 'Horizontal Line'.i18n();
+   // TODO: i18n
+   // options.title = 'Horizontal Line'.i18n();
+   options.title = 'Horizontal Line';
    options.inputValues = [{
-      name: 'Stroke width'.i18n(),
+      // TODO: i18n
+      // name: 'Stroke width'.i18n(),
+      name: 'Stroke width',
       type: 'number',
       id: 'width',
       default: 2,
       min: 1,
       max: 5
    }, {
-      name: 'Stroke color'.i18n(),
+      // TODO: i18n
+      // name: 'Stroke color'.i18n(),
+      name: 'Stroke color',
       type: 'colorpicker',
       id: 'color',
       default: '#ff0000'

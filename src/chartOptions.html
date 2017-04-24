@@ -4,7 +4,7 @@
             <div class="cell">
                 <div class="chartOptions_button timeperiod" rv-on-click="toggleTimerPeriodSelector" rv-class-button_selected="showTimePeriodSelector">
                     <span data-balloon="Time interval" data-balloon-pos="down">
-                        <span class="vertical-bottom" rv-text="timePeriod_name | i18n"></span>
+                        <span class="vertical-bottom" rv-text="timePeriod_name"></span>
                         <span class="nav-caret triangle"></span>
                     </span>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="chartOptions_button chart_type" rv-on-click="toggleChartTypeSelector"rv-class-button_selected="showChartTypeSelector">
                     <span data-balloon="Chart type" data-balloon-pos="down">
                         <div class="img"><span rv-class="chartType.value | append '-icon'"></span></div>
-                        <span class="vertical-bottom name" rv-show="showChartTypeLabel" rv-text="chartType.name | i18n"></span>
+                        <span class="vertical-bottom name" rv-show="showChartTypeLabel" rv-text="chartType.name"></span>
                         <span class="nav-caret triangle"></span>
                     </span>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="row" rv-each-item="chartTypes" rv-class-showBorder="item.showBorder">
                         <div class="cell" rv-data-charttype="item.value" rv-on-click="changeChartType">
                             <div class="img"><div rv-data-charttype="item.value" rv-class="item.value | append '-icon'"></div></div>
-                            <span class="vertical-bottom" rv-data-charttype="item.value" rv-text="item.name | i18n"></span>
+                            <span class="vertical-bottom" rv-data-charttype="item.value" rv-text="item.name"></span>
                         </div>
                     </div>
                     <div class="row" rv-on-click="toggleCrosshair">

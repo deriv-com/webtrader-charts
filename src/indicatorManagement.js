@@ -55,10 +55,12 @@ const init = () => {
 
 const init_dialog_async = (root) => {
    return new Promise((resolve, reject) => {
+      // TODO: i18n
       // root = $(root).i18n();
       root = $(root);
 
       let option = {
+         // TODO: i18n
          // title: 'Add/remove indicators'.i18n(),
          title: 'Add/remove indicators',
          modal: true,
@@ -84,6 +86,7 @@ const init_dialog_async = (root) => {
 const init_state = (root) => {
    state = {
       dialog: {
+         // TODO: i18n
          // title: 'Add/remove indicators'.i18n(),
          title: 'Add/remove indicators',
          container_id: '',
@@ -176,6 +179,7 @@ const update_indicators = (series) => {
 let first_time = true;
 export const openDialog = (containerIDWithHash, title) => {
    init().then(() => {
+      // TODO: i18n
       // state.dialog.title = 'Add/remove indicators'.i18n() + (title ? ' - ' + title : '');
       state.dialog.title = 'Add/remove indicators' + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;

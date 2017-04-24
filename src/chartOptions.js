@@ -8,7 +8,7 @@ import overlayManagement from './overlayManagement.js';
 import indicatorManagement from './indicatorManagement.js';
 import html from './chartOptions.html';
 import './chartOptions.scss';
-import {isTick} from './common/utils.js';
+import {isTick, getAppURL, local_storage} from './common/utils.js';
 import vertical_line from './draw/vertical_line.js';
 import horizontal_line from './draw/horizontal_line.js';
 
@@ -133,7 +133,9 @@ const responsiveButtons = (scope, ele) => {
         chartTypeButton.css("width", stringWidth.ct + 55 + "px");
     } else {
         scope.showChartTypeLabel = false;
-        scope.timePeriod_name = i18n_name == "en" ? scope.timePeriod.value.toUpperCase() : scope.timePeriod.value.i18n();
+        // TODO: i18n
+        // scope.timePeriod_name = i18n_name == "en" ? scope.timePeriod.value.toUpperCase() : scope.timePeriod.value.i18n();
+        scope.timePeriod_name = scope.timePeriod.value.toUpperCase();
         timePeriodButton.css("width", stringWidth.tp.min + 27 + "px");
         chartTypeButton.css("width", "45px");
     }
@@ -152,17 +154,25 @@ const responsiveButtons = (scope, ele) => {
 
 const calculateStringWidth = (instrument_name) => {
     const longTp1 = timeperiod_arr.reduce((a, b) => {
-            return a.value.i18n().length > b.value.i18n().length ? a : b
+            // TODO: i18n
+            // return a.value.i18n().length > b.value.i18n().length ? a : b
+            return a.value.length > b.value.length ? a : b
         }),
         longTp2 = timeperiod_arr.reduce((a, b) => {
-            return a.name.i18n().length > b.name.i18n().length ? a : b
+            // TODO: i18n
+            // return a.name.i18n().length > b.name.i18n().length ? a : b
+            return a.name.length > b.name.length ? a : b
         }),
         longCt = chartType_arr.reduce((a, b) => {
-            return a.name.i18n().length > b.name.i18n().length ? a : b
+            // TODO: i18n
+            // return a.name.i18n().length > b.name.i18n().length ? a : b
+            return a.name.length > b.name.length ? a : b
         });
     const getWidth = (string) => {
         const font = '0.8em roboto,sans-serif',
-            obj = $('<div>' + string.i18n() + '</div>')
+            // TODO: i18n
+            // obj = $('<div>' + string.i18n() + '</div>')
+            obj = $(`<div>${string}</div>`)
             .css({ 'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': font })
             .appendTo($('body')),
             width = obj.width();
@@ -428,7 +438,9 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
 
     isListenerAdded = true;
 
-    const $html = $(html).i18n();
+    // TODO: i18n
+    // const $html = $(html).i18n();
+    const $html = $(html);
 
     $("#" + m_newTabId + "_header").prepend($html);
 

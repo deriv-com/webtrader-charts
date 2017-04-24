@@ -20,15 +20,21 @@ export const init = function(refererChartID) {
    const chart = $(refererChartID).highcharts();
 
    const options = {};
-   options.title = 'Vertical Line'.i18n();
+   // TODO: i18n
+   // options.title = 'Vertical Line'.i18n();
+   options.title = 'Vertical Line';
    options.inputValues = [{
-      name: 'Stroke width'.i18n(),
+      // TODO: i18n
+      // name: 'Stroke width'.i18n(),
+      name: 'Stroke width',
       type: 'number',
       id: 'width',
       default: 2,
       min: 1,
       max: 5
    }, {
+      // TODO: i18n
+      // name: 'Stroke color'.i18n(),
       name: 'Stroke color'.i18n(),
       type: 'colorpicker',
       id: 'color',

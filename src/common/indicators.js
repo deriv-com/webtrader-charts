@@ -1,6 +1,3 @@
-/**
- * Created by arnab on 3/30/15.
- */
 import $ from 'jquery';
 import _ from 'lodash';
 import 'highstock-release/highcharts-more';

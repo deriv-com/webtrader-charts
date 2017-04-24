@@ -136,10 +136,14 @@ const init = () => {
 
 const init_dialog_async = () => {
    return new Promise((resolve, reject) => {
-      const root = $(html).i18n();
+      // TODO: i18n
+      // const root = $(html).i18n();
+      const root = $(html);
 
       let option = {
-         title: 'Add/remove overlays'.i18n(),
+         // TODO: i18n
+         // title: 'Add/remove overlays'.i18n(),
+         title: 'Add/remove overlays',
          modal: true,
          resizable: false,
          dialogClass:'webtrader-charts-dialog',
@@ -163,6 +167,7 @@ const init_dialog_async = () => {
 const init_state = (root) =>{
    state = {
       dialog: {
+         // TODO: i18n
          // title: 'Add/remove overlays'.i18n(),
          title: 'Add/remove overlays',
          container_id: ''
@@ -291,7 +296,9 @@ const update_overlays = (chart) => {
 let first_time = true;
 export const openDialog = ( containerIDWithHash, title ) => {
    init().then(() => {
-      state.dialog.title = 'Add/remove comparisons'.i18n() + (title ? ' - ' + title : '');
+      // TODO: i18n
+      // state.dialog.title = 'Add/remove comparisons'.i18n() + (title ? ' - ' + title : '');
+      state.dialog.title = 'Add/remove comparisons' + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;
       state.overlays.current = $(containerIDWithHash).data('overlays-current') || [];
 

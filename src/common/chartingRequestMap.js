@@ -15,7 +15,11 @@ import loki from 'lokijs';
 import _ from 'lodash';
 import $ from 'jquery';
 import liveapi from './liveapi.js';
-import {isDataTypeClosePriceOnly, isTick, isLineDotType, isDotType} from './utils.js';
+import {
+   convertToTimeperiodObject,
+   isDataTypeClosePriceOnly,
+   isTick, isLineDotType, isDotType
+} from './utils.js';
 
 const db = new loki();
 export const barsTable = db.addCollection('bars_table');
@@ -236,8 +240,9 @@ export const register = function(options) {
         .catch((up) => {
             /* if the market is closed try the same request without subscribing */
             if (req.subscribe && up.code == 'MarketIsClosed') {
-                // TODO: use the new event
+                // TODO: i18n
                 //$.growl.notice({ message: options.symbol + ' market is presently closed.'.i18n() }); 
+                $.growl.notice({ message: options.symbol + ' market is presently closed.' }); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
                 map[key].subscribers -= 1;

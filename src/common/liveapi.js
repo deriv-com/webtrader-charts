@@ -31,7 +31,9 @@ const connect = () => {
    ws.addEventListener('message', onmessage);
 
    ws.addEventListener('error',(event) => {
-      $.growl.error({message: 'Connection error.'.i18n()});
+      // TODO: i18n
+      // $.growl.error({message: 'Connection error.'.i18n()});
+      $.growl.error({message: 'Connection error.'});
       onclose(); // try to reconnect
    });
 
@@ -70,7 +72,9 @@ const onopen = () => {
       const promise = unresolved_promises[key];
       if(!promise) continue;
       if(promise.sent_before) { /* reject if sent once before */
-         promise.reject({message: 'connection closed.'.i18n()});
+         // TODO: i18n
+         // promise.reject({message: 'connection closed.'.i18n()});
+         promise.reject({message: 'connection closed.'});
       } else { /* send */
          promise.sent_before = true;
          socket.send(JSON.stringify(promise.data));
@@ -125,7 +129,9 @@ const timeout_promise =(key, milliseconds) => {
       const promise = unresolved_promises[key];
       if (promise) {
          delete unresolved_promises[key];
-         promise.reject({message: 'timeout for websocket request'.i18n()});
+         // TODO: i18n
+         // promise.reject({message: 'timeout for websocket request'.i18n()});
+         promise.reject({message: 'timeout for websocket request'});
       }
    }, milliseconds);
 };
