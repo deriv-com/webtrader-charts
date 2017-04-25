@@ -104,16 +104,16 @@ const init_state = (root) => {
 
    state.indicators.add = (indicator) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      indicatorBuilder.open(copy, chart_series);
       ind_win.dialog('close');
+      indicatorBuilder.open(copy, chart_series);
    };
 
    state.indicators.edit = (indicator) => {
       const copy = JSON.parse(JSON.stringify(indicator));
+      ind_win.dialog('close');
       indicatorBuilder.open(copy, chart_series, () => {
          state.indicators.remove(indicator);
       });
-      ind_win.dialog('close');
    };
 
    state.indicators.remove = (indicator) => {

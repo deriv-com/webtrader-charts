@@ -19,6 +19,7 @@ const Store = {};
 let idCounter = 0;
 export const addNewChart = function($parent, options) {
     const dialog = $(html);
+    $parent.addClass('chart-dialog');
     dialog.appendTo($parent);
     const id = `webtrader-charts-dialog-${++idCounter}`;
     dialog.attr('id', id);

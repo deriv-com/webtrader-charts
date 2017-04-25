@@ -1,5 +1,6 @@
 .indicator-builder.ui-dialog-content {
   padding: 0;
+  background: white;
   overflow-x: hidden;
   > table {
      tr:nth-child(n+2) td:nth-child(1) {
@@ -214,16 +215,5 @@
 }
 
 .indicator-builder-ui-dialog {
-  .ui-dialog-buttonpane {
-    padding: 0;
-    margin: 0;
-    button {
-      box-sizing: border-box;
-      margin: 5px 3px;
-      border-radius: 3px !important;
-      width: 100px;
-      text-align: center;
-    }
-  }
   .image { text-align: center; }
 }

@@ -7,6 +7,7 @@ import moment from 'moment';
 import chartingRequestMap from './common/chartingRequestMap.js';
 import stream_handler from './common/stream_handler.js';
 import {isTick, toFixed} from './common/utils.js';
+import images from './images/images.js';
 // TODO: remove datatables-dependency
 import 'datatables.net';
 
@@ -122,12 +123,12 @@ const calculatePercentageDiff = (firstNumber, secondNumber) => {
    if (firstNumber <= secondNumber)
       return {
          value: diff + '(' + Percentage_diff + '%)',
-         image: diff === 0 ? '' : '<img src="images/blue_up_arrow.svg" class="arrow-images"/>'
+         image: diff === 0 ? '' : `<img src="${images.blue_up_arrow}" class="arrow-images"/>`
       };
    else
       return {
          value: '<span style="color:brown">' + diff + '(' + Percentage_diff + '%) </span>',
-         image: diff === 0 ? '' : '<img src="images/orange_down_arrow.svg" class="arrow-images"/>'
+         image: diff === 0 ? '' : `<img src="${images.orange_down_arrow}" class="arrow-images"/>`
       };
 };
 

@@ -4,11 +4,13 @@
    background-color: white !important;
    padding: 0 !important;
    overflow-x: hidden !important;
+   position: relative;
 
    .chart-view,
    .table-view {
       height: 100%;
       position: absolute;
+      font-size: 14px;
    }
    .table-view {
       width: 100%;
@@ -16,7 +18,6 @@
       overflow-y: auto;
 
       table {
-         padding: 15px 0 0 0;
 
          th.sorting_desc { background-image: none !important; cursor: inherit !important; }
          th, td { text-align: left; padding: 1px 3px !important; }
@@ -31,6 +32,9 @@
          width: 10px;
          height: 10px;
       }
+      .dataTables_filter {
+         display: none;
+      }
    }
    .close {
       display:none;
@@ -38,7 +42,7 @@
       z-index: +1;
       background: #e98024;
       border: 1px solid #e98024;
-      border-radius: 0 0 0 4px;
+      border-radius: 0 0 4px 0;
       color: #fff;
       cursor: pointer;
       font-size: 14px;

@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import popup from "./properties_selector.js";
+import Highcharts from "highstock-release/highstock";
 
 /*
 This is a map storing information as -
@@ -35,7 +36,7 @@ export const init = function(refererChartID) {
    }, {
       // TODO: i18n
       // name: 'Stroke color'.i18n(),
-      name: 'Stroke color'.i18n(),
+      name: 'Stroke color',
       type: 'colorpicker',
       id: 'color',
       default: '#ff0000'
