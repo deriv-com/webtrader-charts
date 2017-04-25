@@ -11,6 +11,7 @@ import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
+import Highcharts from 'highstock-release/highstock';
 // TODO: hicharts mousewheel
 // import $Hmw from 'common/highchartsMousewheel';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';

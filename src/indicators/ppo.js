@@ -1,4 +1,5 @@
-﻿/**
+﻿import {uuid, toFixed} from '../common/utils.js';
+/**
  * Created by Mahboob.M on 2/1/16.
  */
 var PPO = function (data, options, indicators) {

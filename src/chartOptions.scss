@@ -1,9 +1,15 @@
 .chartOptions {
+   font-family: Roboto,Verdana,Arial,sans-serif;
 
   .table {
+    display: table;
     margin: 5px auto;
-    .row .cell {
-      vertical-align: middle;
+    .row {
+       display: table-row;
+       .cell {
+          vertical-align: middle;
+          display: table-cell;
+       }
     }
   }
 
@@ -15,6 +21,10 @@
 
   .chartOptions_button {
     height: 30px;
+    background: #F2F2F2;
+    margin-left: 5px;
+    color: #2A3052;
+    border-radius: 2px;
     span {
       display: inline-block;
       img { max-height: 20px; }

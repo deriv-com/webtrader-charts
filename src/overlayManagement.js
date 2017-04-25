@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import rv from 'rivets';
 import _ from 'lodash';
 import liveapi from './common/liveapi.js';

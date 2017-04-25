@@ -1,4 +1,5 @@
-﻿/**
+﻿import {uuid, toFixed} from '../common/utils.js';
+/**
  * Created by Mahboob.M on 3/2/16.
  */
 var VAR = function(data, options, indicators) {

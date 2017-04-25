@@ -8,7 +8,7 @@ import overlayManagement from './overlayManagement.js';
 import indicatorManagement from './indicatorManagement.js';
 import html from './chartOptions.html';
 import './chartOptions.scss';
-import {isTick, getAppURL, local_storage} from './common/utils.js';
+import {isTick, local_storage, isAffiliates} from './common/utils.js';
 import vertical_line from './draw/vertical_line.js';
 import horizontal_line from './draw/horizontal_line.js';
 
@@ -37,7 +37,7 @@ const chartType_arr = [{ value: 'candlestick', name: 'Candles' }, { value: 'ohlc
         { value: 'spline', name: 'Spline' }, { value: 'table', name: 'Table' }
     ],
     i18n_name = (local_storage.get('i18n') || { value: 'en' }).value,
-    appURL = getAppURL(), // Get current apps url.
+    appURL = "https://webtrader.binary.com",
     urlShareTemplate = appURL + '?affiliates=true&instrument={0}&timePeriod={1}&lang=' + i18n_name,
     iframeShareTemplate = '<iframe src="' + urlShareTemplate + '" width="350" height="400" style="overflow-y : hidden;" scrolling="no" />',
     twitterShareTemplate = 'https://twitter.com/share?url={0}&text={1}',
@@ -200,6 +200,12 @@ const toggleIcon = (ele, active) => {
     cls = (active === true) ? type + "-w-icon" : type + "-icon";
     ele.toggleClass(cls);
 }
+const format = (str, ...args) => {
+   return str.replace(
+      /{(\d+)}/g,
+      (match, number) => (typeof args[number] !== 'undefined') ? args[number] : match
+   );
+}
 
 export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_instrumentName, m_instrumentCode, m_showShare, m_showOverlay) => {
 
@@ -232,14 +238,15 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
         showOverlay: typeof m_showOverlay == 'undefined' ? true : m_showOverlay,
         showInstrumentName: false,
 
-        exportChartURLShare: urlShareTemplate.format(m_instrumentCode, m_timePeriod),
-        exportChartIframeShare: iframeShareTemplate.format(m_instrumentCode, m_timePeriod),
 
-        fbShareLink: fbShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod))),
-        twitterShareLink: twitterShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')'),
-        gPlusShareLink: gPlusShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod))),
-        bloggerShareLink: bloggerShareTemplate.format(urlShareTemplate.format(m_instrumentCode, m_timePeriod), m_instrumentName + '(' + m_timePeriod + ')'),
-        vkShareLink: vkShareTemplate.format(urlShareTemplate.format(m_instrumentCode, m_timePeriod), m_instrumentName + '(' + m_timePeriod + ')')
+        exportChartURLShare: format(urlShareTemplate, m_instrumentCode, m_timePeriod),
+        exportChartIframeShare: format(iframeShareTemplate, m_instrumentCode, m_timePeriod),
+
+        fbShareLink: format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod))),
+        twitterShareLink: format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')'),
+        gPlusShareLink: format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod))),
+        bloggerShareLink: format(bloggerShareTemplate, format(urlShareTemplate, m_instrumentCode, m_timePeriod), m_instrumentName + '(' + m_timePeriod + ')'),
+        vkShareLink: format(vkShareTemplate, format(urlShareTemplate, m_instrumentCode, m_timePeriod), m_instrumentName + '(' + m_timePeriod + ')')
 
     };
     view[m_newTabId] = null;

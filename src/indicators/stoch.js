@@ -1,4 +1,5 @@
-﻿/**
+﻿import {uuid, toFixed} from '../common/utils.js';
+/**
  * Created by Mahboob.M on 2/8/16.
  */
 var STOCH = function(data, options, indicators) {

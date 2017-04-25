@@ -1,3 +1,4 @@
+import {uuid, toFixed} from '../common/utils.js';
 /**
  * Created by Arnab Karmakar on 1/13/16.
  */

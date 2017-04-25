@@ -4,6 +4,8 @@
 //Website: http://designwithpc.com
 //Twitter: http://twitter.com/chaudharyp
 
+import $ from 'jquery';
+
 (function ($) {
 
     $.fn.ddslick = function (method) {
@@ -356,4 +358,4 @@
         });
     }
 
-})(jQuery);
+})($);

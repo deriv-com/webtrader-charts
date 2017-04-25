@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import liveapi from './liveapi.js';
 import chartingRequestMap from './chartingRequestMap.js';
-import { convertToTimeperiodObject } from './utils.js';
+import { convertToTimeperiodObject, isTick } from './utils.js';
 
 const barsTable = chartingRequestMap.barsTable;
 

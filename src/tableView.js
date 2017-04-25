@@ -6,6 +6,7 @@ import $ from 'jquery';
 import moment from 'moment';
 import chartingRequestMap from './common/chartingRequestMap.js';
 import stream_handler from './common/stream_handler.js';
+import {isTick, toFixed} from './common/utils.js';
 // TODO: remove datatables-dependency
 import 'datatables.net';
 
