@@ -6,22 +6,41 @@ A charting library extracted from [Webtrader](https://github.com/binary-com/webt
 
 Use npm / yarn
         
-        npm i binary-com/webtrader-charts
-        yarn add binary-com/webtrader-charts
+        npm install --save webtrader-charts
+        yarn add webtrader-charts
 
-All dependecies except `jquery`, `moment` and `highstock#4.2.6` are packaged into the library.
-You must provide these dependencies in your application. Take a look at `webpack.config.js -> externals`.
+You need to provide these dependences `jquery`, `moment` and `highstock#4.2.6`.  
+Take a look at `webpack.config.js -> externals`.  
 
-### ES6 style
+### Example
 
-    import charts from 'webtrader-charts';
+    import wtcharts from 'webtrader-charts';
     
-    charts.drawChart(
-      'containerID', //where chart should be rendered
-      'frxUSDJPY', //instrument code
-      '1m', //time period,
-      'en', //language
-      false, //Do you want to hide the overlay option on chart
-      false, //Do you want to hide the share option on chart
-      'GMT', //Timezone of client. Defaults to GMT. Format in GMT+8
-    );
+    const chart =  wtcharts.chartWindow.addNewChart($parent, {
+       "instrumentCode": "RDBULL",
+       "instrumentName": "Bull Market Index",
+       "timePeriod": "1m",
+       "type": "line",
+       "delayAmount": 0,
+       "indicators": [
+          {
+             "id": "cks",
+             "name": "Chande Kroll Stop",
+             "options": {
+                "period": 10,
+                "maxMinPeriod": 20,
+                "multiplier": 3,
+                "longStopStroke": "#00C176",
+                "shortStopStroke": "#FF003C",
+                "strokeWidth": 1,
+                "dashStyle": "Solid"
+             }
+          }
+       ],
+       "overlays": [ ],
+    });
+
+    chart.events.anyChange = () => {
+       console.warn(chart.data());
+    }; 
+
