@@ -84,12 +84,7 @@ module.exports = {
       ],
    },
    plugins: [
-      // new UglifyJSPlugin(),
-      // new webpack.ProvidePlugin({
-      //    'jQuery': 'jquery',
-      //    'M.jQuery': 'jquery',
-      //    Highcharts: 'highstock-release/highstock'
-      // })
+      new UglifyJSPlugin(),
    ],
    node: {
       fs: 'empty',

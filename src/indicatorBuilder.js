@@ -83,7 +83,6 @@ const init = (chart_series, indicator) => {
 
       const options = {
          title: indicator.long_display_name,
-         autoOpen: false,
          resizable: false,
          width: 350,
          height: 400,
@@ -146,8 +145,7 @@ const init = (chart_series, indicator) => {
          ]
       };
       $html.dialog(options);
-      $(".indicator-builder").dialog('open');
-      $(".indicator-builder").animate({ scrollTop: 0 }, 800);
+      // $(".indicator-builder").animate({ scrollTop: 0 }, 800);
       resolve($html);
    });
 }

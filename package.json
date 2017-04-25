@@ -2,7 +2,7 @@
   "name": "webtrader-charts",
   "version": "0.0.1",
   "description": "webtrader charts",
-  "main": "src/index.js",
+  "main": "dist/webtrader-charts.js",
   "scripts": {
     "build": "webpack --progress",
     "watch": "webpack --watch --progress",

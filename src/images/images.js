@@ -9,6 +9,8 @@ import LongDash from './LongDash.svg';
 import LongDashDotDot from './LongDashDotDot.svg';
 import ShortDashDot from './ShortDashDot.svg';
 import ShortDot from './ShortDot.svg';
+import orange_down_arrow from './orange_down_arrow.svg';
+import blue_up_arrow from './blue_up_arrow.svg';
 
 export default {
 	Dash,
@@ -22,4 +24,6 @@ export default {
 	LongDashDotDot,
 	ShortDashDot,
 	ShortDot,
+   blue_up_arrow,
+   orange_down_arrow
 };

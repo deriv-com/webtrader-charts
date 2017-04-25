@@ -1,9 +1,8 @@
-Example project using webtrader-charts: 
-See how an example webpack project provides external dependencies.
+Webpack project using webtrader-charts:  
 
 ```
    yarn install
-   yarn start
+   yarn watch
 ```
 
 browse `localhost:8080`
