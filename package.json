@@ -15,7 +15,7 @@
     "webpack-dev-server": "^2.4.3"
   },
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server"
+    "watch": "node_modules/.bin/webpack-dev-server"
   },
   "dependencies": {
     "webtrader-charts": "^0.0.1",
