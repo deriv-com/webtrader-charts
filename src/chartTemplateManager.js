@@ -22,7 +22,9 @@ class ChartTemplateManager {
     local_storage.set("templates",templates);
 
     const state = this.init_state(root, dialog_id);
-    root.append(html.i18n());
+    // TODO: i18n
+    // root.append(html.i18n());
+    root.append(html);
     this.view = rv.bind(root[0], state);
   }
 
@@ -83,7 +85,9 @@ class ChartTemplateManager {
       local_storage.set('templates', array);
       templates.array = array;
       templates.current = current;
-      $.growl.notice({message: 'Template changes saved '.i18n() + '(' + current.name + ')'});
+      // TODO: i18n
+      // $.growl.notice({message: 'Template changes saved '.i18n() + '(' + current.name + ')'});
+      $.growl.notice({message: `Template changes saved (${current.name})`});
     };
 
     menu.open_file_selector = (event) => {
@@ -108,7 +112,9 @@ class ChartTemplateManager {
           const hash = data.random;
           data = _this.setRandom(data);
           if(hash !== data.random){
-            throw "Invalid JSON file".i18n();
+            // TODO: i18n
+            // throw "Invalid JSON file".i18n();
+            throw "Invalid JSON file";
           }
 
           if(_this.isDuplicate(data, array)){
@@ -116,7 +122,9 @@ class ChartTemplateManager {
           }
 
           if(!data.indicators) {
-            throw "Invalid template type".i18n();
+            // TODO: i18n
+            // throw "Invalid template type".i18n();
+            throw "Invalid template type";
           }
         } catch(e) {
           $.growl.error({message:e});
@@ -140,7 +148,9 @@ class ChartTemplateManager {
         array.push(data);
         local_storage.set('templates', array);
         templates.array = array;
-        $.growl.notice({message: "Successfully applied the template and saved it as ".i18n() + "<b>" + data.name + "</b>"});
+        // TODO: i18n
+        // $.growl.notice({message: "Successfully applied the template and saved it as ".i18n() + "<b>" + data.name + "</b>"});
+        $.growl.notice({message: `Successfully applied the template and saved it as <b>${data.name}</b>`});
       };
 
       reader.readAsText(file);
@@ -168,7 +178,9 @@ class ChartTemplateManager {
     templates.download = (tmpl) => {
       var json = JSON.stringify(tmpl);
       download_file_in_browser(tmpl.name + '.json', 'text/json;charset=utf-8;', json);
-      $.growl.notice({message: "Downloading template as <b>".i18n() + tmpl.name + ".json</b>"});
+      // TODO: i18n
+      // $.growl.notice({message: "Downloading template as <b>".i18n() + tmpl.name + ".json</b>"});
+      $.growl.notice({message: `Downloading template as <b>${tmpl.name}.json</b>`});
     };
 
     templates.remove = (tmpl) => {
@@ -192,7 +204,9 @@ class ChartTemplateManager {
       const new_name = templates.rename_value.substring(0,20).replace(/[<>]/g,"-");
       const array = local_storage.get('templates');
       if(array.map(t => t.name).includes(new_name)) {
-          $.growl.error({message: 'Template name already exists'.i18n() });
+          // TODO: i18n
+          // $.growl.error({message: 'Template name already exists'.i18n() });
+          $.growl.error({message: 'Template name already exists' });
           return;
       }
       const tmpl = array.find(t => t.name === name);
@@ -220,11 +234,17 @@ class ChartTemplateManager {
     templates.confirm = (tmpl, event) => {
       route.update("confirm");
       const action = event.currentTarget.text;
-      templates.confirm_prevMenu = action === "Delete".i18n() ? "templates" : "menu";
-      templates.confirm_text = action === "Delete" ? "Are you sure you want to delete template?".i18n() : "Are you sure you want to overwrite current template?".i18n();
+      // TODO: i18n
+      // templates.confirm_prevMenu = action === "Delete".i18n() ? "templates" : "menu";
+      templates.confirm_prevMenu = action === "Delete" ? "templates" : "menu";
+      // TODO: i18n
+      // templates.confirm_text = action === "Delete" ? "Are you sure you want to delete template?".i18n() : "Are you sure you want to overwrite current template?".i18n();
+      templates.confirm_text = action === "Delete" ? "Are you sure you want to delete template?" : "Are you sure you want to overwrite current template?";
 
       templates.confirm_yes = () => {
-        action === "Delete".i18n()? templates.remove(tmpl) : menu.save_changes();
+        // TODO: i18n
+        // action === "Delete".i18n()? templates.remove(tmpl) : menu.save_changes();
+        action === "Delete" ? templates.remove(tmpl) : menu.save_changes();
         templates.confirm_no();
       };
 
@@ -254,7 +274,9 @@ class ChartTemplateManager {
     // get template with same values.
     const tmpl_copy = _.find(array, ['random', tmpl.random]);
     if(tmpl_copy){
-      $.growl.error({message: 'Template already saved as '.i18n() +'<b>' + tmpl_copy.name + '</b>.'});
+      // TODO: i18n
+      // $.growl.error({message: 'Template already saved as '.i18n() +'<b>' + tmpl_copy.name + '</b>.'});
+      $.growl.error({message: 'Template already saved as <b>' + tmpl_copy.name + '</b>.'});
       return true;
     }
     return false;

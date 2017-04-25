@@ -1,8 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import html from './chartWindow.html';
-// TODO: highcharts-exporting
-// import 'highcharts-exporting';
 import charts from './charts.js';
 import tableView from './tableView.js';
 import chartOptions from './chartOptions.js';

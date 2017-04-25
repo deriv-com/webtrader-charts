@@ -1,4 +1,5 @@
-﻿/**
+﻿import {uuid, toFixed} from '../common/utils.js';
+/**
  * Created by Mahboob.M on 1/30/16.
  */
 var SAR = function (data, options, indicators) {

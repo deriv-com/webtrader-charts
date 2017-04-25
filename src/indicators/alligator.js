@@ -1,3 +1,4 @@
+import {uuid, toFixed} from '../common/utils.js';
 var ALLIGATOR = function(data, options, indicators) {
 
     IndicatorBase.call(this, data, options, indicators);

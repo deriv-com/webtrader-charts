@@ -11,6 +11,7 @@ import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
+import Highcharts from 'highstock-release/highstock';
 // TODO: hicharts mousewheel
 // import $Hmw from 'common/highchartsMousewheel';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
@@ -92,16 +93,18 @@ $(() => {
     });
 
     // Localizing Highcharts.
-    const lang = Highcharts.getOptions().lang;
-    Object.keys(lang).forEach((key) => {
-    if(typeof lang[key] === 'object') {
-        lang[key].forEach(
-            (value, index) => { lang[key][index] = value.i18n();}
-        );
-        return;
-    }
-    lang[key] = lang[key].i18n();
-    });
+    /* // TODO: i18n
+       const lang = Highcharts.getOptions().lang;
+       Object.keys(lang).forEach((key) => {
+       if(typeof lang[key] === 'object') {
+           lang[key].forEach(
+               (value, index) => { lang[key][index] = value.i18n();}
+           );
+           return;
+       }
+       lang[key] = lang[key].i18n();
+       });
+    */
 });
 
 indicators.initHighchartIndicators(chartingRequestMap.barsTable);
@@ -163,8 +166,10 @@ export const generate_csv = (chart, data) => {
         }
     });
 
-   // TODO: growl
+    // TODO: i18n
     // $.growl.notice({ message: 'Downloading .csv'.i18n() });
+    $.growl.notice({ message: 'Downloading .csv' });
+
     //merge here
     new Parallel([lines, dataToBeProcessTolines])
         .spawn((data) => {
@@ -211,8 +216,9 @@ export const generate_csv = (chart, data) => {
                 }
             }
         }, (error) => {
-           // TODO: growl
+           // TODO: i18n
            // $.growl.error({ message: 'Error downloading .csv'.i18n() });
+           $.growl.error({ message: 'Error downloading .csv' });
             console.error(error);
         });
 
@@ -286,9 +292,10 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             series_compare: options.series_compare,
                             delayAmount: options.delayAmount
                         }).catch((err) => {
-                            const msg = 'Error getting data for %1'.i18n().replace('%1', options.instrumentName);
-                            // TODO: growl
-                            // $.growl.error({ message: msg });
+                            // TODO: i18n
+                            // const msg = 'Error getting data for %1'.i18n().replace('%1', options.instrumentName);
+                            const msg = 'Error getting data for %1'.replace('%1', options.instrumentName);
+                            $.growl.error({ message: msg });
                             const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);
@@ -426,10 +433,15 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     s += '<span style="color:' + this.point.color + '">\u25CF </span>';
                     if(typeof this.point.open !=="undefined") { //OHLC chart
                         s += "<b>" + this.series.name + "</b>"
-                        s += "<br>" + "  Open".i18n() + ": " + this.point.open;
-                        s += "<br>" + "  High".i18n() + ": " + this.point.high;
-                        s += "<br>" + "  Low".i18n() + ": " + this.point.low;
-                        s += "<br>" + "  Close".i18n() + ": " + this.point.close;
+                        // TODO: i18n
+                        // s += "<br>" + "  Open".i18n() + ": " + this.point.open;
+                        // s += "<br>" + "  High".i18n() + ": " + this.point.high;
+                        // s += "<br>" + "  Low".i18n() + ": " + this.point.low;
+                        // s += "<br>" + "  Close".i18n() + ": " + this.point.close;
+                        s += "<br>  Open: " + this.point.open;
+                        s += "<br>  High: " + this.point.high;
+                        s += "<br>  Low: " + this.point.low;
+                        s += "<br>  Close: " + this.point.close;
                     } else {
                         s += this.series.name + ": <b>" + this.point.y + "</b>";
                     }

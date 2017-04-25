@@ -1,4 +1,5 @@
-﻿/**
+﻿import {uuid, toFixed} from '../common/utils.js';
+/**
  * Created by Mahboob.M on 2/3/16.
  */
 var AO = function (data, options, indicators) {

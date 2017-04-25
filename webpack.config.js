@@ -3,11 +3,12 @@ const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-   devtool: 'inline-source-map',
+   devtool: 'source-map',
    entry: './src/index.js',
    output: {
       filename: 'webtrader-charts.js',
       path: path.resolve(__dirname, 'dist'),
+      // path: path.resolve(__dirname, './example/node_modules/webtrader-charts'),
       // path: path.resolve(__dirname, '../src/webtrader-charts'),
       library: 'WebtraderCharts',
       libraryTarget: 'umd'
@@ -20,15 +21,35 @@ module.exports = {
          amd: "jquery",
          root: "jQuery"
       },
-      'highstock-release' : {
-         commonjs: "highstock-release",
-         commonjs2: "highstock-release",
-         amd: "highstock-release",
+      'highstock-release/highstock' : {
+         commonjs: "highstock-release/highstock",
+         commonjs2: "highstock-release/highstock",
+         amd: "highstock-release/highstock",
          root: "Highcharts"
+      },
+      'highstock-release/modules/exporting' : {
+         commonjs: "highstock-release/modules/exporting",
+         commonjs2: "highstock-release/modules/exporting",
+         amd: "highstock-release/modules/exporting",
+      },
+      'highstock-release/modules/offline-exporting' : {
+         commonjs: "highstock-release/modules/offline-exporting",
+         commonjs2: "highstock-release/modules/offline-exporting",
+         amd: "highstock-release/modules/offline-exporting",
       }
    },
    module: {
       rules: [
+         {
+          test: require.resolve('jquery'),
+          use: [{
+              loader: 'expose-loader',
+              options: 'jQuery'
+          },{
+              loader: 'expose-loader',
+              options: '$'
+          }]
+      },
          {
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
@@ -59,15 +80,16 @@ module.exports = {
          {
             test: /\.json$/,
             use: 'json-loader'
-         }
-      ]
+         },
+      ],
    },
    plugins: [
       // new UglifyJSPlugin(),
-      new webpack.ProvidePlugin({
-         $: 'jquery',
-         jQuery: 'jquery'
-      })
+      // new webpack.ProvidePlugin({
+      //    'jQuery': 'jquery',
+      //    'M.jQuery': 'jquery',
+      //    Highcharts: 'highstock-release/highstock'
+      // })
    ],
    node: {
       fs: 'empty',

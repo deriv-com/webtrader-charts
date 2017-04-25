@@ -125,7 +125,9 @@ const init = (chart_series, indicator) => {
                   }
 
                   if(!fields_are_valid) {
-                     $.growl.error({ message: "Invalid parameter(s)!".i18n() });
+                     // TODO: i18n
+                     // $.growl.error({ message: "Invalid parameter(s)!".i18n() });
+                     $.growl.error({ message: "Invalid parameter(s)!" });
                      return;
                   }
 

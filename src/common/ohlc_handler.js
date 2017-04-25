@@ -1,6 +1,7 @@
+import $ from 'jquery';
 import liveapi from './liveapi.js';
 import chartingRequestMap from './chartingRequestMap.js';
-import $ from 'jquery';
+import { convertToTimeperiodObject, isTick } from './utils.js';
 
 const barsTable = chartingRequestMap.barsTable;
 
@@ -93,21 +94,26 @@ export const retrieveChartDataAndRender = (options) => {
       adjust_start_time: 1
    })
       .catch((err) => {
-         const msg = 'Error getting data for %1'.i18n().replace('%1', instrumentName);
-         // TODO: fix growl
-         // $.growl.error({ message: msg });
+         // TODO: i18n
+         // const msg = 'Error getting data for %1'.i18n().replace('%1', instrumentName);
+         const msg = 'Error getting data for %1'.replace('%1', instrumentName);
+         $.growl.error({ message: msg });
          const chart = $(containerIDWithHash).highcharts();
          chart && chart.showLoading(msg);
          console.error(err);
       })
       .then((data) => {
          if (data && !data.error && options.delayAmount > 0) {
-            //start the timer
-            // TODO: fix growl
+            // TODO: i18n
             // $.growl.warning({
             //    message: instrumentName + ' feed is delayed by '.i18n() +
             //    options.delayAmount + ' minutes'.i18n()
             // })
+            $.growl.warning({
+               message: instrumentName + ' feed is delayed by ' + options.delayAmount + ' minutes'
+            });
+
+            //start the timer
             chartingRequestMap[key].timerHandler = setInterval(() => {
                let lastBar = barsTable.chain()
                   .find({instrumentCdAndTp : key})

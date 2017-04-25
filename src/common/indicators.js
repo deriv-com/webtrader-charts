@@ -1,8 +1,6 @@
-/**
- * Created by arnab on 3/30/15.
- */
 import $ from 'jquery';
 import _ from 'lodash';
+import Highcharts from 'highstock-release/highstock';
 import 'highstock-release/highcharts-more';
 import indicatorsArray from '../indicators.json';
 
