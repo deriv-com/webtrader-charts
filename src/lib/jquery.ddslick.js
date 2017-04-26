@@ -33,7 +33,7 @@ import $ from 'jquery';
         imagePosition: "left",
         showSelectedHTML: true,
         clickOffToClose: true,
-		embedCSS: true,
+        embedCSS: true,
         onSelected: function () { }
     },
 

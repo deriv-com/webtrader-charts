@@ -1926,11 +1926,11 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery-ui@>=1.7, jquery-ui@^1.12.1:
+jquery-ui@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
 
-jquery@>=1.5, jquery@>=1.7, jquery@^3.2.1:
+jquery@>=1.7, jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -3179,6 +3179,10 @@ spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
+spectrum-colorpicker@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/spectrum-colorpicker/-/spectrum-colorpicker-1.8.0.tgz#b926cf5002c0a77860b5f8351e1c093c65200107"
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
@@ -3454,13 +3458,6 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
-
-vanderlee-colorpicker@^1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/vanderlee-colorpicker/-/vanderlee-colorpicker-1.2.9.tgz#d913a9ba447c6ab3fb3c89bc55c6243196f32195"
-  dependencies:
-    jquery ">=1.5"
-    jquery-ui ">=1.7"
 
 vendors@^1.0.0:
   version "1.0.1"
