@@ -41,6 +41,7 @@ const connect = () => {
 }
 
 let timeoutIsSet = false;
+// TODO: refresh open charts
 const onclose = () => {
    if(!timeoutIsSet) {
       timeoutIsSet = true;

@@ -62,25 +62,15 @@
   }
 
   .colorpicker-td {
-     //display: flex;
-     //flex-direction: row;
-     //justify-content: space-between;
-     //position: relative;
-     //top: 2px;
-
-     line-height: 1px;
-     div {
-        height: 26px !important;
-        position: relative;
-        top: -1px;
-        padding: 0;
-        border: none;
-     }
-     input {
-        height: 1px;
-        padding: 0;
-        border: none;
-        visibility: hidden;
+     .sp-replacer {
+        box-sizing: border-box;
+        width: 100% !important;
+        .sp-preview {
+           width: calc(100% - 18px) !important;
+           .sp-preview-inner {
+              top: 0 !important;
+           }
+        }
      }
   }
 

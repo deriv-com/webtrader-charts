@@ -2,7 +2,8 @@ import $ from 'jquery';
 import _ from 'lodash';
 import rv from 'rivets';
 import 'jquery-ui/ui/widgets/slider';
-import 'vanderlee-colorpicker';
+import 'spectrum-colorpicker';
+import 'spectrum-colorpicker/spectrum.css';
 import '../lib/jquery.ddslick.js';
 
 rv.binders['attr-*'] = {
@@ -47,36 +48,21 @@ rv.binders['color-picker'] = {
    bind: function (el) {
       const input = $(el);
 
-      const publish = this.publish;
       const model = this.model;
       const color = model.value || '#cd0a0a';
 
-      const altField = $('<div style="width:100%;"/>');
-      input.after(altField);
-
-      input.colorpicker({
-         showOn: 'alt',
-         altField: altField,
-         position: {
-            my: "left-100 bottom+5",
-            of: "element",
-            collision: "fit"
-         },
-         parts:  [ 'map', 'bar' ],
-         alpha:  true,
-         layout: {
-            map: [0, 0, 2, 2],
-            bar: [2, 0, 1, 2],
-         },
-         colorFormat: "RGBA",
-         part: { map: {size: 128}, bar: {size: 128} },
-         select: (event, color) => publish(color)
+      input.spectrum({
+         color: color,
+         showButtons: false,
+         change: (color) => {
+            const rgba = color.toRgb();
+            model.value = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
+         }
       });
-
       setTimeout(() => {
          parent = input.scrollParent();
          parent.scroll(
-            () => input.colorpicker('close')
+            () => input.spectrum('hide')
          );
       }, 1000);
    },

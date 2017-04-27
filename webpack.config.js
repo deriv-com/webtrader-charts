@@ -8,7 +8,7 @@ module.exports = {
    output: {
       filename: 'webtrader-charts.js',
       path: path.resolve(__dirname, 'dist'),
-      // path: path.resolve(__dirname, './example/node_modules/webtrader-charts'),
+      // path: path.resolve(__dirname, './example/node_modules/webtrader-charts/dist'),
       // path: path.resolve(__dirname, '../src/webtrader-charts'),
       library: 'WebtraderCharts',
       libraryTarget: 'umd'
@@ -68,13 +68,21 @@ module.exports = {
                options: { minimize: true }
             }],
          },
-         { test: /\.svg/, use: [ "url-loader" ] },
+         { test: /\.(svg)/, use: [ "url-loader" ] },
+         { test: /\.(png|jpg)/, use: [ "file-loader" ] },
          {
             test: /\.scss$/,
             use: [
                { loader: "style-loader" },
                { loader: "css-loader" },
                { loader: "sass-loader" }
+            ]
+         },
+         {
+            test: /\.css$/,
+            use: [
+               { loader: "style-loader" },
+               { loader: "css-loader" },
             ]
          },
          {

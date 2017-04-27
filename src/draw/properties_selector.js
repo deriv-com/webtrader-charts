@@ -6,51 +6,6 @@ let win = null;
 export const open = (options, callback) => {
    const $html = $(html);
    const table = $html.find("table");
-   options.inputValues.forEach(function(input) {
-      let ele, inputElement;
-      if (input.type === "colorpicker") {
-         inputElement = $("<input type='button' value='" + input.default+"' class='csspopup_input_width'" +
-            "id='" + input.id + "' style = 'width:100px;background:" + input.default+"; color:" + input.default+"' />");
-         inputElement.colorpicker({
-            showOn: 'click',
-            position: {
-               at: "right+100 bottom",
-               of: "element",
-               collision: "fit"
-            },
-            part: {
-               map: { size: 128 },
-               bar: { size: 128 }
-            },
-            select: function(event, color) {
-               const c = "#" + color.formatted;
-               $(inputElement).css({
-                  background: c,
-                  color: c
-               }).val(c);
-            },
-            ok: function(event, color) {
-               const c = "#" + color.formatted;
-               $(inputElement).css({
-                  background: c,
-                  color: c
-               }).val(c);
-            }
-         });
-      } else {
-         inputElement = $("<input type='" + input.type + "' value='" + input.default+"' class='csspopup_input_width' style = 'width:100px;'" +
-            " id='" + input.id + "' name='" + input.name + "'/>");
-      }
-      if (input.min && input.max) {
-         inputElement.attr("min", input.min);
-         inputElement.attr("max", input.max);
-      }
-      ele = $("<tr><td><strong>" + input.name + "</strong></td><td></td></tr>");
-      inputElement.appendTo(ele.find('td')[1]);
-      // TODO: i18n
-      // $(ele).i18n().appendTo(table);
-      $(ele).appendTo(table);
-   });
    win = $html.dialog({
       title: options.title,
       autoOpen: false,
@@ -66,8 +21,9 @@ export const open = (options, callback) => {
             let error = false;
             $html.find('input').each(function(index, ele) {
                const id = $(ele).attr('id');
-               let value = $(ele).val();
+               let value = null;
                if ($(ele).attr('type') === 'number') {
+                  value = $(ele).val();
                   const max = parseInt($(ele).attr('max')),
                      min = parseInt($(ele).attr('min')),
                      name = $(ele).attr('name');
@@ -81,6 +37,8 @@ export const open = (options, callback) => {
                      });
                      error = true;
                   }
+               } else {  // colorpicker
+                  value = $(ele).attr('rgba');
                }
                css[id] = value;
             });
@@ -97,7 +55,38 @@ export const open = (options, callback) => {
          }
       }
    });
+
    win.dialog('open');
+   options.inputValues.forEach(function(input) {
+      let ele, inputElement;
+      if (input.type === "colorpicker") {
+         inputElement = $("<input type='button' />").attr('id', input.id);
+      } else {
+         inputElement = $("<input type='" + input.type + "' value='" + input.default+"' class='csspopup_input_width' style = 'width:100px;'" +
+            " id='" + input.id + "' name='" + input.name + "'/>");
+      }
+      if (input.min && input.max) {
+         inputElement.attr("min", input.min);
+         inputElement.attr("max", input.max);
+      }
+      ele = $("<tr><td><strong>" + input.name + "</strong></td><td></td></tr>");
+      inputElement.appendTo(ele.find('td')[1]);
+      // TODO: i18n
+      // $(ele).i18n().appendTo(table);
+      $(ele).appendTo(table);
+
+      if (input.type === "colorpicker") {
+         inputElement.attr('rgba', `rgba(255,0,0,1)`);
+         inputElement.spectrum({
+            color: input.default,
+            showButtons: false,
+            change: (color) => {
+               const rgba = color.toRgb();
+               inputElement.attr('rgba', `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`);
+            }
+         });
+      }
+   });
 }
 
 export default {
