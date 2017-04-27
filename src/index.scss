@@ -4,23 +4,6 @@
    .ui-dialog-titlebar {
       padding: 5px 5px;
       position: relative;
-      .ui-dialog-titlebar-close {
-         text-indent: 100%;
-         white-space: nowrap;
-         width: 14px;
-         height: 14px;
-         padding: 0;
-         position: absolute;
-         top: 50%;
-         right: 0.3em;
-         overflow: hidden;
-         background: transparent;
-         cursor: pointer;
-         background-image: url('./images/close.svg') !important;
-         margin: -7px 0 0 0;
-
-         .ui-icon-closethick { display: none; } 
-      }
    }
   .ui-dialog-buttonpane {
     padding: 0;
@@ -34,6 +17,23 @@
       text-align: center;
     }
   }
+}
+.ui-dialog-titlebar-close {
+   text-indent: 100%;
+   white-space: nowrap;
+   width: 14px;
+   height: 14px;
+   padding: 0;
+   position: absolute;
+   top: 50%;
+   right: 0.3em;
+   overflow: hidden;
+   background: transparent !important;
+   cursor: pointer;
+   background-image: url('./images/close.svg') !important;
+   margin: -7px 0 0 0;
+
+   .ui-icon-closethick { display: none; } 
 }
 
 .ui-widget-overlay {
