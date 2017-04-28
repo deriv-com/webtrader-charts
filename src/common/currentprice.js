@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import Highcharts from 'highstock-release/highstock';
 import { toFixed } from '../common/utils.js';
 
 function removePlotLine() {
@@ -49,9 +48,7 @@ export const init = () => {
       };
 
       H.Series.prototype.removeCurrentPrice = function () {
-         //console.log('Before>>' + $(this).data('isInstrument'));
          removePlotLine.call(this);
-         //console.log('After>>' + $(this).data('isInstrument'));
       };
 
       /*
@@ -110,7 +107,6 @@ export const init = () => {
             isChange = true;
             price = toFixed(this.data[this.data.length - 1].change, 2);
          }
-         //console.log('Series name : ', this.options.name, ",", "Unique ID : ", uniqueID);
          this.yAxis.addPlotLine({
             id: this.options.id + '_CurrentPrice_' + Date.now(),
             color: currentPriceOptions.stroke || currentPriceOptions.color,

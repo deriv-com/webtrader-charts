@@ -60,7 +60,6 @@ ULTOSC.prototype = Object.create(IndicatorBase.prototype);
 ULTOSC.prototype.constructor = ULTOSC;
 
 ULTOSC.prototype.addPoint = function (data) {
-    console.log('Adding ULTOSC data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var result = this.CalculateBRTRValue(this.priceData, index);
@@ -78,7 +77,6 @@ ULTOSC.prototype.addPoint = function (data) {
 };
 
 ULTOSC.prototype.update = function (data) {
-    console.log('Updating ULTOSC data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

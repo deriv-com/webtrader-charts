@@ -18,7 +18,6 @@ TYPPRICE.prototype = Object.create(IndicatorBase.prototype);
 TYPPRICE.prototype.constructor = TYPPRICE;
 
 TYPPRICE.prototype.addPoint = function (data) {
-    console.log('Adding TYPPRICE data point : ', data);
     this.priceData.push(data);
      /* TYPPRICE :
      typprice =  (High + Low + Close) / 3 */
@@ -31,7 +30,6 @@ TYPPRICE.prototype.addPoint = function (data) {
 };
 
 TYPPRICE.prototype.update = function (data) {
-    console.log('Updating TYPPRICE data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

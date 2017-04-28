@@ -3,7 +3,6 @@
  * Created by Mahboob.M on 2/8/16.
  */
 var DC = function (data, options, indicators) {
-
     IndicatorBase.call(this, data, options, indicators);
     this.lowData = [];
     this.areaRangeData = [];

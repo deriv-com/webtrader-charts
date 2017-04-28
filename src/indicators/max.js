@@ -31,7 +31,6 @@ MAX.prototype = Object.create(IndicatorBase.prototype);
 MAX.prototype.constructor = MAX;
 
 MAX.prototype.addPoint = function (data) {
-    console.log('Adding MAX data point : ', data);
     this.priceData.push(data);
     var max = this.CalculateMAXValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: max });
@@ -42,7 +41,6 @@ MAX.prototype.addPoint = function (data) {
 };
 
 MAX.prototype.update = function (data) {
-    console.log('Updating MAX data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

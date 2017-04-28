@@ -30,7 +30,6 @@ SUM.prototype = Object.create(IndicatorBase.prototype);
 SUM.prototype.constructor = SUM;
 
 SUM.prototype.addPoint = function (data) {
-    console.log('Adding SUM data point : ', data);
     this.priceData.push(data);
     var sum = this.CalculateSUMValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: sum });
@@ -41,7 +40,6 @@ SUM.prototype.addPoint = function (data) {
 };
 
 SUM.prototype.update = function (data) {
-    console.log('Updating SUM data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

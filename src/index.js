@@ -1,6 +1,9 @@
-import 'highstock-release/highstock';
+import Highcharts from 'highstock-release/highstock';
+import 'highstock-release/highcharts-more';
 import 'highstock-release/modules/exporting';
 import 'highstock-release/modules/offline-exporting';
+
+console.log(`webtrader-charts -> Using highcharts ${Highcharts.version}`);
 
 import indicatorBuilder from './indicatorBuilder'; 
 import indicatorManagement from './indicatorManagement';

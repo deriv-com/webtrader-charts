@@ -27,7 +27,6 @@ STOCHS.prototype = Object.create(IndicatorBase.prototype);
 STOCHS.prototype.constructor = STOCHS;
 
 STOCHS.prototype.addPoint = function (data) {
-    console.log('Adding STOCHS data point : ', data);
     var stoch = this.stochf.addPoint(data)[0].value;
     var kMa = this.kMa.addPoint({time:data.time , close:stoch})[0].value;
     this.indicatorData = this.kMa.indicatorData;
@@ -42,7 +41,6 @@ STOCHS.prototype.addPoint = function (data) {
 };
 
 STOCHS.prototype.update = function (data) {
-    console.log('Updating STOCHS data point : ', data);
     var stoch = this.stochf.update(data)[0].value;
     var kMa = this.kMa.update({time:data.time , close:stoch})[0].value;
     this.indicatorData = this.kMa.indicatorData;

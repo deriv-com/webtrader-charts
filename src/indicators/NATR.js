@@ -28,7 +28,6 @@ NATR.prototype = Object.create(IndicatorBase.prototype);
 NATR.prototype.constructor = NATR;
 
 NATR.prototype.addPoint = function (data) {
-    console.log('Adding NATR data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var atr = this.atr.addPoint(data)[0].value;
@@ -42,7 +41,6 @@ NATR.prototype.addPoint = function (data) {
 };
 
 NATR.prototype.update = function (data) {
-    console.log('Updating NATR data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

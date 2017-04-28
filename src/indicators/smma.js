@@ -51,7 +51,6 @@ SMMA.prototype = Object.create(IndicatorBase.prototype);
 SMMA.prototype.constructor = SMMA;
 
 SMMA.prototype.addPoint = function (data) {
-    console.log('Adding SMMA data point : ', data);
     this.priceData.push(data);
     var smma = this.CalculateSMMAValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: smma });
@@ -62,7 +61,6 @@ SMMA.prototype.addPoint = function (data) {
 };
 
 SMMA.prototype.update = function (data) {
-    console.log('Updating SMMA data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

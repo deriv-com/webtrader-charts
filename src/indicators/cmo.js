@@ -65,7 +65,6 @@ CMO.prototype = Object.create(IndicatorBase.prototype);
 CMO.prototype.constructor = CMO;
 
 CMO.prototype.addPoint = function (data) {
-    console.log('Adding CMO data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var result = this.CalculatePosNegValue(this.priceData, index);
@@ -81,7 +80,6 @@ CMO.prototype.addPoint = function (data) {
 };
 
 CMO.prototype.update = function (data) {
-    console.log('Updating CMO data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

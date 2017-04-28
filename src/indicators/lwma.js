@@ -34,7 +34,6 @@ LWMA.prototype = Object.create(IndicatorBase.prototype);
 LWMA.prototype.constructor = LWMA;
 
 LWMA.prototype.addPoint = function (data) {
-    console.log('Adding LWMA data point : ', data);
     this.priceData.push(data);
     var sum = 0.0;
     var sumI = 0.0;
@@ -52,7 +51,6 @@ LWMA.prototype.addPoint = function (data) {
 };
 
 LWMA.prototype.update = function (data) {
-    console.log('Updating LWMA data point : ', data);
     var sum = 0.0, sumI=0.0 ,index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

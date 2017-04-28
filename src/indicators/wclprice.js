@@ -21,7 +21,6 @@ WCLPRICE.prototype = Object.create(IndicatorBase.prototype);
 WCLPRICE.prototype.constructor = WCLPRICE;
 
 WCLPRICE.prototype.addPoint = function (data) {
-    console.log('Adding WCLPRICE data point : ', data);
     this.priceData.push(data);
     var wclprice = toFixed(((data.close * 2) + data.high + data.low) / 4, 4)
     this.indicatorData.push({ time: data.time, value: wclprice });
@@ -32,7 +31,6 @@ WCLPRICE.prototype.addPoint = function (data) {
 };
 
 WCLPRICE.prototype.update = function (data) {
-    console.log('Updating WCLPRICE data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

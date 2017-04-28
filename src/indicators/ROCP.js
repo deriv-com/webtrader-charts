@@ -29,7 +29,6 @@ ROCP.prototype = Object.create(IndicatorBase.prototype);
 ROCP.prototype.constructor = ROCP;
 
 ROCP.prototype.addPoint = function (data) {
-    console.log('Adding ROCP data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var price = this.indicators.getIndicatorOrPriceValue(this.priceData[index], this.options.appliedTo);
@@ -43,7 +42,6 @@ ROCP.prototype.addPoint = function (data) {
 };
 
 ROCP.prototype.update = function (data) {
-    console.log('Updating ROCP data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

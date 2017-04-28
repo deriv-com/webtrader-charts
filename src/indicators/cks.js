@@ -78,7 +78,6 @@ CKS.prototype = Object.create(IndicatorBase.prototype);
 CKS.prototype.constructor = CKS;
 
 CKS.prototype.addPoint = function (data) {
-    console.log('Adding CKS data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var atr = this.atr.addPoint(data)[0].value;
@@ -98,7 +97,6 @@ CKS.prototype.addPoint = function (data) {
 };
 
 CKS.prototype.update = function (data) {
-    console.log('Updating CKS data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

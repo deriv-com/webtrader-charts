@@ -148,7 +148,6 @@ MAMA.prototype = Object.create(IndicatorBase.prototype);
 MAMA.prototype.constructor = MAMA;
 
 MAMA.prototype.addPoint = function (data) {
-    console.log('Adding MAMA data point : ', data);
     this.priceData.push(data);
     var mama = this.CalculateMAMAValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: mama });
@@ -159,7 +158,6 @@ MAMA.prototype.addPoint = function (data) {
 };
 
 MAMA.prototype.update = function (data) {
-    console.log('Updating MAMA data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

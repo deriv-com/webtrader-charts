@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import Highcharts from 'highstock-release/highstock';
-import 'highstock-release/highcharts-more';
 import indicatorsArray from '../indicators.json';
 
 const indicatorsMetaData = _.cloneDeep(indicatorsArray);
@@ -18,12 +16,9 @@ function updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries) {
          return isTrue;
       });
       if (matchingSeriesData) {
-         console.log('[remove] series name', indicatorSeries.options.name, matchingSeriesData.x);
          matchingSeriesData.remove();
       }
-      //console.log('renderingData', renderingData);
       if (_.isNumber(x) && x > 0 && !_.isEmpty(iu.value.text) && !_.isEmpty(iu.value.title)) {
-         console.log('Adding, series length', indicatorSeries.data.length, iu.value.text, x);
          indicatorSeries.addPoint(iu.value);
       }
    }
@@ -46,14 +41,13 @@ var indicators = {
          var indicatorMetadata = indicatorsMetaData[indicatorID];
          if (indicatorMetadata) {
             var seriesAndAxisConfArr = indicatorObject.buildSeriesAndAxisConfFromData(indicatorMetadata);
-            //console.log('seriesAndAxisConfArr', seriesAndAxisConfArr);
-            seriesAndAxisConfArr.forEach(function(seriesAndAxisConfArr) {
-               if (seriesAndAxisConfArr.axisConf) {
-                  chart.addAxis(seriesAndAxisConfArr.axisConf, false, false, false);
+            seriesAndAxisConfArr.forEach(function(seriesAndAxisConf) {
+               if (seriesAndAxisConf.axisConf) {
+                  chart.addAxis(seriesAndAxisConf.axisConf, false, false, false);
                   indicators.recalculate(chart);
                }
-               if (seriesAndAxisConfArr.seriesConf) {
-                  var conf = _.extend(seriesAndAxisConfArr.seriesConf, {
+               if (seriesAndAxisConf.seriesConf) {
+                  var conf = _.extend(seriesAndAxisConf.seriesConf, {
                      dataGrouping : series.options.dataGrouping,
                      opposite : series.options.opposite
                   });
@@ -62,7 +56,6 @@ var indicators = {
                         compare : series.options.compare
                      });
                   }
-                  console.log('total series before adding indicator series', chart.series.length, ' new series conf', conf);
                   chart.addSeries(conf, false, false);
                }
             });
@@ -120,7 +113,6 @@ var indicators = {
       Highcharts.wrap(Highcharts.Series.prototype, 'addPoint', function(proceed, options, redraw, shift, animation) {
          proceed.call(this, options, redraw, shift, animation);
          var series = this;
-         console.log('Addpoint called!', series.options.id, series.options.name, series.options.isInstrument);
          if (series.options.isInstrument && series.options.id !== 'navigator') {
             var time = options[0];
             var bar = (barsTable.chain()

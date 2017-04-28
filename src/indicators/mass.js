@@ -29,7 +29,7 @@ var MASS = function (data, options, indicators) {
     };
     this.singleMA = new window[options.singleMaType](highLowData, { maType: options.singleMaType, period: options.singlePeriod }, indicators)
 
-    singleMAData = [];
+    const singleMAData = [];
     this.singleMA.indicatorData.forEach(function (singleMA) {
         singleMAData.push({ time: singleMA.time, close: singleMA.value });
     });

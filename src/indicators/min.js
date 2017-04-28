@@ -31,7 +31,6 @@ MIN.prototype = Object.create(IndicatorBase.prototype);
 MIN.prototype.constructor = MIN;
 
 MIN.prototype.addPoint = function (data) {
-    console.log('Adding MIN data point : ', data);
     this.priceData.push(data);
     var min = this.CalculateMINValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: min });
@@ -42,7 +41,6 @@ MIN.prototype.addPoint = function (data) {
 };
 
 MIN.prototype.update = function (data) {
-    console.log('Updating MIN data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

@@ -51,7 +51,6 @@ ALMA.prototype = Object.create(IndicatorBase.prototype);
 ALMA.prototype.constructor = ALMA;
 
 ALMA.prototype.addPoint = function (data) {
-    console.log('Adding ALMA data point : ', data);
     this.priceData.push(data);
     var alma = this.CalculateALMAValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: alma });
@@ -62,7 +61,6 @@ ALMA.prototype.addPoint = function (data) {
 };
 
 ALMA.prototype.update = function (data) {
-    console.log('Updating ALMA data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

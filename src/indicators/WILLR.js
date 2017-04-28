@@ -34,7 +34,6 @@ WILLR.prototype = Object.create(IndicatorBase.prototype);
 WILLR.prototype.constructor = WILLR;
 
 WILLR.prototype.addPoint = function (data) {
-    console.log('Adding WILLR data point : ', data);
     this.priceData.push(data);
     var willr = this.calculateWILLRValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: willr });
@@ -45,7 +44,6 @@ WILLR.prototype.addPoint = function (data) {
 };
 
 WILLR.prototype.update = function (data) {
-    console.log('Updating WILLR data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;
