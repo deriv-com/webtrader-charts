@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-   // devtool: 'inline-source-map',
+   devtool: 'source-map',
    entry: './index.js',
    output: {
       filename: 'bundle.js',
@@ -15,11 +15,7 @@ module.exports = {
       rules: [
          {
             test: /\.js$/,
-            exclude: [
-               /(node_modules|bower_components)/,
-               path.resolve(__dirname, '../dist/webtrader-charts.js'),
-               path.resolve(__dirname, '../../src/webtrader-charts/webtrader-charts.js')
-            ],
+            exclude: [ /(node_modules|bower_components)/ ],
             use: {
                loader: 'babel-loader',
                options: {

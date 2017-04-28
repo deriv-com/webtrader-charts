@@ -1548,6 +1548,10 @@ highstock-release@4.2.6:
   version v4.2.6
   resolved "https://registry.yarnpkg.com/highstock-release/-/highstock-release-4.2.6.tgz#caa6382eeae311ea5d1bbb4ffd587a29a6acb374"
 
+highstock-release@^5.0.10:
+  version v5.0.10
+  resolved "https://registry.yarnpkg.com/highstock-release/-/highstock-release-5.0.10.tgz#41da1f8fd4694f7c858a0e54e61b233fc6e22cb1"
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -1793,11 +1797,11 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery-ui@>=1.7, jquery-ui@^1.12.1:
+jquery-ui@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
 
-jquery@>=1.5, jquery@>=1.7, jquery@^3.2.1:
+jquery@>=1.7, jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -2692,6 +2696,10 @@ spdy@^3.4.1:
     select-hose "^2.0.0"
     spdy-transport "^2.0.15"
 
+spectrum-colorpicker@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/spectrum-colorpicker/-/spectrum-colorpicker-1.8.0.tgz#b926cf5002c0a77860b5f8351e1c093c65200107"
+
 sshpk@^1.7.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.13.0.tgz#ff2a3e4fd04497555fed97b39a0fd82fafb3a33c"
@@ -2927,13 +2935,6 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-vanderlee-colorpicker@^1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/vanderlee-colorpicker/-/vanderlee-colorpicker-1.2.9.tgz#d913a9ba447c6ab3fb3c89bc55c6243196f32195"
-  dependencies:
-    jquery ">=1.5"
-    jquery-ui ">=1.7"
-
 vary@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
@@ -3038,9 +3039,9 @@ websocket-extensions@>=0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
 
-webtrader-charts@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/webtrader-charts/-/webtrader-charts-0.0.1.tgz#d3471df09a4d6bbb48c4772b9bb7453a0e798de7"
+webtrader-charts@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/webtrader-charts/-/webtrader-charts-0.0.2.tgz#01b890416f043152196d349eb14f37cbb69f29e0"
   dependencies:
     datatables.net "^1.10.15"
     datatables.net-dt "^1.10.15"
@@ -3052,7 +3053,7 @@ webtrader-charts@^0.0.1:
     lokijs "1.3.19"
     paralleljs "^0.2.1"
     rivets "0.8.1"
-    vanderlee-colorpicker "^1.2.9"
+    spectrum-colorpicker "^1.8.0"
 
 which-module@^1.0.0:
   version "1.0.0"
