@@ -305,13 +305,13 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
                charts.refresh('#' + scope.newTabId + '_chart', timePeriod, scope.chartType.value);
             }
             showCandlestickAndOHLC(scope.newTabId, !tick && !isOverlaidView('#' + m_newTabId + '_chart'));
-            scope.exportChartURLShare = urlShareTemplate.format(scope.instrumentCode, timePeriod);
-            scope.exportChartIframeShare = iframeShareTemplate.format(scope.instrumentCode, timePeriod);
-            scope.fbShareLink = fbShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod)));
-            scope.twitterShareLink = twitterShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
-            scope.gPlusShareLink = gPlusShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod)));
-            scope.bloggerShareLink = bloggerShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
-            scope.vkShareLink = vkShareTemplate.format(encodeURIComponent(urlShareTemplate.format(m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
+            scope.exportChartURLShare = format(urlShareTemplate, scope.instrumentCode, timePeriod);
+            scope.exportChartIframeShare = format(iframeShareTemplate, scope.instrumentCode, timePeriod);
+            scope.fbShareLink = format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)));
+            scope.twitterShareLink = format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
+            scope.gPlusShareLink = format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)));
+            scope.bloggerShareLink = format(bloggerShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
+            scope.vkShareLink = format(vkShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
             $('#' + scope.newTabId).trigger('chart-time-period-changed', timePeriod);
         }
     };

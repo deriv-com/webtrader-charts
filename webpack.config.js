@@ -27,6 +27,11 @@ module.exports = {
          amd: "highstock-release/highstock",
          root: "Highcharts"
       },
+      'highstock-release/highcharts-more' : {
+         commonjs: "highstock-release/highcharts-more",
+         commonjs2: "highstock-release/highcharts-more",
+         amd: "highstock-release/highcharts-more",
+      },
       'highstock-release/modules/exporting' : {
          commonjs: "highstock-release/modules/exporting",
          commonjs2: "highstock-release/modules/exporting",
@@ -93,6 +98,9 @@ module.exports = {
    },
    plugins: [
       new UglifyJSPlugin(),
+      new webpack.ProvidePlugin({
+         Highcharts: 'highstock-release/highstock',
+      })
    ],
    node: {
       fs: 'empty',

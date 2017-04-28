@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import Highcharts from 'highstock-release/highstock';
-import 'highstock-release/highcharts-more';
 import indicatorsArray from '../indicators.json';
 
 const indicatorsMetaData = _.cloneDeep(indicatorsArray);
@@ -43,13 +41,13 @@ var indicators = {
          var indicatorMetadata = indicatorsMetaData[indicatorID];
          if (indicatorMetadata) {
             var seriesAndAxisConfArr = indicatorObject.buildSeriesAndAxisConfFromData(indicatorMetadata);
-            seriesAndAxisConfArr.forEach(function(seriesAndAxisConfArr) {
-               if (seriesAndAxisConfArr.axisConf) {
-                  chart.addAxis(seriesAndAxisConfArr.axisConf, false, false, false);
+            seriesAndAxisConfArr.forEach(function(seriesAndAxisConf) {
+               if (seriesAndAxisConf.axisConf) {
+                  chart.addAxis(seriesAndAxisConf.axisConf, false, false, false);
                   indicators.recalculate(chart);
                }
-               if (seriesAndAxisConfArr.seriesConf) {
-                  var conf = _.extend(seriesAndAxisConfArr.seriesConf, {
+               if (seriesAndAxisConf.seriesConf) {
+                  var conf = _.extend(seriesAndAxisConf.seriesConf, {
                      dataGrouping : series.options.dataGrouping,
                      opposite : series.options.opposite
                   });

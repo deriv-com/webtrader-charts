@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import popup from './properties_selector.js';
-import Highcharts from "highstock-release/highstock";
 
 /*
 This is a map storing information as -
