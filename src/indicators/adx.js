@@ -74,7 +74,6 @@ ADX.prototype = Object.create(IndicatorBase.prototype);
 ADX.prototype.constructor = ADX;
 
 ADX.prototype.addPoint = function (data) {
-    console.log('Adding ADX data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var atr = this.atr.addPoint(data)[0].value;
@@ -91,7 +90,6 @@ ADX.prototype.addPoint = function (data) {
 };
 
 ADX.prototype.update = function (data) {
-    console.log('Updating ADX data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

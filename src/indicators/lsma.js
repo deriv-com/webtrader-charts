@@ -41,7 +41,6 @@ LSMA.prototype = Object.create(IndicatorBase.prototype);
 LSMA.prototype.constructor = LSMA;
 
 LSMA.prototype.addPoint = function (data) {
-    console.log('Adding LSMA data point : ', data);
     this.priceData.push(data);
     var lsma = this.CalculateLSMAValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: lsma });
@@ -52,7 +51,6 @@ LSMA.prototype.addPoint = function (data) {
 };
 
 LSMA.prototype.update = function (data) {
-    console.log('Updating LSMA data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

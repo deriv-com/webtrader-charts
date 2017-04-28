@@ -28,7 +28,6 @@ MOM.prototype = Object.create(IndicatorBase.prototype);
 MOM.prototype.constructor = MOM;
 
 MOM.prototype.addPoint = function (data) {
-    console.log('Adding MOM data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var price = this.indicators.getIndicatorOrPriceValue(this.priceData[index], this.options.appliedTo);
@@ -42,7 +41,6 @@ MOM.prototype.addPoint = function (data) {
 };
 
 MOM.prototype.update = function (data) {
-    console.log('Updating MOM data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

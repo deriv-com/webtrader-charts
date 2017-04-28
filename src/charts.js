@@ -488,7 +488,6 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
     /* for ohlc and candlestick series_compare must NOT be percent */
     if (newChartType !== 'ohlc' && newChartType !== 'candlestick') {
         $(chart.series).each((index, series) => {
-            console.log('Refreshing : ', series.options.isInstrument, series.options.name);
             if (series.options.isInstrument) {
                 loadedMarketData.push(series.name);
                 //There could be one valid series_compare value per chart
@@ -559,7 +558,6 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         const mainSeries_type = $(containerIDWithHash).data("type");
         chart.showLoading();
         for (let index = 0; index < chart.series.length; index++) {
-            //console.log('Instrument name : ' + chart.series[index].name);
             const series = chart.series[index];
             if (series.options.isInstrument || series.options.onChartIndicator) {
                 series.update({

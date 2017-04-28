@@ -53,7 +53,6 @@ KAMA.prototype = Object.create(IndicatorBase.prototype);
 KAMA.prototype.constructor = KAMA;
 
 KAMA.prototype.addPoint = function (data) {
-    console.log('Adding KAMA data point : ', data);
     this.priceData.push(data);
     var kama = this.CalculateKAMAValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: kama });
@@ -64,7 +63,6 @@ KAMA.prototype.addPoint = function (data) {
 };
 
 KAMA.prototype.update = function (data) {
-    console.log('Updating KAMA data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

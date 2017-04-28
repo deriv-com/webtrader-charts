@@ -23,7 +23,6 @@ CC.prototype = Object.create(IndicatorBase.prototype);
 CC.prototype.constructor = CC;
 
 CC.prototype.addPoint = function (data) {
-    console.log('Adding CC data point : ', data);
     var shortRoc = this.shortRoc.addPoint(data)[0].value;
     var longRoc = this.longRoc.addPoint(data)[0].value;
     var cc = this.wmaData.addPoint({ time: data.time, close: shortRoc + longRoc })[0].value;
@@ -35,7 +34,6 @@ CC.prototype.addPoint = function (data) {
 };
 
 CC.prototype.update = function (data) {
-    console.log('Updating CC data point : ', data);
     var shortRoc = this.shortRoc.update(data)[0].value;
     var longRoc = this.longRoc.update(data)[0].value;
     var cc = this.wmaData.update({ time: data.time, close: shortRoc + longRoc })[0].value;

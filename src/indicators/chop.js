@@ -46,7 +46,6 @@ CHOP.prototype = Object.create(IndicatorBase.prototype);
 CHOP.prototype.constructor = CHOP;
 
 CHOP.prototype.addPoint = function (data) {
-    console.log('Adding CHOP data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     this.atr.addPoint(data)[0].value;
@@ -59,7 +58,6 @@ CHOP.prototype.addPoint = function (data) {
 };
 
 CHOP.prototype.update = function (data) {
-    console.log('Updating CHOP data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

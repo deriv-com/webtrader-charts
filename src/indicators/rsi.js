@@ -45,7 +45,6 @@ RSI.prototype = Object.create(IndicatorBase.prototype);
 RSI.prototype.constructor = RSI;
 
 RSI.prototype.addPoint = function (data) {
-    console.log('Adding RSI data point : ', data);
     this.priceData.push(data);
     var rsi = this.CalculateRSIValue( this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: rsi });
@@ -56,7 +55,6 @@ RSI.prototype.addPoint = function (data) {
 };
 
 RSI.prototype.update = function (data) {
-    console.log('Updating RSI data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

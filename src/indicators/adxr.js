@@ -25,7 +25,6 @@ ADXR.prototype = Object.create(IndicatorBase.prototype);
 ADXR.prototype.constructor = ADXR;
 
 ADXR.prototype.addPoint = function (data) {
-    console.log('Adding ADXR data point : ', data);
     var adx = this.adx.addPoint(data)[0].value;
     var index = this.adx.indicatorData.length - 1;
     var adxr = (adx + this.adx.indicatorData[index - this.options.period].value) / 2;
@@ -37,7 +36,6 @@ ADXR.prototype.addPoint = function (data) {
 };
 
 ADXR.prototype.update = function (data) {
-    console.log('Updating ADXR data point : ', data);
     var adx = this.adx.update(data)[0].value;
     var index = this.adx.indicatorData.length - 1;
     var adxr = (adx + this.adx.indicatorData[index - this.options.period].value) / 2;

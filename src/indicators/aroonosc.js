@@ -45,7 +45,6 @@ AROONOSC.prototype = Object.create(IndicatorBase.prototype);
 AROONOSC.prototype.constructor = AROONOSC;
 
 AROONOSC.prototype.addPoint = function (data) {
-    console.log('Adding AROONOSC data point : ', data);
     this.priceData.push(data);
     var aroonosc = this.CalculateAROONOSCValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: aroonosc });
@@ -56,7 +55,6 @@ AROONOSC.prototype.addPoint = function (data) {
 };
 
 AROONOSC.prototype.update = function (data) {
-    console.log('Updating AROONOSC data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

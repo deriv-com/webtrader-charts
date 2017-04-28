@@ -27,7 +27,6 @@ var SMA = function(data, options, indicators) {
         }
         this.priceData.push(data[index]);
     }
-    //console.log('Last price data : ', this.priceData[this.priceData.length - 1]);
 
 };
 
@@ -35,7 +34,6 @@ SMA.prototype = Object.create(IndicatorBase.prototype);
 SMA.prototype.constructor = SMA;
 
 SMA.prototype.addPoint = function(data) {
-    console.log('Adding SMA data point : ', data);
     this.priceData.push(data);
     var sum = 0.0;
     for (var i = this.options.period - 1; i >= 0; i--) {
@@ -50,7 +48,6 @@ SMA.prototype.addPoint = function(data) {
 };
 
 SMA.prototype.update = function(data) {
-    console.log('Updating SMA data point : ', data);
     var sum = 0.0, index = this.priceData.length - 1;
     this.priceData[index].open  = data.open;
     this.priceData[index].high  = data.high;

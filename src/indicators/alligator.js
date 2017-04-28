@@ -26,7 +26,6 @@ ALLIGATOR.prototype = Object.create(IndicatorBase.prototype);
 ALLIGATOR.prototype.constructor = ALLIGATOR;
 
 ALLIGATOR.prototype.addPoint = function(data) {
-    //console.log('Adding ALLIGATOR data point : ', data);
     this.priceData.push(data);
     var jaw = this.jaw.CalculateSMMAValue(this.priceData, this.priceData.length - 1);
     var teeth = this.teeth.CalculateSMMAValue(this.priceData, this.priceData.length - 1);
@@ -48,7 +47,6 @@ ALLIGATOR.prototype.addPoint = function(data) {
 };
 
 ALLIGATOR.prototype.update = function(data) {
-    //console.log('Updating ALLIGATOR data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

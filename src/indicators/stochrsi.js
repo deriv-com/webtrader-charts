@@ -42,7 +42,6 @@ STOCHRSI.prototype = Object.create(IndicatorBase.prototype);
 STOCHRSI.prototype.constructor = STOCHRSI;
 
 STOCHRSI.prototype.addPoint = function (data) {
-    console.log('Adding STOCHRSI data point : ', data);
     this.rsi.addPoint(data);
     var stochrsi = this.CalculateSTOCHRSIValue(this.indicatorData.length - 1);
     this.indicatorData.push({ time: data.time, value: stochrsi });
@@ -53,7 +52,6 @@ STOCHRSI.prototype.addPoint = function (data) {
 };
 
 STOCHRSI.prototype.update = function (data) {
-    console.log('Updating STOCHRSI data point : ', data);
     var index = this.indicatorData.length - 1;
     this.rsi.update(data);
     var stochrsi = this.CalculateSTOCHRSIValue(index);

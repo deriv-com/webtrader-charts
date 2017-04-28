@@ -24,7 +24,6 @@ DX.prototype = Object.create(IndicatorBase.prototype);
 DX.prototype.constructor = DX;
 
 DX.prototype.addPoint = function (data) {
-    console.log('Adding DX data point : ', data);
     var adx = this.adx.addPoint(data)[0].value;
     this.plusDIData = this.adx.PlusDI.indicatorData;
     this.minusData = this.adx.MinusDI.indicatorData;
@@ -42,7 +41,6 @@ DX.prototype.addPoint = function (data) {
 };
 
 DX.prototype.update = function (data) {
-    console.log('Updating DX data point : ', data);
     var adx = this.adx.update(data)[0].value;
     this.plusDIData = this.adx.PlusDI.indicatorData;
     this.minusData = this.adx.MinusDI.indicatorData;

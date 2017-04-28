@@ -55,7 +55,6 @@ AROON.prototype = Object.create(IndicatorBase.prototype);
 AROON.prototype.constructor = AROON;
 
 AROON.prototype.addPoint = function (data) {
-    console.log('Adding AROON data point : ', data);
     this.priceData.push(data);
     var aroon = this.CalculateAROONValue(this.priceData, this.priceData.length - 1);
     this.indicatorData.push({ time: data.time, value: aroon.aroonUp });
@@ -70,7 +69,6 @@ AROON.prototype.addPoint = function (data) {
 };
 
 AROON.prototype.update = function (data) {
-    console.log('Updating AROON data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

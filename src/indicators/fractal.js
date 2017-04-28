@@ -42,12 +42,6 @@ var FRACTAL = function (data, options, indicators) {
         var pos = candleMiddle_Low;
         if (checkFor === this.BEAR) pos = candleMiddle_High;
 
-        /*require(['moment'], function( moment ) {
-            console.log(moment(data[data.length - 1].time).format('YYYY-MM-DD HH:mm'),
-                            moment(data[data.length - 2].time).format('YYYY-MM-DD HH:mm'),
-                                moment(data[middleBarIndex].time).format('YYYY-MM-DD HH:mm'), middleBarIndex, data.length);
-        });*/
-
         return new FractalUpdateObject(data[middleBarIndex].time || data[middleBarIndex].x, pos,
                         (isBull && checkFor === this.BULL) || (isBear && checkFor === this.BEAR) ? ' ' : '',
                         'Fractal: ' + pos,
@@ -71,8 +65,6 @@ var FRACTAL = function (data, options, indicators) {
         });
     };
 
-    console.log('Fractal, Init last data point', new Date(data[data.length - 1].time));
-
     this.addOrUpdateFractalData = function(mode) {
         //The fractal needs two next data for each point to find the pattern,so when a new data is added, we should check if the second previous
         // data is going to be fractal or not based on new data.
@@ -82,7 +74,6 @@ var FRACTAL = function (data, options, indicators) {
         [this.BULL, this.BEAR].forEach(function(checkFor) {
             var ret = parent.CalculateFRACTALValue(parent.priceData, index, checkFor);
             if (ret && ret.marker && ret.marker.symbol) {
-                //console.log( mode === 'add' ? 'Adding' : 'Updating', 'FRACTAL data point : ', ret, data, checkFor);
                 if ( mode === 'add' ) {
                     parent.indicatorData.push(ret);
                     returnObject.push({
@@ -101,7 +92,6 @@ var FRACTAL = function (data, options, indicators) {
             }
         });
 
-        console.log(mode, returnObject);
         return returnObject;
     };
 
@@ -130,15 +120,12 @@ FRACTAL.prototype = Object.create(IndicatorBase.prototype);
 FRACTAL.prototype.constructor = FRACTAL;
 
 FRACTAL.prototype.addPoint = function (data) {
-    //console.log('Adding FRACTAL data point :', data);
     //Don't process same time data points
     this.priceData.push(data);
-    console.log('[Fractal], last data point', new Date(this.priceData[this.priceData.length - 1].time), ', second last data point', new Date(this.priceData[this.priceData.length - 2].time));
     return this.addOrUpdateFractalData( 'add' );
 };
 
 FRACTAL.prototype.update = function (data) {
-    //console.log('Updating FRACTAL data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open  = data.open;
     this.priceData[index].high  = data.high;
@@ -152,7 +139,6 @@ FRACTAL.prototype.toString = function () {
 };
 
 FRACTAL.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) {
-    console.log(indicatorMetadata, indicatorMetadata.onChartIndicator);
      return [
         {
             seriesConf: {

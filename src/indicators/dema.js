@@ -56,7 +56,6 @@ DEMA.prototype.update = function(data) {
     var dema1Value = this.ema1.update(data)[0].value;
     var dema2Value = this.ema2.update({ time : data.time, close : dema1Value})[0].value;
     var dema = toFixed(2 * dema1Value - dema2Value, 4);
-    console.log('DEMA value : ', dema1Value, dema2Value, dema);
     this.indicatorData[index].value = dema;
     return [{
         id : this.uniqueID,

@@ -60,7 +60,6 @@ CCI.prototype = Object.create(IndicatorBase.prototype);
 CCI.prototype.constructor = CCI;
 
 CCI.prototype.addPoint = function (data) {
-    console.log('Adding CCI data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var tpValue = (this.priceData[index].high + this.priceData[index].low + this.priceData[index].close) / 3;
@@ -75,7 +74,6 @@ CCI.prototype.addPoint = function (data) {
 };
 
 CCI.prototype.update = function (data) {
-    console.log('Updating CCI data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

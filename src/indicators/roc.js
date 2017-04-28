@@ -28,7 +28,6 @@ ROC.prototype = Object.create(IndicatorBase.prototype);
 ROC.prototype.constructor = ROC;
 
 ROC.prototype.addPoint = function (data) {
-    console.log('Adding ROC data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var price = this.indicators.getIndicatorOrPriceValue(this.priceData[index], this.options.appliedTo);
@@ -42,7 +41,6 @@ ROC.prototype.addPoint = function (data) {
 };
 
 ROC.prototype.update = function (data) {
-    console.log('Updating ROC data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;

@@ -28,7 +28,6 @@ ROCR.prototype = Object.create(IndicatorBase.prototype);
 ROCR.prototype.constructor = ROCR;
 
 ROCR.prototype.addPoint = function (data) {
-    console.log('Adding ROCR data point : ', data);
     this.priceData.push(data);
     var index = this.priceData.length - 1;
     var price = this.indicators.getIndicatorOrPriceValue(this.priceData[index], this.options.appliedTo);
@@ -42,7 +41,6 @@ ROCR.prototype.addPoint = function (data) {
 };
 
 ROCR.prototype.update = function (data) {
-    console.log('Updating ROCR data point : ', data);
     var index = this.priceData.length - 1;
     this.priceData[index].open = data.open;
     this.priceData[index].high = data.high;
