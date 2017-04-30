@@ -1,0 +1,28 @@
+<table class='wtcharts-table-view'>
+   <thead>
+      <tr>
+         <th rv-each-colname='thead' rv-text='colname' />
+      <tr/>
+   </thead>
+   <tbody>
+      <tr rv-each-row='tbody'>
+         <td><span  rv-text='row.time'></span></td>
+         <td><span  rv-text='row.open'></span></td>
+         <td rv-if='is_tick | negate'><span  rv-text='row.high'></span></td>
+         <td rv-if='is_tick | negate'><span  rv-text='row.low'></span></td>
+         <td rv-if='is_tick | negate'><span  rv-text='row.close'></span></td>
+
+         <td rv-class-is-up='row.diff.is_up'
+             rv-class-is-down='row.diff.is_up | negate'>
+            <span rv-text='row.diff.change'></span>
+         </td>
+
+         <td rv-if='row.diff.show_up_arrow' class='up-arrow'>
+            <img src='./images/blue_up_arrow.svg' class='arrow-images' />
+         </td>
+         <td rv-if='row.diff.show_down_arrow' class='down-arrow'>
+            <img src='./images/orange_down_arrow.svg' class='arrow-images' />
+         </td>
+      </tr>
+   </tbody>
+</table>

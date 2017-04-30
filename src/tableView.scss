@@ -1,0 +1,15 @@
+table.wtcharts-table-view {
+   font-size: 12px;
+   width: 100%;
+   text-align: left;
+   border-collapse: collapse;
+   th {
+      font-weight: bold;
+      font-size: 14px;
+   }
+   td {
+      &.is-down {
+         color:  brown;
+      }
+   }
+}
