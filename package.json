@@ -1,6 +1,6 @@
 {
   "name": "webtrader-charts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
@@ -50,7 +50,6 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
-    "datatables.net": "^1.10.15",
     "datatables.net-dt": "^1.10.15",
     "imports-loader": "^0.7.1",
     "jquery-ui": "^1.12.1",

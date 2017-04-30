@@ -1265,7 +1265,7 @@ datatables.net-dt@^1.10.15:
     datatables.net ">=1.10.9"
     jquery ">=1.7"
 
-datatables.net@>=1.10.9, datatables.net@^1.10.15:
+datatables.net@>=1.10.9:
   version "1.10.15"
   resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.15.tgz#c789077bbfe385e75ff5a233fa5f23251a72df68"
   dependencies:
