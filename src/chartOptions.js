@@ -490,7 +490,7 @@ export const updateOptions = (newTabId, chartType, timePeriod, indicatorsCount, 
 overlayManagement.events.on('chart-type-update',  (e, {tabId, type}) => {
    state[tabId].chartType = chartType_arr.filter((chart) => chart.value == type)[0];
 });
-overlayManagement.events.on('overaly-add', (e, {containerId, symbol, displaySymbol, delay_amount}) => {
+overlayManagement.events.on('overlay-add', (e, {containerId, symbol, displaySymbol, delay_amount}) => {
    const dialog = $(containerId);
    charts.overlay(containerId, symbol, displaySymbol, delay_amount)
       .then(() => _.defer(() => { //Waiting for overlays to be applied.

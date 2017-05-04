@@ -195,7 +195,7 @@ const init_state = (root) =>{
       const fn = () => {
          dialog.data("overlayIndicator", true);
          events.trigger('ohlc-update', [{ tabId: newTabId, enable: false}]);
-         events.trigger('overaly-add', [{containerId: containerIDWithHash, symbol, displaySymbol, delay_amount}]);
+         events.trigger('overlay-add', [{containerId: containerIDWithHash, symbol, displaySymbol, delay_amount}]);
       };
       if (type === 'candlestick' || type == 'ohlc') {
          dialog.data('type', 'line');
@@ -214,7 +214,7 @@ const init_state = (root) =>{
       const dialog = $(containerIDWithHash);
       const chart = dialog.highcharts();
       if (chart && ovlay) {
-         const series = _.find(chart.series, (s) => { return s.options.name === ovlay && s.options.id !== 'navigator'; });
+         const series = _.find(chart.series, (s) => { return s.userOptions.name === ovlay && s.userOptions.id !== 'navigator'; });
          if (series) {
             const indicator_series = chart.get_indicator_series();
             //Remove current price line first
@@ -225,13 +225,13 @@ const init_state = (root) =>{
             _.defer(() => {
                let countInstrumentSeries = 0;
                chart.series.forEach((s) => {
-                  if ((s.options.isInstrument || s.options.onChartIndicator) && s.options.id.indexOf('navigator') == -1) {
+                  if ((s.userOptions.isInstrument || s.userOptions.onChartIndicator) && s.userOptions.id.indexOf('navigator') == -1) {
                      ++countInstrumentSeries;
                   }
                });
                if (countInstrumentSeries == 1) {
                   chart.series.forEach((s) => {
-                     if ((s.options.isInstrument || s.options.onChartIndicator) && s.options.id.indexOf('navigator') == -1) {
+                     if ((s.userOptions.isInstrument || s.userOptions.onChartIndicator) && s.userOptions.id.indexOf('navigator') == -1) {
                         s.update({
                            compare: undefined
                         });
@@ -275,10 +275,10 @@ const init_state = (root) =>{
 
 const update_overlays = (chart) => {
    marketData().then((markets) => {
-      const mainSeriesName = chart.series[0].options.name;
+      const mainSeriesName = chart.series[0].userOptions.name;
       const current = _.filter(chart.series, (s, index) => {
-         return s.options.isInstrument && s.options.id !== 'navigator' && index !== 0;
-      }).map((s) => s.options.name) || [];
+         return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
+      }).map((s) => s.userOptions.name) || [];
 
       markets.forEach((market) => {
          market.submarkets.forEach((submarket) => {

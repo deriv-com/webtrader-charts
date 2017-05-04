@@ -141,14 +141,14 @@ export const generate_csv = (chart, data) => {
         return ret;
     };
     chart.series.forEach((series, index) => {
-        if (series.options.id === 'navigator') return true;
-        const newDataLines = series.options.data.map((d) => {
+        if (series.userOptions.id === 'navigator') return true;
+        const newDataLines = series.userOptions.data.map((d) => {
             return flattenData(d);
         }) || [];
         if (index == 0) {
             const ohlc = newDataLines[0].split(',').length > 2;
             if (ohlc) lines.push('Date,Time,Open,High,Low,Close');
-            else lines.push('Date,Time,"' + series.options.name + '"');
+            else lines.push('Date,Time,"' + series.userOptions.name + '"');
             //newDataLines is incorrect - get it from lokijs
             const key = chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod);
             const bars = chartingRequestMap.barsTable
@@ -160,7 +160,7 @@ export const generate_csv = (chart, data) => {
                 return ohlc ? ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm') + '"', b.open, b.high, b.low, b.close].join(',') : ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm:ss') + '"', b.close].join(',');
             }));
         } else {
-            lines[0] += ',"' + series.options.name + '"'; //Add header
+            lines[0] += ',"' + series.userOptions.name + '"'; //Add header
             dataToBeProcessTolines.push(newDataLines);
         }
     });
@@ -487,10 +487,10 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
     /* for ohlc and candlestick series_compare must NOT be percent */
     if (newChartType !== 'ohlc' && newChartType !== 'candlestick') {
         $(chart.series).each((index, series) => {
-            if (series.options.isInstrument) {
+            if (series.userOptions.isInstrument) {
                 loadedMarketData.push(series.name);
                 //There could be one valid series_compare value per chart
-                series_compare = series.options.compare;
+                series_compare = series.userOptions.compare;
             }
         });
     }
@@ -558,7 +558,7 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         chart.showLoading();
         for (let index = 0; index < chart.series.length; index++) {
             const series = chart.series[index];
-            if (series.options.isInstrument || series.options.onChartIndicator) {
+            if ((series.userOptions.isInstrument || series.userOptions.onChartIndicator) && series.userOptions.id !== 'navigator') {
                 series.update({
                     compare: 'percent'
                 });
@@ -581,7 +581,10 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                         console.trace();
                     }
                     resolve();
-                }).catch(resolve);
+                }).catch((e) => {
+                   console.error(e);
+                   resolve();
+                });
             });
         });
     }
