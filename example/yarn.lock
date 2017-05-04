@@ -1099,7 +1099,7 @@ datatables.net-dt@^1.10.15:
     datatables.net ">=1.10.9"
     jquery ">=1.7"
 
-datatables.net@>=1.10.9, datatables.net@^1.10.15:
+datatables.net@>=1.10.9:
   version "1.10.15"
   resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.15.tgz#c789077bbfe385e75ff5a233fa5f23251a72df68"
   dependencies:
@@ -3035,11 +3035,10 @@ websocket-extensions@>=0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
 
-webtrader-charts@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/webtrader-charts/-/webtrader-charts-0.0.3.tgz#95644a596a7989ece8125dc5eb1121e39a48fce1"
+webtrader-charts@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/webtrader-charts/-/webtrader-charts-0.0.4.tgz#98b302da1ba179221f1b9c87f767b5c8ef509ba6"
   dependencies:
-    datatables.net "^1.10.15"
     datatables.net-dt "^1.10.15"
     imports-loader "^0.7.1"
     jquery-ui "^1.12.1"

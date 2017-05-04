@@ -1,7 +1,11 @@
 import Highcharts from 'highstock-release/highstock';
-require('highstock-release/highcharts-more')(Highcharts);
-require('highstock-release/modules/exporting')(Highcharts);
-require('highstock-release/modules/offline-exporting')(Highcharts);
+import HighchartsMore from 'highstock-release/highcharts-more';
+import HighchartsExporting from 'highstock-release/modules/exporting';
+import HighcartsOfflineExporting from 'highstock-release/modules/offline-exporting';
+
+HighchartsMore && HighchartsMore(Highcharts);
+HighchartsExporting && HighchartsExporting(Highcharts);
+HighchartsExporting && HighcartsOfflineExporting(Highcharts);
 
 console.log(`webtrader-charts -> Using highcharts ${Highcharts.version}`);
 
