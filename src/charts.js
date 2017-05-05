@@ -10,6 +10,7 @@ import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
+import {globals} from './common/globals.js';
 // TODO: hicharts mousewheel
 // import $Hmw from 'common/highchartsMousewheel';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
@@ -163,8 +164,8 @@ export const generate_csv = (chart, data) => {
     });
 
     // TODO: i18n
-    // $.growl.notice({ message: 'Downloading .csv'.i18n() });
-    $.growl.notice({ message: 'Downloading .csv' });
+    // ({ message: 'Downloading .csv'.i18n() });
+    globals.notification.notice('Downloading .csv');
 
 
     const filename = data.instrumentName + ' (' + data.timePeriod + ')' + '.csv';
@@ -209,7 +210,7 @@ export const generate_csv = (chart, data) => {
           }
        }
        catch(e) {
-          $.growl.error({ message: 'Error downloading .csv' });
+          globals.notification.error('Error downloading .csv');
           console.error(e);
        }
     });
@@ -286,7 +287,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             // TODO: i18n
                             // const msg = 'Error getting data for %1'.i18n().replace('%1', options.instrumentName);
                             const msg = 'Error getting data for %1'.replace('%1', options.instrumentName);
-                            $.growl.error({ message: msg });
+                            globals.notification.error(msg);
                             const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);

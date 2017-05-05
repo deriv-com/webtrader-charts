@@ -9,12 +9,19 @@ Use npm / yarn
         npm install --save webtrader-charts
         yarn add webtrader-charts
 
-You need to provide these dependences `jquery`, `moment` and `highstock#4.2.6`.  
+You need to provide these dependences `jquery`, `moment` and `highstock#5.0.x`.  
 Take a look at `webpack.config.js -> externals`.  
 
-### Example
+### Basic usage
 
     import wtcharts from 'webtrader-charts';
+
+    // init must be called before anything else.
+    wtcharts.init({
+       appId: 11,
+       lang: 'en',
+       server: 'wss://ws.binaryws.com/websockets/v3'
+    });
     
     const chart =  wtcharts.chartWindow.addNewChart($parent, {
        "instrumentCode": "RDBULL",
@@ -40,7 +47,25 @@ Take a look at `webpack.config.js -> externals`.
        "overlays": [ ],
     });
 
+    // Will be called every time user makes a change
     chart.events.anyChange = () => {
        console.warn(chart.data());
+       // Pass chart.data() to addNewChart() to restore a chart.
     }; 
 
+    chart.actions.reflow(); // Resizes the chart, call it when container is resized.
+    chart.actions.refresh(); // Refreshes the entire chart.
+    chart.actions.destroy(); // Destroys the chart.
+
+### Globals
+Handle notification by providing your own `wtcharts.globals.notification`.
+
+    import $ from 'jquery';
+    import 'jquery-growl'; // notification library
+    export const globals = {
+       notification: {
+          error: (msg) => $.growl.error({message: msg}),
+          warning: (msg) => $.growl.warning({message: msg}),
+          notice: (msg) => $.growl.notice({message: msg}),
+       }
+    };

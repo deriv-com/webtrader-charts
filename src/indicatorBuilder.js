@@ -6,6 +6,7 @@ import './indicatorBuilder.scss';
 import 'jquery-ui/ui/widgets/dialog';
 import './common/rivetsExtra.js';
 import images from './images/images.js';
+import {globals} from './common/globals.js';
 
 let before_add_callback = null;
 
@@ -125,8 +126,8 @@ const init = (chart_series, indicator) => {
 
                   if(!fields_are_valid) {
                      // TODO: i18n
-                     // $.growl.error({ message: "Invalid parameter(s)!".i18n() });
-                     $.growl.error({ message: "Invalid parameter(s)!" });
+                     // ({ message: "Invalid parameter(s)!".i18n() });
+                     globals.notification.error('Invalid parameter(s)!');
                      return;
                   }
 
