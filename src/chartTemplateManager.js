@@ -5,6 +5,7 @@ import html from './chartTemplateManager.html';
 import chartWindow from './chartWindow.js';
 import chartOptions from './chartOptions.js';
 import {local_storage} from './common/utils.js';
+import {globals} from './common/globals.js';
 
 if(!local_storage.get('templates')) {
   local_storage.set('templates', []);
@@ -86,8 +87,8 @@ class ChartTemplateManager {
       templates.array = array;
       templates.current = current;
       // TODO: i18n
-      // $.growl.notice({message: 'Template changes saved '.i18n() + '(' + current.name + ')'});
-      $.growl.notice({message: `Template changes saved (${current.name})`});
+      // globals.notification.notice('Template changes saved '.i18n() + '(' + current.name + ')');
+      globals.notification.notice(`Template changes saved (${current.name})`);
     };
 
     menu.open_file_selector = (event) => {
@@ -127,7 +128,7 @@ class ChartTemplateManager {
             throw "Invalid template type";
           }
         } catch(e) {
-          $.growl.error({message:e});
+          globals.notification.error(e);
           return;
         }
 
@@ -149,8 +150,8 @@ class ChartTemplateManager {
         local_storage.set('templates', array);
         templates.array = array;
         // TODO: i18n
-        // $.growl.notice({message: "Successfully applied the template and saved it as ".i18n() + "<b>" + data.name + "</b>"});
-        $.growl.notice({message: `Successfully applied the template and saved it as <b>${data.name}</b>`});
+        // globals.notification.notice("Successfully applied the template and saved it as ".i18n() + "<b>" + data.name + "</b>");
+        globals.notification.notice(`Successfully applied the template and saved it as <b>${data.name}</b>`);
       };
 
       reader.readAsText(file);
@@ -179,8 +180,8 @@ class ChartTemplateManager {
       var json = JSON.stringify(tmpl);
       download_file_in_browser(tmpl.name + '.json', 'text/json;charset=utf-8;', json);
       // TODO: i18n
-      // $.growl.notice({message: "Downloading template as <b>".i18n() + tmpl.name + ".json</b>"});
-      $.growl.notice({message: `Downloading template as <b>${tmpl.name}.json</b>`});
+      // globals.notification.notice( "Downloading template as <b>".i18n() + tmpl.name + ".json</b>");
+      globals.notification.notice(`Downloading template as <b>${tmpl.name}.json</b>`);
     };
 
     templates.remove = (tmpl) => {
@@ -205,8 +206,8 @@ class ChartTemplateManager {
       const array = local_storage.get('templates');
       if(array.map(t => t.name).includes(new_name)) {
           // TODO: i18n
-          // $.growl.error({message: 'Template name already exists'.i18n() });
-          $.growl.error({message: 'Template name already exists' });
+          // globals.notification.error( 'Template name already exists'.i18n() );
+          globals.notification.error('Template name already exists');
           return;
       }
       const tmpl = array.find(t => t.name === name);
@@ -275,8 +276,8 @@ class ChartTemplateManager {
     const tmpl_copy = _.find(array, ['random', tmpl.random]);
     if(tmpl_copy){
       // TODO: i18n
-      // $.growl.error({message: 'Template already saved as '.i18n() +'<b>' + tmpl_copy.name + '</b>.'});
-      $.growl.error({message: 'Template already saved as <b>' + tmpl_copy.name + '</b>.'});
+      // globals.notification.error('Template already saved as '.i18n() +'<b>' + tmpl_copy.name + '</b>.');
+      globals.notification.error('Template already saved as <b>' + tmpl_copy.name + '</b>.');
       return true;
     }
     return false;

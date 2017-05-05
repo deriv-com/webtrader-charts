@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import html from './properties_selector.html';
+import {globals} from '../common/globals.js';
 
 let win = null;
 
@@ -29,12 +30,10 @@ export const open = (options, callback) => {
                      name = $(ele).attr('name');
                   value = parseInt(value);
                   if (value > max || value < min) {
-                     $.growl.error({
-                        // TODO: i18n
-                        // message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
-                        //    min + ' and '.i18n() + max + "."
-                        message: `Please enter a value for "${name}" between ${min} and ${max}.`
-                     });
+                     // TODO: i18n
+                     // message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
+                     //    min + ' and '.i18n() + max + "."
+                     globals.notification.error(`Please enter a value for "${name}" between ${min} and ${max}.`);
                      error = true;
                   }
                } else {  // colorpicker

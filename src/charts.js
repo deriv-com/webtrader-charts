@@ -4,13 +4,13 @@
 import $ from 'jquery';
 import moment from 'moment';
 import _ from 'lodash';
-import Parallel from './lib/parallel.js';
 import chartingRequestMap from './common/chartingRequestMap.js';
 import liveapi from './common/liveapi.js';
 import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
+import {globals} from './common/globals.js';
 // TODO: hicharts mousewheel
 // import $Hmw from 'common/highchartsMousewheel';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
@@ -120,8 +120,6 @@ export const destroy = (options) => {
 }
 
 export const generate_csv = (chart, data) => {
-    const filename = data.instrumentName + ' (' + data.timePeriod + ')' + '.csv';
-
     let lines = [],
         dataToBeProcessTolines = [];
     const flattenData = (d) => {
@@ -166,61 +164,56 @@ export const generate_csv = (chart, data) => {
     });
 
     // TODO: i18n
-    // $.growl.notice({ message: 'Downloading .csv'.i18n() });
-    $.growl.notice({ message: 'Downloading .csv' });
+    // ({ message: 'Downloading .csv'.i18n() });
+    globals.notification.notice('Downloading .csv');
 
-    //merge here
-    new Parallel([lines, dataToBeProcessTolines])
-        .spawn((data) => {
-            let l = data[0];
-            const d = data[1];
-            l = l.map((line, index) => {
 
-                d.forEach((dd) => {
-                    let added = false;
-                    dd.forEach((nDl) => {
-                        if (nDl) {
-                            const temp = nDl.split(',');
-                            if (line.split(',')[0] === temp[0]) {
-                                line += ',' + temp.slice(1, temp.length).join(',');
-                                added = true;
-                                return false;
-                            }
-                        }
-                    });
-                    if (line.indexOf('Date') == -1 && !added) line += ','; //Add a gap since we did not add a value
+    const filename = data.instrumentName + ' (' + data.timePeriod + ')' + '.csv';
+
+    _.defer(() => {
+       try {
+          const csv = lines.map((line, index) => {
+             dataToBeProcessTolines.forEach((dd) => {
+                let added = false;
+                dd.forEach((nDl) => {
+                   if (nDl) {
+                      const temp = nDl.split(',');
+                      if (line.split(',')[0] === temp[0]) {
+                         line += ',' + temp.slice(1, temp.length).join(',');
+                         added = true;
+                         return false;
+                      }
+                   }
                 });
-                if (index === 0) {
-                    return line;
-                }
-                return line.split(" ").join("\",\""); //Separate date and time.
-            });
-            return l;
-        })
-        .then((data) => {
-            const csv = data.join('\n'); //(is_tick ? 'Date,Tick\n' : 'Date,Open,High,Low,Close\n') + lines.join('\n');
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            if (navigator.msSaveBlob) { // IE 10+
-                navigator.msSaveBlob(blob, filename);
-            } else {
-                const link = document.createElement("a");
-                if (link.download !== undefined) { /* Evergreen Browsers :) */
-                    const url = URL.createObjectURL(blob);
-                    link.setAttribute("href", url);
-                    link.setAttribute("download", filename);
-                    link.style.visibility = 'hidden';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
-            }
-        }, (error) => {
-           // TODO: i18n
-           // $.growl.error({ message: 'Error downloading .csv'.i18n() });
-           $.growl.error({ message: 'Error downloading .csv' });
-            console.error(error);
-        });
-
+                if (line.indexOf('Date') == -1 && !added) line += ','; //Add a gap since we did not add a value
+             });
+             if (index === 0) {
+                return line;
+             }
+             return line.split(" ").join("\",\""); //Separate date and time.
+          }).join('\n');
+          const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+          if (navigator.msSaveBlob) { // IE 10+
+             navigator.msSaveBlob(blob, filename);
+          }
+          else {
+             const link = document.createElement("a");
+             if (link.download !== undefined) { /* Evergreen Browsers :) */
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", filename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+             }
+          }
+       }
+       catch(e) {
+          globals.notification.error('Error downloading .csv');
+          console.error(e);
+       }
+    });
 }
 
 /**
@@ -294,7 +287,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             // TODO: i18n
                             // const msg = 'Error getting data for %1'.i18n().replace('%1', options.instrumentName);
                             const msg = 'Error getting data for %1'.replace('%1', options.instrumentName);
-                            $.growl.error({ message: msg });
+                            globals.notification.error(msg);
                             const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);

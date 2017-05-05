@@ -20,6 +20,7 @@ import chartOptions from './chartOptions';
 import charts from './charts';
 import chartWindow from './chartWindow';
 import chartTemplateManager from './chartTemplateManager';
+import {globals} from './common/globals.js';
 import {init} from './common/liveapi'; 
 
 import './common/rivetsExtra.js';
@@ -35,6 +36,7 @@ export {default as indicatorManagement} from './indicatorManagement';
 export {default as overlayManagement} from './overlayManagement'; 
 export {default as chartingRequestMap} from './common/chartingRequestMap'; 
 export {init} from './common/liveapi'; 
+export {globals} from './common/globals.js';
 
 module.exports = {
    charts,
@@ -45,5 +47,6 @@ module.exports = {
    indicatorManagement,
    overlayManagement,
    chartingRequestMap,
+   globals,
    init
 };

@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import {globals} from './globals.js';
 
 let socket = null;
 
@@ -32,8 +33,8 @@ const connect = () => {
 
    ws.addEventListener('error',(event) => {
       // TODO: i18n
-      // $.growl.error({message: 'Connection error.'.i18n()});
-      $.growl.error({message: 'Connection error.'});
+      // ({message: 'Connection error.'.i18n()});
+      globals.notification.error('Connection error.');
       onclose(); // try to reconnect
    });
 

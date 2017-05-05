@@ -2,6 +2,7 @@ import $ from 'jquery';
 import liveapi from './liveapi.js';
 import chartingRequestMap from './chartingRequestMap.js';
 import { convertToTimeperiodObject, isTick } from './utils.js';
+import {globals} from './globals.js';
 
 const barsTable = chartingRequestMap.barsTable;
 
@@ -97,21 +98,18 @@ export const retrieveChartDataAndRender = (options) => {
          // TODO: i18n
          // const msg = 'Error getting data for %1'.i18n().replace('%1', instrumentName);
          const msg = 'Error getting data for %1'.replace('%1', instrumentName);
-         $.growl.error({ message: msg });
+         globals.notification.error(msg);
          const chart = $(containerIDWithHash).highcharts();
          chart && chart.showLoading(msg);
          console.error(err);
       })
       .then((data) => {
          if (data && !data.error && options.delayAmount > 0) {
-            // TODO: i18n
-            // $.growl.warning({
+            // TODO: i18n ({
             //    message: instrumentName + ' feed is delayed by '.i18n() +
             //    options.delayAmount + ' minutes'.i18n()
             // })
-            $.growl.warning({
-               message: instrumentName + ' feed is delayed by ' + options.delayAmount + ' minutes'
-            });
+            globals.notification.warning(`${instrumentName} feed is delayed by ${options.delayAmount} minutes`);
 
             //start the timer
             chartingRequestMap[key].timerHandler = setInterval(() => {

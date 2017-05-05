@@ -15,6 +15,7 @@ import loki from 'lokijs';
 import _ from 'lodash';
 import $ from 'jquery';
 import liveapi from './liveapi.js';
+import {globals} from './globals.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
@@ -241,8 +242,8 @@ export const register = function(options) {
             /* if the market is closed try the same request without subscribing */
             if (req.subscribe && up.code == 'MarketIsClosed') {
                 // TODO: i18n
-                //$.growl.notice({ message: options.symbol + ' market is presently closed.'.i18n() }); 
-                $.growl.notice({ message: options.symbol + ' market is presently closed.' }); 
+                //({ message: options.symbol + ' market is presently closed.'.i18n() }); 
+                globals.notification.notice(options.symbol + ' market is presently closed.'); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
                 map[key].subscribers -= 1;
