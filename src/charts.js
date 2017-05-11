@@ -11,8 +11,7 @@ import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
 import {globals} from './common/globals.js';
-// TODO: hicharts mousewheel
-// import $Hmw from 'common/highchartsMousewheel';
+import HMW from './common/highchartsMousewheel.js'
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import './charts.scss';
 
@@ -344,9 +343,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             this.addCurrentPrice();
 
                             //Add mouse wheel zooming
-                            // TODO: highcharts mousewheel
-                            // $Hmw.mousewheel(containerIDWithHash);
-
+                            // HMW.mousewheel(containerIDWithHash);
                         }
 
                         this.chart.hideLoading();
@@ -384,7 +381,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         scrollbar: {
-            liveRedraw: false
+            liveRedraw: true
         },
 
         yAxis: [{
