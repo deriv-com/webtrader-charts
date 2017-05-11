@@ -302,7 +302,7 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
                 changeChartType(scope, 'line', timePeriod);
             }
             else {
-               charts.refresh('#' + scope.newTabId + '_chart', timePeriod, scope.chartType.value);
+               charts.refresh('#' + scope.newTabId + '_chart', timePeriod);
             }
             showCandlestickAndOHLC(scope.newTabId, !tick && !isOverlaidView('#' + m_newTabId + '_chart'));
             scope.exportChartURLShare = format(urlShareTemplate, scope.instrumentCode, timePeriod);

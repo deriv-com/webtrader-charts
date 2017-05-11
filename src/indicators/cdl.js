@@ -874,10 +874,10 @@ CDL.prototype.CDLMARUBOZU = function (candleOne_Open, candleOne_High, candleOne_
     var isCandleOne_Bearish = candleOne_Close > candleOne_Open,
         isCandleOne_Bullish = candleOne_Close < candleOne_Open;
 
-    isBearishContinuation = isCandleOne_Bearish
+    var isBearishContinuation = isCandleOne_Bearish
                           && this.indicators.isLongCandle(candleOne_Open, candleOne_High, candleOne_Low, candleOne_Close)
                           && (isUpperShadowShort && isLowerShadowShort);
-    isBullishContinuation = isCandleOne_Bullish
+    var isBullishContinuation = isCandleOne_Bullish
                           && this.indicators.isLongCandle(candleOne_Open, candleOne_High, candleOne_Low, candleOne_Close)
                           && isUpperShadowShort && isLowerShadowShort;
 
