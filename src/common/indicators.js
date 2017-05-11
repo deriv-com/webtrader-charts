@@ -4,7 +4,7 @@ import indicatorsArray from '../indicators.json';
 
 const indicatorsMetaData = _.cloneDeep(indicatorsArray);
 
-function updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries) {
+function updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries, redraw = true) {
    var seriesData = indicatorSeries.data;
    if (iu.value && _.isFunction(iu.value.toJSObject)) {
       var x = iu.value.x;
@@ -19,7 +19,7 @@ function updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries) {
          matchingSeriesData.remove();
       }
       if (_.isNumber(x) && x > 0 && !_.isEmpty(iu.value.text) && !_.isEmpty(iu.value.title)) {
-         indicatorSeries.addPoint(iu.value);
+         indicatorSeries.addPoint(iu.value, redraw);
       }
    }
 }
@@ -129,27 +129,29 @@ var indicators = {
                         indicatorUpdated.forEach(function(iu) {
                            var indicatorSeries = series.chart.get(iu.id);
                            if (_.isArray(iu.value)) {
-                              indicatorSeries.addPoint(_.flattenDeep([time, iu.value]));
+                              var rangePoint = _.flattenDeep([time, iu.value]);
+                              indicatorSeries.addPoint(rangePoint, true, false, false);
                            } else if (iu.value instanceof CDLUpdateObject || iu.value instanceof FractalUpdateObject) {
-                              updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries);
+                              updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries, false);
                            } else {
                               //iu.color is used by Awesome indicator
                               if (iu.color) {
-                                 indicatorSeries.addPoint([time, iu.value]);
+                                 indicatorSeries.addPoint([time, iu.value], false);
                                  indicatorSeries.data[indicatorSeries.data.length - 1].update({
                                     color: iu.color
-                                 });
+                                 }, false);
                               } else if (iu.time) { // iu.time is used by ichimoku indicator
-                                 indicatorSeries.addPoint([iu.time, iu.value]);
+                                 indicatorSeries.addPoint([iu.time, iu.value], false);
                               }
                               else {
-                                 indicatorSeries.addPoint([time, iu.value]);
+                                 indicatorSeries.addPoint([time, iu.value], false);
                               }
                            }
                         });
                      });
                   }
                }
+               this.redraw();
             }
          }
       });
