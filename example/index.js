@@ -11,11 +11,13 @@ wtcharts.init({
 const $parent = $('#container');
 
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
+   "type": "line",
+   "timePeriod": "1m",
+   "delayAmount": 0,
    "instrumentCode": "RDBULL",
    "instrumentName": "Bull Market Index",
-   "timePeriod": "1m",
-   "type": "line",
-   "delayAmount": 0,
+   "showInstrumentName": true, // default is false
+   "showOverlays": false, // default is true
    "indicators": [
       {
          "id": "cks",
@@ -29,7 +31,7 @@ const chart =  wtcharts.chartWindow.addNewChart($parent, {
             "strokeWidth": 1,
             "dashStyle": "Solid"
          }
-      }
+      },
    ],
    // "overlays": [
    //   {

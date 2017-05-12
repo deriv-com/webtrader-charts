@@ -89,7 +89,15 @@ export const addNewChart = function($parent, options) {
     /* initialize chartOptions & table-view once chart is rendered */
     charts.drawChart("#" + id + "_chart", options, instance.actions.reflow);
     const table_view = tableView.init(dialog);
-    chartOptions.init(id, options.timePeriod, options.type, table_view.show, options.instrumentName, options.instrumentCode);
+    chartOptions.init(id, table_view.show, {
+       timePeriod: options.timePeriod,
+       chartType: options.type,
+       instrumentName: options.instrumentName,
+       instrumentCode: options.instrumentCode,
+       showInstrumentName: options.showInstrumentName,
+       showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
+       showShare: true,
+    });
 
     return instance;
 };

@@ -109,9 +109,9 @@ const responsiveButtons = (scope, ele) => {
     const shareButton = ele.find('.shareButton'),
         minWidth = 420 + ((stringWidth.tp.max + stringWidth.ct + 65) - (97 + 87));
 
-
     //Place instrument name for affiliates based on frame width
-    if (isAffiliates()) {
+    scope.showInstrumentName = isAffiliates() || scope.showInstrumentName;
+    if (scope.showInstrumentName) {
         if ($(window).width() > minWidth + stringWidth.inst) {
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px 0px");
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "left");
@@ -121,7 +121,6 @@ const responsiveButtons = (scope, ele) => {
         } else {
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px auto");
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "");
-            scope.showInstrumentName = false;
             $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: scope.instrumentName });
         }
     }
@@ -207,23 +206,23 @@ const format = (str, ...args) => {
    );
 }
 
-export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_instrumentName, m_instrumentCode, m_showShare, m_showOverlay) => {
+export const init = (m_newTabId, m_tableViewCb, options) => {
 
-    calculateStringWidth(m_instrumentName);
+    calculateStringWidth(options.instrumentName);
     if (view[m_newTabId]) view[m_newTabId].unbind();
     state[m_newTabId] = {
         //Input parameters
         newTabId: m_newTabId,
         timePeriod: timeperiod_arr.filter((obj) => {
-            return m_timePeriod == obj.value
+            return options.timePeriod == obj.value
         })[0],
         timeperiod_arr: timeperiod_arr,
         chartType: chartType_arr.filter((chart) => {
-            return chart.value == m_chartType
+            return chart.value == options.chartType
         })[0],
         tableViewCallback: m_tableViewCb, //Callback for table view
-        instrumentName: m_instrumentName,
-        instrumentCode: m_instrumentCode,
+        instrumentName: options.instrumentName,
+        instrumentCode: options.instrumentCode,
         indicatorsCount: 0,
         overlayCount: 0,
 
@@ -234,19 +233,18 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
         showDrawingToolSelector: false,
         showExportSelector: false,
         showLoadSaveSelector: false,
-        showShare: typeof m_showShare == 'undefined' ? true : m_showShare,
-        showOverlay: typeof m_showOverlay == 'undefined' ? true : m_showOverlay,
-        showInstrumentName: false,
+        showShare: options.showShare,
+        showOverlay: options.showOverlays,
+        showInstrumentName: options.showInstrumentName,
 
+        exportChartURLShare: format(urlShareTemplate, options.instrumentCode, options.timePeriod),
+        exportChartIframeShare: format(iframeShareTemplate, options.instrumentCode, options.timePeriod),
 
-        exportChartURLShare: format(urlShareTemplate, m_instrumentCode, m_timePeriod),
-        exportChartIframeShare: format(iframeShareTemplate, m_instrumentCode, m_timePeriod),
-
-        fbShareLink: format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod))),
-        twitterShareLink: format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')'),
-        gPlusShareLink: format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod))),
-        bloggerShareLink: format(bloggerShareTemplate, format(urlShareTemplate, m_instrumentCode, m_timePeriod), m_instrumentName + '(' + m_timePeriod + ')'),
-        vkShareLink: format(vkShareTemplate, format(urlShareTemplate, m_instrumentCode, m_timePeriod), m_instrumentName + '(' + m_timePeriod + ')')
+        fbShareLink: format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod))),
+        twitterShareLink: format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')'),
+        gPlusShareLink: format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod))),
+        bloggerShareLink: format(bloggerShareTemplate, format(urlShareTemplate, options.instrumentCode, options.timePeriod), options.instrumentName + '(' + options.timePeriod + ')'),
+        vkShareLink: format(vkShareTemplate, format(urlShareTemplate, options.instrumentCode, options.timePeriod), options.instrumentName + '(' + options.timePeriod + ')')
 
     };
     view[m_newTabId] = null;
@@ -307,17 +305,17 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
             showCandlestickAndOHLC(scope.newTabId, !tick && !isOverlaidView('#' + m_newTabId + '_chart'));
             scope.exportChartURLShare = format(urlShareTemplate, scope.instrumentCode, timePeriod);
             scope.exportChartIframeShare = format(iframeShareTemplate, scope.instrumentCode, timePeriod);
-            scope.fbShareLink = format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)));
-            scope.twitterShareLink = format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
-            scope.gPlusShareLink = format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)));
-            scope.bloggerShareLink = format(bloggerShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
-            scope.vkShareLink = format(vkShareTemplate, encodeURIComponent(format(urlShareTemplate, m_instrumentCode, m_timePeriod)), m_instrumentName + '(' + m_timePeriod + ')');
+            scope.fbShareLink = format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)));
+            scope.twitterShareLink = format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')');
+            scope.gPlusShareLink = format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)));
+            scope.bloggerShareLink = format(bloggerShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')');
+            scope.vkShareLink = format(vkShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')');
             $('#' + scope.newTabId).trigger('chart-time-period-changed', timePeriod);
         }
     };
 
     //Disable candlestick and OHLC if it is a tick chart or overlaid view
-    showCandlestickAndOHLC(m_newTabId, !isTick(m_timePeriod) && !isOverlaidView('#' + m_newTabId + '_chart'));
+    showCandlestickAndOHLC(m_newTabId, !isTick(options.timePeriod) && !isOverlaidView('#' + m_newTabId + '_chart'));
 
     if (!m_tableViewCb) {
         state[m_newTabId].showTableOption = false;
@@ -426,9 +424,9 @@ export const init = (m_newTabId, m_timePeriod, m_chartType, m_tableViewCb, m_ins
 
     // Listen for resize event
     if (isAffiliates()) {
-        $(window).resize(() => {
-            responsiveButtons(state[m_newTabId], $("#" + m_newTabId).find(".chart-view"));
-        });
+       $(window).resize(
+          () => responsiveButtons(state[m_newTabId], $("#" + m_newTabId).find(".chart-view"))
+       );
     } else {
         $("#" + m_newTabId).on('resize-event', function(e) {
             responsiveButtons(state[m_newTabId], $(this).find(".chart-view"));
