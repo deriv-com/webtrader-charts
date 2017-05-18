@@ -1,24 +1,29 @@
 .webtrader-charts-dialog {
    background: white;
    outline: 0;
+   padding: 0;
    .ui-dialog-titlebar {
       padding: 5px 5px;
       position: relative;
+      border-radius: 0;
    }
-  .ui-dialog-buttonpane {
-    padding: 0;
-    margin: 0;
-    background: white;
-    button {
-      box-sizing: border-box;
-      margin: 5px 3px;
-      border-radius: 3px !important;
-      width: 100px;
-      text-align: center;
-    }
-  }
+   .ui-dialog-buttonpane {
+      text-align: right;
+      button {
+         outline: 0;
+         box-sizing: border-box;
+         margin: 5px 3px;
+         border-radius: 3px!important;
+         width: 100px;
+         line-height: 14px;
+         text-align: center;
+         background-color: #2A3052;
+      }
+   }
   .ui-dialog-titlebar-close {
      margin: -7px 0 0 0 !important;
+     width: 14px;
+     height: 14px;
   }
 }
 .ui-dialog-titlebar-close {
