@@ -205,5 +205,17 @@
 }
 
 .indicator-builder-ui-dialog {
-  .image { text-align: center; }
+   .image { text-align: center; }
+   .ui-dialog-buttonpane {
+      text-align: right;
+      button {
+         box-sizing: border-box;
+         margin: 5px 3px;
+         border-radius: 3px!important;
+         width: 100px;
+         line-height: 14px;
+         text-align: center;
+         background-color: #2A3052;
+      }
+   }
 }
