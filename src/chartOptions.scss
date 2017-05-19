@@ -20,19 +20,23 @@
   }
 
   .chartOptions_button {
-    height: 30px;
-    background: #F2F2F2;
-    margin-left: 5px;
-    color: #2A3052;
-    border-radius: 2px;
-    span {
-      display: inline-block;
-      img { max-height: 20px; }
-    }
-    span[data-balloon] {
-      display: block;
-      height: 34px;
-    }
+     height: 30px;
+     background: #F2F2F2;
+     margin-left: 5px;
+     color: #2A3052;
+     border-radius: 2px;
+     span {
+        display: inline-block;
+        img { max-height: 20px; }
+     }
+     span[data-balloon] {
+        display: block;
+        height: 34px;
+     }
+     &.button_selected {
+        color: #FFF !important;
+        background: #2A3052 !important;
+     }
   }
   .chartOptions_overlay {
     margin-top: 0px;
