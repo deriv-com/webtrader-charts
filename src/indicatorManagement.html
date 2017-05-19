@@ -16,14 +16,12 @@
               <div class="cell">
                 <span rv-text='ind.shortName' />
               </div>
-              <div class="cell">
-                <a href="#" rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'>Edit</a>
+              <div class="cell icons">
+                <span href="#" rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'>&#x270e;</span>
+                <span rv-on-click='indicators.remove | bind ind'>&#x2718;</span>
               </div>
             </div>
           </div>
-        </div>
-        <div class="cell">
-          <span class='remove' rv-on-click='indicators.remove | bind ind'> X </span>
         </div>
       </div>
     </div>
@@ -46,7 +44,7 @@
             rv-show='ind.description'
             rv-data-balloon='ind.description' data-balloon-length='large'
             data-balloon-pos='down'> ? </span>
-      <span class='ui-icon ui-icon-star'
+      <span class='ui-icon full-star'
             rv-on-click='indicators.favorite | bind ind'></span>
     </div>
   </div>
@@ -62,7 +60,7 @@
               rv-data-balloon='ind.description'
               data-balloon-length='large'
               data-balloon-pos='down'> ? </span>
-        <span class='ui-icon ui-icon-star-b'
+        <span class='ui-icon empty-star'
               rv-on-click='indicators.favorite | bind ind'></span>
       </div>
     </div>
