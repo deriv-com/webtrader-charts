@@ -133,7 +133,7 @@
     "category": [
       "Price Transformation"
     ],
-    "formula": "images/indicators/typprice.png",
+    "formula": "typprice",
     "description": "The Typical Price function measures the average of the high, low, and closing prices for the day using a simple, single-line plot. The ordinary price gives a simplified view of the day trading prices for as well as it happens with other price-adjustment functions. You can use it for smoothing out some of the inconstancy of the closing price because it comprises information for the whole trading day and not only the result of the day's end. The Typical Price indicator is measured by adding the high, low, and closing prices together, and then dividing by three."
   },
   "willr": {
@@ -389,7 +389,7 @@
     "short_display_name": "CDL2CROWS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/two_crows.png"
+      "image": "two_crows"
     },
     "category": [
       "Pattern Recognition"
@@ -402,7 +402,7 @@
     "short_display_name": "CDL3BLACKCROWS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_black_crows.png"
+      "image": "three_black_crows"
     },
     "category": [
       "Pattern Recognition"
@@ -415,7 +415,7 @@
     "short_display_name": "CDL3INSIDE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_inside_up_down.png"
+      "image": "three_inside_up_down"
     },
     "category": [
       "Pattern Recognition"
@@ -428,7 +428,7 @@
     "short_display_name": "CDL3LINESTRIKE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_line_strike.png"
+      "image": "three_line_strike"
     },
     "category": [
       "Pattern Recognition"
@@ -441,7 +441,7 @@
     "short_display_name": "CDL3OUTSIDE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_outside_up_down.png"
+      "image": "three_outside_up_down"
     },
     "category": [
       "Pattern Recognition"
@@ -454,7 +454,7 @@
     "short_display_name": "CDL3STARSSOUTH",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_stars_in_the_south.png"
+      "image": "three_stars_in_the_south"
     },
     "category": [
       "Pattern Recognition"
@@ -467,7 +467,7 @@
     "short_display_name": "CDL3WHITESOLDIERS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_white_soldiers.png"
+      "image": "three_white_soldiers"
     },
     "category": [
       "Pattern Recognition"
@@ -480,7 +480,7 @@
     "short_display_name": "CDLDOJI",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/doji.png"
+      "image": "doji"
     },
     "category": [
       "Pattern Recognition"
@@ -493,7 +493,7 @@
     "short_display_name": "CDLABANDONEDBABY",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/abandoned_baby.png"
+      "image": "abandoned_baby"
     },
     "category": [
       "Pattern Recognition"
@@ -506,7 +506,7 @@
     "short_display_name": "CDLCLOSINGMARUBOZU",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/closing_marubozu.png"
+      "image": "closing_marubozu"
     },
     "category": [
       "Pattern Recognition"
@@ -519,7 +519,7 @@
     "short_display_name": "CDLDOJISTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/doji_star.png"
+      "image": "doji_star"
     },
     "category": [
       "Pattern Recognition"
@@ -532,7 +532,7 @@
     "short_display_name": "CDLTHRUSTING",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/thrusting_pattern.png"
+      "image": "thrusting_pattern"
     },
     "category": [
       "Pattern Recognition"
@@ -569,7 +569,7 @@
     "short_display_name": "CDLSHOOTINGSTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/shooting_star.png"
+      "image": "shooting_star"
     },
     "category": [
       "Pattern Recognition"
@@ -622,7 +622,7 @@
     "short_display_name": "CDLENGULFING",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/engulfing_pattern.png"
+      "image": "engulfing_pattern"
     },
     "category": [
       "Pattern Recognition"
@@ -799,7 +799,7 @@
     "short_display_name": "CDLUPSIDEGAP2CROWS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/upside_gap_two_crows.png"
+      "image": "upside_gap_two_crows"
     },
     "category": [
       "Pattern Recognition"
@@ -812,7 +812,7 @@
     "short_display_name": "CDLXSIDEGAP3METHODS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/gap_three_methods.png"
+      "image": "gap_three_methods"
     },
     "category": [
       "Pattern Recognition"
@@ -825,7 +825,7 @@
     "short_display_name": "CDLTASUKIGAP",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/tasuki_gap.png"
+      "image": "tasuki_gap"
     },
     "category": [
       "Pattern Recognition"
@@ -838,7 +838,7 @@
     "short_display_name": "CDLPIERCING",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/piercing_pattern.png"
+      "image": "piercing_pattern"
     },
     "category": [
       "Pattern Recognition"
@@ -851,7 +851,7 @@
     "short_display_name": "CDLBELTHOLD",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/belt_hold.png"
+      "image": "belt_hold"
     },
     "category": [
       "Pattern Recognition"
@@ -864,7 +864,7 @@
     "short_display_name": "CDLDARKCLOUDCOVER",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/dark_cloud_cover.png"
+      "image": "dark_cloud_cover"
     },
     "category": [
       "Pattern Recognition"
@@ -877,7 +877,7 @@
     "short_display_name": "CDLGAPSIDESIDEWHITE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/side_by_side_white_line.png"
+      "image": "side_by_side_white_line"
     },
     "category": [
       "Pattern Recognition"
@@ -890,7 +890,7 @@
     "short_display_name": "CDLTAKURI",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/takuri_line.png"
+      "image": "takuri_line"
     },
     "category": [
       "Pattern Recognition"
@@ -903,7 +903,7 @@
     "short_display_name": "CDLHARAMI",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/harami_pattern.png"
+      "image": "harami_pattern"
     },
     "category": [
       "Pattern Recognition"
@@ -916,7 +916,7 @@
     "short_display_name": "CDLHAMMER",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/hammer.png"
+      "image": "hammer"
     },
     "category": [
       "Pattern Recognition"
@@ -929,7 +929,7 @@
     "short_display_name": "CDLHANGINGMAN",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/hanging_man.png"
+      "image": "hanging_man"
     },
     "category": [
       "Pattern Recognition"
@@ -942,7 +942,7 @@
     "short_display_name": "CDLINVERTEDHAMMER",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/inverted_hammer.png"
+      "image": "inverted_hammer"
     },
     "category": [
       "Pattern Recognition"
@@ -955,7 +955,7 @@
     "short_display_name": "CDLGRAVESTONEDOJI",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/gravestone_doji.png"
+      "image": "gravestone_doji"
     },
     "category": [
       "Pattern Recognition"
@@ -968,7 +968,7 @@
     "short_display_name": "CDLHARAMICROSS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/harami_cross.png"
+      "image": "harami_cross"
     },
     "category": [
       "Pattern Recognition"
@@ -981,7 +981,7 @@
     "short_display_name": "CDLSTALLEDPATTERN",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/salled_pattern.png"
+      "image": "salled_pattern"
     },
     "category": [
       "Pattern Recognition"
@@ -994,7 +994,7 @@
     "short_display_name": "CDLEVENINGSTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/evening_star.png"
+      "image": "evening_star"
     },
     "category": [
       "Pattern Recognition"
@@ -1007,7 +1007,7 @@
     "short_display_name": "CDLHIGHWAVE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/high_wave.png"
+      "image": "high_wave"
     },
     "category": [
       "Pattern Recognition"
@@ -1020,7 +1020,7 @@
     "short_display_name": "CDLHIKKAKE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/hikkake.png"
+      "image": "hikkake"
     },
     "category": [
       "Pattern Recognition"
@@ -1033,7 +1033,7 @@
     "short_display_name": "CDLHOMINGPIGEON",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/homing_pigeon.png"
+      "image": "homing_pigeon"
     },
     "category": [
       "Pattern Recognition"
@@ -1046,7 +1046,7 @@
     "short_display_name": "CDLTRISTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/tristar.png"
+      "image": "tristar"
     },
     "category": [
       "Pattern Recognition"
@@ -1059,7 +1059,7 @@
     "short_display_name": "CDLLONGLINE",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/long_line_candle.png"
+      "image": "long_line_candle"
     },
     "category": [
       "Pattern Recognition"
@@ -1072,7 +1072,7 @@
     "short_display_name": "CDLMARUBOZU",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/marubozu.png"
+      "image": "marubozu"
     },
     "category": [
       "Pattern Recognition"
@@ -1085,7 +1085,7 @@
     "short_display_name": "CDLKICKING",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/kicking.png"
+      "image": "kicking"
     },
     "category": [
       "Pattern Recognition"
@@ -1098,7 +1098,7 @@
     "short_display_name": "CDLMATCHINGLOW",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/matching_low.png"
+      "image": "matching_low"
     },
     "category": [
       "Pattern Recognition"
@@ -1111,7 +1111,7 @@
     "short_display_name": "CDLLADDERBOTTOM",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/ladder_bottom.png"
+      "image": "ladder_bottom"
     },
     "category": [
       "Pattern Recognition"
@@ -1124,7 +1124,7 @@
     "short_display_name": "CDLRISEFALL3METHODS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/rising_falling_three_methods.png"
+      "image": "rising_falling_three_methods"
     },
     "category": [
       "Pattern Recognition"
@@ -1137,7 +1137,7 @@
     "short_display_name": "CDLIDENTICAL3CROWS",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/identical_three_crows.png"
+      "image": "identical_three_crows"
     },
     "category": [
       "Pattern Recognition"
@@ -1150,7 +1150,7 @@
     "short_display_name": "CDLMORNINGSTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/morning_star.png"
+      "image": "morning_star"
     },
     "category": [
       "Pattern Recognition"
@@ -1163,7 +1163,7 @@
     "short_display_name": "CDLSPINNINGTOP",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/spinning_top.png"
+      "image": "spinning_top"
     },
     "category": [
       "Pattern Recognition"
@@ -1176,7 +1176,7 @@
     "short_display_name": "CDLDRAGONFLYDOJI",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/dragonfly_doji.png"
+      "image": "dragonfly_doji"
     },
     "category": [
       "Pattern Recognition"
@@ -1189,7 +1189,7 @@
     "short_display_name": "CDLLONGLEGGEDDOJI",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/long_legged_doji.png"
+      "image": "long_legged_doji"
     },
     "category": [
       "Pattern Recognition"
@@ -1202,7 +1202,7 @@
     "short_display_name": "CDLEVENINGDOJISTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/evening_doji_star.png"
+      "image": "evening_doji_star"
     },
     "category": [
       "Pattern Recognition"
@@ -1215,7 +1215,7 @@
     "short_display_name": "CDLBREAKAWAY",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/breakaway_pattern.png"
+      "image": "breakaway_pattern"
     },
     "category": [
       "Pattern Recognition"
@@ -1228,7 +1228,7 @@
     "short_display_name": "CDLADVANCEBLOCK",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/advance_block.png"
+      "image": "advance_block"
     },
     "category": [
       "Pattern Recognition"
@@ -1241,7 +1241,7 @@
     "short_display_name": "CDLCOUNTERATTACK",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/counterattack.png"
+      "image": "counterattack"
     },
     "category": [
       "Pattern Recognition"
@@ -1254,7 +1254,7 @@
     "short_display_name": "CDLMORNINGDOJISTAR",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/morning_doji_star.png"
+      "image": "morning_doji_star"
     },
     "category": [
       "Pattern Recognition"
@@ -1267,7 +1267,7 @@
     "short_display_name": "CDLINNECK",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/in_neck.png"
+      "image": "in_neck"
     },
     "category": [
       "Pattern Recognition"
@@ -1280,7 +1280,7 @@
     "short_display_name": "CDLONNECK",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/on_neck.png"
+      "image": "on_neck"
     },
     "category": [
       "Pattern Recognition"
@@ -1293,7 +1293,7 @@
     "short_display_name": "CDLRICKSHAWMAN",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/rickshaw_man.png"
+      "image": "rickshaw_man"
     },
     "category": [
       "Pattern Recognition"
@@ -1306,7 +1306,7 @@
     "short_display_name": "CDLUNIQUE3RIVER",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/three_river.png"
+      "image": "three_river"
     },
     "category": [
       "Pattern Recognition"
@@ -1319,7 +1319,7 @@
     "short_display_name": "CDLSEPARATINGLINES",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/separating_lines.png"
+      "image": "separating_lines"
     },
     "category": [
       "Pattern Recognition"
@@ -1332,7 +1332,7 @@
     "short_display_name": "CDLMATHOLD",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/mat_hold.png"
+      "image": "mat_hold"
     },
     "category": [
       "Pattern Recognition"
@@ -1345,7 +1345,7 @@
     "short_display_name": "CDLSTICKSANDWICH",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/stick_sandwich.png"
+      "image": "stick_sandwich"
     },
     "category": [
       "Pattern Recognition"
@@ -1358,7 +1358,7 @@
     "short_display_name": "CDLKICKINGBYLENGTH",
     "fields": [ ],
     "cdl_indicator": {
-      "image": "images/indicators/kicking.png"
+      "image": "kicking"
     },
     "category": [
       "Pattern Recognition"

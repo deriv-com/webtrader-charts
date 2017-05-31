@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="277.37px" height="270.51px" viewBox="0 0 277.37 270.51" enable-background="new 0 0 277.37 270.51" xml:space="preserve">
+<g>
+	<rect x="66.33" y="34.12" fill="#020202" width="2" height="13.33"/>
+	<rect x="144.67" y="178.79" fill="#020202" width="2" height="16"/>
+	<rect x="210.33" y="155.79" fill="#020202" width="2" height="10.67"/>
+	<rect x="210.33" y="34.45" fill="#020202" width="2" height="21"/>
+	<rect x="66" y="166.46" fill="#020202" width="2" height="30.33"/>
+	<rect x="43.5" y="47.12" fill="#CC0033" width="48" height="120"/>
+	<rect x="188.5" y="55.12" fill="#2E8836" width="48" height="101"/>
+	<text transform="matrix(1 0 0 1 1 38.7881)" font-family="'Roboto-Regular'" font-size="13">Open</text>
+	<text transform="matrix(1 0 0 1 0 162.4546)" font-family="'Roboto-Regular'" font-size="13">Close</text>
+	<text transform="matrix(1 0 0 1 243.6665 49.7881)" font-family="'Roboto-Regular'" font-size="13">Close</text>
+	<text transform="matrix(1 0 0 1 243.6665 150.7886)" font-family="'Roboto-Regular'" font-size="13">Open</text>
+	<text transform="matrix(1 0 0 1 1 56.4541)" font-family="'Roboto-Regular'" font-size="13">Day 1</text>
+	<text transform="matrix(1 0 0 1 0.3335 180.4546)" font-family="'Roboto-Regular'" font-size="13">Day 1</text>
+	<text transform="matrix(1 0 0 1 243.3345 67.1201)" font-family="'Roboto-Regular'" font-size="13">Day 3</text>
+	<text transform="matrix(1 0 0 1 244.3345 168.7866)" font-family="'Roboto-Regular'" font-size="13">Day 3</text>
+	<text transform="matrix(1 0 0 1 44 11.1211)" font-family="'Roboto-Regular'" font-size="13">Bearish</text>
+	<text transform="matrix(1 0 0 1 189.0005 11.4541)" font-family="'Roboto-Regular'" font-size="13">Bullish</text>
+	<text transform="matrix(1 0 0 1 43.9995 28.7871)" font-family="'Roboto-Regular'" font-size="13">Candle</text>
+	<text transform="matrix(1 0 0 1 188.9995 30.7871)" font-family="'Roboto-Regular'" font-size="13">Candle</text>
+	<polygon points="11.84,104.02 18.42,115.51 18.42,115.58 18.43,115.55 18.44,115.57 18.44,115.52 25,104.03 20.53,106.8 
+		20.52,90.2 16.31,90.2 16.32,106.79 	"/>
+	<polygon points="104.16,204.52 117.09,207.38 117.15,207.44 117.12,207.4 117.15,207.42 117.11,207.38 113.02,194.79 
+		112.07,199.96 99.78,188.8 96.94,191.92 109.22,203.08 	"/>
+	<polygon points="192.36,169.85 188.35,158.41 188.37,158.34 188.35,158.37 188.35,158.35 188.34,158.39 179.56,166.75 
+		184.49,165.41 181.04,179.7 185.13,180.69 188.58,166.41 	"/>
+	<polygon points="269,100.73 262.37,89.27 262.37,89.2 262.36,89.23 262.35,89.21 262.35,89.26 255.84,100.79 260.3,97.99 
+		260.38,114.59 264.59,114.57 264.51,97.98 	"/>
+	<rect x="122" y="194.79" fill="#2E8836" width="48" height="20"/>
+	
+		<text transform="matrix(1 0 0 1 71.9995 183.4546)" fill="#323CA8" font-family="'Roboto-Bold'" font-size="13" text-decoration=" underline">Gap Down</text>
+	
+		<text transform="matrix(1 0 0 1 171.3325 191.7886)" fill="#323CA8" font-family="'Roboto-Bold'" font-size="13" text-decoration=" underline">Gap Up</text>
+	<text transform="matrix(1 0 0 1 102 235.7886)" font-family="'Roboto-Regular'" font-size="13">Day 2 Candle </text>
+	<text transform="matrix(1 0 0 1 102 251.3882)" font-family="'Roboto-Regular'" font-size="13">Can be Bullish </text>
+	<text transform="matrix(1 0 0 1 102 266.9878)" font-family="'Roboto-Regular'" font-size="13">or Bearish</text>
+</g>
+</svg>

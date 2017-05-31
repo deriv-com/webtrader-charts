@@ -1,0 +1,20 @@
+<svg width="238px" height="52px" viewBox="499 169 238 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="typprice" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(499.000000, 169.000000)">
+        <g id="Layer_4">
+            <text id="Typical-Price" fill="#000000" font-family="Helvetica" font-size="19.7532" font-weight="normal">
+                <tspan x="0.104" y="33.1572">Typical Price</tspan>
+            </text>
+            <text id="H-+-L-+-C" fill="#000000" font-family="Helvetica" font-size="19.7532" font-weight="normal">
+                <tspan x="149.6035" y="19.9254">H + L + C</tspan>
+            </text>
+            <text id="3" fill="#000000" font-family="Helvetica" font-size="19.7532" font-weight="normal">
+                <tspan x="183.3471" y="46.074">3</tspan>
+            </text>
+            <text id="=" fill="#000000" font-family="Helvetica" font-size="19.7532" font-weight="normal">
+                <tspan x="121.6682" y="34.0475">=</tspan>
+            </text>
+            <path d="M142.5,27.8 L237.5,27.8" id="Shape" stroke="#000000" stroke-width="0.5"></path>
+        </g>
+    </g>
+</svg>

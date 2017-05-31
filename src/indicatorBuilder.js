@@ -8,6 +8,8 @@ import './common/rivetsExtra.js';
 import images from './images/images.js';
 import {globals} from './common/globals.js';
 
+import indicatorImages from './images/indicators/indicatorImages.js';
+
 let before_add_callback = null;
 
 const closeDialog = (dialog) => {
@@ -19,11 +21,12 @@ const init = (chart_series, indicator) => {
 
       const $html = $(html);
 
+
       const state = {
          id: indicator.id,
          fields: indicator.fields.map(f => ({...f, is_valid: true})),
          levels: indicator.levels, /* optional */
-         formula: indicator.formula, /* optional */
+         formula: indicator.formula && indicatorImages[indicator.formula], /* optional */
          description: indicator.description,
          cdl_indicator: indicator.cdl_indicator, /* optional (cdl indicators only) */
          dash_styles: [
@@ -65,6 +68,9 @@ const init = (chart_series, indicator) => {
             }
          }
       };
+      if(state.cdl_indicator){
+         state.cdl_indicator.image = indicatorImages[state.cdl_indicator.image];
+      }
 
       if(indicator.editable && indicator.current_options) {
          each(indicator.current_options, (opt_val, opt_key) => {

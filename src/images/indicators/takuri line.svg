@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>takuri line</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="9" width="26" height="21"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="takuri-line">
+            <rect id="Rectangle" fill="#800000" x="64" y="31" width="8" height="68"></rect>
+            <rect id="Rectangle-Copy" fill="#800000" x="118" y="50" width="8" height="72"></rect>
+            <rect id="Rectangle-Copy-2" fill="#800000" x="172" y="66" width="8" height="75"></rect>
+            <g id="Group" transform="translate(222.000000, 140.000000)">
+                <rect id="Rectangle-2" fill="#418CF0" x="12" y="0" width="2" height="130"></rect>
+                <g id="Rectangle-9">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#418CF0" stroke-width="2" x="1" y="10" width="24" height="19"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
