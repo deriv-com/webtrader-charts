@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>spinning top</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="20" height="50"></rect>
+        <rect id="path-2" x="0" y="0" width="20" height="50"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="spinning-top">
+            <g id="Group-2-Copy-5" transform="translate(112.000000, 117.000000)" fill="#2E8836">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-6" transform="translate(95.000000, 146.000000)" fill="#2E8836">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group" transform="translate(70.000000, 158.000000)">
+                <g id="Rectangle-2">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#000000" stroke-width="2" x="1" y="1" width="18" height="48"></rect>
+                </g>
+                <g id="Group-2-Copy-10" transform="translate(5.000000, 8.000000)" fill="#2E8836">
+                    <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                    <rect id="Rectangle" x="0" y="10" width="10" height="16"></rect>
+                </g>
+            </g>
+            <g id="Group-Copy" transform="translate(200.000000, 85.000000)">
+                <g id="Rectangle-2">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#000000" stroke-width="2" x="1" y="1" width="18" height="48"></rect>
+                </g>
+                <g id="Group-2-Copy-10" transform="translate(5.000000, 8.000000)" fill="#CC0033">
+                    <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                    <rect id="Rectangle" x="0" y="10" width="10" height="16"></rect>
+                </g>
+            </g>
+            <g id="Group-2-Copy-7" transform="translate(141.000000, 154.000000)" fill="#2E8836">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-8" transform="translate(161.000000, 135.000000)" fill="#2E8836">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-9" transform="translate(181.000000, 115.000000)" fill="#2E8836">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-11" transform="translate(227.000000, 112.000000)" fill="#CC0033">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-16" transform="translate(15.000000, 95.000000)" fill="#CC0033">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-15" transform="translate(35.000000, 125.000000)" fill="#CC0033">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-14" transform="translate(55.000000, 149.000000)" fill="#CC0033">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-12" transform="translate(247.000000, 132.000000)" fill="#CC0033">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <g id="Group-2-Copy-13" transform="translate(267.000000, 151.000000)" fill="#CC0033">
+                <rect id="Rectangle-3" x="4" y="0" width="2" height="35"></rect>
+                <rect id="Rectangle" x="0" y="5" width="10" height="26.1538462"></rect>
+            </g>
+            <text id="Bullish" font-family="Roboto-Medium, Roboto" font-size="21" font-weight="400" fill="#000000">
+                <tspan x="44.2487793" y="99">Bullish</tspan>
+            </text>
+            <text id="Bearish" font-family="Roboto-Medium, Roboto" font-size="21" font-weight="400" fill="#000000">
+                <tspan x="189.439453" y="211">Bearish</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
