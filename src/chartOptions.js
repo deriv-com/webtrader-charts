@@ -8,7 +8,8 @@ import overlayManagement from './overlayManagement.js';
 import indicatorManagement from './indicatorManagement.js';
 import html from './chartOptions.html';
 import './chartOptions.scss';
-import {isTick, local_storage, isAffiliates} from './common/utils.js';
+import {isTick, local_storage, isAffiliates, i18n} from './common/utils.js';
+import {globals} from './common/globals.js';
 import vertical_line from './draw/vertical_line.js';
 import horizontal_line from './draw/horizontal_line.js';
 
@@ -36,9 +37,8 @@ const chartType_arr = [{ value: 'candlestick', name: 'Candles' }, { value: 'ohlc
         { value: 'line', name: 'Line' }, { value: 'dot', name: 'Dot' }, { value: 'linedot', name: 'Line Dot' },
         { value: 'spline', name: 'Spline' }, { value: 'table', name: 'Table' }
     ],
-    i18n_name = (local_storage.get('i18n') || { value: 'en' }).value,
     appURL = "https://webtrader.binary.com",
-    urlShareTemplate = appURL + '?affiliates=true&instrument={0}&timePeriod={1}&lang=' + i18n_name,
+    urlShareTemplate = appURL + '?affiliates=true&instrument={0}&timePeriod={1}&lang=' + globals.config.lang,
     iframeShareTemplate = '<iframe src="' + urlShareTemplate + '" width="350" height="400" style="overflow-y : hidden;" scrolling="no" />',
     twitterShareTemplate = 'https://twitter.com/share?url={0}&text={1}',
     fbShareTemplate = 'https://facebook.com/sharer/sharer.php?u={0}',
@@ -85,6 +85,20 @@ const isOverlaidView = (containerIDWithHash) => {
     return isOverlaid;
 }
 
+const timeperiod_i18n = value => {
+   if(globals.config.lang === 'en') {
+      return value.toUpperCase();
+   }
+
+   if(value.startsWith('1')) { value = i18n(value); }
+   else {
+      const [first, second] = value.split(' ');
+      value = `${first} ${i18n(second)}`;
+   }
+
+   return value;
+}
+
 const showCandlestickAndOHLC = (newTabId, show) => {
     if (!show) {
         state[newTabId].chartTypes = chartType_arr.filter(
@@ -127,14 +141,16 @@ const responsiveButtons = (scope, ele) => {
 
     if (ele.width() > minWidth) {
         scope.showChartTypeLabel = true;
-        scope.timePeriod_name = scope.timePeriod.name;
+        scope.timePeriod_name = timeperiod_i18n(scope.timePeriod.name);
         timePeriodButton.css("width", stringWidth.tp.max + 25 + "px");
         chartTypeButton.css("width", stringWidth.ct + 55 + "px");
     } else {
         scope.showChartTypeLabel = false;
-        // TODO: i18n
-        // scope.timePeriod_name = i18n_name == "en" ? scope.timePeriod.value.toUpperCase() : scope.timePeriod.value.i18n();
-        scope.timePeriod_name = scope.timePeriod.value.toUpperCase();
+        if(globals.config.lang === 'en') {
+           scope.timePeriod_name = scope.timePeriod.value.toUpperCase();
+        } else {
+           scope.timePeriod_name = i18n(scope.timePeriod.value);
+        }
         timePeriodButton.css("width", stringWidth.tp.min + 27 + "px");
         chartTypeButton.css("width", "45px");
     }
@@ -152,25 +168,20 @@ const responsiveButtons = (scope, ele) => {
 }
 
 const calculateStringWidth = (instrument_name) => {
-    const longTp1 = timeperiod_arr.reduce((a, b) => {
-            // TODO: i18n
-            // return a.value.i18n().length > b.value.i18n().length ? a : b
-            return a.value.length > b.value.length ? a : b
-        }),
-        longTp2 = timeperiod_arr.reduce((a, b) => {
-            // TODO: i18n
-            // return a.name.i18n().length > b.name.i18n().length ? a : b
-            return a.name.length > b.name.length ? a : b
-        }),
-        longCt = chartType_arr.reduce((a, b) => {
-            // TODO: i18n
-            // return a.name.i18n().length > b.name.i18n().length ? a : b
-            return a.name.length > b.name.length ? a : b
-        });
+    const longTp1 = timeperiod_arr.map(tp => {
+         if(globals.config.lang === 'en')
+            return { value: tp.value.toUpperCase() };
+         return { value: i18n(tp.value) };
+       }).reduce((a, b) => a.value.length > b.value.length ? a : b);
+
+    const longTp2 = timeperiod_arr.map(tp => ({ name: timeperiod_i18n(tp.name) }))
+          .reduce((a, b) => a.name.length > b.name.length ? a : b);
+
+    const longCt = chartType_arr.map(ct => ({name: i18n(ct.name)}))
+          .reduce((a, b) => a.name.length > b.name.length ? a : b);
+
     const getWidth = (string) => {
         const font = '0.8em roboto,sans-serif',
-            // TODO: i18n
-            // obj = $('<div>' + string.i18n() + '</div>')
             obj = $(`<div>${string}</div>`)
             .css({ 'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': font })
             .appendTo($('body')),
@@ -443,8 +454,6 @@ export const init = (m_newTabId, m_tableViewCb, options) => {
 
     isListenerAdded = true;
 
-    // TODO: i18n
-    // const $html = $(html).i18n();
     const $html = $(html);
 
     $("#" + m_newTabId + "_header").prepend($html);

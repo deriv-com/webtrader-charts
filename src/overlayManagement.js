@@ -5,7 +5,7 @@ import liveapi from './common/liveapi.js';
 import './common/rivetsExtra.js';
 import html from './overlayManagement.html';
 import './overlayManagement.scss';
-import {isAffiliates} from './common/utils.js';
+import {isAffiliates, i18n} from './common/utils.js';
 
 let win = null;
 let win_view = null;
@@ -138,14 +138,10 @@ const init = () => {
 
 const init_dialog_async = () => {
    return new Promise((resolve, reject) => {
-      // TODO: i18n
-      // const root = $(html).i18n();
       const root = $(html);
 
       let option = {
-         // TODO: i18n
-         // title: 'Add/remove overlays'.i18n(),
-         title: 'Add/remove overlays',
+         title: i18n('Add/remove overlays'),
          modal: true,
          resizable: false,
          dialogClass:'webtrader-charts-dialog',
@@ -169,9 +165,7 @@ const init_dialog_async = () => {
 const init_state = (root) =>{
    state = {
       dialog: {
-         // TODO: i18n
-         // title: 'Add/remove overlays'.i18n(),
-         title: 'Add/remove overlays',
+         title: i18n('Add/remove overlays'),
          container_id: ''
       },
       overlays: {
@@ -296,11 +290,9 @@ const update_overlays = (chart) => {
 }
 
 let first_time = true;
-export const openDialog = ( containerIDWithHash, title ) => {
+export const openDialog = (containerIDWithHash, title ) => {
    init().then(() => {
-      // TODO: i18n
-      // state.dialog.title = 'Add/remove comparisons'.i18n() + (title ? ' - ' + title : '');
-      state.dialog.title = 'Add/remove comparisons' + (title ? ' - ' + title : '');
+      state.dialog.title = i18n('Add/remove comparisons') + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;
       state.overlays.current = $(containerIDWithHash).data('overlays-current') || [];
 

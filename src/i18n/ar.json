@@ -1,0 +1,2964 @@
+{
+    "": {
+        "content-transfer-encoding": "8bit",
+        "content-type": "text/plain; charset=UTF-8",
+        "language": "ar",
+        "language-team": "Arabic <https://hosted.weblate.org/projects/binary-webtrader/translations/ar/>",
+        "last-translator": "Ahmed Kotb <ahmedmohamedkotp@gmail.com>",
+        "mime-version": "1.0",
+        "plural-forms": "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;",
+        "po-revision-date": "2016-09-03 11:00+0000",
+        "pot-creation-date": "2016-07-22 17:51+0200",
+        "project-id-version": "PACKAGE VERSION",
+        "report-msgid-bugs-to": "",
+        "x-generator": "Weblate 2.8"
+    },
+    "%D MA Type": [
+        null,
+        "%D \u0646\u0648\u0639 \u0627\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c"
+    ],
+    "%D Period": [
+        null,
+        "%D \u0641\u062a\u0631\u0629"
+    ],
+    "%D Stroke": [
+        null,
+        "%D \u0636\u0631\u0628\u0629"
+    ],
+    "%K MA Type": [
+        null,
+        "%K \u0646\u0648\u0639 \u0627\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c"
+    ],
+    "%K Period": [
+        null,
+        "%K \u0641\u062a\u0631\u0629"
+    ],
+    "%K Stroke": [
+        null,
+        "%K \u0636\u0631\u0628\u0629"
+    ],
+    "(if less than one day in duration), or at the end of the trading day (if one day or more in duration)": [
+        null,
+        "(\u0625\u0630\u0627 \u0643\u0627\u0646\u062a \u0627\u0644\u0645\u062f\u0629 \u0623\u0642\u0644 \u0645\u0646 \u064a\u0648\u0645 \u0648\u0627\u062d\u062f), \u0623\u0648 \u0628\u062d\u0644\u0648\u0644 \u0646\u0647\u0627\u064a\u0629 \u062a\u062f\u0627\u0648\u0644\u0627\u062a \u0627\u0644\u064a\u0648\u0645 (\u0625\u0630\u0627 \u0643\u0627\u0646\u062a \u0627\u0644\u0645\u062f\u0629 \u064a\u0648\u0645 \u0648\u0627\u062d\u062f \u0623\u0648 \u0623\u0643\u062b\u0631)"
+    ],
+    "- Binary.com is not affiliated with any of the Payment Agents listed above. Each Payment Agent operates as an independent service provider and is not endorsed, guaranteed or otherwise approved by Binary.com. CUSTOMERS DEAL WITH PAYMENT AGENTS AT THEIR SOLE RISK AND PERIL. Customers are advised to check the credentials of Payment Agents before sending them any money. Binary.com shall not in any circumstance be held responsible for transactions made between customers and Payment Agents": [
+        null,
+        "Binary.com \u0644\u064a\u0633\u062a \u062a\u0627\u0628\u0639\u0629 \u0644\u0623\u064a \u0645\u0646 \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639 \u0641\u064a \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0639\u0644\u0627\u0647. \u0643\u0644 \u0648\u0643\u064a\u0644 \u062f\u0641\u0639 \u064a\u0639\u0645\u0644 \u0643\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 \u0645\u0633\u062a\u0642\u0644 \u0648\u0644\u064a\u0633 \u0643\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 \u0645\u0639\u062a\u0645\u062f, \u0645\u0636\u0645\u0648\u0646,  \u0623\u0648 \u0645\u0635\u062f\u0642 \u0639\u0644\u064a\u0647 \u0628\u0637\u0631\u064a\u0642\u0629 \u0623\u0648 \u0628\u0623\u062e\u0631\u0649 \u0645\u0646 \u0642\u0628\u0644 Binary.com. \u0627\u0644\u0623\u062e\u0637\u0627\u0631 \u0627\u0644\u0646\u0627\u062c\u0645\u0629 \u0639\u0646 \u062a\u0639\u0627\u0645\u0644 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0645\u0639 \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639 \u062a\u0642\u0639 \u0628\u0627\u0644\u0643\u0627\u0645\u0644 \u0639\u0644\u0649 \u0645\u0633\u0624\u0648\u0644\u064a\u062a\u0647\u0645 \u0627\u0644\u062e\u0627\u0635\u0629. \u0646\u0646\u0635\u062d \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0628\u0627\u0644\u062a\u062d\u0642\u0642 \u0645\u0646 \u0623\u0648\u0631\u0627\u0642 \u0627\u0639\u062a\u0645\u0627\u062f \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639 \u0642\u0628\u0644 \u0625\u0631\u0633\u0627\u0644 \u0623\u0645\u0648\u0627\u0644\u0647\u0645. Binary.com \u0644\u064a\u0633\u062a \u0645\u0633\u0624\u0648\u0644\u0629 \u0628\u0623\u064a \u062d\u0627\u0644 \u0645\u0646 \u0627\u0644\u0623\u062d\u0648\u0627\u0644 \u0639\u0646 \u0627\u0644\u062a\u0639\u0627\u0645\u0644\u0627\u062a \u0627\u0644\u0645\u0627\u062f\u064a\u0629 \u0628\u064a\u0646 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0648\u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "--- title: Page Not Found permalink: /404.html excerpt: \"\" ---": [
+        null,
+        ""
+    ],
+    "-DI Stroke": [
+        null,
+        "-DI \u0636\u0631\u0628\u0629"
+    ],
+    "0-1 year": [
+        null,
+        "0-1 \u0633\u0646\u0629"
+    ],
+    "0-5 transactions in the past 12 months": [
+        null,
+        "0-5 \u0645\u0639\u0627\u0645\u0644\u0629 \u062e\u0644\u0627\u0644 \u0627\u0644 12 \u0634\u0647\u0631\u0627\u064b \u0627\u0644\u0645\u0627\u0636\u064a\u0629"
+    ],
+    "1 Day": [
+        null,
+        "\u064a\u0648\u0645 \u0648\u0627\u062d\u062f"
+    ],
+    "1-2 years": [
+        null,
+        "1-2 \u0633\u0646\u0629"
+    ],
+    "10": [
+        null,
+        "10"
+    ],
+    "10m": [
+        null,
+        "10 \u062f\u0642\u0627\u0626\u0642"
+    ],
+    "15": [
+        null,
+        "15"
+    ],
+    "15m": [
+        null,
+        "15 \u062f\u0642\u064a\u0642\u0629"
+    ],
+    "1d": [
+        null,
+        "\u064a\u0648\u0645 \u0648\u0627\u062d\u062f"
+    ],
+    "1h": [
+        null,
+        "\u0633\u0627\u0639\u0629 \u0648\u0627\u062d\u062f\u0629"
+    ],
+    "1m": [
+        null,
+        "\u062f\u0642\u064a\u0642\u0629 \u0648\u0627\u062d\u062f\u0629"
+    ],
+    "1t": [
+        null,
+        ""
+    ],
+    "2h": [
+        null,
+        "\u0633\u0627\u0639\u062a\u064a\u0646"
+    ],
+    "2m": [
+        null,
+        "\u062f\u0642\u064a\u0642\u062a\u064a\u0646"
+    ],
+    "30": [
+        null,
+        "30"
+    ],
+    "30-day limit on losses": [
+        null,
+        "\u062d\u062f \u0627\u0644\u062e\u0633\u0627\u0626\u0631 30 \u064a\u0648\u0645"
+    ],
+    "30-day turnover limit": [
+        null,
+        "\u062d\u062f \u0627\u0644\u062f\u0648\u0631\u0627\u0646 30 \u064a\u0648\u0645"
+    ],
+    "30m": [
+        null,
+        "30 \u062f\u0642\u064a\u0642\u0629"
+    ],
+    "3m": [
+        null,
+        "3 \u062f\u0642\u0627\u0626\u0642"
+    ],
+    "40 transactions or more in the past 12 months": [
+        null,
+        "40 \u0645\u0639\u0627\u0645\u0644\u0629 \u0623\u0648 \u0623\u0643\u062b\u0631 \u062e\u0644\u0627\u0644 \u0627\u0644 12 \u0634\u0647\u0631\u0627\u064b \u0627\u0644\u0645\u0627\u0636\u064a\u0629"
+    ],
+    "404": [
+        null,
+        ""
+    ],
+    "4h": [
+        null,
+        "4 \u0633\u0627\u0639\u0627\u062a"
+    ],
+    "5m": [
+        null,
+        "5 \u062f\u0642\u0627\u0626\u0642"
+    ],
+    "6-10 transactions in the past 12 months": [
+        null,
+        "10-6 \u0645\u0639\u0627\u0645\u0644\u0629 \u062e\u0644\u0627\u0644 \u0627\u0644 12 \u0634\u0647\u0631\u0627\u064b \u0627\u0644\u0645\u0627\u0636\u064a\u0629"
+    ],
+    "7-day limit on losses": [
+        null,
+        "\u062d\u062f \u0627\u0644\u062e\u0633\u0627\u0626\u0631 7 \u0623\u064a\u0627\u0645"
+    ],
+    "7-day turnover limit": [
+        null,
+        "\u062d\u062f \u0627\u0644\u062f\u0648\u0631\u0627\u0646 7 \u0623\u064a\u0627\u0645"
+    ],
+    "8h": [
+        null,
+        "8 \u0633\u0627\u0639\u0627\u062a"
+    ],
+    "ADX MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0627\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0623\u064a \u062f\u064a \u0623\u0643\u0633"
+    ],
+    "ADX Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0623\u064a \u062f\u064a \u0623\u0643\u0633"
+    ],
+    "ATR Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0623\u064a \u062a\u064a \u0623\u0631"
+    ],
+    "Acceleration": [
+        null,
+        "\u062a\u0633\u0627\u0631\u0639"
+    ],
+    "Accept": [
+        null,
+        "\u0642\u0628\u0648\u0644"
+    ],
+    "Account balance": [
+        null,
+        "\u0631\u0635\u064a\u062f \u0627\u0644\u062d\u0633\u0627\u0628"
+    ],
+    "Account id not found": [
+        null,
+        "\u0647\u0648\u064a\u0629 \u0627\u0644\u062d\u0633\u0627\u0628 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f\u0629"
+    ],
+    "Account opening": [
+        null,
+        "\u0641\u062a\u062d \u062d\u0633\u0627\u0628"
+    ],
+    "Account token not found": [
+        null,
+        "\u0631\u0645\u0632 \u0627\u0644\u062d\u0633\u0627\u0628 \u063a\u064a\u0631 \u0645\u0648\u062c\u0648\u062f"
+    ],
+    "Action": [
+        null,
+        "\u0639\u0645\u0644"
+    ],
+    "Add indicator": [
+        null,
+        "\u0625\u0636\u0627\u0641\u0629 \u0645\u0624\u0634\u0631"
+    ],
+    "Add level": [
+        null,
+        "\u0625\u0636\u0627\u0641\u0629 \u0645\u0633\u062a\u0648\u0649"
+    ],
+    "Add/remove overlays": [
+        null,
+        "\u0625\u0636\u0627\u0641\u0629/\u0625\u0632\u0627\u0644\u0629 \u0623\u063a\u0637\u064a\u0629"
+    ],
+    "Admin": [
+        null,
+        "\u0645\u0634\u0631\u0641"
+    ],
+    "All times are in GMT (Greenwich Mean Time)": [
+        null,
+        "\u062c\u0645\u064a\u0639 \u0627\u0644\u0623\u0648\u0642\u0627\u062a \u0628\u062a\u0648\u0642\u064a\u062a \u062c\u0631\u064a\u0646\u062a\u0634 (\u062a\u0648\u0642\u064a\u062a \u062c\u0631\u064a\u0646\u062a\u0634)"
+    ],
+    "Amount": [
+        null,
+        "\u0645\u0628\u0644\u063a"
+    ],
+    "Amount Per Point": [
+        null,
+        "\u0627\u0644\u0643\u0645\u064a\u0629 \u0644\u0643\u0644 \u0646\u0642\u0637\u0629"
+    ],
+    "Amount per point": [
+        null,
+        "\u0627\u0644\u0643\u0645\u064a\u0629 \u0644\u0643\u0644 \u0646\u0642\u0637\u0629"
+    ],
+    "Answer": [
+        null,
+        "\u0625\u062c\u0627\u0628\u0629"
+    ],
+    "Applied to": [
+        null,
+        "\u0645\u0637\u0628\u0642 \u0639\u0644\u0649"
+    ],
+    "Apply": [
+        null,
+        "\u062a\u0637\u0628\u064a\u0642"
+    ],
+    "Apply to become a Binary.com": [
+        null,
+        "\u062a\u0637\u0628\u064a\u0642 \u0644\u062a\u0635\u0628\u062d \u0641\u064a Binary.com"
+    ],
+    "Appropriateness Test: WARNING": [
+        null,
+        "\u0627\u062e\u062a\u0628\u0627\u0631 \u0645\u0644\u0627\u0626\u0645\u0629: \u062a\u062d\u0630\u064a\u0631"
+    ],
+    "Apr": [
+        null,
+        "\u0623\u0628\u0631\u064a\u0644"
+    ],
+    "April": [
+        null,
+        "\u0623\u0628\u0631\u064a\u0644"
+    ],
+    "Are you sure you want to delete this token?": [
+        null,
+        "\u0647\u0644 \u0623\u0646\u062a \u0645\u062a\u0623\u0643\u062f \u0645\u0646 \u0623\u0646\u0643 \u062a\u0631\u064a\u062f \u062d\u0630\u0641 \u0647\u0630\u0627 \u0627\u0644\u0631\u0645\u0632\u061f"
+    ],
+    "Aroon Down Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0623\u0631\u0648\u0646 \u0633\u0641\u0644\u064a"
+    ],
+    "Aroon Up Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0623\u0631\u0648\u0646 \u0639\u0644\u0648\u064a"
+    ],
+    "Asians": [
+        null,
+        "\u0627\u0644\u0622\u0633\u064a\u0648\u064a\u064a\u0646"
+    ],
+    "Asset": [
+        null,
+        "\u0623\u0635\u0644"
+    ],
+    "Asset Index": [
+        null,
+        "\u0645\u0624\u0634\u0631 \u0627\u0644\u0623\u0635\u0648\u0644"
+    ],
+    "Aug": [
+        null,
+        "\u0623\u063a\u0633\u0637\u0633"
+    ],
+    "August": [
+        null,
+        "\u0623\u063a\u0633\u0637\u0633"
+    ],
+    "Average": [
+        null,
+        "\u0645\u062a\u0648\u0633\u0637"
+    ],
+    "Back": [
+        null,
+        "\u0631\u062c\u0648\u0639 \u0625\u0644\u0649 \u0627\u0644\u062e\u0644\u0641"
+    ],
+    "Back to list": [
+        null,
+        "\u0631\u062c\u0648\u0639 \u0625\u0644\u0649 \u0627\u0644\u0642\u0627\u0626\u0645\u0629"
+    ],
+    "Background Color": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u062e\u0644\u0641\u064a\u0629"
+    ],
+    "Barrier": [
+        null,
+        "\u062d\u0627\u062c\u0632"
+    ],
+    "Barrier offset": [
+        null,
+        "\u062d\u0627\u062c\u0632 \u062a\u0639\u0648\u064a\u0636\u064a"
+    ],
+    "Binary options or other financial derivatives": [
+        null,
+        "\u0627\u0644\u062e\u064a\u0627\u0631\u0627\u062a \u0627\u0644\u062b\u0646\u0627\u0626\u064a\u0629 \u0623\u0648 \u0627\u0644\u0645\u0634\u062a\u0642\u0627\u062a \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0623\u062e\u0631\u0649"
+    ],
+    "Binary.com": [
+        null,
+        "Binary.com"
+    ],
+    "Binary.com : Webtrader": [
+        null,
+        "Binary.com: \u0648\u064a\u0628 \u062a\u0631\u064a\u062f\u0631"
+    ],
+    "Blank window": [
+        null,
+        "\u0625\u0637\u0627\u0631 \u0641\u0627\u0631\u063a"
+    ],
+    "Bought": [
+        null,
+        "\u0627\u0634\u062a\u0631\u0649"
+    ],
+    "Brand of first car": [
+        null,
+        "\u0627\u0644\u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u062a\u062c\u0627\u0631\u064a\u0629 \u0644\u0644\u0633\u064a\u0627\u0631\u0629 \u0627\u0644\u0623\u0648\u0644\u0649"
+    ],
+    "Browser upgrade required": [
+        null,
+        "\u0645\u0637\u0644\u0648\u0628 \u062a\u0631\u0642\u064a\u0629 \u0627\u0644\u0645\u062a\u0635\u0641\u062d"
+    ],
+    "Buy Price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0634\u0631\u0627\u0621"
+    ],
+    "Buy price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0634\u0631\u0627\u0621"
+    ],
+    "By clicking": [
+        null,
+        "\u0628\u0627\u0644\u0646\u0642\u0631"
+    ],
+    "By clicking OK, you confirm that you have read and accepted the updated": [
+        null,
+        "\u0628\u0627\u0644\u0646\u0642\u0631 \u0639\u0644\u0649 \u0645\u0648\u0627\u0641\u0642, \u0623\u0646\u062a \u062a\u0624\u0643\u062f \u0623\u0646\u0643 \u0642\u0631\u0623\u062a \u0648\u0648\u0627\u0641\u0642\u062a \u0639\u0644\u0649 \u0627\u0644\u062a\u062d\u062f\u064a\u062b \u0627\u0644\u0630\u064a \u062a\u0645"
+    ],
+    "CLOSE": [
+        null,
+        "\u063a\u0644\u0642"
+    ],
+    "CSV": [
+        null,
+        "\u0642\u064a\u0645 \u0645\u0641\u0635\u0648\u0644\u0629 \u0628\u0641\u0648\u0627\u0635\u0644"
+    ],
+    "Cancel": [
+        null,
+        "\u0625\u0644\u063a\u0627\u0621"
+    ],
+    "Candles": [
+        null,
+        "\u0634\u0645\u0648\u0639"
+    ],
+    "Candlestick down-color": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0634\u0645\u0639\u0629 \u0627\u0644\u0647\u0627\u0628\u0637\u0629"
+    ],
+    "Candlestick down-line": [
+        null,
+        "\u0627\u0644\u062e\u0637 \u0627\u0644\u0633\u0641\u0644\u064a \u0644\u0644\u0634\u0645\u0639\u0629"
+    ],
+    "Candlestick up-color": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0634\u0645\u0639\u0629 \u0627\u0644\u0635\u0627\u0639\u062f\u0629"
+    ],
+    "Candlestick up-line": [
+        null,
+        "\u0627\u0644\u062e\u0637 \u0627\u0644\u0639\u0644\u0648\u064a \u0644\u0644\u0634\u0645\u0639\u0629"
+    ],
+    "Cash Balance": [
+        null,
+        "\u0627\u0644\u0631\u0635\u064a\u062f \u0627\u0644\u0646\u0642\u062f\u064a"
+    ],
+    "Change Backend Server": [
+        null,
+        "\u062a\u063a\u064a\u064a\u0631 \u062e\u0644\u0641\u064a\u0629 \u0627\u0644\u062e\u0627\u062f\u0645"
+    ],
+    "Change password": [
+        null,
+        "\u062a\u063a\u064a\u064a\u0631 \u0627\u0644\u0628\u0627\u0633\u0648\u0631\u062f"
+    ],
+    "Chart": [
+        null,
+        "\u0631\u0633\u0645 \u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Chart Themes": [
+        null,
+        "\u0645\u0648\u0627\u0636\u064a\u0639 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Chart background": [
+        null,
+        "\u062e\u0644\u0641\u064a\u0629 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Chart context menu": [
+        null,
+        "\u0642\u0627\u0626\u0645\u0629 \u0633\u064a\u0627\u0642 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Choose password": [
+        null,
+        "\u0627\u062e\u062a\u0631 \u0643\u0644\u0645\u0629 \u0633\u0631"
+    ],
+    "Choose your pereferred payment agent": [
+        null,
+        "\u0627\u062e\u062a\u0631 \u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639 \u0627\u0644\u0645\u0641\u0636\u0644 \u0644\u062f\u064a\u0643"
+    ],
+    "Choose your pereferred withdrawal method": [
+        null,
+        "\u0627\u062e\u062a\u0631 \u0637\u0631\u064a\u0642\u0629 \u0627\u0644\u0633\u062d\u0628 \u0627\u0644\u0645\u0641\u0636\u0644\u0629 \u0644\u062f\u064a\u0643"
+    ],
+    "Chrome": [
+        null,
+        "\u0643\u0631\u0648\u0645"
+    ],
+    "Click Jacking test": [
+        null,
+        "\u0623\u0646\u0642\u0631 \u0639\u0644\u0649 \u0627\u062e\u062a\u0628\u0627\u0631 \u0627\u0644\u0631\u0641\u0639"
+    ],
+    "Click to log in with your Binary.com account": [
+        null,
+        "\u0623\u0646\u0642\u0631 \u0639\u0644\u0649 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0625\u0644\u0649 \u062d\u0633\u0627\u0628\u0643 \u0641\u064a Binary.com"
+    ],
+    "Close Price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0625\u063a\u0644\u0627\u0642"
+    ],
+    "Close all": [
+        null,
+        "\u0623\u063a\u0644\u0642 \u0627\u0644\u0643\u0644"
+    ],
+    "Closes": [
+        null,
+        "\u064a\u063a\u0644\u0642"
+    ],
+    "Commodities trading experience": [
+        null,
+        "\u062a\u062c\u0631\u0628\u0629 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0633\u0644\u0639"
+    ],
+    "Commodities trading frequency": [
+        null,
+        "\u062a\u0643\u0631\u0627\u0631 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0633\u0644\u0639"
+    ],
+    "Comparisons": [
+        null,
+        "\u0645\u0642\u0627\u0631\u0646\u0627\u062a"
+    ],
+    "Conditions": [
+        null,
+        "\u0627\u0644\u0638\u0631\u0648\u0641"
+    ],
+    "Config changes successful": [
+        null,
+        "\u062a\u063a\u064a\u064a\u0631 \u062a\u0643\u0648\u064a\u0646 \u0646\u0627\u062c\u062d"
+    ],
+    "Confirm transfer": [
+        null,
+        "\u062a\u0623\u0643\u064a\u062f \u0627\u0644\u062a\u062d\u0648\u064a\u0644"
+    ],
+    "Connection closed": [
+        null,
+        "\u0627\u062a\u0635\u0627\u0644 \u0645\u063a\u0644\u0642"
+    ],
+    "Connection error. Refresh the page": [
+        null,
+        "\u062e\u0637\u0623 \u0641\u064a \u0627\u0644\u0625\u062a\u0635\u0627\u0644. \u0623\u0639\u062f \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0635\u0641\u062d\u0629"
+    ],
+    "Construction": [
+        null,
+        "\u0627\u0644\u0625\u0646\u0634\u0627\u0621\u0627\u062a"
+    ],
+    "Continue": [
+        null,
+        "\u0627\u0633\u062a\u0645\u0631"
+    ],
+    "Continue Trading": [
+        null,
+        "\u0627\u0633\u062a\u0645\u0631 \u0641\u064a \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "Contract": [
+        null,
+        "\u0639\u0642\u062f"
+    ],
+    "Contract Confirmation": [
+        null,
+        "\u062a\u0623\u0643\u064a\u062f \u0627\u0644\u0639\u0642\u062f"
+    ],
+    "Contract is not yet started": [
+        null,
+        "\u0627\u0644\u0639\u0642\u062f \u0644\u0645 \u064a\u0628\u062f\u0623 \u0628\u0639\u062f"
+    ],
+    "Contracts": [
+        null,
+        "\u0639\u0642\u0648\u062f"
+    ],
+    "Country of residence": [
+        null,
+        "\u0628\u0644\u062f \u0627\u0644\u0625\u0642\u0627\u0645\u0629"
+    ],
+    "Create": [
+        null,
+        "\u0627\u0646\u0634\u0627\u0621"
+    ],
+    "Create token": [
+        null,
+        "\u0627\u0646\u0634\u0626 \u0631\u0645\u0632"
+    ],
+    "Credit/Debit": [
+        null,
+        "\u0627\u0626\u062a\u0645\u0627\u0646/\u062e\u0635\u0645"
+    ],
+    "Crosshair": [
+        null,
+        "\u062e\u0637 \u062a\u0642\u0627\u0637\u0639"
+    ],
+    "Current Level": [
+        null,
+        "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 \u0627\u0644\u062d\u0627\u0644\u064a"
+    ],
+    "Current Spot": [
+        null,
+        "\u0627\u0644\u0628\u0642\u0639\u0629 \u0627\u0644\u062d\u0627\u0644\u064a\u0629"
+    ],
+    "Current Spot Time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0628\u0642\u0639\u0629 \u0627\u0644\u062d\u0627\u0644\u064a"
+    ],
+    "Current indicators": [
+        null,
+        "\u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a \u0627\u0644\u062d\u0627\u0644\u064a\u0629"
+    ],
+    "Current password": [
+        null,
+        "\u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0627\u0644\u062d\u0627\u0644\u064a\u0629"
+    ],
+    "Current regulations require that you provide us the following": [
+        null,
+        "\u0627\u0644\u0644\u0648\u0627\u0626\u062d \u0627\u0644\u062d\u0627\u0644\u064a\u0629 \u062a\u0637\u0644\u0628 \u0645\u0627 \u0633\u062a\u0642\u062f\u0645\u0647 \u0644\u0646\u0627 \u0641\u064a\u0645\u0627 \u064a\u0644\u064a"
+    ],
+    "Current time": [
+        null,
+        "\u0627\u0644\u0648\u0642\u062a \u0627\u0644\u062d\u0627\u0644\u064a"
+    ],
+    "Custom Theme": [
+        null,
+        "\u0645\u0648\u0636\u0648\u0639 \u0645\u062e\u0635\u0635"
+    ],
+    "Customize chart appearance": [
+        null,
+        "\u062a\u062e\u0635\u064a\u0635 \u0645\u0638\u0647\u0631 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "DI Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u062f\u064a \u0623\u064a"
+    ],
+    "DX MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0627\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u062f\u064a \u0623\u0643\u0633"
+    ],
+    "Daily limit on losses": [
+        null,
+        "\u062d\u062f \u0627\u0644\u062e\u0633\u0627\u0626\u0631 \u0627\u0644\u064a\u0648\u0645\u064a"
+    ],
+    "Daily turnover limit": [
+        null,
+        "\u062d\u062f \u0627\u0644\u062f\u0648\u0631\u0627\u0646 \u0627\u0644\u064a\u0648\u0645\u064a"
+    ],
+    "Dark Blue": [
+        null,
+        "\u0623\u0632\u0631\u0642 \u063a\u0627\u0645\u0642"
+    ],
+    "Dark Green": [
+        null,
+        "\u0623\u062e\u0636\u0631 \u063a\u0627\u0645\u0642"
+    ],
+    "Dark Unica": [
+        null,
+        "\u064a\u0648\u0646\u064a\u0643\u0627 \u063a\u0627\u0645\u0642"
+    ],
+    "Dash style": [
+        null,
+        "\u0623\u0633\u0644\u0648\u0628 \u0627\u0646\u062f\u0641\u0627\u0639"
+    ],
+    "Date": [
+        null,
+        "\u062a\u0627\u0631\u064a\u062e"
+    ],
+    "Date of birth": [
+        null,
+        "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u064a\u0644\u0627\u062f"
+    ],
+    "Days": [
+        null,
+        "\u0623\u064a\u0627\u0645"
+    ],
+    "Dec": [
+        null,
+        "\u062f\u064a\u0633\u0645\u0628\u0631"
+    ],
+    "December": [
+        null,
+        "\u062f\u064a\u0633\u0645\u0628\u0631"
+    ],
+    "Decline": [
+        null,
+        "\u0647\u0628\u0648\u0637"
+    ],
+    "Default": [
+        null,
+        "\u0625\u0641\u062a\u0631\u0627\u0636\u064a"
+    ],
+    "Delete": [
+        null,
+        ""
+    ],
+    "Delete level(s)": [
+        null,
+        "\u062d\u0630\u0641 \u0645\u0633\u062a\u0648\u0649 (\u0645\u0633\u062a\u0648\u064a\u0627\u062a)"
+    ],
+    "Demo for affiliates to access Binary.com charts in IFRAME": [
+        null,
+        "\u062a\u062c\u0631\u064a\u0628\u064a \u0644\u0644\u0645\u0646\u062a\u0633\u0628\u064a\u0646 \u0644\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u0627\u0644\u0631\u0633\u0648\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a\u0629 \u0644 Binary.com \u0641\u064a \u0627\u0644\u0625\u0637\u0627\u0631 \u0627\u0644\u0645\u0636\u0645\u0646"
+    ],
+    "Deposit funds": [
+        null,
+        "\u0625\u064a\u062f\u0627\u0639 \u0627\u0644\u0623\u0645\u0648\u0627\u0644"
+    ],
+    "Deposit of USD": [
+        null,
+        "\u0625\u064a\u062f\u0627\u0639 \u0628\u0627\u0644\u062f\u0648\u0644\u0627\u0631"
+    ],
+    "Describe what this token is for to find it later": [
+        null,
+        "\u0648\u0635\u0641 \u0645\u0627 \u0647\u0648 \u0647\u0630\u0627 \u0627\u0644\u0631\u0645\u0632 \u0645\u0646 \u0623\u062c\u0644 \u0627\u0644\u0639\u062b\u0648\u0631 \u0639\u0644\u064a\u0647 \u0641\u064a \u0648\u0642\u062a \u0644\u0627\u062d\u0642"
+    ],
+    "Description": [
+        null,
+        "\u0648\u0635\u0641"
+    ],
+    "Digits": [
+        null,
+        "\u0623\u0631\u0642\u0627\u0645"
+    ],
+    "Do you want to install Webtrader chrome extension?": [
+        null,
+        "\u0647\u0644 \u062a\u0631\u064a\u062f \u062a\u062b\u0628\u064a\u062a \u0625\u0636\u0627\u0641\u0629 \u0648\u064a\u0628 \u062a\u0631\u064a\u062f\u0631 \u0644\u0645\u062a\u0635\u0641\u062d \u0627\u0644\u0643\u0631\u0648\u0645\u061f"
+    ],
+    "Don't have an account yet? Sign up and get a $10,000 virtual account": [
+        null,
+        "\u0625\u0630\u0627 \u0643\u0627\u0646 \u0644\u064a\u0633 \u0644\u062f\u064a\u0643 \u062d\u0633\u0627\u0628 \u062d\u062a\u0649 \u0627\u0644\u0622\u0646\u061f \u0633\u062c\u0644 \u0648\u0623\u062d\u0635\u0644 \u0639\u0644\u0649 \u062d\u0633\u0627\u0628 \u0625\u0641\u062a\u0631\u0627\u0636\u064a \u0628\u0642\u064a\u0645\u0629 10.000 \u062f\u0648\u0644\u0627\u0631"
+    ],
+    "Done. The funds are being transferred to the payment agent": [
+        null,
+        "\u062a\u0645. \u064a\u062a\u0645 \u062a\u062d\u0648\u064a\u0644 \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u0625\u0644\u0649 \u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "Done. The funds are transferred": [
+        null,
+        "\u062a\u0645. \u062a\u0645 \u062a\u062d\u0648\u064a\u0644 \u0627\u0644\u0623\u0645\u0648\u0627\u0644"
+    ],
+    "Dot": [
+        null,
+        "\u0646\u0642\u0637\u0629"
+    ],
+    "Double MA Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0645\u0632\u062f\u0648\u062c\u0629"
+    ],
+    "Double MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0645\u0632\u062f\u0648\u062c"
+    ],
+    "Double click the object to remove": [
+        null,
+        "\u0623\u0646\u0642\u0631 \u0646\u0642\u0631\u0627\u064b \u0645\u0632\u062f\u0648\u062c\u0627\u064b \u0639\u0644\u0649 \u0627\u0644\u0645\u0648\u0636\u0648\u0639 \u0644\u0644\u0625\u0632\u0627\u0644\u0629"
+    ],
+    "Download CSV": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0645\u0644\u0641 CSV"
+    ],
+    "Download JPEG image": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0635\u0648\u0631\u0629 \u0628\u0635\u064a\u063a\u0629 JPEG"
+    ],
+    "Download PDF document": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0645\u0644\u0641 PDF"
+    ],
+    "Download PNG": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0645\u0644\u0641 PNG"
+    ],
+    "Download PNG image": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0635\u0648\u0631\u0629 \u0628\u0635\u064a\u063a\u0629 PNG"
+    ],
+    "Download SVG": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0645\u0644\u0641 SVG"
+    ],
+    "Download SVG vector image": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0646\u0627\u0642\u0644 \u0635\u0648\u0631\u0629 \u0628\u0635\u064a\u063a\u0629 SVG"
+    ],
+    "Download as": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0628\u0635\u064a\u063a\u0629"
+    ],
+    "Downloading .csv": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 .csv"
+    ],
+    "Drawing tools": [
+        null,
+        ""
+    ],
+    "Duration": [
+        null,
+        "\u0627\u0644\u0645\u062f\u0629"
+    ],
+    "EMA": [
+        null,
+        "\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a"
+    ],
+    "Edge": [
+        null,
+        "\u0647\u0627\u0645\u0634"
+    ],
+    "Edit": [
+        null,
+        "\u062a\u062d\u0631\u064a\u0631"
+    ],
+    "Education": [
+        null,
+        "\u062a\u0639\u0644\u064a\u0645"
+    ],
+    "Email verification failed": [
+        null,
+        "\u0641\u0634\u0644 \u0627\u0644\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a"
+    ],
+    "Embed code": [
+        null,
+        "\u0631\u0645\u0632 \u0627\u0644\u062a\u0636\u0645\u064a\u0646"
+    ],
+    "End Time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0646\u0647\u0627\u064a\u0629"
+    ],
+    "Ends In/Out": [
+        null,
+        "\u064a\u0646\u062a\u0647\u064a \u062f\u0627\u062e\u0644/\u062e\u0627\u0631\u062c"
+    ],
+    "Enter your current password": [
+        null,
+        "\u0623\u062f\u062e\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0643"
+    ],
+    "Entry Spot": [
+        null,
+        "\u0645\u0648\u0636\u0639 \u062f\u062e\u0648\u0644"
+    ],
+    "Entry spot": [
+        null,
+        "\u0645\u0648\u0636\u0639 \u062f\u062e\u0648\u0644"
+    ],
+    "Error downloading .csv": [
+        null,
+        "\u062e\u0637\u0623 \u0641\u064a \u062a\u062d\u0645\u064a\u0644 .csv"
+    ],
+    "Error getting data for": [
+        null,
+        "\u062e\u0637\u0623 \u0641\u064a \u0627\u0644\u062d\u0635\u0648\u0644 \u0639\u0644\u0649 \u0628\u064a\u0627\u0646\u0627\u062a \u0644"
+    ],
+    "Estimated Net Worth": [
+        null,
+        "\u0627\u0644\u0642\u064a\u0645\u0629 \u0627\u0644\u0635\u0627\u0641\u064a\u0629 \u0627\u0644\u0645\u0642\u062f\u0631\u0629"
+    ],
+    "Exclude me from the website until": [
+        null,
+        "\u0627\u0633\u062a\u0628\u0639\u0627\u062f\u064a \u0645\u0646 \u0627\u0644\u0645\u0648\u0642\u0639 \u062d\u062a\u0649"
+    ],
+    "Exclude time cannot be less than 6 months": [
+        null,
+        "\u0627\u0633\u062a\u0628\u0639\u0627\u062f \u0627\u0644\u0648\u0642\u062a \u0644\u0627 \u064a\u0645\u0643\u0646 \u0623\u0646 \u064a\u0643\u0648\u0646 \u0623\u0642\u0644 \u0645\u0646 6 \u0623\u0634\u0647\u0631"
+    ],
+    "Exit Spot": [
+        null,
+        "\u062e\u0631\u0648\u062c \u0645\u0646 \u0627\u0644\u0645\u0648\u0636\u0639"
+    ],
+    "Exit spot": [
+        null,
+        "\u062e\u0631\u0648\u062c \u0645\u0646 \u0627\u0644\u0645\u0648\u0636\u0639"
+    ],
+    "Explanation": [
+        null,
+        "\u0627\u0644\u0634\u0631\u062d"
+    ],
+    "Failed to update the password": [
+        null,
+        "\u0641\u0634\u0644 \u062a\u062d\u062f\u064a\u062b \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"
+    ],
+    "Fall": [
+        null,
+        "\u0633\u0642\u0637"
+    ],
+    "Family name": [
+        null,
+        "\u0623\u0633\u0645 \u0627\u0644\u0639\u0627\u0626\u0644\u0629"
+    ],
+    "Fast %K MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c %K \u0633\u0631\u064a\u0639"
+    ],
+    "Fast %K Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 %K \u0633\u0631\u064a\u0639\u0629"
+    ],
+    "Fast Limit": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0633\u0631\u064a\u0639"
+    ],
+    "Fast MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0633\u0631\u064a\u0639"
+    ],
+    "Fast Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0633\u0631\u064a\u0639\u0629"
+    ],
+    "Favorites": [
+        null,
+        "\u0627\u0644\u0645\u0641\u0636\u0644\u0627\u062a"
+    ],
+    "Favourite artist": [
+        null,
+        "\u0627\u0644\u0641\u0646\u0627\u0646 \u0627\u0644\u0645\u0641\u0636\u0644"
+    ],
+    "Favourite dish": [
+        null,
+        "\u0627\u0644\u0637\u0628\u0642 \u0627\u0644\u0645\u0641\u0636\u0644"
+    ],
+    "Feb": [
+        null,
+        "\u0641\u0628\u0631\u0627\u064a\u0631"
+    ],
+    "February": [
+        null,
+        "\u0641\u0628\u0631\u0627\u064a\u0631"
+    ],
+    "Final Price": [
+        null,
+        "\u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0646\u0647\u0627\u0626\u064a"
+    ],
+    "Final price": [
+        null,
+        "\u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0646\u0647\u0627\u0626\u064a"
+    ],
+    "Finance": [
+        null,
+        "\u0645\u0627\u0644\u064a\u0629"
+    ],
+    "Financial information": [
+        null,
+        "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0645\u0627\u0644\u064a\u0629"
+    ],
+    "Firefox": [
+        null,
+        "\u0641\u0627\u064a\u0631\u0641\u0643\u0633"
+    ],
+    "First name": [
+        null,
+        "\u0627\u0644\u0623\u0633\u0645 \u0627\u0644\u0623\u0648\u0644"
+    ],
+    "Forex trading experience": [
+        null,
+        "\u062e\u0628\u0631\u0629 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0639\u0645\u0644\u0627\u062a \u0627\u0644\u0623\u062c\u0646\u0628\u064a\u0629"
+    ],
+    "Forex trading frequency": [
+        null,
+        "\u062a\u0643\u0631\u0627\u0631 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0639\u0645\u0644\u0627\u062a \u0627\u0644\u0623\u062c\u0646\u0628\u064a\u0629"
+    ],
+    "Fri": [
+        null,
+        "\u0627\u0644\u062c\u0645\u0639\u0629"
+    ],
+    "Friday": [
+        null,
+        "\u0627\u0644\u062c\u0645\u0639\u0629"
+    ],
+    "From": [
+        null,
+        "\u0645\u0646"
+    ],
+    "Further instructions": [
+        null,
+        "\u0645\u0632\u064a\u062f \u0645\u0646 \u0627\u0644\u062a\u0639\u0644\u064a\u0645\u0627\u062a"
+    ],
+    "Gray": [
+        null,
+        "\u0631\u0645\u0627\u062f\u064a"
+    ],
+    "Grid": [
+        null,
+        "\u0634\u0628\u0643\u0629"
+    ],
+    "Grid Light": [
+        null,
+        "\u0634\u0628\u0643\u0629 \u062e\u0641\u064a\u0641\u0629"
+    ],
+    "HIGH": [
+        null,
+        "\u0627\u0631\u062a\u0641\u0627\u0639"
+    ],
+    "Have better luck at trading!": [
+        null,
+        ""
+    ],
+    "Health": [
+        null,
+        "\u0627\u0644\u0635\u062d\u0629"
+    ],
+    "High Barrier": [
+        null,
+        "\u062d\u0627\u062c\u0632 \u0639\u0627\u0644\u064a"
+    ],
+    "High Price": [
+        null,
+        "\u0633\u0639\u0631 \u0645\u0631\u062a\u0641\u0639"
+    ],
+    "High Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0645\u0631\u062a\u0641\u0639\u0629"
+    ],
+    "High barrier offset": [
+        null,
+        "\u062d\u0627\u062c\u0632 \u062a\u0639\u0648\u064a\u0636\u064a \u0645\u0631\u062a\u0641\u0639"
+    ],
+    "Higher": [
+        null,
+        "\u0623\u0639\u0644\u0649"
+    ],
+    "Histogram Color": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0631\u0633\u0645 \u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Histogram Color For Higher Values": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a \u0644\u0644\u0642\u064a\u0645 \u0627\u0644\u0639\u0644\u064a\u0627"
+    ],
+    "Histogram Color For Lower Values": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a \u0644\u0644\u0642\u064a\u0645 \u0627\u0644\u0633\u0641\u0644\u064a"
+    ],
+    "Home Address": [
+        null,
+        "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0645\u0646\u0632\u0644"
+    ],
+    "Horizontal Line": [
+        null,
+        "\u062e\u0637 \u0623\u0641\u0642\u064a"
+    ],
+    "Hours": [
+        null,
+        "\u0633\u0627\u0639\u0627\u062a"
+    ],
+    "I have read and agree to Binary.com": [
+        null,
+        "\u0644\u0642\u062f \u0642\u0631\u0623\u062a \u0648\u0623\u0648\u0627\u0641\u0642 \u0639\u0644\u0649 Binary.com"
+    ],
+    "IMPORTANT DISCLAIMER": [
+        null,
+        "\u062a\u0646\u0648\u064a\u0647 \u0647\u0627\u0645"
+    ],
+    "IMPORTANT DISCLAIMER - Binary.com is not affiliated with any of the payment agents listed above. Each payment agent operates as an independent service provider and is not endorsed, guaranteed or otherwise approved by Binary.com. CUSTOMERS DEAL WITH PAYMENT AGENTS AT THEIR SOLE RISK AND PERIL. Customers are advised to check the credentials of payment agents before sending them any money. Binary.com shall not in any circumstance be held responsible for transactions made between customers and payment agents": [
+        null,
+        "\u062a\u0646\u0648\u064a\u0647 \u0647\u0627\u0645 - Binary.com \u0644\u064a\u0633\u062a \u062a\u0627\u0628\u0639\u0629 \u0644\u0623\u064a \u0645\u0646 \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639 \u0641\u064a \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0623\u0639\u0644\u0627\u0647. \u0643\u0644 \u0648\u0643\u064a\u0644 \u062f\u0641\u0639 \u064a\u0639\u0645\u0644 \u0643\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 \u0645\u0633\u062a\u0642\u0644 \u0648\u0644\u064a\u0633 \u0643\u0645\u0642\u062f\u0645 \u062e\u062f\u0645\u0629 \u0645\u0639\u062a\u0645\u062f, \u0645\u0636\u0645\u0648\u0646,  \u0623\u0648 \u0645\u0635\u062f\u0642 \u0639\u0644\u064a\u0647 \u0628\u0637\u0631\u064a\u0642\u0629 \u0623\u0648 \u0628\u0623\u062e\u0631\u0649 \u0645\u0646 \u0642\u0628\u0644 Binary.com. \u0627\u0644\u0623\u062e\u0637\u0627\u0631 \u0627\u0644\u0646\u0627\u062c\u0645\u0629 \u0639\u0646 \u062a\u0639\u0627\u0645\u0644 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0645\u0639 \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639 \u062a\u0642\u0639 \u0628\u0627\u0644\u0643\u0627\u0645\u0644 \u0639\u0644\u0649 \u0645\u0633\u0624\u0648\u0644\u064a\u062a\u0647\u0645 \u0627\u0644\u062e\u0627\u0635\u0629. \u0646\u0646\u0635\u062d \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0628\u0627\u0644\u062a\u062d\u0642\u0642 \u0645\u0646 \u0623\u0648\u0631\u0627\u0642 \u0627\u0639\u062a\u0645\u0627\u062f \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639 \u0642\u0628\u0644 \u0625\u0631\u0633\u0627\u0644 \u0623\u0645\u0648\u0627\u0644\u0647\u0645. Binary.com \u0644\u064a\u0633\u062a \u0645\u0633\u0624\u0648\u0644\u0629 \u0628\u0623\u064a \u062d\u0627\u0644 \u0645\u0646 \u0627\u0644\u0623\u062d\u0648\u0627\u0644 \u0639\u0646 \u0627\u0644\u062a\u0639\u0627\u0645\u0644\u0627\u062a \u0627\u0644\u0645\u0627\u062f\u064a\u0629 \u0628\u064a\u0646 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0648\u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "If the issue keeps happening, please contact": [
+        null,
+        ""
+    ],
+    "If you select a": [
+        null,
+        "\u0625\u0630\u0627 \u0642\u0645\u062a \u0628\u0627\u062e\u062a\u064a\u0627\u0631"
+    ],
+    "If you select a specific": [
+        null,
+        "\u0625\u0630\u0627 \u0642\u0645\u062a \u0628\u0627\u062e\u062a\u064a\u0627\u0631 \u0645\u062d\u062f\u062f"
+    ],
+    "In order to properly apply theme, a full refresh of page is required. Are you sure you want to proceed?": [
+        null,
+        "\u0644\u062a\u0637\u0628\u064a\u0642 \u0627\u0644\u0645\u0648\u0636\u0648\u0639 \u0628\u0635\u0648\u0631\u0629 \u0635\u062d\u064a\u062d\u0629, \u0644\u0627\u0628\u062f \u0645\u0646 \u0625\u0639\u0627\u062f\u0629 \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0635\u0641\u062d\u0629 \u0628\u0634\u0643\u0644 \u0643\u0627\u0645\u0644. \u0647\u0644 \u0623\u0646\u062a \u0645\u062a\u0623\u0643\u062f \u0645\u0646 \u0623\u0646\u0643 \u062a\u0631\u064a\u062f \u0627\u0644\u0645\u062a\u0627\u0628\u0639\u0629\u061f"
+    ],
+    "In providing our services to you, we are required to obtain information from you in order to assess whether a given product or service is appropriate for you (that is, whether you possess the experience and knowledge to understand the risks involved)": [
+        null,
+        "\u0641\u064a \u0645\u0627 \u064a\u062a\u0639\u0644\u0642 \u0628\u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0627\u0644\u062a\u064a \u0646\u0642\u062f\u0645\u0647\u0627 \u0644\u0643, \u0641\u0646\u062d\u0646 \u0645\u0637\u0627\u0644\u0628\u0648\u0646 \u0644\u0644\u062d\u0635\u0648\u0644 \u0639\u0644\u0649 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0645\u0646\u0643 \u0645\u0646 \u0623\u062c\u0644 \u062a\u0642\u064a\u064a\u0645 \u0645\u0627 \u0625\u0630\u0627 \u0643\u0627\u0646 \u0645\u0646\u062a\u062c \u0623\u0648 \u062e\u062f\u0645\u0629 \u0645\u0639\u064a\u0646\u0629 \u0647\u064a \u0645\u0646\u0627\u0633\u0628\u0629 \u0644\u0643 (\u0623\u064a \u0645\u0627 \u0625\u0630\u0627 \u0643\u0627\u0646 \u0644\u062f\u064a\u0643 \u0627\u0644\u062e\u0628\u0631\u0629 \u0648\u0627\u0644\u0645\u0639\u0631\u0641\u0629 \u0644\u0641\u0647\u0645 \u0627\u0644\u0645\u062e\u0627\u0637\u0631 \u0627\u0644\u062a\u064a \u062a\u0646\u0637\u0648\u064a \u0639\u0644\u064a\u0647\u0627)"
+    ],
+    "In regards to binary options which are gambling products, remember that gambling can be addictive": [
+        null,
+        "\u0641\u064a \u0645\u0627 \u064a\u062e\u0635 \u0627\u0644\u062e\u064a\u0627\u0631\u0627\u062a \u0627\u0644\u062b\u0646\u0627\u0626\u064a\u0629 \u0648\u0627\u0644\u062a\u064a \u062a\u0639\u062f \u0645\u0646\u062a\u062c \u0645\u0646 \u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u0642\u0645\u0627\u0631, \u062a\u0630\u0643\u0631 \u0623\u0646 \u0627\u0644\u0642\u0645\u0627\u0631 \u064a\u0645\u0643\u0646 \u0623\u0646 \u064a\u0643\u0648\u0646 \u0646\u0648\u0639 \u0645\u0646 \u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0625\u062f\u0645\u0627\u0646"
+    ],
+    "In/Out": [
+        null,
+        "\u062f\u0627\u062e\u0644/\u062e\u0627\u0631\u062c"
+    ],
+    "Income Source": [
+        null,
+        "\u0645\u0635\u062f\u0631 \u062f\u062e\u0644"
+    ],
+    "Indicative Price": [
+        null,
+        "\u0633\u0639\u0631 \u062a\u0623\u0634\u064a\u0631\u064a"
+    ],
+    "Indices trading experience": [
+        null,
+        "\u062e\u0628\u0631\u0629 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a"
+    ],
+    "Indices trading frequency": [
+        null,
+        "\u062a\u0643\u0631\u0627\u0631 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a"
+    ],
+    "Industry of Employment": [
+        null,
+        "\u0635\u0646\u0627\u0639\u0629 \u0627\u0644\u062a\u0648\u0638\u064a\u0641"
+    ],
+    "Instrument": [
+        null,
+        "\u0635\u0643"
+    ],
+    "Instruments": [
+        null,
+        "\u0635\u0643\u0648\u0643"
+    ],
+    "Investments & Dividends": [
+        null,
+        "\u0627\u0644\u0627\u0633\u062a\u062b\u0645\u0627\u0631\u0627\u062a \u0648\u062a\u0648\u0632\u064a\u0639\u0627\u062a \u0627\u0644\u0623\u0631\u0628\u0627\u062d"
+    ],
+    "Jan": [
+        null,
+        "\u064a\u0646\u0627\u064a\u0631"
+    ],
+    "January": [
+        null,
+        "\u064a\u0646\u0627\u064a\u0631"
+    ],
+    "Jul": [
+        null,
+        "\u064a\u0648\u0644\u064a\u0648"
+    ],
+    "July": [
+        null,
+        "\u064a\u0648\u0644\u064a\u0648"
+    ],
+    "Jump to": [
+        null,
+        "\u0627\u0642\u0641\u0632 \u0625\u0644\u0649"
+    ],
+    "Jun": [
+        null,
+        "\u064a\u0648\u0646\u064a\u0648"
+    ],
+    "June": [
+        null,
+        "\u064a\u0648\u0646\u064a\u0648"
+    ],
+    "Just click  Grant  button on the page you will now be taken to": [
+        null,
+        "\u0641\u0642\u0637 \u0623\u0646\u0642\u0631 \u0639\u0644\u0649 \u0632\u0631 \u0645\u0646\u062d \u0641\u064a \u0627\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u062a\u064a \u0633\u064a\u062a\u0645 \u062a\u062d\u0648\u064a\u0644\u0643 \u0625\u0644\u064a\u0647\u0627"
+    ],
+    "LOW": [
+        null,
+        "\u0645\u0646\u062e\u0641\u0636"
+    ],
+    "Last Digit Prediction": [
+        null,
+        "\u0631\u0642\u0645 \u0627\u0644\u062a\u0646\u0628\u0624 \u0627\u0644\u0623\u062e\u064a\u0631"
+    ],
+    "Last Digit is Over": [
+        null,
+        "\u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u0623\u062e\u064a\u0631 \u0623\u0643\u062b\u0631"
+    ],
+    "Last Digit is Under": [
+        null,
+        "\u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u0623\u062e\u064a\u0631 \u0623\u0642\u0644"
+    ],
+    "Last used": [
+        null,
+        "\u0622\u062e\u0631 \u0627\u0633\u062a\u062e\u062f\u0627\u0645"
+    ],
+    "Less than": [
+        null,
+        "\u0623\u0642\u0644 \u0645\u0646"
+    ],
+    "Let's do it": [
+        null,
+        "\u062f\u0639\u0646\u0627 \u0646\u0642\u0648\u0645 \u0628\u0630\u0644\u0643"
+    ],
+    "Level": [
+        null,
+        "\u0645\u0633\u062a\u0648\u0649"
+    ],
+    "Level of Education": [
+        null,
+        "\u0645\u0633\u062a\u0648\u0649 \u0627\u0644\u062a\u0639\u0644\u064a\u0645"
+    ],
+    "Line": [
+        null,
+        "\u062e\u0637"
+    ],
+    "Line Dot": [
+        null,
+        "\u0646\u0642\u0637\u0629 \u062e\u0637"
+    ],
+    "Line Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u062e\u0637"
+    ],
+    "Link": [
+        null,
+        "\u0631\u0628\u0637"
+    ],
+    "Loading": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644"
+    ],
+    "Loading Asset Index": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0645\u0624\u0634\u0631 \u0627\u0644\u0623\u0635\u0648\u0644"
+    ],
+    "Loading Configurations": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u062a\u0631\u062a\u064a\u0628\u0627\u062a"
+    ],
+    "Loading Download/View Data": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u062a\u0646\u0632\u064a\u0644/\u0639\u0631\u0636 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a"
+    ],
+    "Loading Password dialog": [
+        null,
+        "\u062d\u0648\u0627\u0631 \u062a\u062d\u0645\u064a\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"
+    ],
+    "Loading Profit Table": [
+        null,
+        "\u062c\u062f\u0648\u0644 \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0623\u0631\u0628\u0627\u062d"
+    ],
+    "Loading Real account opening": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0641\u062a\u062d \u0627\u0644\u062d\u0633\u0627\u0628 \u0627\u0644\u062d\u0642\u064a\u0642\u064a"
+    ],
+    "Loading Self-Exclusion": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0645\u0646\u0639 \u0627\u0644\u0630\u0627\u062a\u064a"
+    ],
+    "Loading Statement Table": [
+        null,
+        "\u062c\u062f\u0648\u0644 \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a"
+    ],
+    "Loading Token management": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0631\u0645\u0648\u0632"
+    ],
+    "Loading Trading Times": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0645\u0648\u0627\u0639\u064a\u062f \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "Loading chart and trade menus": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a \u0648\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "Loading custom theme configuration": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u062a\u0643\u0648\u064a\u0646 \u0645\u0648\u0636\u0648\u0639 \u0645\u062e\u0635\u0635"
+    ],
+    "Loading portfolio": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0645\u062d\u0641\u0638\u0629"
+    ],
+    "Loading self-exclusion settings": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 \u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0627\u0644\u0645\u0646\u0639 \u0627\u0644\u0630\u0627\u062a\u064a"
+    ],
+    "Loading...": [
+        null,
+        "\u062a\u062d\u0645\u064a\u0644 ..."
+    ],
+    "Log in": [
+        null,
+        "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644"
+    ],
+    "Log in time": [
+        null,
+        "\u0648\u0642\u062a \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644"
+    ],
+    "Logging out because of self-exclusion session time out!": [
+        null,
+        "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c \u0628\u0633\u0628\u0628 \u0627\u0646\u0642\u0636\u0627\u0621 \u0645\u062f\u0629 \u062c\u0644\u0633\u0629 \u0627\u0644\u0645\u0646\u0639 \u0627\u0644\u0630\u0627\u062a\u064a!"
+    ],
+    "Login": [
+        null,
+        "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644"
+    ],
+    "Logout": [
+        null,
+        "\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062e\u0631\u0648\u062c"
+    ],
+    "Long MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0637\u0648\u064a\u0644"
+    ],
+    "Long ROC Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0637\u0648\u064a\u0644\u0629 \u0644\u0644\u0639\u0627\u0626\u062f \u0639\u0644\u0649 \u0627\u0644\u0645\u0627\u0644"
+    ],
+    "Long Stop Line Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0637\u0648\u064a\u0644\u0629 \u062a\u0648\u0642\u0641 \u0627\u0644\u062e\u0637"
+    ],
+    "Long Term Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0637\u0648\u064a\u0644\u0629 \u0627\u0644\u0623\u062c\u0644"
+    ],
+    "Low Barrier": [
+        null,
+        "\u062d\u0627\u062c\u0632 \u0645\u0646\u062e\u0641\u0636"
+    ],
+    "Low Price": [
+        null,
+        "\u0633\u0639\u0631 \u0645\u0646\u062e\u0641\u0636"
+    ],
+    "Low Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0645\u0646\u062e\u0641\u0636\u0629"
+    ],
+    "Low barrier offset": [
+        null,
+        "\u062d\u0627\u062c\u0632 \u062a\u0639\u0648\u064a\u0636\u064a \u0645\u0646\u062e\u0641\u0636"
+    ],
+    "Lower": [
+        null,
+        "\u0623\u0642\u0644"
+    ],
+    "Lower Band Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0645\u0646\u062e\u0641\u0636\u0629 \u0627\u0644\u0646\u0637\u0627\u0642"
+    ],
+    "MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c"
+    ],
+    "MACD Line Stroke": [
+        null,
+        "\u062e\u0637 \u0645\u0627\u0643\u062f \u0627\u0644\u0636\u0631\u0628\u0629"
+    ],
+    "Make sure that you have first agreed with the Agent on the terms of payment before submitting your request. Once you click the 'Confirm transfer' button the funds will be withdrawn from your account and will be sent to the Payment Agent you have chosen. The Agent will send you the withdrawal amount (minus the commission) via your preferred payment method": [
+        null,
+        "\u062a\u0623\u0643\u062f \u0645\u0646 \u0623\u0646\u0643 \u0642\u062f \u0648\u0627\u0641\u0642\u062a \u0645\u0646\u0630 \u0627\u0644\u0628\u062f\u0627\u064a\u0629 \u0645\u0639 \u0627\u0644\u0648\u0643\u064a\u0644 \u0639\u0644\u0649 \u0634\u0631\u0648\u0637 \u0627\u0644\u062f\u0641\u0639 \u0642\u0628\u0644 \u062a\u0642\u062f\u064a\u0645 \u0637\u0644\u0628\u0643. \u0628\u0645\u062c\u0631 \u0623\u0646 \u062a\u0636\u063a\u0637 \u0639\u0644\u0649 \u0632\u0631 \"\u062a\u0623\u0643\u064a\u062f \u0627\u0644\u062a\u062d\u0648\u064a\u0644\" \u0633\u064a\u062a\u0645 \u062a\u062d\u0648\u064a\u0644 \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u0645\u0646 \u062d\u0633\u0627\u0628\u0643 \u0648 \u0633\u064a\u062a\u0645 \u0625\u0631\u0633\u0627\u0644\u0647\u0627 \u0625\u0644\u0649 \u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639 \u0627\u0644\u0630\u064a \u0627\u062e\u062a\u0631\u062a\u0647. \u0633\u064a\u0642\u0648\u0645 \u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639 \u0628\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0645\u0628\u0644\u063a \u0627\u0644\u0645\u0633\u062d\u0648\u0628 (\u0628\u0639\u062f \u062e\u0635\u0645 \u0627\u0644\u0639\u0645\u0648\u0644\u0629) \u0639\u0646 \u0637\u0631\u064a\u0642 \u0648\u0633\u064a\u0644\u0629 \u0627\u0644\u062f\u0641\u0639 \u0627\u0644\u0645\u0641\u0636\u0644\u0629 \u0644\u062f\u064a\u0643"
+    ],
+    "Mar": [
+        null,
+        "\u0645\u0627\u0631\u0633"
+    ],
+    "March": [
+        null,
+        "\u0645\u0627\u0631\u0633"
+    ],
+    "Mass Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u062c\u0645\u0627\u0639\u064a\u0629"
+    ],
+    "Max/Min Period": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649/\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u062f\u0646\u0649 \u0644\u0644\u0641\u062a\u0631\u0629"
+    ],
+    "Maximum": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649"
+    ],
+    "Maximum account cash balance": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0631\u0635\u064a\u062f \u0627\u0644\u062d\u0633\u0627\u0628 \u0627\u0644\u0646\u0642\u062f\u064a"
+    ],
+    "Maximum aggregate contract purchases over a 30-day period": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0625\u062c\u0645\u0627\u0644\u064a \u0639\u0642\u0648\u062f \u0627\u0644\u0634\u0631\u0627\u0621 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 30 \u064a\u0648\u0645"
+    ],
+    "Maximum aggregate contract purchases over a 7-day period": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0625\u062c\u0645\u0627\u0644\u064a \u0639\u0642\u0648\u062f \u0627\u0644\u0634\u0631\u0627\u0621 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 7 \u0623\u064a\u0627\u0645"
+    ],
+    "Maximum aggregate contract purchases per day": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0625\u062c\u0645\u0627\u0644\u064a \u0639\u0642\u0648\u062f \u0627\u0644\u0634\u0631\u0627\u0621 \u0644\u064a\u0648\u0645 \u0648\u0627\u062d\u062f"
+    ],
+    "Maximum aggregate loss over a 30-day period": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u062e\u0633\u0627\u0631\u0629 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 30 \u064a\u0648\u0645"
+    ],
+    "Maximum aggregate loss per day": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u062e\u0633\u0627\u0631\u0629 \u0644\u064a\u0648\u0645 \u0648\u0627\u062d\u062f"
+    ],
+    "Maximum number of open positions": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649 \u0644\u0639\u062f\u062f \u0627\u0644\u0645\u0646\u0627\u0635\u0628 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629"
+    ],
+    "May": [
+        null,
+        "\u0645\u0627\u064a\u0648"
+    ],
+    "Memorable date": [
+        null,
+        "\u062a\u0627\u0631\u064a\u062e \u0644\u0627 \u064a\u0646\u0633\u0649"
+    ],
+    "Memorable town/city": [
+        null,
+        "\u0628\u0644\u062f\u0629/\u0645\u062f\u064a\u0646\u0629 \u0644\u0627 \u062a\u0646\u0633\u0649"
+    ],
+    "Middle Band Stroke": [
+        null,
+        "\u0646\u0637\u0627\u0642 \u0627\u0644\u0636\u0631\u0628\u0629 \u0627\u0644\u0623\u0648\u0633\u0637"
+    ],
+    "Min: 10 Max: 2000": [
+        null,
+        "\u0627\u0644\u062d\u062f \u0627\u0644\u0623\u062f\u0646\u0649 : 10 \u0627\u0644\u062d\u062f \u0627\u0644\u0623\u0642\u0635\u0649: 2000"
+    ],
+    "Minimum 6 characters and must contain at least 1 digit": [
+        null,
+        "6 \u0623\u062d\u0631\u0641 \u0643\u062d\u062f \u0623\u062f\u0646\u0649 \u0648\u064a\u062c\u0628 \u0623\u0646 \u064a\u062d\u062a\u0648\u0649 \u0639\u0644\u0649 \u0631\u0642\u0645 \u0648\u0627\u062d\u062f \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644"
+    ],
+    "Minus the agent's commission": [
+        null,
+        "\u0646\u0627\u0642\u0635 \u0639\u0645\u0648\u0644\u0629 \u0627\u0644\u0648\u0643\u064a\u0644"
+    ],
+    "Minutes": [
+        null,
+        "\u062f\u0642\u064a\u0642\u0629"
+    ],
+    "Miss": [
+        null,
+        "\u0641\u0627\u062a"
+    ],
+    "Mon": [
+        null,
+        "\u0627\u0644\u0625\u062b\u0646\u064a\u0646"
+    ],
+    "Monday": [
+        null,
+        "\u0627\u0644\u0625\u062b\u0646\u064a\u0646"
+    ],
+    "Mother's maiden name": [
+        null,
+        "\u0623\u0633\u0645 \u0627\u0644\u0623\u0645 \u0627\u0644\u0623\u0648\u0633\u0637"
+    ],
+    "Mr": [
+        null,
+        "\u0633\u064a\u062f"
+    ],
+    "Mrs": [
+        null,
+        "\u0633\u064a\u062f\u0629"
+    ],
+    "Ms": [
+        null,
+        "\u0622\u0646\u0633\u0629"
+    ],
+    "Multiplier": [
+        null,
+        "\u0645\u0636\u0627\u0639\u0641"
+    ],
+    "NB Dev Down": [
+        null,
+        "\u0645\u0644\u062d\u0648\u0638\u0629: \u062f\u064a\u0641 \u0623\u0633\u0641\u0644"
+    ],
+    "NB Dev Up": [
+        null,
+        "\u0645\u0644\u062d\u0648\u0638\u0629: \u062f\u064a\u0641 \u0623\u0639\u0644\u0649"
+    ],
+    "Name": [
+        null,
+        "\u0627\u0644\u0623\u0633\u0645"
+    ],
+    "Name of first love": [
+        null,
+        "\u0628\u0627\u0633\u0645 \u0627\u0644\u062d\u0628 \u0627\u0644\u0623\u0648\u0644"
+    ],
+    "Name of your pet": [
+        null,
+        "\u0628\u0627\u0633\u0645 \u0645\u062d\u0628\u0648\u0628\u062a\u0643"
+    ],
+    "Navigator handles background": [
+        null,
+        "\u0627\u0644\u0645\u0644\u0627\u062d \u064a\u0639\u0627\u0644\u062c \u0627\u0644\u062e\u0644\u0641\u064a\u0629"
+    ],
+    "Navigator handles border": [
+        null,
+        "\u0627\u0644\u0645\u0644\u0627\u062d \u064a\u0639\u0627\u0644\u062c \u0627\u0644\u062d\u062f\u0648\u062f"
+    ],
+    "Navigator mask-fill": [
+        null,
+        "\u0642\u0646\u0627\u0639 \u0627\u0644\u0645\u0644\u0627\u062d \u0627\u0644\u0645\u0645\u0644\u0648\u0621"
+    ],
+    "Navigator outline": [
+        null,
+        "\u062e\u0637\u0648\u0637 \u0627\u0644\u0645\u0644\u0627\u062d \u0627\u0644\u0639\u0631\u064a\u0636\u0629"
+    ],
+    "Navigator series color": [
+        null,
+        "\u0644\u0648\u0646 \u0633\u0644\u0633\u0644\u0629 \u0627\u0644\u0645\u0644\u0627\u062d"
+    ],
+    "Navigator series line": [
+        null,
+        "\u062e\u0637 \u0633\u0644\u0633\u0644\u0629 \u0627\u0644\u0645\u0644\u0627\u062d"
+    ],
+    "Net Annual Income": [
+        null,
+        "\u0635\u0627\u0641\u064a \u0627\u0644\u062f\u062e\u0644 \u0627\u0644\u0633\u0646\u0648\u064a"
+    ],
+    "Net Profit": [
+        null,
+        "\u0635\u0627\u0641\u064a \u0627\u0644\u0631\u0628\u062d"
+    ],
+    "New password": [
+        null,
+        "\u0643\u0644\u0645\u0629 \u0633\u0631 \u062c\u062f\u064a\u062f\u0629"
+    ],
+    "No": [
+        null,
+        "\u0644\u0627"
+    ],
+    "Note that tokens can possess one or more of these scopes": [
+        null,
+        "\u0644\u0627\u062d\u0638 \u0623\u0646 \u0627\u0644\u0631\u0645\u0648\u0632  \u064a\u0645\u0643\u0646 \u0623\u0646 \u062a\u0645\u062a\u0644\u0643 \u0648\u0627\u062d\u062f\u0629 \u0623\u0648 \u0623\u0643\u062b\u0631 \u0645\u0646 \u0647\u0630\u0647 \u0627\u0644\u0646\u0637\u0627\u0642\u0627\u062a"
+    ],
+    "Note: Contract will be sold at the prevailing market price when the request is received by our servers. This price may differ from the indicated price": [
+        null,
+        "\u0645\u0644\u0627\u062d\u0638\u0629: \u0633\u064a\u062a\u0645 \u0628\u064a\u0639 \u0627\u0644\u0639\u0642\u062f \u0628\u0633\u0639\u0631 \u0627\u0644\u0633\u0648\u0642 \u0627\u0644\u0633\u0627\u0626\u062f \u0639\u0646\u062f \u062a\u0644\u0642\u064a \u0627\u0644\u0637\u0644\u0628 \u0645\u0646 \u0642\u0628\u0644 \u062e\u0648\u0627\u062f\u0645\u0646\u0627. \u0642\u062f \u064a\u062e\u062a\u0644\u0641 \u0647\u0630\u0627 \u0627\u0644\u0633\u0639\u0631 \u0639\u0646 \u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0645\u0634\u0627\u0631 \u0625\u0644\u064a\u0647"
+    ],
+    "Note: withdrawal via payment agent is available only if you deposit exclusively via payment agent": [
+        null,
+        "\u0645\u0644\u0627\u062d\u0638\u0629: \u0627\u0644\u0633\u062d\u0628 \u0639\u0628\u0631 \u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639 \u0645\u062a\u0627\u062d \u0641\u0642\u0637 \u0625\u0630\u0627 \u0642\u0645\u062a \u0628\u0627\u0644\u0625\u064a\u062f\u0627\u0639 \u062d\u0635\u0631\u0627\u064b \u0639\u0628\u0631 \u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "Nov": [
+        null,
+        "\u0646\u0648\u0641\u0645\u0628\u0631"
+    ],
+    "November": [
+        null,
+        "\u0646\u0648\u0641\u0645\u0628\u0631"
+    ],
+    "Now": [
+        null,
+        "\u0627\u0644\u0622\u0646"
+    ],
+    "Number of bars on sides": [
+        null,
+        "\u0639\u062f\u062f \u0645\u0646 \u0627\u0644\u062d\u0627\u0646\u0627\u062a \u0639\u0644\u0649 \u0627\u0644\u062c\u0627\u0646\u0628\u064a\u0646"
+    ],
+    "OAuth App ID (Optional)": [
+        null,
+        "\u0647\u0648\u064a\u0629 \u062a\u0637\u0628\u064a\u0642 \u0642\u064a\u0627\u0633\u064a \u0645\u0631\u062e\u0635 \u0645\u0641\u062a\u0648\u062d (\u0627\u062e\u062a\u064a\u0627\u0631\u064a)"
+    ],
+    "OAuth Server": [
+        null,
+        "\u062e\u0627\u062f\u0645 \u0642\u064a\u0627\u0633\u064a \u0645\u0631\u062e\u0635 \u0645\u0641\u062a\u0648\u062d"
+    ],
+    "OHLC": [
+        null,
+        "\u0627\u0641\u062a\u062a\u0627\u062d, \u0627\u0631\u062a\u0641\u0627\u0639, \u0645\u0646\u062e\u0641\u0636, \u0625\u063a\u0644\u0627\u0642"
+    ],
+    "OPEN": [
+        null,
+        "\u0641\u062a\u062d"
+    ],
+    "Oct": [
+        null,
+        "\u0623\u0643\u062a\u0648\u0628\u0631"
+    ],
+    "October": [
+        null,
+        "\u0623\u0643\u062a\u0648\u0628\u0631"
+    ],
+    "Offset": [
+        null,
+        "\u062a\u0639\u0648\u064a\u0636\u064a"
+    ],
+    "Ok": [
+        null,
+        "\u0645\u0648\u0627\u0641\u0642"
+    ],
+    "On the basis of the information provided in relation to your knowledge and experience, we consider that the investments available via this website are not appropriate for you": [
+        null,
+        "\u0628\u0646\u0627\u0621\u0627\u064b \u0639\u0644\u0649 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0642\u062f\u0645\u0629 \u0641\u064a\u0645\u0627 \u064a\u062a\u0639\u0644\u0642 \u0628\u0645\u0639\u0631\u0641\u062a\u0643 \u0648\u062e\u0628\u0631\u0627\u062a\u0643 \u0627\u0644\u062e\u0627\u0635\u0629, \u0646\u062d\u0646 \u0646\u0639\u062a\u0628\u0631 \u0623\u0646 \u0627\u0644\u0627\u0633\u062a\u062b\u0645\u0627\u0631 \u0627\u0644\u0645\u062a\u0627\u062d \u0639\u0628\u0631 \u0647\u0630\u0627 \u0627\u0644\u0645\u0648\u0642\u0639 \u063a\u064a\u0631 \u0645\u0646\u0627\u0633\u0628 \u0644\u0643"
+    ],
+    "Once this limit is reached, you may no longer deposit": [
+        null,
+        "\u0628\u0645\u062c\u0631\u062f \u0627\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u062d\u062f, \u0642\u062f \u0644\u0627 \u064a\u0643\u0648\u0646 \u0628\u0627\u0633\u062a\u0637\u0627\u0639\u062a\u0643 \u0627\u0644\u0625\u064a\u062f\u0627\u0639 \u0645\u062c\u062f\u062f\u0627\u064b"
+    ],
+    "One last step left": [
+        null,
+        "\u064a\u062a\u0628\u0642\u0649 \u062e\u0637\u0648\u0629 \u0648\u0627\u062d\u062f\u0629 \u0648\u0623\u062e\u064a\u0631\u0629"
+    ],
+    "Oops... Page Not Available": [
+        null,
+        ""
+    ],
+    "Open": [
+        null,
+        "\u0641\u062a\u062d"
+    ],
+    "Open Account": [
+        null,
+        "\u0641\u062a\u062d \u062d\u0633\u0627\u0628"
+    ],
+    "Open Price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0625\u0641\u062a\u062a\u0627\u062d"
+    ],
+    "Open account": [
+        null,
+        "\u0641\u062a\u062d \u062d\u0633\u0627\u0628"
+    ],
+    "Opens": [
+        null,
+        "\u064a\u0641\u062a\u062d"
+    ],
+    "Opera": [
+        null,
+        "\u0623\u0648\u0628\u0631\u0627"
+    ],
+    "Option trading can become a real addiction, as can any other activity pushed to its limits. To avoid the danger of such addiction, we provide a reality-check that gives you a summary of your trades and accounts on a regular basis": [
+        null,
+        "\u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u062e\u064a\u0627\u0631\u0627\u062a \u064a\u0645\u0643\u0646 \u0623\u0646 \u064a\u0635\u0628\u062d \u0625\u062f\u0645\u0627\u0646 \u062d\u0642\u064a\u0642\u064a, \u0643\u0645\u0627 \u064a\u0645\u0643\u0646 \u0644\u0623\u064a \u0646\u0634\u0627\u0637 \u0622\u062e\u0631 \u0623\u0646 \u064a\u062f\u0641\u0639 \u0625\u0644\u0649 \u062d\u062f\u0648\u062f\u0647. \u0644\u062a\u062c\u0646\u0628 \u062e\u0637\u0631 \u0645\u062b\u0644 \u0647\u0630\u0627 \u0627\u0644\u0625\u062f\u0645\u0627\u0646, \u0646\u062d\u0646 \u0646\u0642\u062f\u0645 \u0645\u0631\u0627\u062c\u0639\u0629 \u0648\u0627\u0642\u0639\u064a\u0629   , \u0648\u0627\u0644\u062a\u064a \u062a\u0639\u0637\u064a \u0644\u0643 \u0645\u0644\u062e\u0635 \u0644\u062a\u062f\u0627\u0648\u0644\u0627\u062a\u0643 \u0648\u062d\u0633\u0627\u0628\u0627\u062a\u0643 \u0639\u0644\u0649 \u0623\u0633\u0627\u0633 \u0645\u0646\u062a\u0638\u0645"
+    ],
+    "Optional field, within 20 characters and may not contain '+'": [
+        null,
+        "\u062d\u0642\u0644 \u0623\u062e\u062a\u064a\u0627\u0631\u064a, \u0645\u0646 20 \u062d\u0631\u0641 \u0648\u0644\u0627 \u064a\u062c\u0628 \u0623\u0646 \u0644\u0627 \u064a\u062d\u062a\u0648\u064a \u0639\u0644\u0649 '+'"
+    ],
+    "Other": [
+        null,
+        "\u0622\u062e\u0631"
+    ],
+    "Other financial instruments trading experience": [
+        null,
+        "\u062e\u0628\u0631\u0629 \u0623\u062e\u0631\u0649 \u0641\u064a \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0623\u062f\u0648\u0627\u062a \u0627\u0644\u0645\u0627\u0644\u064a\u0629"
+    ],
+    "Other financial instruments trading frequency": [
+        null,
+        "\u062a\u0643\u0631\u0627\u0631 \u0622\u062e\u0631 \u0644\u0623\u062f\u0648\u0627\u062a \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0645\u0627\u0644\u064a\u0629"
+    ],
+    "Over": [
+        null,
+        "\u0641\u0648\u0642"
+    ],
+    "Over 3 years": [
+        null,
+        "\u0623\u0643\u062b\u0631 \u0645\u0646 \u062b\u0644\u0627\u062b \u0633\u0646\u0648\u0627\u062a"
+    ],
+    "PDF": [
+        null,
+        "PDF"
+    ],
+    "PNG": [
+        null,
+        "PNG"
+    ],
+    "PPO Line Stroke": [
+        null,
+        "\u062e\u0637 \u0636\u0631\u0628\u0629 \u0645\u0632\u0648\u062f \u0645\u0646\u0638\u0645\u0629 \u0645\u0641\u0636\u0644"
+    ],
+    "Page Not Found": [
+        null,
+        ""
+    ],
+    "Password must be 6 characters minimum": [
+        null,
+        "\u064a\u062c\u0628 \u0623\u0646 \u062a\u062d\u062a\u0648\u064a \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0639\u0644\u0649 6 \u062d\u0631\u0648\u0641 \u0643\u062d\u062f \u0623\u062f\u0646\u0649"
+    ],
+    "Password must contain lower and uppercase letters with numbers": [
+        null,
+        "\u064a\u062c\u0628 \u0623\u0646 \u062a\u062d\u062a\u0648\u064a \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0639\u0644\u0649 \u062d\u0631\u0641 uppercase \u0648 lowercase \u0645\u0639 \u0623\u0631\u0642\u0627\u0645"
+    ],
+    "Password must contain uppercase letters and numbers": [
+        null,
+        "\u064a\u062c\u0628 \u0623\u0646 \u062a\u062d\u062a\u0648\u064a \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0639\u0644\u0649 \u062d\u0631\u0641 \u0643\u0627\u0628\u064a\u062a\u0627\u0644 \u0645\u0639 \u0623\u0631\u0642\u0627\u0645"
+    ],
+    "Password successfully updated": [
+        null,
+        "\u062a\u0645 \u062a\u062d\u062f\u064a\u062b \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0628\u0646\u062c\u0627\u062d"
+    ],
+    "Passwords didn't match. Please type them again": [
+        null,
+        "\u0643\u0644\u0645\u062a\u0627 \u0627\u0644\u0633\u0631 \u063a\u064a\u0631 \u0645\u062a\u0637\u0627\u0628\u0642\u062a\u064a\u0646. \u0628\u0631\u062c\u0627\u0621 \u0643\u062a\u0627\u0628\u062a\u0647\u0645 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649"
+    ],
+    "Payment agent": [
+        null,
+        "\u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "Payment agents": [
+        null,
+        "\u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "Payments": [
+        null,
+        "\u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a"
+    ],
+    "Payout": [
+        null,
+        "\u0627\u0644\u0639\u0627\u0626\u062f"
+    ],
+    "Pension": [
+        null,
+        "\u0645\u0639\u0627\u0634"
+    ],
+    "Period": [
+        null,
+        "\u0641\u062a\u0631\u0629"
+    ],
+    "Period 1": [
+        null,
+        "\u0627\u0644\u0641\u062a\u0631\u0629 1"
+    ],
+    "Period 2": [
+        null,
+        "\u0627\u0644\u0641\u062a\u0631\u0629 2"
+    ],
+    "Period 3": [
+        null,
+        "\u0627\u0644\u0641\u062a\u0631\u0629 3"
+    ],
+    "Permissions": [
+        null,
+        "\u0625\u0630\u0646"
+    ],
+    "Personal Details": [
+        null,
+        "\u062a\u0641\u0627\u0635\u064a\u0644 \u0634\u062e\u0635\u064a\u0629"
+    ],
+    "Phone": [
+        null,
+        "\u0647\u0627\u062a\u0641"
+    ],
+    "Please": [
+        null,
+        "\u0645\u0646 \u0641\u0636\u0644\u0643"
+    ],
+    "Please answer to secret question, within 4-50 characters": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0627\u0644\u0625\u062c\u0627\u0628\u0629 \u0639\u0644\u0649 \u0627\u0644\u0633\u0624\u0627\u0644 \u0627\u0644\u0633\u0631\u064a, \u0645\u0646 4-50 \u062d\u0631\u0641"
+    ],
+    "Please choose at least one token scope": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0627\u062e\u062a\u064a\u0627\u0631 \u0646\u0637\u0627\u0642 \u0631\u0645\u0632\u064a \u0648\u0627\u062d\u062f \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644"
+    ],
+    "Please confirm the following details in order to complete the transfer": [
+        null,
+        "\u0627\u0644\u0631\u062c\u0627\u0621 \u0627\u0644\u062a\u0623\u0643\u062f \u0645\u0646 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u062a\u0627\u0644\u064a\u0629 \u0645\u0646 \u0623\u062c\u0644 \u0627\u062a\u0645\u0627\u0645 \u0639\u0645\u0644\u064a\u0629 \u0627\u0644\u062a\u062d\u0648\u064a\u0644"
+    ],
+    "Please enter a number between": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0631\u0642\u0645 \u0628\u064a\u0646"
+    ],
+    "Please enter a valid date in yyyy-mm-dd format": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u062a\u0627\u0631\u064a\u062e \u0635\u0627\u0644\u062d \u0641\u064a \u0627\u0644\u0634\u0643\u0644  \u0633\u0646\u0629 - \u0634\u0647\u0631 - \u064a\u0648\u0645"
+    ],
+    "Please enter a value for": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0644"
+    ],
+    "Please enter a vlaid phone number": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0631\u0642\u0645 \u0647\u0627\u062a\u0641 \u0635\u0627\u0644\u062d"
+    ],
+    "Please enter correct email": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0628\u0631\u064a\u062f \u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0635\u062d\u064a\u062d"
+    ],
+    "Please enter date in the format YYYY-MM-DD": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0627\u0644\u062a\u0627\u0631\u064a\u062e \u0641\u064a \u0627\u0644\u0634\u0643\u0644 \u0633\u0646\u0629 - \u0634\u0647\u0631 - \u064a\u0648\u0645"
+    ],
+    "Please enter positive integer value between 0 and 9999": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0645\u0627 \u0628\u064a\u0646 0 \u0648 9999"
+    ],
+    "Please enter positive integer value for 30-day limit on losses": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u062d\u062f \u0627\u0644\u062e\u0633\u0627\u0626\u0631 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 30 \u064a\u0648\u0645"
+    ],
+    "Please enter positive integer value for 30-day turnover limit": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u062d\u062f \u0627\u0644\u062f\u0648\u0631\u0627\u0646 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 30 \u064a\u0648\u0645"
+    ],
+    "Please enter positive integer value for 7-day limit on losses": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u062d\u062f \u0627\u0644\u062e\u0633\u0627\u0626\u0631 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 7 \u0623\u064a\u0627\u0645"
+    ],
+    "Please enter positive integer value for 7-day turnover limit": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u062d\u062f \u0627\u0644\u062f\u0648\u0631\u0627\u0646 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 7 \u0623\u064a\u0627\u0645"
+    ],
+    "Please enter positive integer value for Daily limit on losses": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u062d\u062f \u0627\u0644\u062e\u0633\u0627\u0626\u0631 \u0627\u0644\u064a\u0648\u0645\u064a\u0629"
+    ],
+    "Please enter positive integer value for Daily turnover limit": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u062d\u062f \u0627\u0644\u062f\u0648\u0631\u0627\u0646 \u0627\u0644\u064a\u0648\u0645\u064a"
+    ],
+    "Please enter positive integer value for Maximum number of open positions": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0625\u064a\u062c\u0627\u0628\u064a\u0629 \u0635\u062d\u064a\u062d\u0629 \u0644\u0623\u0642\u0635\u0649 \u0639\u062f\u062f \u0645\u0646 \u0627\u0644\u0645\u0646\u0627\u0635\u0628 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629"
+    ],
+    "Please enter the token name": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0623\u0633\u0645 \u0627\u0644\u0631\u0645\u0632"
+    ],
+    "Please enter the verification code sent to your email": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0643\u0648\u062f \u0627\u0644\u062a\u062d\u0642\u0642 \u0627\u0644\u0645\u0631\u0633\u0644 \u0625\u0644\u0649 \u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0627\u0644\u062e\u0627\u0635 \u0628\u0643"
+    ],
+    "Please enter value between 0 and 99999 for Session duration limit": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0642\u064a\u0645\u0629 \u0645\u0627 \u0628\u064a\u0646 0 \u0648 99999 \u0644\u062d\u062f \u0645\u062f\u0629 \u0627\u0644\u062c\u0644\u0633\u0629"
+    ],
+    "Please enter your city address": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u064a\u0646\u062a\u0643"
+    ],
+    "Please enter your current password": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0643"
+    ],
+    "Please enter your email": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0627\u0644\u062e\u0627\u0635 \u0628\u0643"
+    ],
+    "Please enter your family name": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0623\u0633\u0645 \u0639\u0627\u0626\u0644\u062a\u0643"
+    ],
+    "Please enter your first name": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0623\u0633\u0645\u0643 \u0627\u0644\u0623\u0648\u0644"
+    ],
+    "Please enter your new password": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631\u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0643"
+    ],
+    "Please enter your password": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0643"
+    ],
+    "Please enter your phone number": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0631\u0642\u0645 \u0647\u0627\u062a\u0641\u0643"
+    ],
+    "Please enter your street address": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0634\u0627\u0631\u0639 \u0627\u0644\u062e\u0627\u0635 \u0628\u0643"
+    ],
+    "Please install the latest version of one of these browsers": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u062a\u062b\u0628\u064a\u062a \u0623\u062d\u062f\u062b \u0625\u0635\u062f\u0627\u0631 \u0644\u0648\u0627\u062d\u062f \u0645\u0646 \u0647\u0630\u0647 \u0627\u0644\u0645\u062a\u0635\u0641\u062d\u0627\u062a"
+    ],
+    "Please log in": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644"
+    ],
+    "Please select": [
+        null,
+        "\u0627\u062e\u062a\u0631 \u0645\u0646 \u0641\u0636\u0644\u0643"
+    ],
+    "Please try again after 1 minute": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0627\u0644\u0645\u062d\u0627\u0648\u0644\u0629 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649 \u0628\u0639\u062f \u062f\u0642\u064a\u0642\u0629 \u0648\u0627\u062d\u062f\u0629"
+    ],
+    "Please use your new password to login": [
+        null,
+        "\u0645\u0646 \u0641\u0636\u0644\u0643 \u0627\u0633\u062a\u062e\u062f\u0645 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0643 \u0644\u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644"
+    ],
+    "Plot": [
+        null,
+        "\u0645\u062e\u0637\u0637 \u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Plot Color": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0645\u062e\u0637\u0637 \u0627\u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Pofit/Loss": [
+        null,
+        "\u0631\u0628\u062d/\u062e\u0633\u0627\u0631\u0629"
+    ],
+    "Points": [
+        null,
+        "\u0646\u0642\u0627\u0637"
+    ],
+    "Portfolio": [
+        null,
+        "\u0645\u062d\u0641\u0638\u0629"
+    ],
+    "Postal code/ZIP": [
+        null,
+        "\u0627\u0644\u0631\u0645\u0632 \u0627\u0644\u0628\u0631\u064a\u062f\u064a/\u0627\u0644\u0631\u0645\u0632 \u0627\u0644\u0628\u0631\u064a\u062f\u064a"
+    ],
+    "Potential Payout": [
+        null,
+        "\u0639\u0648\u0627\u0626\u062f \u0645\u062d\u062a\u0645\u0644\u0629"
+    ],
+    "Potential Profit": [
+        null,
+        "\u0631\u0628\u062d \u0645\u062d\u062a\u0645\u0644"
+    ],
+    "Potential profit": [
+        null,
+        "\u0631\u0628\u062d \u0645\u062d\u062a\u0645\u0644"
+    ],
+    "Pre-Defined": [
+        null,
+        "\u0645\u0639\u0631\u0641\u0629 \u0645\u0633\u0628\u0642\u0627\u064b"
+    ],
+    "Preferred reality-check interval": [
+        null,
+        "\u0645\u0647\u0644\u0629 \u0645\u0631\u0627\u062c\u0639\u0629 \u0648\u0627\u0642\u0639\u064a\u0629 \u0645\u0641\u0636\u0644\u0629"
+    ],
+    "Press  Create token  button on the right to create your first token": [
+        null,
+        "\u0623\u0636\u063a\u0637 \u0632\u0631 \u0625\u0646\u0634\u0627\u0621 \u0631\u0645\u0632 \u0639\u0644\u0649 \u0627\u0644\u064a\u0645\u064a\u0646 \u0644\u0625\u0646\u0634\u0627\u0621 \u0631\u0645\u0632\u0643 \u0627\u0644\u0623\u0648\u0644"
+    ],
+    "Price": [
+        null,
+        "\u0633\u0639\u0631"
+    ],
+    "Primary": [
+        null,
+        "\u0625\u0628\u062a\u062f\u0627\u0626\u064a"
+    ],
+    "Print chart": [
+        null,
+        "\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0628\u064a\u0627\u0646\u064a"
+    ],
+    "Profit": [
+        null,
+        "\u0631\u0628\u062d"
+    ],
+    "Profit Table": [
+        null,
+        "\u062c\u062f\u0648\u0644 \u0627\u0644\u0623\u0631\u0628\u0627\u062d"
+    ],
+    "Profit table": [
+        null,
+        "\u062c\u062f\u0648\u0644 \u0627\u0644\u0623\u0631\u0628\u0627\u062d"
+    ],
+    "Profit/ Loss": [
+        null,
+        "\u0631\u0628\u062d/\u062e\u0633\u0627\u0631\u0629"
+    ],
+    "Profit/Loss (points)": [
+        null,
+        "(\u0646\u0642\u0627\u0637) \u0627\u0644\u0631\u0628\u062d/\u0627\u0644\u062e\u0633\u0627\u0631\u0629"
+    ],
+    "Purchase": [
+        null,
+        "\u0634\u0631\u0627\u0621"
+    ],
+    "Purchase Date": [
+        null,
+        "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0634\u0631\u0627\u0621"
+    ],
+    "Purchase Price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0634\u0631\u0627\u0621"
+    ],
+    "Purchase Time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0634\u0631\u0627\u0621"
+    ],
+    "Read": [
+        null,
+        "\u0623\u0642\u0631\u0623"
+    ],
+    "Real account opening": [
+        null,
+        "\u0641\u062a\u062d \u062d\u0633\u0627\u0628 \u062d\u0642\u064a\u0642\u064a"
+    ],
+    "Reality check": [
+        null,
+        "\u0645\u0631\u0627\u062c\u0639\u0629 \u0648\u0627\u0642\u0639\u064a\u0629"
+    ],
+    "Redirecting to oauth login page": [
+        null,
+        "\u0625\u0639\u0627\u062f\u0629 \u062a\u0648\u062c\u064a\u0647 \u0625\u0644\u0649 \u0635\u0641\u062d\u0629 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u062f\u062e\u0648\u0644 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0627\u0644\u062a\u0631\u062e\u064a\u0635 \u0627\u0644\u0642\u064a\u0627\u0633\u064a \u0627\u0644\u0645\u0641\u062a\u0648\u062d"
+    ],
+    "Ref": [
+        null,
+        "\u0645\u0631\u062c\u0639"
+    ],
+    "Register free account": [
+        null,
+        "\u062a\u0633\u062c\u064a\u0644 \u062d\u0633\u0627\u0628 \u0645\u062c\u0627\u0646\u064a"
+    ],
+    "Registration": [
+        null,
+        "\u062a\u0633\u062c\u064a\u0644"
+    ],
+    "Reloading page": [
+        null,
+        "\u0625\u0639\u0627\u062f\u0629 \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0635\u0641\u062d\u0629"
+    ],
+    "Remove Selected": [
+        null,
+        "\u0625\u0632\u0627\u0644\u0629 \u0627\u0644\u0645\u062d\u062f\u062f"
+    ],
+    "Repeat password": [
+        null,
+        "\u0623\u0639\u062f \u0643\u062a\u0627\u0628\u0629 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"
+    ],
+    "Resale of this contract is not offered": [
+        null,
+        "\u0625\u0639\u0627\u062f\u0629 \u0628\u064a\u0639 \u0647\u0630\u0627 \u0627\u0644\u0639\u0642\u062f \u063a\u064a\u0631 \u0645\u0639\u0631\u0648\u0636"
+    ],
+    "Reset to Defaults": [
+        null,
+        "\u0625\u0639\u0627\u062f\u0629 \u062a\u0639\u064a\u064a\u0646 \u0625\u0644\u0649 \u0627\u0644\u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0627\u0644\u0625\u0641\u062a\u0631\u0627\u0636\u064a\u0629"
+    ],
+    "Reset zoom": [
+        null,
+        "\u0625\u0639\u0627\u062f\u0629 \u0636\u0628\u0637 \u0627\u0644\u062a\u0643\u0628\u064a\u0631"
+    ],
+    "Reset zoom level 1:1": [
+        null,
+        "\u0625\u0639\u0627\u062f\u0629 \u0636\u0628\u0637 \u0645\u0633\u062a\u0648\u0649 \u0627\u0644\u062a\u0643\u0628\u064a\u0631 1:1"
+    ],
+    "Resources": [
+        null,
+        "\u0627\u0644\u0645\u0635\u0627\u062f\u0631"
+    ],
+    "Responsible Trading": [
+        null,
+        "\u062a\u062f\u0627\u0648\u0644 \u0645\u0633\u0624\u0648\u0644"
+    ],
+    "Results": [
+        null,
+        "\u0646\u062a\u0627\u0626\u062c"
+    ],
+    "Return": [
+        null,
+        "\u0627\u0644\u0639\u0627\u0626\u062f"
+    ],
+    "Rise": [
+        null,
+        "\u0627\u0631\u062a\u0641\u0627\u0639"
+    ],
+    "SMA": [
+        null,
+        "\u0627\u0644\u0645\u062a\u0648\u0633\u0637 \u0627\u0644\u0645\u062a\u062d\u0631\u0643 \u0627\u0644\u0628\u0633\u064a\u0637"
+    ],
+    "SVG": [
+        null,
+        "\u0627\u0644\u0631\u0633\u0648\u0645\u064a\u0627\u062a \u0627\u0644\u0645\u062a\u062c\u0647\u064a\u0629 \u0645\u062a\u063a\u064a\u0631\u0629 \u0627\u0644\u062d\u062c\u0645"
+    ],
+    "Safari": [
+        null,
+        "\u0645\u062a\u0635\u0641\u062d \u0633\u0641\u0627\u0631\u064a"
+    ],
+    "Salaried Employee": [
+        null,
+        "\u0645\u0648\u0638\u0641 \u0628\u0623\u062c\u0631"
+    ],
+    "Sale Date": [
+        null,
+        "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0628\u064a\u0639"
+    ],
+    "Sale Price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0628\u064a\u0639"
+    ],
+    "Sand Signika": [
+        null,
+        "\u0631\u0645\u0627\u0644 \u062e\u0637 Signika"
+    ],
+    "Sat": [
+        null,
+        "\u0627\u0644\u0633\u0628\u062a"
+    ],
+    "Saturday": [
+        null,
+        "\u0627\u0644\u0633\u0628\u062a"
+    ],
+    "Save": [
+        null,
+        ""
+    ],
+    "Save as": [
+        null,
+        ""
+    ],
+    "Save changes": [
+        null,
+        ""
+    ],
+    "Secondary": [
+        null,
+        "\u062b\u0627\u0646\u0648\u064a"
+    ],
+    "Security": [
+        null,
+        "\u0623\u0645\u0646"
+    ],
+    "Security question": [
+        null,
+        "\u0633\u0624\u0627\u0644 \u0623\u0645\u0627\u0646"
+    ],
+    "Select Instrument": [
+        null,
+        "\u0623\u062e\u062a\u0631 \u0623\u062f\u0627\u0629"
+    ],
+    "Self-Employed": [
+        null,
+        "\u062d\u0631 \u0627\u0644\u0639\u0645\u0644"
+    ],
+    "Self-Exclusion": [
+        null,
+        "\u0627\u0644\u0645\u0646\u0639 \u0627\u0644\u0630\u0627\u062a\u064a"
+    ],
+    "Self-Exclusion Facilities": [
+        null,
+        "\u0645\u0631\u0627\u0641\u0642 \u0627\u0644\u0645\u0646\u0639 \u0627\u0644\u0630\u0627\u062a\u064a"
+    ],
+    "Sell At Market": [
+        null,
+        "\u0628\u064a\u0639 \u0641\u064a \u0627\u0644\u0633\u0648\u0642"
+    ],
+    "Sell Price": [
+        null,
+        "\u0633\u0639\u0631 \u0627\u0644\u0628\u064a\u0639"
+    ],
+    "Sell Spot": [
+        null,
+        "\u0645\u0648\u0636\u0639 \u0628\u064a\u0639"
+    ],
+    "Sell Time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0628\u064a\u0639"
+    ],
+    "Send to account #": [
+        null,
+        "\u0623\u0631\u0633\u0644 \u0625\u0644\u0649 \u0627\u0644\u062d\u0633\u0627\u0628 #"
+    ],
+    "Sent to account": [
+        null,
+        "\u062a\u0645 \u0627\u0644\u0625\u0631\u0633\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u062d\u0633\u0627\u0628"
+    ],
+    "Sep": [
+        null,
+        "\u0633\u0628\u062a\u0645\u0628\u0631"
+    ],
+    "September": [
+        null,
+        "\u0633\u0628\u062a\u0645\u0628\u0631"
+    ],
+    "Session": [
+        null,
+        "\u062c\u0644\u0633\u0629"
+    ],
+    "Session duration limit, in minutes": [
+        null,
+        "\u062d\u062f \u0645\u062f\u0629 \u0627\u0644\u062c\u0644\u0633\u0629, \u0628\u0627\u0644\u062f\u0642\u0627\u0626\u0642"
+    ],
+    "Session is not authenticated": [
+        null,
+        "\u0627\u0644\u062c\u0644\u0633\u0629 \u063a\u064a\u0631 \u0645\u0635\u062f\u0642 \u0639\u0644\u064a\u0647\u0627"
+    ],
+    "Settles": [
+        null,
+        "\u064a\u0633\u062a\u0642\u0631"
+    ],
+    "Share": [
+        null,
+        "\u0634\u0627\u0631\u0643"
+    ],
+    "Short MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0642\u0635\u064a\u0631"
+    ],
+    "Short ROC Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0642\u0635\u064a\u0631\u0629 \u0644\u0644\u0639\u0627\u0626\u062f \u0639\u0644\u0649 \u0627\u0644\u0645\u0627\u0644"
+    ],
+    "Short Stop Line Stroke": [
+        null,
+        "\u062e\u0637 \u062a\u0648\u0642\u0641 \u0642\u0635\u064a\u0631 \u0644\u0644\u0636\u0631\u0628\u0629"
+    ],
+    "Short Term Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0642\u0635\u064a\u0631\u0629 \u0627\u0644\u0623\u0645\u062f"
+    ],
+    "Show": [
+        null,
+        "\u0639\u0631\u0636"
+    ],
+    "Sigma": [
+        null,
+        "\u0633\u064a\u062c\u0645\u0627"
+    ],
+    "Signal Line Stroke": [
+        null,
+        "\u062e\u0637 \u0625\u0634\u0627\u0631\u0629 \u0627\u0644\u0636\u0631\u0628\u0629"
+    ],
+    "Signal MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0625\u0634\u0627\u0631\u0629 \u0627\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c"
+    ],
+    "Signal Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0627\u0644\u0625\u0634\u0627\u0631\u0629"
+    ],
+    "Single MA Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0645\u0641\u0631\u062f\u0629 \u0644\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c"
+    ],
+    "Single MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0641\u0631\u062f \u0644\u0644\u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c"
+    ],
+    "Slow %D MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c %D \u0628\u0637\u064a\u0621"
+    ],
+    "Slow %D Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 %D \u0628\u0637\u064a\u0626\u0629"
+    ],
+    "Slow %K MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c %K \u0628\u0637\u064a\u0626"
+    ],
+    "Slow %K Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 %K \u0628\u0637\u064a\u0626\u0629"
+    ],
+    "Slow Limit": [
+        null,
+        "\u062d\u062f \u0628\u0637\u064a\u0621"
+    ],
+    "Slow MA Type": [
+        null,
+        "\u0646\u0648\u0639 \u0645\u0648\u0641\u064a\u0646\u062c \u0623\u0641\u0627\u0631\u064a\u062c \u0628\u0637\u064a\u0621"
+    ],
+    "Slow Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0628\u0637\u064a\u0626\u0629"
+    ],
+    "Sold": [
+        null,
+        "\u0645\u0628\u0627\u0639"
+    ],
+    "Some random index": [
+        null,
+        "\u0628\u0639\u0636 \u0627\u0644\u0645\u0624\u0634\u0631\u0627\u062a \u0627\u0644\u0639\u0634\u0648\u0627\u0626\u064a\u0629"
+    ],
+    "Spline": [
+        null,
+        "\u0644\u0633\u064a\u0646"
+    ],
+    "Spreads": [
+        null,
+        "\u064a\u0646\u062a\u0634\u0631"
+    ],
+    "Stake": [
+        null,
+        "\u062d\u0635\u0629"
+    ],
+    "Standard methods": [
+        null,
+        "\u0627\u0644\u0637\u0631\u0642 \u0627\u0644\u0628\u0633\u064a\u0637\u0629"
+    ],
+    "Standard withdrawal": [
+        null,
+        "\u0633\u062d\u0628 \u0642\u064a\u0627\u0633\u064a"
+    ],
+    "Start Time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0628\u062f\u0627\u064a\u0629"
+    ],
+    "Start time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0628\u062f\u0627\u064a\u0629"
+    ],
+    "State/province/region": [
+        null,
+        "\u0627\u0644\u062f\u0648\u0644\u0629/\u0627\u0644\u0645\u0642\u0627\u0637\u0639\u0629/\u0627\u0644\u0645\u0646\u0637\u0642\u0629"
+    ],
+    "Statement": [
+        null,
+        "\u0628\u064a\u0627\u0646"
+    ],
+    "Status": [
+        null,
+        "\u062d\u0627\u0644\u0629"
+    ],
+    "Stays In/Goes Out": [
+        null,
+        "\u0627\u0644\u0628\u0642\u0627\u0621 \u0641\u064a/\u0627\u0644\u0630\u0647\u0627\u0628 \u062e\u0627\u0631\u062c"
+    ],
+    "Stocks trading experience": [
+        null,
+        "\u062a\u062c\u0631\u0628\u0629 \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0623\u0633\u0647\u0645"
+    ],
+    "Stocks trading frequency": [
+        null,
+        "\u062a\u0631\u062f\u062f \u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0623\u0633\u0647\u0645"
+    ],
+    "Stop Loss Level": [
+        null,
+        "\u0645\u0633\u062a\u0648\u0649 \u0625\u064a\u0642\u0627\u0641 \u0627\u0644\u062e\u0633\u0627\u0631\u0629"
+    ],
+    "Stop Profit Level": [
+        null,
+        "\u0645\u062a\u0633\u0648\u0649 \u062c\u0646\u064a \u0627\u0644\u0623\u0631\u0628\u0627\u062d"
+    ],
+    "Stop-loss": [
+        null,
+        "\u0625\u064a\u0642\u0627\u0641 \u0627\u0644\u062e\u0633\u0627\u0631\u0629"
+    ],
+    "Stop-profit": [
+        null,
+        "\u062c\u0646\u064a \u0627\u0644\u0623\u0631\u0628\u0627\u062d"
+    ],
+    "Stop-type": [
+        null,
+        "\u0625\u064a\u0642\u0627\u0641 \u0627\u0644\u0646\u0648\u0639"
+    ],
+    "Street address": [
+        null,
+        "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0634\u0627\u0631\u0639"
+    ],
+    "Stroke": [
+        null,
+        "\u0627\u0644\u0636\u0631\u0628\u0629"
+    ],
+    "Stroke color": [
+        null,
+        "\u0644\u0648\u0646 \u0627\u0644\u0636\u0631\u0628\u0629"
+    ],
+    "Stroke width": [
+        null,
+        "\u0639\u0631\u0636 \u0627\u0644\u0636\u0631\u0628\u0629"
+    ],
+    "Submit": [
+        null,
+        "\u062a\u0642\u062f\u064a\u0645"
+    ],
+    "Successfully added new token": [
+        null,
+        "\u062a\u0645 \u0625\u0636\u0627\u0641\u0629 \u0631\u0645\u0632 \u062c\u062f\u064a\u062f \u0628\u0646\u062c\u0627\u062d"
+    ],
+    "Sun": [
+        null,
+        "\u0627\u0644\u0623\u062d\u062f"
+    ],
+    "Sunday": [
+        null,
+        "\u0627\u0644\u0623\u062d\u062f"
+    ],
+    "TEMA": [
+        null,
+        "\u062a\u064a\u0645\u0627"
+    ],
+    "TRIMA": [
+        null,
+        "\u062a\u0631\u064a\u0645\u0627"
+    ],
+    "Table": [
+        null,
+        "\u062c\u062f\u0648\u0644"
+    ],
+    "Tel": [
+        null,
+        "\u0647\u0627\u062a\u0641"
+    ],
+    "Terms": [
+        null,
+        "\u0634\u0631\u0648\u0637"
+    ],
+    "Terms and Conditions": [
+        null,
+        "\u0627\u0644\u0623\u062d\u0643\u0627\u0645 \u0648\u0627\u0644\u0634\u0631\u0648\u0637"
+    ],
+    "Tertiary": [
+        null,
+        "\u0627\u0644\u062b\u0627\u0644\u062b"
+    ],
+    "The": [
+        null,
+        "\u0627\u0644"
+    ],
+    "The financial trading services contained within this site are only suitable for customers who are able to bear the loss of all the money they invest and who understand and have experience of the risk involved in the aquistion of financial contracts. Transactions in financial contracts carry a high degree of risk. If purchased contracts expire worthless, you will suffer a total loss of your investment, which consists of the contract permium": [
+        null,
+        "\u062a\u0639\u062f \u062e\u062f\u0645\u0627\u062a \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0648\u0627\u0631\u062f\u0629 \u0641\u064a \u0647\u0630\u0627 \u0627\u0644\u0645\u0648\u0642\u0639 \u0645\u0646\u0627\u0627\u0633\u0628\u0629 \u0641\u0642\u0637 \u0644\u0644\u0639\u0645\u0644\u0627\u0621 \u0627\u0644\u0642\u0627\u062f\u0631\u064a\u0646 \u0639\u0644\u0649 \u062a\u062d\u0645\u0644 \u062e\u0633\u0627\u0631\u0629 \u062c\u0645\u064a\u0639 \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u0627\u0644\u0630\u064a\u0646 \u064a\u0633\u062a\u062b\u0645\u0631\u0648\u0646\u0647\u0627 \u0648 \u0627\u0644\u0630\u064a\u0646 \u064a\u0641\u0647\u0645\u0648\u0646 \u0648 \u0644\u062f\u064a\u0647\u0645 \u0627\u0644\u062e\u0628\u0631\u0629 \u0648\u0627\u0644\u0645\u0639\u0631\u0641\u0629 \u0628\u0627\u0644\u0645\u062e\u0627\u0637\u0631 \u0627\u0644\u0645\u062a\u0631\u062a\u0628\u0629 \u0639\u0644\u0649 \u0627\u0633\u062a\u062d\u0648\u0627\u0630 \u0627\u0644\u0639\u0642\u0648\u062f \u0627\u0644\u0645\u0627\u0644\u064a\u0629. \u062a\u062d\u0645\u0644 \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0627\u062a \u0639\u0644\u0649 \u0627\u0644\u0639\u0642\u0648\u062f \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u062f\u0631\u062c\u0629 \u0639\u0627\u0644\u064a\u0629 \u0645\u0646 \u0627\u0644\u0645\u062e\u0627\u0637\u0631. \u0625\u0630\u0627 \u0645\u0627 \u0627\u0646\u062a\u0647\u062a \u0627\u0644\u0639\u0642\u0648\u062f \u0627\u0644\u0645\u0634\u062a\u0631\u0627\u0647 \u0628\u0644\u0627 \u0642\u064a\u0645\u0629, \u0641\u0633\u0648\u0641  \u062a\u0639\u0627\u0646\u064a \u0645\u0646 \u0641\u0642\u062f\u0627\u0646 \u062a\u0627\u0645 \u0644\u0644\u0625\u0633\u062a\u062b\u0645\u0627\u0631 \u0627\u0644\u062e\u0627\u0635 \u0628\u0643, \u0648\u0627\u0644\u0630\u064a \u064a\u062a\u0623\u0644\u0641 \u0645\u0646 \u0627\u0644\u0639\u0642\u0648\u062f \u0627\u0644\u0645\u0645\u062a\u0627\u0632\u0629"
+    ],
+    "The page you requested could not be found. Either it no longer exists or the address is wrong. Please check for any typos": [
+        null,
+        ""
+    ],
+    "There was a market data disruption during the contract period. For real-money accounts we will attempt to correct this and settle the contract properly, otherwise the contract will be cancelled and refunded. Virtual-money contracts will be cancelled and refunded": [
+        null,
+        "\u064a\u0643\u0648\u0646 \u0647\u0646\u0627\u0643 \u062e\u0644\u0644 \u0641\u064a \u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0633\u0648\u0642 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u0629 \u0627\u0644\u0639\u0642\u062f. \u0628\u0627\u0644\u0646\u0633\u0628\u0629 \u0644\u062d\u0633\u0627\u0628\u0627\u062a \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u0627\u0644\u062d\u0642\u064a\u0642\u064a\u0629, \u0641\u0633\u0648\u0641 \u0646\u0639\u0645\u0644 \u0639\u0644\u0649 \u062a\u0635\u062d\u064a\u062d\u0647\u0627 \u0648\u062a\u0633\u0648\u064a\u0629 \u0627\u0644\u0639\u0642\u0648\u062f \u0628\u0637\u0631\u064a\u0642\u0629 \u0635\u062d\u064a\u062d\u0629, \u0648\u0625\u0644\u0627 \u0641\u0633\u064a\u062a\u0645 \u0625\u0644\u063a\u0627\u0621 \u0627\u0644\u0639\u0642\u0648\u062f \u0648\u0631\u062f\u0647\u0627. \u0643\u0645\u0627 \u0633\u064a\u062a\u0645 \u0631\u062f \u0639\u0642\u0648\u062f \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u0627\u0644\u0625\u0641\u062a\u0631\u0627\u0636\u064a\u0629 \u0648\u0631\u062f\u0647\u0627"
+    ],
+    "There was an error": [
+        null,
+        "\u0643\u0627\u0646 \u0647\u0646\u0627\u0643 \u062e\u0637\u0623"
+    ],
+    "This contract has expired": [
+        null,
+        "\u0644\u0642\u062f \u0627\u0646\u062a\u0647\u0649 \u0647\u0630\u0627 \u0627\u0644\u0639\u0642\u062f"
+    ],
+    "This contract lost": [
+        null,
+        "\u0647\u0630\u0627 \u0627\u0644\u0639\u0642\u062f \u0645\u0641\u0642\u0648\u062f"
+    ],
+    "This contract won": [
+        null,
+        "\u0647\u0630\u0627 \u0627\u0644\u0639\u0642\u062f \u0641\u0627\u0626\u0632"
+    ],
+    "This field is required": [
+        null,
+        "\u0647\u0630\u0647 \u0627\u0644\u062e\u0627\u0646\u0629 \u0645\u0637\u0644\u0648\u0628\u0629"
+    ],
+    "Thu": [
+        null,
+        "\u0627\u0644\u062e\u0645\u064a\u0633"
+    ],
+    "Thursday": [
+        null,
+        "\u0627\u0644\u062e\u0645\u064a\u0633"
+    ],
+    "Tick Trade app": [
+        null,
+        "\u062a\u0637\u0628\u064a\u0642 \u062a\u0643 \u062a\u0631\u0627\u062f"
+    ],
+    "Tick {row.number}": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0629 {\u0635\u0641. \u0631\u0642\u0645}"
+    ],
+    "Ticks": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0627\u062a"
+    ],
+    "Tile": [
+        null,
+        "\u0628\u0644\u0627\u0637\u0629"
+    ],
+    "Time Period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0632\u0645\u0646\u064a\u0629"
+    ],
+    "Time interval": [
+        null,
+        "\u0627\u0644\u0641\u0627\u0635\u0644 \u0627\u0644\u0632\u0645\u0646\u064a"
+    ],
+    "Time period": [
+        null,
+        "\u0641\u062a\u0631\u0629 \u0632\u0645\u0646\u064a\u0629"
+    ],
+    "Timeout for websocket request": [
+        null,
+        "\u0645\u0647\u0644\u0629 \u0644\u0637\u0644\u0628 \u0648\u064a\u0628 \u0633\u0648\u0643\u064a\u062a"
+    ],
+    "Title": [
+        null,
+        "\u0639\u0646\u0648\u0627\u0646"
+    ],
+    "To": [
+        null,
+        "\u0625\u0644\u0649"
+    ],
+    "To deposit money please contact the payment agent directly": [
+        null,
+        "\u0644\u0625\u064a\u062f\u0627\u0639 \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u064a\u0631\u062c\u0649 \u0627\u0644\u0625\u062a\u0635\u0627\u0644 \u0628\u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639 \u0645\u0628\u0627\u0634\u0631\u0629"
+    ],
+    "To process deposits and withdrawals for payment methods or local currencies not supported by Binary.com contact a payment agent": [
+        null,
+        "\u0644\u0625\u062a\u0645\u0627\u0645 \u0639\u0645\u0644\u064a\u0629 \u0627\u0644\u062f\u0641\u0639 \u0648\u0627\u0644\u0633\u062d\u0628 \u0628\u0637\u0631\u0642 \u0627\u0644\u062f\u0641\u0639 \u0623\u0648 \u0627\u0644\u0639\u0645\u0644\u0627\u062a \u0627\u0644\u0645\u062d\u0644\u064a\u0629 \u0627\u0644\u063a\u064a\u0631 \u0645\u062f\u0639\u0648\u0645\u0629 \u0645\u0646 \u0642\u0628\u0644 Binary.com \u0627\u062a\u0635\u0644 \u0628\u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "To withdraw funds please enter the special verification token we have just emailed you": [
+        null,
+        "\u0644\u0633\u062d\u0628 \u0627\u0644\u0623\u0645\u0648\u0627\u0644 \u0628\u0631\u062c\u0627\u0621 \u0625\u062f\u062e\u0627\u0644 \u0643\u0648\u062f \u0627\u0644\u062a\u062d\u0642\u0642 \u0627\u0644\u0630\u064a \u0623\u0631\u0633\u0644\u0646\u0627\u0647 \u0625\u0644\u0649 \u0628\u0631\u064a\u062f\u0643 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a"
+    ],
+    "Token": [
+        null,
+        "\u0631\u0645\u0632"
+    ],
+    "Token management": [
+        null,
+        "\u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0631\u0645\u0648\u0632"
+    ],
+    "Token name": [
+        null,
+        "\u0623\u0633\u0645 \u0627\u0644\u0631\u0645\u0632"
+    ],
+    "Token permissions": [
+        null,
+        "\u0623\u0630\u0648\u0646\u0627\u062a \u0631\u0645\u0632\u064a\u0629"
+    ],
+    "Tokens are special codes for accessing Binary mobile applications and third party tools": [
+        null,
+        "\u0627\u0644\u0631\u0645\u0648\u0632 \u0647\u064a \u0623\u0643\u0648\u0627\u062f \u062e\u0627\u0635\u0629 \u0644\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u062a\u0637\u0628\u064a\u0642\u0627\u062a Binary \u0644\u0644\u0647\u0627\u062a\u0641 \u0627\u0644\u0646\u0642\u0627\u0644 \u0648\u0623\u062f\u0648\u0627\u062a \u0637\u0631\u0641 \u062b\u0627\u0644\u062b"
+    ],
+    "Tooltip background": [
+        null,
+        "\u062e\u0644\u0641\u064a\u0629 \u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u062a\u0644\u0645\u064a\u062d"
+    ],
+    "Tooltip text": [
+        null,
+        "\u0646\u0635 \u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u062a\u0644\u0645\u064a\u062d"
+    ],
+    "Total Cost": [
+        null,
+        "\u0627\u0644\u062a\u0643\u0644\u0641\u0629 \u0627\u0644\u0625\u062c\u0645\u0627\u0644\u064a\u0629"
+    ],
+    "Total Profit/Loss": [
+        null,
+        "\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0631\u0628\u062d/\u0627\u0644\u062e\u0633\u0627\u0631\u0629"
+    ],
+    "Touch/No Touch": [
+        null,
+        "\u064a\u0644\u0645\u0633/\u0644\u0646 \u064a\u0644\u0645\u0633"
+    ],
+    "Tourism": [
+        null,
+        "\u0633\u064a\u0627\u062d\u0629"
+    ],
+    "Town/City": [
+        null,
+        "\u0628\u0644\u062f\u0629/\u0645\u062f\u064a\u0646\u0629"
+    ],
+    "Trade": [
+        null,
+        "\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "Trade Confirmation": [
+        null,
+        "\u062a\u0623\u0643\u064a\u062f \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "Trade using": [
+        null,
+        "\u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u0628\u0627\u0633\u062a\u062e\u062f\u0627\u0645"
+    ],
+    "Trading Times": [
+        null,
+        "\u0623\u0648\u0642\u0627\u062a \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "Trading binary options may not be suitable for everyone, so please ensure that you fully understand the risks involved. Your losses can exceed your initial deposit and you do not own or have any interest in the underlying asset": [
+        null,
+        "\u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u062e\u064a\u0627\u0631\u0627\u062a \u0627\u0644\u062b\u0646\u0627\u0626\u064a\u0629 \u0642\u062f \u0644\u0627 \u062a\u0643\u0648\u0646 \u0645\u0646\u0627\u0633\u0628\u0629 \u0644\u0644\u062c\u0645\u064a\u0639, \u0644\u0630\u0644\u0643 \u064a\u0631\u062c\u0649 \u0627\u0644\u062a\u0623\u0643\u062f \u0645\u0646 \u0623\u0646\u0643 \u0639\u0644\u0649 \u062f\u0631\u0627\u064a\u0629 \u0643\u0627\u0645\u0644\u0629 \u0628\u0627\u0644\u0645\u062e\u0627\u0637\u0631 \u0627\u0644\u0645\u0646\u0637\u0648\u064a\u0629 \u0639\u0644\u0649 \u0630\u0644\u0643. \u0642\u062f \u062a\u062a\u062c\u0627\u0648\u0632 \u062e\u0633\u0627\u0626\u0631\u0643 \u0627\u0644\u0625\u064a\u062f\u0627\u0639 \u0627\u0644\u0623\u0648\u0644\u064a \u0627\u0644\u062e\u0627\u0635 \u0628\u0643 \u0641\u064a \u062d\u064a\u0646 \u0623\u0646\u0643 \u0644\u0627 \u062a\u0645\u062a\u0644\u0643 \u0623\u0648 \u0644\u064a\u0633 \u0644\u062f\u064a\u0643 \u0623\u064a \u0641\u0627\u0626\u062f\u0629 \u0641\u064a \u0627\u0644\u0623\u0635\u0648\u0644 \u0627\u0644\u0623\u0633\u0627\u0633\u064a\u0629"
+    ],
+    "Trading the financial markets can become addictive. Fill in the form below to limit your participation on the website or send a signed letter or fax to our customer support team. Once set, you can only tighten your limits. Limits will only be removed or loosened after 7 days with the exception of the self- exclusion date, which cannot be removed or altered once you have confirmed it. To remove or increase your limits, please contact": [
+        null,
+        "\u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u0623\u0633\u0648\u0627\u0642 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0642\u062f \u064a\u0635\u0628\u062d \u0625\u062f\u0645\u0627\u0646. \u0642\u0645 \u0628\u0645\u0644\u0626 \u0627\u0644\u0646\u0645\u0648\u0630\u062c \u0623\u062f\u0646\u0627\u0647 \u0644\u0644\u062d\u062f \u0645\u0646 \u0645\u0634\u0627\u0631\u0643\u062a\u0643 \u0639\u0644\u0649 \u0627\u0644\u0645\u0648\u0642\u0639 \u0623\u0648\u0623\u0631\u0633\u0644 \u0631\u0633\u0627\u0644\u0629 \u0645\u0648\u0642\u0639\u0629 \u0623\u0648 \u0641\u0627\u0643\u0633 \u0644\u0641\u0631\u064a\u0642 \u062f\u0639\u0645 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0627\u0644\u062e\u0627\u0635 \u0628\u0646\u0627. \u0648\u0628\u0645\u062c\u0631\u062f \u0627\u0644\u0625\u0639\u062f\u0627\u062f, \u064a\u0645\u0643\u0646\u0643 \u0641\u0642\u0637 \u062a\u0636\u064a\u064a\u0642 \u062d\u062f\u0648\u062f\u0643. \u0633\u064a\u062a\u0645 \u0625\u0632\u0627\u0644\u0629 \u0623\u0648 \u062a\u062e\u0641\u064a\u0641 \u0627\u0644\u062d\u062f\u0648\u062f \u0641\u0642\u0637 \u0628\u0639\u062f 7 \u0623\u064a\u0627\u0645 \u0628\u0627\u0633\u062a\u062b\u0646\u0627\u0621 \u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0625\u0633\u062a\u0628\u0639\u0627\u062f \u0627\u0644\u0630\u0627\u062a\u064a, \u0648\u0627\u0644\u0630\u064a \u0644\u0627 \u064a\u0645\u0643\u0646 \u0625\u0632\u0627\u0644\u062a\u0647 \u0623\u0648 \u062a\u063a\u064a\u064a\u0631\u0647 \u0628\u0645\u062c\u0631\u062f \u062a\u0623\u0643\u064a\u062f\u0643 \u0639\u0644\u064a\u0647. \u0644\u0625\u0632\u0627\u0644\u0629 \u0623\u0648 \u0632\u064a\u0627\u062f\u0629 \u062d\u062f\u0648\u062f\u0643, \u064a\u0631\u062c\u0649 \u0627\u0644\u0625\u062a\u0635\u0627\u0644"
+    ],
+    "Tradingview for Binary.com": [
+        null,
+        "\u0631\u0624\u064a\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u0644 Binary.com"
+    ],
+    "Transfer to another Binary account": [
+        null,
+        "\u0627\u0644\u0646\u0642\u0644 \u0644\u062d\u0633\u0627\u0628 \u062b\u0646\u0627\u0626\u064a \u0622\u062e\u0631"
+    ],
+    "Try": [
+        null,
+        "\u062d\u0627\u0648\u0644"
+    ],
+    "Tue": [
+        null,
+        "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621"
+    ],
+    "Tuesday": [
+        null,
+        "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621"
+    ],
+    "Turnover": [
+        null,
+        "\u0627\u0644\u062f\u0648\u0631\u0627\u0646"
+    ],
+    "USD": [
+        null,
+        "\u062f\u0648\u0644\u0627\u0631 \u0623\u0645\u0631\u064a\u0643\u064a"
+    ],
+    "Unfortunately, your browser does not support them": [
+        null,
+        "\u0644\u0644\u0623\u0633\u0641 \u0645\u062a\u0635\u0641\u062d\u0643 \u0644\u0627 \u064a\u062f\u0639\u0645\u0647\u0645"
+    ],
+    "Unlock": [
+        null,
+        "\u0641\u062a\u062d"
+    ],
+    "Up/Down": [
+        null,
+        "\u0623\u0639\u0644\u0649/\u0623\u0633\u0641\u0644"
+    ],
+    "Upcoming Events": [
+        null,
+        "\u0627\u0644\u0623\u062d\u062f\u0627\u062b \u0627\u0644\u0642\u0627\u062f\u0645\u0629"
+    ],
+    "Update Settings": [
+        null,
+        "\u062a\u062d\u062f\u064a\u062b \u0627\u0644\u0625\u0639\u062f\u0627\u062f\u0627\u062a"
+    ],
+    "Upper Band Stroke": [
+        null,
+        "\u0636\u0631\u0628\u0629 \u0646\u0637\u0627\u0642 \u0639\u0644\u0648\u064a"
+    ],
+    "Use": [
+        null,
+        "\u0627\u0633\u062a\u062e\u062f\u0645"
+    ],
+    "Use the \"Save as ...\" button to save the chart settings, type, time period, indicators and comparisons": [
+        null,
+        ""
+    ],
+    "Verification code has been sent to your email": [
+        null,
+        "\u062a\u0645 \u0625\u0631\u0633\u0627\u0644 \u0643\u0648\u062f \u0627\u0644\u062a\u062d\u0642\u0642 \u0644\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0627\u0644\u062e\u0627\u0635 \u0628\u0643"
+    ],
+    "Verification code sent to": [
+        null,
+        "\u062a\u0645 \u0625\u0631\u0633\u0627\u0644 \u0643\u0648\u062f \u0627\u0644\u062a\u062d\u0642\u0642 \u0625\u0644\u0649"
+    ],
+    "Verification token": [
+        null,
+        "\u0631\u0645\u0632 \u0627\u0644\u062a\u062d\u0642\u0642"
+    ],
+    "Verify new password": [
+        null,
+        "\u0627\u0644\u062a\u062d\u0642\u0642 \u0645\u0646 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629"
+    ],
+    "Vertical Line": [
+        null,
+        "\u062e\u0637 \u0639\u0645\u0648\u062f\u064a"
+    ],
+    "View": [
+        null,
+        "\u0639\u0631\u0636"
+    ],
+    "View Historical Data": [
+        null,
+        "\u0639\u0631\u0636 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u062a\u0627\u0631\u064a\u062e\u064a\u0629"
+    ],
+    "Volume Factor": [
+        null,
+        "\u0639\u0627\u0645\u0644 \u0627\u0644\u062d\u062c\u0645"
+    ],
+    "WMA": [
+        null,
+        "\u0645\u0633\u062a\u0634\u0627\u0631 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u062b\u0631\u0648\u0627\u062a"
+    ],
+    "WMA Period": [
+        null,
+        "\u0645\u062f\u0629 \u0645\u0633\u062a\u0634\u0627\u0631 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u062b\u0631\u0648\u0627\u062a"
+    ],
+    "Websocket Server": [
+        null,
+        "\u062e\u0627\u062f\u0645 \u0628\u0631\u0648\u062a\u0648\u0643\u0648\u0644 \u0627\u0644\u0625\u062a\u0635\u0627\u0644\u0627\u062a \u0648 \u0646\u0642\u0644 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a"
+    ],
+    "Webtrader": [
+        null,
+        "\u0648\u064a\u0628 \u062a\u0631\u064a\u062f\u0631"
+    ],
+    "Webtrader uses new web technologies for rich and enjoyable trading experience": [
+        null,
+        "\u064a\u0633\u062a\u062e\u062f\u0645 \u0648\u064a\u0628 \u062a\u0631\u064a\u062f\u0631 \u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0627\u062a \u0648\u064a\u0628 \u062c\u062f\u064a\u062f\u0629 \u0644\u062a\u062c\u0631\u0628\u0629 \u062a\u062f\u0627\u0648\u0644 \u063a\u0646\u064a\u0629 \u0648\u0645\u0645\u062a\u0639\u0629"
+    ],
+    "Wed": [
+        null,
+        "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
+    ],
+    "Wednesday": [
+        null,
+        "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
+    ],
+    "While on the go, you can": [
+        null,
+        "\u0623\u062b\u0646\u0627\u0621 \u0627\u0644\u0630\u0647\u0627\u0628, \u064a\u0645\u0643\u0646\u0643"
+    ],
+    "Windows": [
+        null,
+        "\u0646\u0648\u0627\u0641\u0630"
+    ],
+    "Withdraw funds": [
+        null,
+        "\u0633\u062d\u0628 \u0627\u0644\u0623\u0645\u0648\u0627\u0644"
+    ],
+    "Withdrawal via payment agents": [
+        null,
+        "\u0627\u0644\u0633\u062d\u0628 \u0639\u0646 \u0637\u0631\u064a\u0642 \u0648\u0643\u0644\u0627\u0621 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "X-axis labels": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0627\u062a \u0627\u0644\u0645\u062d\u0648\u0631 \u0627\u0644\u0633\u064a\u0646\u064a"
+    ],
+    "X-axis line": [
+        null,
+        "\u062e\u0637 \u0627\u0644\u0645\u062d\u0648\u0631 \u0627\u0644\u0633\u064a\u0646\u064a"
+    ],
+    "X-axis tick": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u0648\u0631 \u0627\u0644\u0633\u064a\u0646\u064a"
+    ],
+    "Y-axis gridline": [
+        null,
+        "\u062e\u0637\u0648\u0637 \u0634\u0628\u0643\u0629 \u0627\u0644\u0645\u062d\u0648\u0631 \u0627\u0644\u0635\u0627\u062f\u064a"
+    ],
+    "Y-axis labels": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0627\u062a \u0627\u0644\u0645\u062d\u0648\u0631 \u0627\u0644\u0635\u0627\u062f\u064a"
+    ],
+    "Yes": [
+        null,
+        "\u0646\u0639\u0645"
+    ],
+    "You have excluded yourself until": [
+        null,
+        "\u0644\u0642\u062f \u0645\u0646\u0639\u062a \u0646\u0641\u0633\u0643 \u062d\u062a\u0649"
+    ],
+    "You have sold the following contract": [
+        null,
+        "\u0644\u0642\u062f \u0642\u0645\u062a \u0628\u0628\u064a\u0639 \u0627\u0644\u0639\u0642\u062f \u0627\u0644\u062a\u0627\u0644\u064a"
+    ],
+    "You have to register webtrader and get App ID before you can use different OAuth server for authentication. For more information refer to OAuth details on": [
+        null,
+        "\u0639\u0644\u064a\u0643 \u0627\u0644\u062a\u0633\u062c\u064a\u0644 \u0641\u064a \u0648\u064a\u0628 \u062a\u0631\u064a\u062f\u0631 \u0648 \u0627\u0644\u062d\u0635\u0648\u0644 \u0639\u0644\u0649 \u0645\u0639\u0631\u0641 \u0627\u0644\u062a\u0637\u0628\u064a\u0642 \u0642\u0628\u0644 \u0623\u0646 \u062a\u062a\u0645\u0643\u0646 \u0645\u0646 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u062e\u0627\u062f\u0645 \u0642\u064a\u0627\u0633\u064a \u0645\u0631\u062e\u0635 \u0645\u0641\u062a\u0648\u062d \u0627\u0644\u0645\u0635\u062f\u0631 \u0644\u0644\u0645\u0635\u0627\u062f\u0642\u0629. \u0644\u0645\u0632\u064a\u062f \u0645\u0646 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0631\u0627\u062c\u0639 \u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u0642\u064a\u0627\u0633\u064a\u0629 \u0627\u0644\u0645\u0631\u062e\u0635\u0629 \u0627\u0644\u0645\u0641\u062a\u0648\u062d\u0629 \u0627\u0644\u0645\u0635\u062f\u0631 \u0639\u0644\u0649"
+    ],
+    "You haven't saved any templates yet": [
+        null,
+        ""
+    ],
+    "You pay": [
+        null,
+        "\u0623\u0646\u062a \u062a\u062f\u0641\u0639"
+    ],
+    "You will be automatically logged out after such time": [
+        null,
+        "\u0633\u064a\u062a\u0645 \u062a\u0633\u062c\u064a\u0644 \u062e\u0631\u0648\u062c\u0643 \u062a\u0644\u0642\u0627\u0626\u064a\u0627\u064b \u0628\u0639\u062f \u0647\u0630\u0627 \u0627\u0644\u0648\u0642\u062a"
+    ],
+    "Your Binary.com account is created, but to start trading you need to allow Webtrader access it": [
+        null,
+        "\u0644\u0642\u062f \u062a\u0645 \u0627\u0646\u0634\u0627\u0621 \u062d\u0633\u0627\u0628\u0643 \u0641\u064a Binary.com, \u0648\u0644\u0643\u0646 \u0644\u0628\u062f\u0621 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u0623\u0646\u062a \u0628\u062d\u0627\u062c\u0629 \u0644\u0644\u0633\u0645\u0627\u062d \u0644\u0648\u064a\u0628 \u062a\u0631\u064a\u062f\u0631 \u0644\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u062d\u0633\u0627\u0628\u0643"
+    ],
+    "Your browser doesn't support copy to clipboard": [
+        null,
+        "\u0645\u062a\u0635\u0641\u062d\u0643 \u0644\u0627 \u064a\u062f\u0639\u0645 \u0627\u0644\u0646\u0633\u062e \u0625\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629"
+    ],
+    "Your browser is not supported": [
+        null,
+        "\u0645\u062a\u0635\u0641\u062d\u0643 \u063a\u064a\u0631 \u0645\u062f\u0639\u0648\u0645"
+    ],
+    "Your changes have been updated": [
+        null,
+        "\u062a\u0645 \u062a\u062d\u062f\u064a\u062b \u062a\u063a\u064a\u064a\u0631\u0627\u062a\u0643"
+    ],
+    "Your email": [
+        null,
+        "\u0628\u0631\u064a\u062f\u0643 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a"
+    ],
+    "Your new account balance is": [
+        null,
+        "\u0631\u0635\u064a\u062f \u062d\u0633\u0627\u0628\u0643 \u0627\u0644\u062c\u062f\u064a\u062f \u0647\u0648"
+    ],
+    "Your transaction reference is": [
+        null,
+        "\u0645\u0631\u062c\u0639 \u0645\u0639\u0627\u0645\u0644\u062a\u0643 \u0647\u0648"
+    ],
+    "Your transaction reference number is": [
+        null,
+        "\u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u0645\u0631\u062c\u0639\u064a \u0644\u0645\u0639\u0627\u0645\u0644\u062a\u0643 \u0647\u0648"
+    ],
+    "Zoom": [
+        null,
+        "\u062a\u0642\u0631\u064a\u0628"
+    ],
+    "admin": [
+        null,
+        "\u0645\u0634\u0631\u0641"
+    ],
+    "and": [
+        null,
+        "\u0648"
+    ],
+    "below and proceeding with the Account Opening you should note that you may be exposing yourself to risks (which may be significant, including the risk of loss of the entire sum invested) that you may not have the knowledge and experience to properly assess or mitigate": [
+        null,
+        "\u0628\u0627\u0644\u0646\u0638\u0631 \u0625\u0644\u0649 \u0623\u062f\u0646\u0627\u0647 \u0648\u0644\u0645\u0648\u0627\u0635\u0644\u0629 \u0625\u062c\u0631\u0627\u0621\u0627\u062a \u0641\u062a\u062d \u0627\u0644\u062d\u0633\u0627\u0628 \u064a\u062c\u0628 \u0639\u0644\u064a\u0643 \u0645\u0644\u0627\u062d\u0638\u0629 \u0623\u0646\u0643 \u0642\u062f \u062a\u0639\u0631\u0636 \u0646\u0641\u0633\u0643 \u0644\u0644\u0645\u062e\u0627\u0637\u0631 (\u0648\u0627\u0644\u062a\u064a \u0642\u062f \u062a\u0643\u0648\u0646 \u0643\u0628\u064a\u0631\u0629, \u0628\u0645\u0627 \u0641\u064a \u0630\u0644\u0643 \u062e\u0633\u0627\u0631\u0629 \u0643\u0627\u0645\u0644 \u0627\u0644\u0645\u0628\u0644\u063a \u0627\u0644\u0645\u0633\u062a\u062b\u0645\u0631) \u0648\u0627\u0644\u062a\u064a \u0642\u062f \u0644\u0627 \u064a\u0643\u0648\u0646 \u0644\u062f\u064a\u0643 \u0627\u0644\u0645\u0639\u0631\u0641\u0629 \u0648\u0627\u0644\u062e\u0628\u0631\u0629 \u0644\u062a\u0642\u064a\u0645\u0647\u0627 \u0623\u0648 \u0627\u0644\u062a\u062e\u0641\u064a\u0641 \u0645\u0646 \u062d\u062f\u062a\u0647\u0627 \u0628\u0634\u0643\u0644 \u0635\u062d\u064a\u062d"
+    ],
+    "between": [
+        null,
+        "\u0628\u064a\u0646"
+    ],
+    "commission": [
+        null,
+        "\u0639\u0645\u0648\u0644\u0629"
+    ],
+    "contact support": [
+        null,
+        "\u0627\u062a\u0635\u0644 \u0628\u0627\u0644\u062f\u0639\u0645"
+    ],
+    "customer support": [
+        null,
+        "\u062f\u0639\u0645 \u0627\u0644\u0639\u0645\u0644\u0627\u0621"
+    ],
+    "day": [
+        null,
+        "\u064a\u0648\u0645"
+    ],
+    "days": [
+        null,
+        "\u0623\u064a\u0627\u0645"
+    ],
+    "e.g": [
+        null,
+        "\u0645\u062b\u0644"
+    ],
+    "e.g, www2.binary.com, www.binaryqa36.com": [
+        null,
+        "\u0645\u062b\u0644 www2.binary.com, www.binaryqa36.com"
+    ],
+    "end time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0646\u0647\u0627\u064a\u0629"
+    ],
+    "entry spot": [
+        null,
+        "\u0645\u0648\u0636\u0639 \u062f\u062e\u0648\u0644"
+    ],
+    "exit spot": [
+        null,
+        "\u0645\u0648\u0636\u0639 \u062e\u0631\u0648\u062c"
+    ],
+    "feed is delayed by": [
+        null,
+        "\u062a\u063a\u0630\u064a\u0629 \u0645\u062a\u0623\u062e\u0631\u0629 \u0628\u0648\u0627\u0633\u0637\u0629"
+    ],
+    "for API calls that can access the cashier": [
+        null,
+        "\u0644\u0645\u0643\u0627\u0644\u0645\u0627\u062a \u0648\u0627\u062c\u0647\u0629 \u0628\u0631\u0645\u062c\u0629 \u0627\u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u062a\u064a \u064a\u0645\u0643\u0646\u0647\u0627 \u0627\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u0635\u0646\u062f\u0648\u0642 \u0627\u0644\u0635\u0631\u0627\u0641"
+    ],
+    "for API calls that can create trades in the client account": [
+        null,
+        "\u0644\u0645\u0643\u0627\u0644\u0645\u0627\u062a \u0648\u0627\u062c\u0647\u0629 \u0628\u0631\u0645\u062c\u0629 \u0627\u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u062a\u064a \u064a\u0645\u0643\u0646\u0647\u0627 \u0627\u0646\u0634\u0627\u0621 \u0627\u0644\u062a\u062f\u0627\u0648\u0644\u0627\u062a \u0641\u064a \u062d\u0633\u0627\u0628 \u0627\u0644\u0639\u0645\u064a\u0644"
+    ],
+    "for API calls that change client settings": [
+        null,
+        "\u0644\u0645\u0643\u0627\u0644\u0645\u0627\u062a \u0648\u0627\u062c\u0647\u0629 \u0628\u0631\u0645\u062c\u0629 \u0627\u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u062a\u064a \u062a\u063a\u064a\u0631 \u0625\u0639\u062f\u0627\u062f\u0627\u062a \u0627\u0644\u0639\u0645\u064a\u0644"
+    ],
+    "for API calls that only read client data": [
+        null,
+        "\u0644\u0645\u0643\u0627\u0644\u0645\u0627\u062a \u0648\u0627\u062c\u0647\u0629 \u0628\u0631\u0645\u062c\u0629 \u0627\u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u062a\u064a \u062a\u0642\u0631\u0623 \u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0639\u0645\u064a\u0644 \u0641\u0642\u0637"
+    ],
+    "for mobile charts": [
+        null,
+        "\u0644\u0631\u0633\u0648\u0645 \u0627\u0644\u0645\u062d\u0645\u0648\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u064a\u0629"
+    ],
+    "has updated its": [
+        null,
+        "\u0642\u0627\u0645\u062a \u0628\u062a\u062d\u062f\u064a\u062b"
+    ],
+    "hour": [
+        null,
+        "\u0633\u0627\u0639\u0629"
+    ],
+    "hours": [
+        null,
+        "\u0633\u0627\u0639\u0627\u062a"
+    ],
+    "https://developers.binary.com/": [
+        null,
+        "/https://developers.binary.com"
+    ],
+    "id-HXSSH5AIQylFwsiUcXGqpXApvnFeg": [
+        null,
+        "\u0645\u0639\u0631\u0641 \u0627\u0644\u0647\u0648\u064a\u0629-HXSSH5AIQylFwsiUcXGqpXApvnFeg"
+    ],
+    "if this is not your country of residence": [
+        null,
+        "\u0625\u0630\u0627 \u0644\u0645 \u064a\u0643\u0646 \u0647\u0630\u0627 \u0627\u0644\u0628\u0644\u062f \u0627\u0644\u0630\u064a \u062a\u0642\u064a\u0645 \u0641\u064a\u0647"
+    ],
+    "in the future, the": [
+        null,
+        "\u0641\u064a \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644, \u0627\u0644"
+    ],
+    "information about your trading exprience and personal finance": [
+        null,
+        "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0639\u0646 \u062a\u062c\u0631\u0628\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0643 \u0648\u062a\u0645\u0648\u064a\u0644\u0643 \u0627\u0644\u0634\u062e\u0635\u064a"
+    ],
+    "is Binary's advanced desktop trading platform. Its multi-window interface provides maximum flexibility and suits the needs of active traders working on their desktop PCs": [
+        null,
+        "\u0625\u0646\u0647\u0627 \u0645\u0646\u0635\u0629 Binary \u0644\u0633\u0637\u062d \u0627\u0644\u0645\u0643\u062a\u0628 \u0627\u0644\u0645\u062a\u0637\u0648\u0631\u0629 \u0644\u0644\u062a\u062f\u0627\u0648\u0644. \u062d\u064a\u062b \u062a\u0642\u062f\u0645 \u0648\u0627\u062c\u0647\u062a\u0647\u0627 \u0630\u0627\u062a \u0627\u0644\u0646\u0648\u0627\u0641\u0630 \u0627\u0644\u0645\u062a\u0639\u062f\u062f\u0629 \u0623\u0642\u0635\u0649 \u0642\u062f\u0631 \u0645\u0646 \u0627\u0644\u0645\u0631\u0648\u0646\u0629, \u0643\u0645\u0627 \u0623\u0646\u0647\u0627 \u062a\u0646\u0627\u0633\u0628 \u0627\u062d\u062a\u064a\u0627\u062c\u0627\u062a \u0627\u0644\u0645\u062a\u062f\u0627\u0648\u0644\u064a\u0646 \u0627\u0644\u0646\u0634\u0637\u064a\u0646 \u0648\u0627\u0644\u0630\u064a\u0646 \u064a\u0639\u0645\u0644\u0648\u0646 \u0639\u0644\u0649 \u0623\u062c\u0647\u0632\u0629 \u0627\u0644\u0643\u0645\u0628\u064a\u0648\u062a\u0631\u0627\u062a \u0644\u0633\u0637\u062d \u0627\u0644\u0645\u0643\u062a\u0628 \u0627\u0644\u062e\u0627\u0635\u0629 \u0628\u0647\u0645."
+    ],
+    "is required. Current spread": [
+        null,
+        "\u0645\u0637\u0644\u0648\u0628. \u0641\u0627\u0631\u0642 \u0633\u0639\u0631 \u0627\u0644\u0628\u064a\u0639 \u0648\u0627\u0644\u0634\u0631\u0627\u0621 \u0627\u0644\u062d\u0627\u0644\u064a"
+    ],
+    "is that which is selected and the": [
+        null,
+        "\u0647\u0644 \u0647\u0630\u0627 \u0647\u0648 \u0627\u0644\u0630\u064a \u062a\u0645 \u062a\u062d\u062f\u064a\u062f\u0647 \u0648 \u0627\u0644"
+    ],
+    "is the": [
+        null,
+        "\u0647\u0644 \u0627\u0644"
+    ],
+    "is the price in effect at that time": [
+        null,
+        "\u0647\u0644 \u0643\u0627\u0646 \u0647\u0648 \u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0633\u0627\u0631\u064a \u0641\u064a \u0647\u0630\u0627 \u0627\u0644\u0648\u0642\u062a"
+    ],
+    "is the selected number of minutes/hours after the": [
+        null,
+        "\u0647\u0644 \u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u0645\u062d\u062f\u062f \u0644\u0644\u062f\u0642\u0627\u0626\u0642/\u0627\u0644\u0633\u0627\u0639\u0627\u062a \u0628\u0639\u062f \u0627\u0644"
+    ],
+    "is the selected time": [
+        null,
+        "\u0647\u0644 \u0647\u0630\u0627 \u0647\u0648 \u0627\u0644\u0648\u0642\u062a \u0627\u0644\u0645\u062d\u062f\u062f"
+    ],
+    "is the spot at the": [
+        null,
+        "\u0647\u0644 \u0627\u0644\u0645\u0648\u0636\u0639 \u0639\u0646\u062f \u0627\u0644"
+    ],
+    "is when the contract is processed by our servers and the": [
+        null,
+        "\u0647\u0644 \u0639\u0646\u062f\u0645\u0627 \u064a\u062a\u0645 \u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0639\u0642\u062f \u0645\u0646 \u0642\u0628\u0644 \u062e\u0648\u0627\u062f\u0645\u0646\u0627 \u0648\u0627\u0644"
+    ],
+    "main site": [
+        null,
+        "\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0631\u0626\u064a\u0633\u064a"
+    ],
+    "market is presently closed": [
+        null,
+        ""
+    ],
+    "minute": [
+        null,
+        "\u062f\u0642\u064a\u0642\u0629"
+    ],
+    "minutes": [
+        null,
+        "\u062f\u0642\u0627\u0626\u0642"
+    ],
+    "next tick": [
+        null,
+        "\u0627\u0644\u0639\u0644\u0627\u0645\u0629 \u0627\u0644\u0642\u0627\u062f\u0645\u0629"
+    ],
+    "oauth": [
+        null,
+        "\u062a\u0631\u062e\u064a\u0635 \u0642\u064a\u0627\u0633\u064a \u0645\u0641\u062a\u0648\u062d"
+    ],
+    "of \"Now\", the": [
+        null,
+        "\u0645\u0646 \"\u0627\u0644\u0622\u0646\", \u0627\u0644"
+    ],
+    "payment agent": [
+        null,
+        "\u0648\u0643\u064a\u0644 \u0627\u0644\u062f\u0641\u0639"
+    ],
+    "payments": [
+        null,
+        "\u0627\u0644\u0645\u062f\u0641\u0648\u0639\u0627\u062a"
+    ],
+    "please play responsibly. Read about": [
+        null,
+        "\u0628\u0631\u062c\u0627\u0621 \u0627\u0644\u0644\u0639\u0628 \u0628\u0645\u0633\u0624\u0648\u0644\u064a\u0629. \u0623\u0642\u0631\u0623 \u0639\u0646"
+    ],
+    "points": [
+        null,
+        "\u0627\u0644\u0646\u0642\u0627\u0637"
+    ],
+    "read": [
+        null,
+        "\u0623\u0642\u0631\u0623"
+    ],
+    "second": [
+        null,
+        "\u062b\u0627\u0646\u064a\u0629"
+    ],
+    "seconds": [
+        null,
+        "\u062b\u0648\u0627\u0646\u064a"
+    ],
+    "session overview": [
+        null,
+        "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u062c\u0644\u0633\u0629"
+    ],
+    "start time": [
+        null,
+        "\u0648\u0642\u062a \u0627\u0644\u0628\u062f\u0627\u064a\u0629"
+    ],
+    "terms and conditions": [
+        null,
+        "\u0627\u0644\u0634\u0631\u0648\u0637 \u0648\u0627\u0644\u0623\u062d\u0643\u0627\u0645"
+    ],
+    "the": [
+        null,
+        "\u0627\u0644"
+    ],
+    "thereafter": [
+        null,
+        "\u0628\u0639\u062f \u0630\u0644\u0643"
+    ],
+    "tick": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0629"
+    ],
+    "ticks": [
+        null,
+        "\u0639\u0644\u0627\u0645\u0627\u062a"
+    ],
+    "trade": [
+        null,
+        "\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "trading experience": [
+        null,
+        "\u062a\u062c\u0631\u0628\u0629 \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "trading frequency": [
+        null,
+        "\u062a\u0631\u062f\u062f \u0627\u0644\u062a\u062f\u0627\u0648\u0644"
+    ],
+    "websocket": [
+        null,
+        "\u0628\u0631\u0648\u062a\u0648\u0643\u0648\u0644 \u0642\u0646\u0648\u0627\u062a \u0627\u0644\u0625\u062a\u0635\u0627\u0644\u0627\u062a"
+    ],
+    "yes": [
+        null,
+        "\u0646\u0639\u0645"
+    ],
+    "{agent.commission}%": [
+        null,
+        "{\u0648\u0643\u064a\u0644.\u0639\u0645\u0648\u0644\u0629}%"
+    ],
+    "| Return": [
+        null,
+        "\u0639\u0648\u062f\u0629"
+    ]
+}

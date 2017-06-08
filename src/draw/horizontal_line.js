@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import popup from './properties_selector.js';
+import {i18n} from '../common/utils.js';
 
 /*
 This is a map storing information as -
@@ -22,22 +23,16 @@ export const init = function(refererChartID) {
    const chart = $(refererChartID).highcharts();
 
    let options = {};
-   // TODO: i18n
-   // options.title = 'Horizontal Line'.i18n();
-   options.title = 'Horizontal Line';
+   options.title = i18n('Horizontal line');
    options.inputValues = [{
-      // TODO: i18n
-      // name: 'Stroke width'.i18n(),
-      name: 'Stroke width',
+      name: i18n('Stroke width'),
       type: 'number',
       id: 'width',
       default: 2,
       min: 1,
       max: 5
    }, {
-      // TODO: i18n
-      // name: 'Stroke color'.i18n(),
-      name: 'Stroke color',
+      name: i18n('Stroke color'),
       type: 'colorpicker',
       id: 'color',
       default: '#ff0000'

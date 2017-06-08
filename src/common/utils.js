@@ -1,3 +1,6 @@
+import dictionary  from '../i18n/dictionary.json';
+import { globals } from './globals.js';
+
 /* simple localStorage cache to differentiate between live and beta */
 export const local_storage = {
   get: function(name){
@@ -77,6 +80,10 @@ export const uuid = () => {
     });
 };
 
+export const i18n = key => {
+   const lang = globals.config.lang;
+   return (dictionary[key] && dictionary[key][lang]) || key;
+};
 
 export default {
    local_storage,
@@ -87,5 +94,6 @@ export default {
    isDataTypeClosePriceOnly,
    isAffiliates,
    toFixed,
+   i18n,
    uuid,
 };

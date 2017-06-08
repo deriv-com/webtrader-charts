@@ -5,6 +5,7 @@ import 'jquery-ui/ui/widgets/slider';
 import 'spectrum-colorpicker';
 import 'spectrum-colorpicker/spectrum.css';
 import '../lib/jquery.ddslick.js';
+import {i18n} from './utils.js';
 
 rv.binders['attr-*'] = {
    priority: 10*1000,
@@ -153,5 +154,5 @@ rv.formatters['prepend'] = (value, other) => (other && value) ? other + value : 
 rv.formatters['append'] = (value, other) => (other && value) ? value + other : value;
 rv.formatters['prop'] = (value, prop) => value && value[prop];
 rv.formatters['bind'] = (fn, value) => fn.bind(undefined, value);
-rv.formatters['i18n'] = (value) => (value && value.i18n) ? value.i18n() : value;
+rv.formatters['i18n'] = i18n;
 

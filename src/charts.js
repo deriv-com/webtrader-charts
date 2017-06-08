@@ -13,6 +13,7 @@ import indicatorsArray from './indicators.json';
 import {globals} from './common/globals.js';
 import HMW from './common/highchartsMousewheel.js'
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
+import {i18n} from './common/utils.js';
 import './charts.scss';
 
 // TODO: moemnt locale
@@ -89,20 +90,6 @@ $(() => {
         },
         lang: { thousandsSep: ',' } /* format numbers with comma (instead of space) */
     });
-
-    // Localizing Highcharts.
-    /* // TODO: i18n
-       const lang = Highcharts.getOptions().lang;
-       Object.keys(lang).forEach((key) => {
-       if(typeof lang[key] === 'object') {
-           lang[key].forEach(
-               (value, index) => { lang[key][index] = value.i18n();}
-           );
-           return;
-       }
-       lang[key] = lang[key].i18n();
-       });
-    */
 });
 
 indicators.initHighchartIndicators(chartingRequestMap.barsTable);
@@ -162,9 +149,7 @@ export const generate_csv = (chart, data) => {
         }
     });
 
-    // TODO: i18n
-    // ({ message: 'Downloading .csv'.i18n() });
-    globals.notification.notice('Downloading .csv');
+    globals.notification.notice(i18n('Downloading .csv'));
 
 
     const filename = data.instrumentName + ' (' + data.timePeriod + ')' + '.csv';
@@ -283,9 +268,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             series_compare: options.series_compare,
                             delayAmount: options.delayAmount
                         }).catch((err) => {
-                            // TODO: i18n
-                            // const msg = 'Error getting data for %1'.i18n().replace('%1', options.instrumentName);
-                            const msg = 'Error getting data for %1'.replace('%1', options.instrumentName);
+                            const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
                             globals.notification.error(msg);
                             const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
@@ -422,15 +405,10 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     s += '<span style="color:' + this.point.color + '">\u25CF </span>';
                     if(typeof this.point.open !=="undefined") { //OHLC chart
                         s += "<b>" + this.series.name + "</b>"
-                        // TODO: i18n
-                        // s += "<br>" + "  Open".i18n() + ": " + this.point.open;
-                        // s += "<br>" + "  High".i18n() + ": " + this.point.high;
-                        // s += "<br>" + "  Low".i18n() + ": " + this.point.low;
-                        // s += "<br>" + "  Close".i18n() + ": " + this.point.close;
-                        s += "<br>  Open: " + this.point.open;
-                        s += "<br>  High: " + this.point.high;
-                        s += "<br>  Low: " + this.point.low;
-                        s += "<br>  Close: " + this.point.close;
+                        s += `<br>  ${i18n('Open')}: ` + this.point.open;
+                        s += `<br>  ${i18n('High')}: ` + this.point.high;
+                        s += `<br>  ${i18n('Low')}: ` + this.point.low;
+                        s += `<br>  ${i18n('Close')}: ` + this.point.close;
                     } else {
                         s += this.series.name + ": <b>" + this.point.y + "</b>";
                     }
