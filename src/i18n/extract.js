@@ -8,8 +8,9 @@ const languages =  [
    // 'ach', 'ja', 'nl', 'zh', 
 ];
 const keys = [
+   'Cancel', 'OK',
    // overlay-management + indicator-management
-   'Add comparisons', 'Current comparisons', 'Favorites', 'Add indicator', 'Volatility Indicators',
+   'Add comparisons', 'Current comparisons', 'Current indicators', 'Favorites', 'Add indicator', 'Volatility Indicators',
    'Overlap Studies', 'Momentum Indicators', 'Price Transformation', 
    'Statistical Functions', 'Pattern Recognition', 'Bill Williams',
    // chart-options
@@ -26,6 +27,7 @@ const keys = [
    // 'Are you sure you want to delete template?', 'Are you sure you want to overwrite current template?', 
    // 'Template changes saved', 'Invalid JSON file', 'Invalid template type', 'Successfully applied the template and saved it as',
    // 'Downloading template as', 'Template name already exists',
+   // 'Add/Remove indicators', 'Add/Remove comparisons',
 ];
 
 const dictionary = { };
@@ -40,7 +42,12 @@ for(const lang of languages) {
    const filePath = path.join(i18nDir, `${lang}.json`);
    const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
    keys.forEach(key => {
-         dictionary[key][lang] = (content[key] && content[key][1]) || '';
+         if(key === 'OK') {
+            dictionary[key][lang] = (content['Ok'] && content['Ok'][1]) || '';
+         }
+         else {
+            dictionary[key][lang] = (content[key] && content[key][1]) || '';
+         }
          if(dictionary[key][lang] === key)
             dictionary[key][lang] = '';
       });

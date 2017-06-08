@@ -7,6 +7,7 @@ import 'jquery-ui/ui/widgets/dialog';
 import './common/rivetsExtra.js';
 import images from './images/images.js';
 import {globals} from './common/globals.js';
+import {i18n} from './common/utils.js';
 
 import indicatorImages from './images/indicators/indicatorImages.js';
 
@@ -97,7 +98,7 @@ const init = (chart_series, indicator) => {
          dialogClass:'indicator-builder-ui-dialog webtrader-charts-dialog',
          buttons: [
             {
-               text: "OK",
+               text: i18n("OK"),
                click: () => {
                   const options = { };
                   let fields_are_valid = true;
@@ -146,7 +147,7 @@ const init = (chart_series, indicator) => {
                }
             },
             {
-               text: "Cancel",
+               text: i18n("Cancel"),
                click: () => closeDialog($html)
             }
          ]
