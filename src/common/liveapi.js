@@ -4,28 +4,18 @@ import {globals} from './globals.js';
 
 let socket = null;
 
-const config = {
-   appId: null,
-   lang: 'en',
-   server: 'wss://ws.binaryws.com/websockets/v3',
-   get url() {
-      // return `${this.server}?l=${this.lang}&app_id=${this.appId}`;
-      return `${this.server}?l=${this.lang}&app_id=${this.appId}`;
-   }
-};
-
 export const init = ({appId, lang = 'en', server = 'wss://ws.binaryws.com/websockets/v3'}) => {
    if(!appId) {
       throw new Error("appId is requried");
    }
-   config.appId = appId;
-   config.lang = lang;
-   config.server = server;
+   globals.config.appId = appId;
+   globals.config.lang = lang;
+   globals.config.server = server;
    socket = connect();
 }
 
 const connect = () => {
-   const ws = new WebSocket(config.url);
+   const ws = new WebSocket(globals.config.url);
 
    ws.addEventListener('open', onopen);
    ws.addEventListener('close', onclose);

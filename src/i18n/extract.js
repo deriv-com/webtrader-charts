@@ -9,7 +9,7 @@ const languages =  [
 ];
 const keys = [
    // overlay-management + indicator-management
-   'Add comparisons', 'Favorites', 'Add indicator', 'Volatility Indicators',
+   'Add comparisons', 'Current comparisons', 'Favorites', 'Add indicator', 'Volatility Indicators',
    'Overlap Studies', 'Momentum Indicators', 'Price Transformation', 
    'Statistical Functions', 'Pattern Recognition', 'Bill Williams',
    // chart-options
