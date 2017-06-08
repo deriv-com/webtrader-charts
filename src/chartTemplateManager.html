@@ -1,8 +1,10 @@
 <div class='menu' rv-if='route.value | eq "menu"'>
-  <a class="button-secondary" rv-on-click='menu.templates'><span>Load chart template</span></a>
-  <a class="button-secondary" rv-on-click='templates.confirm | bind null' rv-class-button-disabled='templates.current | negate'><span>Save changes</span></a>
-  <a class="button-secondary" rv-on-click='menu.save_as'><span>Save as...</span></a>
-  <a class="button-secondary" rv-on-click='menu.open_file_selector'><span>Upload template</span></a>
+  <a class="button-secondary" rv-on-click='menu.templates'><span rv-text='"Load chart template" | i18n'></span></a>
+  <a class="button-secondary" rv-on-click='templates.confirm | bind null | bind "Save"' rv-class-button-disabled='templates.current | negate'>
+     <span rv-text='"Save changes" | i18n'></span>
+  </a>
+  <a class="button-secondary" rv-on-click='menu.save_as'><span rv-text='"Save as" | i18n | append " ..."'></span></a>
+  <a class="button-secondary" rv-on-click='menu.open_file_selector'><span rv-text='"Upload template" | i18n'></span></a>
   <input type="file" rv-on-change='menu.upload'>
 </div>
 <div class='templates' rv-show='route.value | eq "templates"'>
@@ -10,62 +12,62 @@
     <span class='ui-icon ui-icon-triangle-1-w'></span> <a>Back</a>
   </span>
   <div rv-if='templates.array | prop "length" | negate'>
-    <div>You haven't saved any templates yet.</div><br/>
-    <div>Use the "Save as ..." button to save the chart settings, type, time period, indicators and comparisons.</div>
+     <div rv-text='"You haven&#39;t saved any templates yet" | i18n | append "."'></div><br/>
+     <div rv-text='"Use the &#34;Save as ...&#34; button to save the chart settings, type, time period, indicators and comparisons" | i18n | append "."'></div>
   </div>
   <div rv-if='templates.array | prop "length"'>
     <div rv-each-tmpl='templates.array' class='template'>
       <div class='name' rv-class-active='tmpl.random | eq templates.current.random' 
       rv-on-click='templates.apply| bind tmpl'>{tmpl.name}</div>
-      <a class="options" href="#" rv-on-click='templates.rename | bind tmpl'>Rename</a>
-      <a class="options" href="#" rv-on-click='templates.confirm | bind tmpl'>Delete</a>
-      <a class="options" href="#" rv-on-click="templates.download | bind tmpl">Download</a>
+      <a class="options" href="#" rv-on-click='templates.rename | bind tmpl' rv-text='"Rename" | i18n'></a>
+      <a class="options" href="#" rv-on-click='templates.confirm | bind tmpl | bind "Delete"' rv-text='"Delete" | i18n'></a>
+      <a class="options" href="#" rv-on-click='templates.download | bind tmpl' rv-text='"Download" | i18n'></a>
     </div>
   </div>
 </div>
 
 <div class='save-as' rv-if='route.value | eq "save-as"'>
     <span class='back-arrow' rv-on-click='route.update | bind "menu"'>
-      <span class='ui-icon ui-icon-triangle-1-w'></span> <a>Back</a>
+      <span class='ui-icon ui-icon-triangle-1-w'></span> <a rv-text='"Back" | i18n'></a>
     </span>
     <form rv-on-submit="templates.save_as">
-      <div class='title'>Name</div>
+      <div class='title' rv-text='"Name" | i18n'></div>
       <input rv-value='templates.save_as_value' maxlength="20" />
       <div class='errors'>
-        <span class='error' rv-show='templates.save_as_value | trim | eq ""'>This field is required.</span>
+        <span class='error' rv-show='templates.save_as_value | trim | eq ""' rv-text='"This field is required" | i18n | append "."'></span>
       </div>
 
       <button type="submit"
               rv-disabled='templates.save_as_value | trim | eq ""'
-              rv-css-opacity='templates.save_as_value | trim | eq "" | ternary 0.5 1' >Save</button>
+              rv-css-opacity='templates.save_as_value | trim | eq "" | ternary 0.5 1' rv-text='"Save" | i18n'></button>
     </form>
 </div>
 
 <div class='rename' rv-if='route.value | eq "rename"'>
     <span class='back-arrow' rv-on-click='route.update | bind "templates"'>
-      <span class='ui-icon ui-icon-triangle-1-w'></span> <a>Back</a>
+      <span class='ui-icon ui-icon-triangle-1-w'></span> <a rv-text='"Back" | i18n'></a>
     </span>
     <form rv-on-submit="templates.do_rename">
-      <div class='title'>Template name</div>
+      <div class='title' rv-text='"Template name" | i18n'></div>
       <input rv-value='templates.rename_value' maxlength="20" />
       <div class='errors'>
-        <span class='error' rv-show='templates.rename_value | trim | eq ""'>This field is required.</span>
+        <span class='error' rv-show='templates.rename_value | trim | eq ""' rv-text='"This field is required" | i18n | append "."'></span>
       </div>
 
       <button type="submit"
               rv-disabled='templates.rename_value | trim | eq ""'
-              rv-css-opacity='templates.rename_value | trim | eq "" | ternary 0.5 1' >Rename</button>
+              rv-css-opacity='templates.rename_value | trim | eq "" | ternary 0.5 1' rv-text='"Rename" | i18n'></button>
     </form>
 </div>
 <div class='confirm' rv-if='route.value | eq "confirm"'>
     <span class='back-arrow' rv-on-click='route.update | bind templates.confirm_prevMenu'>
-      <span class='ui-icon ui-icon-triangle-1-w'></span> <a>Back</a>
+      <span class='ui-icon ui-icon-triangle-1-w'></span> <a rv-text='"Back" | i18n'></a>
     </span>
 
     <div class="title">{templates.confirm_text}</div>
 
     <div class="button">
-      <button rv-on-click='templates.confirm_yes'>Yes</button>
-      <button rv-on-click='templates.confirm_no'>No</button>
+      <button rv-on-click='templates.confirm_yes' rv-text='"Yes" | i18n'></button>
+      <button rv-on-click='templates.confirm_no' rv-text='"No" | i18n'></button>
     </div>
 </div>

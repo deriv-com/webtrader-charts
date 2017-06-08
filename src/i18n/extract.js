@@ -8,20 +8,22 @@ const languages =  [
    // 'ach', 'ja', 'nl', 'zh', 
 ];
 const keys = [
-   'Cancel', 'OK',
    // overlay-management + indicator-management
    'Add comparisons', 'Current comparisons', 'Current indicators', 'Favorites', 'Add indicator', 'Volatility Indicators',
    'Overlap Studies', 'Momentum Indicators', 'Price Transformation', 
    'Statistical Functions', 'Pattern Recognition', 'Bill Williams',
+
    // chart-options
    'Time interval', 'Chart type', 'Indicators', 'Comparisons', 'Drawing tools',
    'Chart template', 'Share chart', 'Share', 'Link', 'Embed code', 'Download as',
    'Candles', 'OHLC', 'Line' , 'Dot' , 'Line Dot' , 'Spline' , 'Table', 'Crosshair',
    'Vertical line', 'Horizontal line', 'Tick', '1 Tick', '1 Minute', '1 Hour',
    '1 Day', 'Ticks', 'Minutes', 'Hours', 'Days',
+
    // chart-template-manager
-   'Load chart template', 'Save changes', 'Save as', 'Upload template', 'Back', 'Save',
-   `You haven't saved any templates yet`, 'Name', 'This field is required', 'Rename',
+   'Cancel', 'OK', 'Delete', 'Remove', 'Rename', 'Back', 'Save', 'Yes', 'No',
+   'Load chart template', 'Save changes', 'Save as', 'Upload template',
+   `You haven't saved any templates yet`, 'Name', 'This field is required',
    `Use the "Save as ..." button to save the chart settings, type, time period, indicators and comparisons`,
    
    // 'Are you sure you want to delete template?', 'Are you sure you want to overwrite current template?', 
