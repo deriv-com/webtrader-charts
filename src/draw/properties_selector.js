@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import html from './properties_selector.html';
 import {globals} from '../common/globals.js';
+import {i18n} from '../common/utils.js';
 
 let win = null;
 
@@ -16,43 +17,49 @@ export const open = (options, callback) => {
       modal: true,
       dialogClass:'webtrader-charts-dialog',
       destroy: () => { win = null; },
-      buttons: {
-         Ok: function() {
-            let css = { };
-            let error = false;
-            $html.find('input').each(function(index, ele) {
-               const id = $(ele).attr('id');
-               let value = null;
-               if ($(ele).attr('type') === 'number') {
-                  value = $(ele).val();
-                  const max = parseInt($(ele).attr('max')),
-                     min = parseInt($(ele).attr('min')),
-                     name = $(ele).attr('name');
-                  value = parseInt(value);
-                  if (value > max || value < min) {
-                     // TODO: i18n
-                     // message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
-                     //    min + ' and '.i18n() + max + "."
-                     globals.notification.error(`Please enter a value for "${name}" between ${min} and ${max}.`);
-                     error = true;
-                  }
-               } else {  // colorpicker
-                  value = $(ele).attr('rgba');
-               }
-               css[id] = value;
-            });
-            if (!error) {
+      buttons: [
+         { 
+            text: i18n('Cancel'),
+            click: function() {
                $(this).dialog('close');
-               $(this).dialog("destroy");
-               callback(css);
+               $(this).dialog('destroy');
+               return { };
             }
          },
-         Cancel: function() {
-            $(this).dialog('close');
-            $(this).dialog('destroy');
-            return { };
-         }
-      }
+         {
+            text: i18n("OK"),
+            click: function() {
+               let css = { };
+               let error = false;
+               $html.find('input').each(function(index, ele) {
+                  const id = $(ele).attr('id');
+                  let value = null;
+                  if ($(ele).attr('type') === 'number') {
+                     value = $(ele).val();
+                     const max = parseInt($(ele).attr('max')),
+                        min = parseInt($(ele).attr('min')),
+                        name = $(ele).attr('name');
+                     value = parseInt(value);
+                     if (value > max || value < min) {
+                        // TODO: i18n
+                        // message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
+                        //    min + ' and '.i18n() + max + "."
+                        globals.notification.error(`Please enter a value for "${name}" between ${min} and ${max}.`);
+                        error = true;
+                     }
+                  } else {  // colorpicker
+                     value = $(ele).attr('rgba');
+                  }
+                  css[id] = value;
+               });
+               if (!error) {
+                  $(this).dialog('close');
+                  $(this).dialog("destroy");
+                  callback(css);
+               }
+            },
+         },
+      ]
    });
 
    win.dialog('open');
