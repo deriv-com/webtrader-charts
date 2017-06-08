@@ -24,6 +24,7 @@ Take a look at `webpack.config.js -> externals`.
     lang: 'en',
     server: 'wss://ws.binaryws.com/websockets/v3'
  });
+ // supported langauges are [ 'ar', 'en', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw']
  
  const chart =  wtcharts.chartWindow.addNewChart($parent, {
     "type": "line",

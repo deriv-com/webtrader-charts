@@ -25,11 +25,16 @@ const keys = [
    'Load chart template', 'Save changes', 'Save as', 'Upload template',
    `You haven't saved any templates yet`, 'Name', 'This field is required',
    `Use the "Save as ..." button to save the chart settings, type, time period, indicators and comparisons`,
+
+   'Open', 'High', 'Low', 'Close',
+   '1t', '1m', '2m', '3m', '5m', '10m', '15m', '30m',
+   '1h', '2h', '4h', '8h', '1d'
    
    // 'Are you sure you want to delete template?', 'Are you sure you want to overwrite current template?', 
    // 'Template changes saved', 'Invalid JSON file', 'Invalid template type', 'Successfully applied the template and saved it as',
    // 'Downloading template as', 'Template name already exists',
    // 'Add/Remove indicators', 'Add/Remove comparisons',
+   // 'Error getting data for %1', 'Downloading .csv'
 ];
 
 const dictionary = { };

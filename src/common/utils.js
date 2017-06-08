@@ -81,7 +81,6 @@ export const uuid = () => {
 };
 
 export const i18n = key => {
-   console.warn(key);
    const lang = globals.config.lang;
    return (dictionary[key] && dictionary[key][lang]) || key;
 };
