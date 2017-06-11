@@ -14,7 +14,6 @@ const chart =  wtcharts.chartWindow.addNewChart($parent, {
    "instrumentName": "German Index",
    "timePeriod": "1d",
    "type": "candlestick",
-   "delayAmount": 15,
    "indicators": [],
    "overlays": []
 });
@@ -22,7 +21,6 @@ const chart =  wtcharts.chartWindow.addNewChart($parent, {
 // const chart =  wtcharts.chartWindow.addNewChart($parent, {
 //    "type": "line",
 //    "timePeriod": "1m",
-//    "delayAmount": 0,
 //    "instrumentCode": "RDBULL",
 //    "instrumentName": "Bull Market Index",
 //    "showInstrumentName": true, // default is false
