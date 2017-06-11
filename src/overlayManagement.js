@@ -19,7 +19,7 @@ rv.formatters['overlays-filter'] = (array, search) => {
    );
 };
 
-const chartableMarkets = () => {
+export const chartableMarkets = () => {
    return liveapi
       .cached.send({ trading_times: new Date().toISOString().slice(0, 10) })
       .then(function(data) {
@@ -308,6 +308,7 @@ export const events = $('<div/>');
 export default { 
    openDialog,
    specificMarketDataSync,
+   chartableMarkets,
    events
 }
 

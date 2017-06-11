@@ -5,6 +5,7 @@ import charts from './charts.js';
 import tableView from './tableView.js';
 import chartOptions from './chartOptions.js';
 import liveapi from './common/liveapi.js';
+import {chartableMarkets} from './overlayManagement.js';
 
 const triggerResizeEffects = (dialog) => {
     dialog.find('.chartSubContainer').width(dialog.width());
@@ -14,6 +15,11 @@ const triggerResizeEffects = (dialog) => {
     const containerIDWithHash = '#' + dialog.find('.chartSubContainer').attr('id');
     charts.triggerReflow(containerIDWithHash);
 }
+
+const delayAmountFor = (symbol) => chartableMarkets().then(markets => {
+   const instrument = _.find(_.flatMap(_.flatMap(markets, 'submarkets'), 'instruments'), {symbol: symbol});
+   return (instrument && instrument.delay_amount) || 0;
+});
 
 const Store = {};
 let idCounter = 0;
@@ -86,17 +92,21 @@ export const addNewChart = function($parent, options) {
     dialog.on('chart-options-changed', function(e) {
         instance.events.anyChange && instance.events.anyChange({data: Store[id]});
     });
-    /* initialize chartOptions & table-view once chart is rendered */
-    charts.drawChart("#" + id + "_chart", options, instance.actions.reflow);
-    const table_view = tableView.init(dialog);
-    chartOptions.init(id, table_view.show, {
-       timePeriod: options.timePeriod,
-       chartType: options.type,
-       instrumentName: options.instrumentName,
-       instrumentCode: options.instrumentCode,
-       showInstrumentName: options.showInstrumentName,
-       showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
-       showShare: true,
+    delayAmountFor(options.instrumentCode).then(delayAmount => {
+       options.delayAmount = options.delayAmount || delayAmount;
+       Store[id].delayAmount = Store[id].delayAmount || delayAmount;
+       /* initialize chartOptions & table-view once chart is rendered */
+       charts.drawChart("#" + id + "_chart", options, instance.actions.reflow);
+       const table_view = tableView.init(dialog);
+       chartOptions.init(id, table_view.show, {
+          timePeriod: options.timePeriod,
+          chartType: options.type,
+          instrumentName: options.instrumentName,
+          instrumentCode: options.instrumentCode,
+          showInstrumentName: options.showInstrumentName,
+          showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
+          showShare: true,
+       });
     });
 
     return instance;

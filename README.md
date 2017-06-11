@@ -29,7 +29,6 @@ Take a look at `webpack.config.js -> externals`.
  const chart =  wtcharts.chartWindow.addNewChart($parent, {
     "type": "line",
     "timePeriod": "1m",
-    "delayAmount": 0,
     "instrumentCode": "RDBULL",
     "instrumentName": "Bull Market Index",
     "showInstrumentName": true, // default is false
