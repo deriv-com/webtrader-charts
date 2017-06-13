@@ -15,11 +15,12 @@ import loki from 'lokijs';
 import _ from 'lodash';
 import $ from 'jquery';
 import liveapi from './liveapi.js';
-import {globals} from './globals.js';
+import notification from './notification.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
-   isTick, isLineDotType, isDotType
+   isTick, isLineDotType, isDotType,
+   i18n
 } from './utils.js';
 
 const db = new loki();
@@ -189,7 +190,7 @@ export const keyFor = (symbol, granularity_or_timeperiod) => {
     will return a promise
 */
 
-export const register = function(options) {
+export const register = function(options, dialog_id) {
     const map = this;
     const key = map.keyFor(options.symbol, options.granularity);
 
@@ -241,9 +242,7 @@ export const register = function(options) {
         .catch((up) => {
             /* if the market is closed try the same request without subscribing */
             if (req.subscribe && up.code == 'MarketIsClosed') {
-                // TODO: i18n
-                //({ message: options.symbol + ' market is presently closed.'.i18n() }); 
-                globals.notification.notice(options.symbol + ' market is presently closed.'); 
+                notification.info(`${options.symbol} ${i18n('market is presently closed')}.`, dialog_id); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
                 map[key].subscribers -= 1;

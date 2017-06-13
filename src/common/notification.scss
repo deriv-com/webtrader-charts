@@ -1,0 +1,12 @@
+#toast-container {
+   font-size: 14px;
+   position: absolute !important;
+   > .toast.toast {
+      background-image: none !important;
+      padding: 7px 10px 7px 10px;
+   }
+   .toast-warning.toast-warning {
+      background-color: #FEF1CF !important;
+      color: black;
+   }
+}

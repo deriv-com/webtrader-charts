@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import _ from 'lodash';
+import notification from './notification.js';
 import {globals} from './globals.js';
+import {i18n} from './utils.js';
 
 let socket = null;
 
@@ -12,6 +14,7 @@ export const init = ({appId, lang = 'en', server = 'wss://ws.binaryws.com/websoc
    globals.config.lang = lang;
    globals.config.server = server;
    socket = connect();
+   window.ss = socket;
 }
 
 const connect = () => {
@@ -22,9 +25,6 @@ const connect = () => {
    ws.addEventListener('message', onmessage);
 
    ws.addEventListener('error',(event) => {
-      // TODO: i18n
-      // ({message: 'Connection error.'.i18n()});
-      globals.notification.error('Connection error.');
       onclose(); // try to reconnect
    });
 
@@ -34,6 +34,7 @@ const connect = () => {
 let timeoutIsSet = false;
 // TODO: refresh open charts
 const onclose = () => {
+   notification.error(`${i18n('Connection error')}.`, '.webtrader-charts-chart-window-contianer');
    if(!timeoutIsSet) {
       timeoutIsSet = true;
       _.delay(() => {

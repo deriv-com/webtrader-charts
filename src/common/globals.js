@@ -1,10 +1,6 @@
 import $ from 'jquery';
+
 export const globals = {
-   notification: {
-      error: (msg) => $.growl && $.growl.error && $.growl.error({message: msg}),
-      warning: (msg) => $.growl && $.growl.warning && $.growl.warning({message: msg}),
-      notice: (msg) => $.growl && $.growl.notice && $.growl.notice({message: msg}),
-   },
    config: {
       appId: null,
       lang: 'en', // i18n() in utils.js uses this.

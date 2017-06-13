@@ -61,17 +61,3 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart.
 ```
-
-### Globals
-Handle notification by providing your own `wtcharts.globals.notification`.
-```js
- import $ from 'jquery';
- import 'jquery-growl'; // notification library
- export const globals = {
-    notification: {
-       error: (msg) => $.growl.error({message: msg}),
-       warning: (msg) => $.growl.warning({message: msg}),
-       notice: (msg) => $.growl.notice({message: msg}),
-    }
- };
- ```

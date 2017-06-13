@@ -4,8 +4,8 @@ import rv from 'rivets';
 import html from './chartTemplateManager.html';
 import chartWindow from './chartWindow.js';
 import chartOptions from './chartOptions.js';
+import notification from './common/notification.js';
 import {local_storage, i18n} from './common/utils.js';
-import {globals} from './common/globals.js';
 
 if(!local_storage.get('templates')) {
   local_storage.set('templates', []);
@@ -25,6 +25,7 @@ class ChartTemplateManager {
     const state = this.init_state(root, dialog_id);
     root.append(html);
     this.view = rv.bind(root[0], state);
+    this.target = `#${dialog_id}`;
   }
 
   init_state(root, dialog_id) {
@@ -84,7 +85,7 @@ class ChartTemplateManager {
       local_storage.set('templates', array);
       templates.array = array;
       templates.current = current;
-      globals.notification.notice(`${i18n('Template changes saved')} (${current.name})`);
+      notification.info(`${i18n('Template changes saved')} (${current.name})`, this.target);
     };
 
     menu.open_file_selector = (event) => {
@@ -120,7 +121,7 @@ class ChartTemplateManager {
             throw i18n('Invalid template type');
           }
         } catch(e) {
-          globals.notification.error(e);
+          notification.error(e, this.target);
           return;
         }
 
@@ -141,7 +142,7 @@ class ChartTemplateManager {
         array.push(data);
         local_storage.set('templates', array);
         templates.array = array;
-        globals.notification.notice(`${i18n('Successfully applied the template and saved it as')} <b>${data.name}</b>`);
+        notification.notice(`${i18n('Successfully applied the template and saved it as')} <b>${data.name}</b>`, this.target);
       };
 
       reader.readAsText(file);
@@ -169,7 +170,7 @@ class ChartTemplateManager {
     templates.download = (tmpl) => {
       var json = JSON.stringify(tmpl);
       download_file_in_browser(tmpl.name + '.json', 'text/json;charset=utf-8;', json);
-      globals.notification.notice(`${i18n('Downloading template as')} <b>${tmpl.name}.json</b>`);
+      notification.info(`${i18n('Downloading template as')} <b>${tmpl.name}.json</b>`, this.target);
     };
 
     templates.remove = (tmpl) => {
@@ -193,7 +194,7 @@ class ChartTemplateManager {
       const new_name = templates.rename_value.substring(0,20).replace(/[<>]/g,"-");
       const array = local_storage.get('templates');
       if(array.map(t => t.name).includes(new_name)) {
-          globals.notification.error(i18n('Template name already exists'));
+          notification.error(i18n('Template name already exists'), this.target);
           return;
       }
       const tmpl = array.find(t => t.name === name);
@@ -256,7 +257,7 @@ class ChartTemplateManager {
     // get template with same values.
     const tmpl_copy = _.find(array, ['random', tmpl.random]);
     if(tmpl_copy){
-      globals.notification.error(`${i18n('Template already saved as')} <b>${tmpl_copy.name}</b>.`);
+      notification.error(`${i18n('Template already saved as')} <b>${tmpl_copy.name}</b>.`, this.target);
       return true;
     }
     return false;

@@ -55,8 +55,6 @@ const init = () => {
 
 const init_dialog_async = (root) => {
    return new Promise((resolve, reject) => {
-      // TODO: i18n
-      // root = $(root).i18n();
       root = $(root);
 
       let option = {

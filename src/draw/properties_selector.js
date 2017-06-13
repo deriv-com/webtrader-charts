@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import html from './properties_selector.html';
-import {globals} from '../common/globals.js';
+import notification from '../common/notification.js';
 import {i18n} from '../common/utils.js';
 
 let win = null;
@@ -15,7 +15,7 @@ export const open = (options, callback) => {
       width: 240,
       height: 200,
       modal: true,
-      dialogClass:'webtrader-charts-dialog',
+      dialogClass: 'webtrader-charts-dialog webtrader-charts-properties-selector-dialog',
       destroy: () => { win = null; },
       buttons: [
          { 
@@ -41,10 +41,7 @@ export const open = (options, callback) => {
                         name = $(ele).attr('name');
                      value = parseInt(value);
                      if (value > max || value < min) {
-                        // TODO: i18n
-                        // message: 'Please enter a value for "'.i18n() + name + '" between '.i18n() +
-                        //    min + ' and '.i18n() + max + "."
-                        globals.notification.error(`Please enter a value for "${name}" between ${min} and ${max}.`);
+                        notification.error(`Please enter a value for "${name}" between ${min} and ${max}.`, '.webtrader-charts-dialog.webtrader-charts-properties-selector-dialog');
                         error = true;
                      }
                   } else {  // colorpicker
@@ -77,8 +74,6 @@ export const open = (options, callback) => {
       }
       ele = $("<tr><td><strong>" + input.name + "</strong></td><td></td></tr>");
       inputElement.appendTo(ele.find('td')[1]);
-      // TODO: i18n
-      // $(ele).i18n().appendTo(table);
       $(ele).appendTo(table);
 
       if (input.type === "colorpicker") {

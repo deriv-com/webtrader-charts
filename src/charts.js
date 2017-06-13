@@ -10,7 +10,7 @@ import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators.json';
-import {globals} from './common/globals.js';
+import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js'
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import {i18n} from './common/utils.js';
@@ -105,7 +105,7 @@ export const destroy = (options) => {
     chartingRequestMap.unregister(key, containerIDWithHash);
 }
 
-export const generate_csv = (chart, data) => {
+export const generate_csv = (chart, data, dialog_id) => {
     let lines = [],
         dataToBeProcessTolines = [];
     const flattenData = (d) => {
@@ -149,7 +149,7 @@ export const generate_csv = (chart, data) => {
         }
     });
 
-    globals.notification.notice(i18n('Downloading .csv'));
+    notification.info(i18n('Downloading .csv'), `#${dialog_id}`);
 
 
     const filename = data.instrumentName + ' (' + data.timePeriod + ')' + '.csv';
@@ -194,7 +194,7 @@ export const generate_csv = (chart, data) => {
           }
        }
        catch(e) {
-          globals.notification.error('Error downloading .csv');
+          notification.error('Error downloading .csv', `#${dialog_id}`);
           console.error(e);
        }
     });
@@ -269,7 +269,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             delayAmount: options.delayAmount
                         }).catch((err) => {
                             const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
-                            globals.notification.error(msg);
+                            notification.error(msg, containerIDWithHash.replace('_chart', ''));
                             const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);

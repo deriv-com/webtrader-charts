@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import liveapi from './liveapi.js';
 import chartingRequestMap from './chartingRequestMap.js';
-import { convertToTimeperiodObject, isTick } from './utils.js';
-import {globals} from './globals.js';
+import { convertToTimeperiodObject, isTick, i18n } from './utils.js';
+import notification from './notification.js';
 
 const barsTable = chartingRequestMap.barsTable;
 
@@ -86,6 +86,8 @@ export const retrieveChartDataAndRender = (options) => {
       return Promise.resolve();
    }
 
+   const dialog_id = containerIDWithHash.replace('_chart', '');
+
    const done_promise = chartingRequestMap.register({
       symbol: instrumentCode,
       granularity: timePeriod,
@@ -93,23 +95,20 @@ export const retrieveChartDataAndRender = (options) => {
       style: !isTick(timePeriod) ? 'candles' : 'ticks',
       count: 1000,          //We are only going to request 1000 bars if possible
       adjust_start_time: 1
-   })
+   }, dialog_id)
       .catch((err) => {
-         // TODO: i18n
-         // const msg = 'Error getting data for %1'.i18n().replace('%1', instrumentName);
-         const msg = 'Error getting data for %1'.replace('%1', instrumentName);
-         globals.notification.error(msg);
+         const msg = i18n('Error getting data for %1').replace('%1', instrumentName);
+         notification.error(msg, dialog_id);
          const chart = $(containerIDWithHash).highcharts();
          chart && chart.showLoading(msg);
          console.error(err);
       })
       .then((data) => {
          if (data && !data.error && options.delayAmount > 0) {
-            // TODO: i18n ({
-            //    message: instrumentName + ' feed is delayed by '.i18n() +
-            //    options.delayAmount + ' minutes'.i18n()
-            // })
-            globals.notification.warning(`${instrumentName} feed is delayed by ${options.delayAmount} minutes`);
+            notification.warning(
+                  `${instrumentName} ${i18n('feed is delayed by')} ${options.delayAmount} ${i18n('minutes')}`,
+                  dialog_id
+            );
 
             //start the timer
             chartingRequestMap[key].timerHandler = setInterval(() => {

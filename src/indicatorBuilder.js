@@ -6,7 +6,7 @@ import './indicatorBuilder.scss';
 import 'jquery-ui/ui/widgets/dialog';
 import './common/rivetsExtra.js';
 import images from './images/images.js';
-import {globals} from './common/globals.js';
+import notification from './common/notification.js';
 import {i18n} from './common/utils.js';
 
 import indicatorImages from './images/indicators/indicatorImages.js';
@@ -132,9 +132,7 @@ const init = (chart_series, indicator) => {
                   }
 
                   if(!fields_are_valid) {
-                     // TODO: i18n
-                     // ({ message: "Invalid parameter(s)!".i18n() });
-                     globals.notification.error('Invalid parameter(s)!');
+                     notification.error(i18n('Invalid parameter(s)!'), '.indicator-builder-ui-dialog.webtrader-charts-dialog');
                      return;
                   }
 
