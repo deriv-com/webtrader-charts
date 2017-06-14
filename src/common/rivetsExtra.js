@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import rv from 'rivets';
-import 'jquery-ui/ui/widgets/slider';
 import 'spectrum-colorpicker';
 import 'spectrum-colorpicker/spectrum.css';
 import '../lib/jquery.ddslick.js';
@@ -13,35 +12,29 @@ rv.binders['attr-*'] = {
       el.setAttribute(this.args[0],value)
    }
 }
-rv.binders.slider = {
+rv.binders.range = {
    priority: 95,
    publishes: true,
    bind: function (el) {
-      const div = $(el);
-      const handle = $('<div class="ui-slider-handle"></div>');
-      div.append(handle);
+      const input = $(el);
+		input.parent().css({position: 'relative'});
+		input.css({position: 'relative', top: '8px'});
+      const handle = $('<div style="position: absolute; top: -4px; font-size: 12px;"></div>');
+		handle.insertAfter(input);
 
-      const publish = this.publish;
-      const model = this.model;
-
-      div.slider({
-         step: div.attr('step')*1 || 1,
-         min: div.attr('min') === undefined ? 1 : div.attr('min')*1,
-         max: div.attr('max')*1 || 100,
-         create: function() {
-            handle.text($(this).slider("value"));
-         },
-         slide: ( event, ui ) => {
-            handle.text(ui.value);
-            model.value = ui.value*1;
-         }
-      });
+		const update =  () => {
+			const min = (input.attr('min') || 0)*1;
+			const max = (input.attr('max') || 0)*1;
+			const val = input.val()*1;
+			handle.text(val);
+			const left = ((val-min)/(max - min))*(input.width()-16) + 16 - handle.width()/2;
+			handle.css({left: `${left.toFixed(2)}px`});
+		};
+		input.on('change input', update);
+		setTimeout(() => update(), 1000);
    },
-   unbind: (el) => $(el).slider('destroy'),
-   routine: (el, value) => {
-      $(el).slider('value', value);
-      $(el).find('> div').text(value);
-   }
+   unbind: (el) => { },
+   routine: (el, value) => { }
 }
 rv.binders['color-picker'] = {
    priority: 96,
