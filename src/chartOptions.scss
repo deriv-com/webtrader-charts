@@ -46,6 +46,14 @@
     background: #fff;
     border: 1px solid #c2c2c2;
     color: #2a3052;
+    span[data-balloon]:before {
+       line-height: 0;
+       height: 0;
+       font-size: 12px;
+       box-shadow: none;
+       border-radius: 0;
+       border: none;
+    }
   }
 
   .img {
