@@ -11,7 +11,6 @@
       ]
    }
 */
-import loki from 'lokijs';
 import _ from 'lodash';
 import $ from 'jquery';
 import liveapi from './liveapi.js';
@@ -23,8 +22,48 @@ import {
    i18n
 } from './utils.js';
 
-const db = new loki();
-export const barsTable = db.addCollection('bars_table');
+const bars = {};
+export const barsTable = {
+   insert: bar => {
+      const key = bar.instrumentCdAndTp;
+      const array = bars[key] = bars[key] || [];
+      array.splice(_.sortedIndexBy(array, bar, 'time'), 0, bar);
+   },
+	update: bar => {
+      const key = bar.instrumentCdAndTp;
+      const array = bars[key] = bars[key] || [];
+		const index = _.sortedIndexBy(array, bar, 'time');
+		array[index] = bar;
+	},
+	find: bar => {
+      const key = bar.instrumentCdAndTp;
+      const array = bars[key] = bars[key] || [];
+		const index = _.sortedIndexBy(array, bar, 'time');
+		if(array.length > index && array[index].time == bar.time)
+			return _.clone(array[index]);
+		return null;
+	},
+	/* = {key, take, reverse, time) */
+	query: options  => {
+      const key = options.instrumentCdAndTp;
+      let array = bars[key] = bars[key] || [];
+		if(options.time) {
+			const index = _.sortedIndexBy(array, {time: options.time}, 'time');
+			array = array.slice(index);
+		}
+		if(options.take) {
+			if(options.reverse)
+				array = _.takeRight(array, options.take);
+			else
+				array = _.take(array, options.take);
+		}
+		array = _.clone(array);
+		if(options.reverse) {
+			_.reverse(array);
+		}
+		return array;
+	}
+};
 
 export const barsLoaded = function(instrumentCdAndTp) {
 
@@ -46,13 +85,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
 
             const lastBarOpenTime = series.data[series.data.length - 1] && (series.data[series.data.length - 1].x || series.data[series.data.length - 1].time);
             if(!lastBarOpenTime) return;
-            const db_bars = barsTable
-                .chain()
-                .find({ instrumentCdAndTp: key })
-                .where((obj) => {
-                    return obj.time >= lastBarOpenTime;
-                })
-                .simplesort('time', false).data();
+            const db_bars = barsTable.query({instrumentCdAndTp: key, time: lastBarOpenTime});
 
             for (let index in db_bars) {
                 const dbBar = db_bars[index];
@@ -91,11 +124,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
             //We just want to get bars which are after the last complete rendered bar on chart(excluding the currently forming bar because that might change its values)
             const dataInHighChartsFormat = [];
 
-            const db_bars = barsTable
-                .chain()
-                .find({ instrumentCdAndTp: key })
-                .simplesort('time', false)
-                .data();
+            const db_bars = barsTable.query({ instrumentCdAndTp: key });
             for (const barIndex in db_bars) {
                 processOHLC(db_bars[barIndex].open, db_bars[barIndex].high, db_bars[barIndex].low, db_bars[barIndex].close,
                     db_bars[barIndex].time, type, dataInHighChartsFormat);
@@ -334,15 +363,13 @@ export const digits_after_decimal = function(pip, symbol) {
          */
         const key = this.keyFor(symbol, 0);
         let decimal_digits = 0;
-        barsTable.chain()
-            .find({ instrumentCdAndTp: key })
-            .simplesort("time", true).limit(10).data()
-            .forEach((d) => {
-                const quote = d.close + '';
-                const len = quote.substring(quote.indexOf('.') + 1).length;
-                if (len > decimal_digits)
-                    decimal_digits = len;
-            });
+		  const db_bars = barsTable.query({ instrumentCdAndTp: key, take: 10, reverse: true });
+		  db_bars.forEach((d) => {
+			  const quote = d.close + '';
+			  const len = quote.substring(quote.indexOf('.') + 1).length;
+			  if (len > decimal_digits)
+				  decimal_digits = len;
+		  });
         return decimal_digits;
     }
     return pip.substring(pip.indexOf(".") + 1).length;

@@ -45,6 +45,7 @@ rv.binders['color-picker'] = {
       const model = this.model;
       const color = model.value || '#cd0a0a';
 
+      input.scrollParent().on('scroll', () => input.spectrum('hide'));
       input.spectrum({
          color: color,
          showButtons: false,

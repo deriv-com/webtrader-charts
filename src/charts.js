@@ -135,11 +135,7 @@ export const generate_csv = (chart, data, dialog_id) => {
             else lines.push('Date,Time,"' + series.userOptions.name + '"');
             //newDataLines is incorrect - get it from lokijs
             const key = chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod);
-            const bars = chartingRequestMap.barsTable
-                .chain()
-                .find({ instrumentCdAndTp: key })
-                .simplesort('time', false)
-                .data();
+            const bars = chartingRequestMap.barsTable.query({ instrumentCdAndTp: key });
             lines = lines.concat(bars.map((b) => {
                 return ohlc ? ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm') + '"', b.open, b.high, b.low, b.close].join(',') : ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm:ss') + '"', b.close].join(',');
             }));

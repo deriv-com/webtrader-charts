@@ -7,13 +7,8 @@ import notification from './notification.js';
 const barsTable = chartingRequestMap.barsTable;
 
 const processCandles = (key, time, open, high, low, close) => {
-   let bar = barsTable.chain()
-      .find({time : time})
-      .find({instrumentCdAndTp : key})
-      .limit(1)
-      .data();
-   if (bar && bar.length > 0) {
-      bar = bar[0];
+   let bar = barsTable.find({time: time, instrumentCdAndTp: key});
+   if (bar) {
       bar.open = open;
       bar.high = high;
       bar.low = low;
@@ -112,11 +107,7 @@ export const retrieveChartDataAndRender = (options) => {
 
             //start the timer
             chartingRequestMap[key].timerHandler = setInterval(() => {
-               let lastBar = barsTable.chain()
-                  .find({instrumentCdAndTp : key})
-                  .simplesort('time', true)
-                  .limit(1)
-                  .data();
+               let lastBar = barsTable.query({instrumentCdAndTp : key, take: 1, reverse: true });
                if (lastBar && lastBar.length > 0) {
                   lastBar = lastBar[0];
                   //requests new bars

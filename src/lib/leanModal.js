@@ -44,7 +44,6 @@ $.fn.extend({
 				left : '50%',
 				top : `${o.top}px`,
 				'box-sizing': 'border-box',
-				'z-index': 11000,
 				'margin-left' : -(o.width/2) + 'px'
 			});
 			titlebar.css({

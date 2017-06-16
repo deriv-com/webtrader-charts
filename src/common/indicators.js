@@ -29,11 +29,7 @@ var indicators = {
 
    initHighchartIndicators : function(barsTable) {
       Highcharts.Series.prototype.addIndicator = function(indicatorID, options) {
-         var data = barsTable
-            .chain()
-            .find({instrumentCdAndTp: this.options.id})
-            .simplesort('time', false)
-            .data();
+         var data = barsTable.query({instrumentCdAndTp: this.options.id});
          //Class name for all CDL type of indicators is CDL
          var indicatorObject = new window[_.startsWith(indicatorID.toUpperCase(), 'CDL') ? 'CDL' : indicatorID.toUpperCase()](data, options, indicators);
          var series = this;
@@ -115,11 +111,7 @@ var indicators = {
          var series = this;
          if (series.options.isInstrument && series.options.id !== 'navigator') {
             var time = options[0];
-            var bar = (barsTable.chain()
-               .find({'$and': [{instrumentCdAndTp: series.options.id}, {time: time}]})
-               .simplesort("time", true)
-               .limit(1)
-               .data() || [])[0];
+            var bar = barsTable.find({instrumentCdAndTp: series.options.id, time: time});
             if (bar) {
                for (var key in indicatorsMetaData) {
                   var each = indicatorsMetaData[key];
@@ -166,11 +158,7 @@ var indicators = {
          var series = this.series;
          if (series.options.isInstrument && series.options.id !== 'navigator') {
             var time = this.x || this.time;
-            var bar = (barsTable.chain()
-               .find({'$and': [{instrumentCdAndTp: series.options.id}, {time: time}]})
-               .simplesort("time", true)
-               .limit(1)
-               .data() || [])[0];
+            var bar = barsTable.find({instrumentCdAndTp: series.options.id, time: time});
             if (bar) {
                for (var key in indicatorsMetaData) {
                   var each = indicatorsMetaData[key];

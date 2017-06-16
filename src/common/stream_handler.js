@@ -37,10 +37,7 @@ liveapi.events.on('tick', (e, data) => {
          barsTable.insert(tick);
          /* notify subscribers */
          let preTick = tick;
-         const bars = barsTable.chain()
-            .find({ instrumentCdAndTp: key })
-            .simplesort('time', true)
-            .limit(2).data();
+         const bars = barsTable.query({ instrumentCdAndTp: key, take: 2, reverse: true });
          if (bars.length > 1)
             preTick = bars[1];
          events.trigger('tick', [{ tick: tick, key: key, preTick: preTick }]);
@@ -87,13 +84,9 @@ liveapi.events.on('ohlc', (e, data) => {
          return;
       }
 
-      let bar = barsTable.chain()
-         .find({ '$and': [{instrumentCdAndTp: key}, {time : time}] })
-         .simplesort("time", true)
-         .limit(1)
-         .data();
+      let bar = barsTable.find({ instrumentCdAndTp: key, time: time });
       let isNew = false;
-      if (!bar || bar.length <= 0) {
+      if (!bar) {
          bar = {
             instrumentCdAndTp: key,
             time: time,
@@ -105,7 +98,6 @@ liveapi.events.on('ohlc', (e, data) => {
          barsTable.insert(bar);
          isNew = true;
       } else {
-         bar = bar[0];
          bar.open = open;
          bar.high = high;
          bar.low = low;
@@ -114,10 +106,7 @@ liveapi.events.on('ohlc', (e, data) => {
       }
 
       let preOhlc = bar;
-      const bars = barsTable.chain()
-         .find({ instrumentCdAndTp: key })
-         .simplesort('time', true)
-         .limit(2).data();
+      const bars = barsTable.query({ instrumentCdAndTp: key, take: 2, reverse: true });
       if (bars.length > 1) {
          preOhlc = bars[1];
       }
