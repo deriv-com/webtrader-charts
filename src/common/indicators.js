@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import indicatorsArray from '../indicators.json';
+import indicatorsArray from '../indicators-config.js';
 
 const indicatorsMetaData = _.cloneDeep(indicatorsArray);
 
@@ -286,7 +286,7 @@ var indicators = {
       var candleSize = Math.abs(high - low);
       return bodySize >= (.7 * candleSize);
    },
-   /*Return indicators.json data*/
+   /*Return indicators-config.js data*/
    getIndicatorsJSONData: function() {
       return indicatorsMetaData;
    },

@@ -4,7 +4,7 @@ import _ from 'lodash';
 import html from './indicatorManagement.html';
 import './common/rivetsExtra.js';
 import './indicatorManagement.scss';
-import indicatorsArray from './indicators.json';
+import indicatorsArray from './indicators-config.js';
 import indicatorBuilder from './indicatorBuilder.js';
 import {isTick, local_storage, i18n} from './common/utils.js';
 

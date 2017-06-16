@@ -9,7 +9,7 @@ import liveapi from './common/liveapi.js';
 import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
-import indicatorsArray from './indicators.json';
+import indicatorsArray from './indicators-config.js';
 import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js'
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
@@ -21,7 +21,7 @@ import './charts.scss';
 // if(lang !== "en") // Load moment js locale file.
 //     require(['moment-locale/'+lang]); 
 
-const indicator_values = _.values(indicatorsArray);
+const indicator_values = _.values(_.cloneDeep(indicatorsArray));
 Highcharts.Chart.prototype.get_indicators = function() {
     const chart = this;
     const indicators = [];

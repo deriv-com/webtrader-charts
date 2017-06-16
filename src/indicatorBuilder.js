@@ -151,7 +151,7 @@ const init = (chart_series, indicator) => {
 }
 
 /**
- * @param indicator - indicator options from indicators.json
+ * @param indicator - indicator options from indicators-config.js
  * @param chart_series - chart.highcharts().series
  * @param before_add_cb - callback that will be called just before adding the indicator
  */
