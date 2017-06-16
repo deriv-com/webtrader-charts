@@ -141,3 +141,14 @@ rv.formatters['prop'] = (value, prop) => value && value[prop];
 rv.formatters['bind'] = (fn, value) => fn.bind(undefined, value);
 rv.formatters['i18n'] = i18n;
 
+
+// shim for jquery-ui scrollParent
+$.fn.scrollParent = $.fn.scrollParent || function (e){
+	var i=this.css("position"),
+	s="absolute"===i,
+	n=e?/(auto|scroll|hidden)/:/(auto|scroll)/,
+	o=this.parents().filter(function(){
+		var e=$(this);return s&&"static"===e.css("position")?!1:n.test(e.css("overflow")+e.css("overflow-y")+e.css("overflow-x"))
+	}).eq(0);
+	return"fixed"!==i&&o.length?o:$(this[0].ownerDocument||document);
+}
