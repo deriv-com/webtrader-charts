@@ -1,5 +1,19 @@
 import './IndicatorBase.js';
-import './cdl.js';
+
+// import './cdl.js';
+/* amin:
+ * cdl.js is too big, even after minfiying with uglifyjs.
+ * But uglifyjs has an option to mangle property names, we can CAREFULLY take advantage of this option.
+ *
+ * Use this command to mangle object properties, 
+ *
+ * "uglifyjs cdl.js --beautify --mangle-props regex=/^(candle|isCandle).*$/  > cdl-mangled-props.js"
+ *
+ * the file cdl-mangled-props.js will be included in the project bundle.
+ * This will reduce the final bundle size about 35KB.
+*/
+import './cdl-mangled-props.js';
+
 import './stoch.js';
 import './sma.js';
 import './wma.js';
