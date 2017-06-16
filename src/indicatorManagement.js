@@ -1,12 +1,12 @@
 /* created by amin, on May 20, 2016 */
 import rv from 'rivets';
 import _ from 'lodash';
-import root from './indicatorManagement.html';
+import html from './indicatorManagement.html';
 import './common/rivetsExtra.js';
 import './indicatorManagement.scss';
 import indicatorsArray from './indicators.json';
 import indicatorBuilder from './indicatorBuilder.js';
-import {isTick, local_storage} from './common/utils.js';
+import {isTick, local_storage, i18n} from './common/utils.js';
 
 let ind_win = null,
    ind_win_view = null,
@@ -46,39 +46,7 @@ rv.formatters['indicators-categories'] = (array, search) => { /* rviets formatte
 };
 
 const init = () => {
-   if (!ind_win)
-      return new Promise((resolve, reject) => {
-         init_dialog_async(root).then(resolve);
-      });
-   return Promise.resolve();
-};
-
-const init_dialog_async = (root) => {
-   return new Promise((resolve, reject) => {
-      root = $(root);
-
-      let option = {
-         // TODO: i18n
-         // title: 'Add/remove indicators'.i18n(),
-         title: 'Add/remove indicators',
-         modal: true,
-         resizable: false,
-         dialogClass:'webtrader-charts-dialog',
-         destroy: () => {
-            ind_win_view && ind_win_view.unbind();
-            ind_win_view = null;
-            ind_win.dialog('destroy').remove();
-            ind_win = null;
-         },
-         width: ($(window).width() > 800) ? 700 : Math.min(480, $(window).width() - 10),
-         height: 400,
-         open: () => { },
-      };
-
-      ind_win = root.dialog(option);
-      init_state(root);
-      resolve();
-   });
+	return root;
 };
 
 const init_state = (root) => {
@@ -102,13 +70,13 @@ const init_state = (root) => {
 
    state.indicators.add = (indicator) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      ind_win.dialog('close');
+      ind_win.trigger('close');
       indicatorBuilder.open(copy, chart_series);
    };
 
    state.indicators.edit = (indicator) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      ind_win.dialog('close');
+      ind_win.trigger('close');
       indicatorBuilder.open(copy, chart_series, () => {
          state.indicators.remove(indicator);
       });
@@ -174,23 +142,30 @@ const update_indicators = (series) => {
    state.indicators.current = current;
 };
 
-let first_time = true;
 export const openDialog = (containerIDWithHash, title) => {
-   init().then(() => {
-      // TODO: i18n
-      // state.dialog.title = 'Add/remove indicators'.i18n() + (title ? ' - ' + title : '');
-      state.dialog.title = 'Add/remove indicators' + (title ? ' - ' + title : '');
-      state.dialog.container_id = containerIDWithHash;
-      state.indicators.current = $(containerIDWithHash).data('indicators-current') || [];
-      const time_period = $(containerIDWithHash).data('timePeriod');
-      state.dialog.is_tick_chart = isTick(time_period);
+	const root = $(html);
 
-      chart_series = $(containerIDWithHash).highcharts().series;
-      const series = _.filter(chart_series, 'options.isInstrument');
-      update_indicators(series);
-      ind_win.dialog('open');
-      first_time = false;
-   }).catch(console.error.bind(console));
+	init_state(root);
+
+	state.dialog.title = i18n('Add/remove indicators') + (title ? ' - ' + title : '');
+	state.dialog.container_id = containerIDWithHash;
+	state.indicators.current = $(containerIDWithHash).data('indicators-current') || [];
+	const time_period = $(containerIDWithHash).data('timePeriod');
+	state.dialog.is_tick_chart = isTick(time_period);
+
+	chart_series = $(containerIDWithHash).highcharts().series;
+	const series = _.filter(chart_series, 'options.isInstrument');
+	update_indicators(series);
+
+	ind_win = root.leanModal({
+      title: state.dialog.title,
+      width: ($(window).width() > 800) ? 700 : Math.min(480, $(window).width() - 10),
+      height: 400,
+      onClose: () => {
+         ind_win_view && ind_win_view.unbind();
+         ind_win_view = null;
+      }
+   });
 };
 
 export default {

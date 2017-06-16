@@ -1,4 +1,4 @@
-<div class='indicator-dialog' rv-dialog-title='dialog.title'>
+<div class='indicator-dialog'>
 
   <div class='current' rv-show='indicators.current | prop "length"'>
     <span class='title-big' rv-text='"Current indicators" | i18n'></span>
@@ -30,7 +30,7 @@
   <div class='add-indicators'>
     <span class='title-big' rv-text='"Add indicator" | i18n'></span>
     <input rv-value='indicators.search' placeholder=' &#x1F50E; Search' />
-    <span class='ui-icon ui-icon-circle-close'
+    <span class='circle-close'
           rv-on-click='indicators.clear_search'
           rv-show='indicators.search'></span>
   </div>
@@ -44,7 +44,7 @@
             rv-show='ind.description'
             rv-data-balloon='ind.description' data-balloon-length='large'
             data-balloon-pos='down'> ? </span>
-      <span class='ui-icon full-star'
+      <span class='full-star'
             rv-on-click='indicators.favorite | bind ind'></span>
     </div>
   </div>
@@ -60,7 +60,7 @@
               rv-data-balloon='ind.description'
               data-balloon-length='large'
               data-balloon-pos='down'> ? </span>
-        <span class='ui-icon empty-star'
+        <span class='empty-star'
               rv-on-click='indicators.favorite | bind ind'></span>
       </div>
     </div>

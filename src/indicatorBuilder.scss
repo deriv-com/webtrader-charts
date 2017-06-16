@@ -1,4 +1,4 @@
-.indicator-builder.ui-dialog-content {
+.indicator-builder-ui-dialog.webtrader-charts-dialog {
   padding: 0;
   background: white;
   overflow-x: hidden;
@@ -131,12 +131,22 @@
     text-align: center;
     button { line-height: 10px; }
   }
-  table.levels td {
-    text-align: center;
-    width: 24%;
-  }
-  table.levels tr td:nth-child(1) {
-     width: 20%;
+  table.levels {
+     span.circle-close {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        background-image: url('./images/circle-close.svg');
+        background-repeat: round;
+        cursor: pointer;
+     }
+     td {
+        text-align: center;
+        width: 24%;
+     }
+     tr td:nth-child(1) {
+        width: 20%;
+     }
   }
 
   .levels-dash-style {
@@ -196,16 +206,13 @@
         box-shadow: none;
         border-radius: 0px;
         left: -10px;
-        bottom: -4px;
+        bottom: 12px;
      }
      &:after {
         bottom: 12px;
         left: -4px;
      }
   }
-
-
-
 
   input[type=range] {
 	  -webkit-appearance: none;

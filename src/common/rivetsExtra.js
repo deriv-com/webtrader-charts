@@ -53,12 +53,6 @@ rv.binders['color-picker'] = {
             model.value = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
          }
       });
-      setTimeout(() => {
-         parent = input.scrollParent();
-         parent.scroll(
-            () => input.spectrum('hide')
-         );
-      }, 1000);
    },
    unbind: (el) => { },
    routine: (el, value) => { }
@@ -126,9 +120,6 @@ rv.binders['css-*'] = function (el, value) {
    const style = {};
    style[this.args[0]] = value;
    $(el).css(style);
-}
-rv.binders['dialog-*'] = function (el, value) {
-   $(el).dialog('option', this.args[0], value);
 }
 rv.binders['show'] = (el, value) => {
    el.style.display = value ? '' : 'none';

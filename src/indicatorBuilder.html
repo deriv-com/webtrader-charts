@@ -1,4 +1,4 @@
-<div class="indicator-builder">
+<div class="indicator-builder-ui-dialog webtrader-charts-dialog">
     <table width="100%">
       <colgroup>
         <col style="width:30%">
@@ -93,7 +93,7 @@
                         </td>
                         <td>
                            <span data-balloon="Remove" class="no-underline">
-                             <span rv-on-click='level.remove | bind row' class='ui-icon ui-icon-delete'></span>
+                             <span rv-on-click='level.remove | bind row' class='circle-close'></span>
                            </span>
                         </td>
                       </tr>
@@ -112,7 +112,7 @@
         <tr rv-each-row="levels.fields">
           <td>{row.title}</td>
           <td rv-if="row.type | eq 'slider'">
-            <div rv-slider="row.value" rv-attr-min="row.min" rv-attr-max="row.max" rv-attr-step="row.step"></div>
+            <input type='range' rv-range='row.value' rv-value="row.value" rv-attr-min="row.min" rv-attr-max="row.max" rv-attr-step="row.step"></input>
           </td>
           <td rv-if="row.type | eq 'colorpicker'" class='colorpicker-td'>
             <input

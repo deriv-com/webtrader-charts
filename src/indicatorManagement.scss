@@ -70,20 +70,23 @@
       line-height : 1.2em;
    }
 
-   .favorite span.ui-icon {
+   .favorite span.full-star {
      color: #E98024;
    }
 
-   .add-indicators { position: relative; }
-   .add-indicators span.ui-icon {
-     color: #777;
-     position: absolute;
-     right: 7px;
-     top: 6px;
-     cursor: pointer;
+   .add-indicators {
+      position: relative;
+      span.circle-close {
+         position: absolute;
+         right: 7px;
+         top: 6px;
+         width: 14px;
+         height: 14px;
+         background-image: url('./images/circle-close.svg');
+         background-repeat: round;
+         cursor: pointer;
+      }
    }
-   span.ui-icon-star-b:hover { color:#E98024; }
-   span.ui-icon-star:hover::before { content: '\e6bb'; }
    .add-indicators input {
      max-width: 200px;
      padding-right: 25px;
@@ -116,7 +119,7 @@
    .full-star, .empty-star {
       background-image: none !important;
       position: relative;
-      top: 1px;
+      top: 3px;
       &:after {
          width: 16px;
          height: 16px;

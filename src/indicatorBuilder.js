@@ -3,7 +3,6 @@ import {each, find, cloneDeep, minby, maxBy} from 'lodash';
 import rv from 'rivets';
 import html from './indicatorBuilder.html';
 import './indicatorBuilder.scss';
-import 'jquery-ui/ui/widgets/dialog';
 import './common/rivetsExtra.js';
 import images from './images/images.js';
 import notification from './common/notification.js';
@@ -13,15 +12,10 @@ import indicatorImages from './images/indicators/indicatorImages.js';
 
 let before_add_callback = null;
 
-const closeDialog = (dialog) => {
-   dialog.dialog("destroy").remove();
-};
-
 const init = (chart_series, indicator) => {
    return new Promise((resolve) => {
 
       const $html = $(html);
-
 
       const state = {
          id: indicator.id,
@@ -87,16 +81,17 @@ const init = (chart_series, indicator) => {
          value.dashUrl = `url(${images[value.dashStyle]})`;
       });
 
-      const view = rv.bind($html[0], state);
+      let view = rv.bind($html[0], state);
 
       const options = {
          title: indicator.long_display_name,
-         resizable: false,
          width: 350,
-         height: 400,
-         modal: true,
-         dialogClass:'indicator-builder-ui-dialog webtrader-charts-dialog',
+         height: 350,
          buttons: [
+            {
+               text: i18n("Cancel"),
+               click: () => win.trigger('close')
+            },
             {
                text: i18n("OK"),
                click: () => {
@@ -141,17 +136,16 @@ const init = (chart_series, indicator) => {
                   //Add indicator for the main series
                   chart_series[0].addIndicator(state.id, options);
 
-                  closeDialog($html);
+                  win.trigger('close');
                }
             },
-            {
-               text: i18n("Cancel"),
-               click: () => closeDialog($html)
-            }
-         ]
+         ],
+         onClose: () => {
+				view && view.unbind();
+				view = null;
+         }
       };
-      $html.dialog(options);
-      // $(".indicator-builder").animate({ scrollTop: 0 }, 800);
+      const win = $html.leanModal(options);
       resolve($html);
    });
 }

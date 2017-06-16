@@ -8,22 +8,16 @@ let win = null;
 export const open = (options, callback) => {
    const $html = $(html);
    const table = $html.find("table");
-   win = $html.dialog({
+   win = $html.leanModal({
       title: options.title,
-      autoOpen: false,
-      resizable: false,
-      width: 240,
-      height: 200,
-      modal: true,
-      dialogClass: 'webtrader-charts-dialog webtrader-charts-properties-selector-dialog',
-      destroy: () => { win = null; },
+      width: 300,
+      height: 120,
+      onClose: () => { win = null; },
       buttons: [
          { 
             text: i18n('Cancel'),
             click: function() {
-               $(this).dialog('close');
-               $(this).dialog('destroy');
-               return { };
+               win.trigger('close');
             }
          },
          {
@@ -50,8 +44,7 @@ export const open = (options, callback) => {
                   css[id] = value;
                });
                if (!error) {
-                  $(this).dialog('close');
-                  $(this).dialog("destroy");
+                  win.trigger('close');
                   callback(css);
                }
             },
@@ -59,7 +52,6 @@ export const open = (options, callback) => {
       ]
    });
 
-   win.dialog('open');
    options.inputValues.forEach(function(input) {
       let ele, inputElement;
       if (input.type === "colorpicker") {

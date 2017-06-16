@@ -285,9 +285,15 @@
     span.back-arrow {
       cursor: pointer;
        & > span {
-        display: inline-block;
-        position: relative;
-        top: 2px;
+          position: relative;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          top: 2px;
+          margin-right: 5px;
+          background-image: url('./images/back-arrow.svg') !important;
+          background-repeat: round;
+          cursor: pointer;
       }
     }
   }
