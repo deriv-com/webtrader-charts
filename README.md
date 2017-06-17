@@ -1,6 +1,7 @@
 # webtrader-charts ![Build Status](https://travis-ci.org/binary-com/webtrader-charts.svg?branch=master)
 
-A charting library extracted from [Webtrader](https://github.com/binary-com/webtrader) so that other projects can use it as nodejs package
+The charting library extracted from [Webtrader](https://github.com/binary-com/webtrader).
+See [Demo](http://aminroosta.ir/webtrader-charts)
 
 ## How to use it
 
@@ -61,3 +62,11 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart.
 ```
+
+### How to extend it
+- clone the repo
+- change `webpack.config.js` to write the output into `/example` folder.
+- do `yarn install` on both main project and `/example` folder.
+- do `yarn watch` on main project.
+- do `yarn watch` on `/example` folder.
+- open `localhost:8080`

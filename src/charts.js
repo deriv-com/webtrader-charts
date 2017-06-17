@@ -445,7 +445,6 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
 
     //Get all series details from this chart
     const chart = $(containerIDWithHash).highcharts();
-    const chartObj = this;
     let loadedMarketData = [],
         series_compare = undefined;
     /* for ohlc and candlestick series_compare must NOT be percent */
@@ -476,7 +475,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
         });
     }
    overlaysReadyPromise.then(() => {
-      chartObj.drawChart(containerIDWithHash, {
+      drawChart(containerIDWithHash, {
          instrumentCode: instrumentCode,
          instrumentName: $(containerIDWithHash).data("instrumentName"),
          timePeriod: $(containerIDWithHash).data("timePeriod"),

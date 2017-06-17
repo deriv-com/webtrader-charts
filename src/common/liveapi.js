@@ -13,8 +13,7 @@ export const init = ({appId, lang = 'en', server = 'wss://ws.binaryws.com/websoc
    globals.config.appId = appId;
    globals.config.lang = lang;
    globals.config.server = server;
-   socket = connect();
-   window.ss = socket;
+   connect();
 }
 
 const connect = () => {
@@ -28,19 +27,20 @@ const connect = () => {
       onclose(); // try to reconnect
    });
 
+   socket = ws;
+   window.ss = socket;
    return ws;
 }
 
 let timeoutIsSet = false;
-// TODO: refresh open charts
 const onclose = () => {
    notification.error(`${i18n('Connection error')}.`, '.webtrader-charts-chart-window-contianer');
    if(!timeoutIsSet) {
       timeoutIsSet = true;
-      _.delay(() => {
+      setTimeout(() => {
          timeoutIsSet = false;
          connect();
-      });
+      }, 100);
    }
 }
 
@@ -51,6 +51,7 @@ const cached_promises = { /* key: {data: data, promise: promise } */}; /* reques
 const is_connected = () => (socket && (socket.readyState === 1));
 
 
+let is_onopen_first_time = true;
 const onopen = () => {
    /* send buffered sends */
    while(buffered_sends.length > 0) {
@@ -65,9 +66,7 @@ const onopen = () => {
       const promise = unresolved_promises[key];
       if(!promise) continue;
       if(promise.sent_before) { /* reject if sent once before */
-         // TODO: i18n
-         // promise.reject({message: 'connection closed.'.i18n()});
-         promise.reject({message: 'connection closed.'});
+         promise.reject({message: `${i18n('connection closed')}.`});
       } else { /* send */
          promise.sent_before = true;
          socket.send(JSON.stringify(promise.data));
@@ -75,6 +74,13 @@ const onopen = () => {
    }
    while (buffered_execs.length > 0)
       buffered_execs.shift()();
+
+   if(!is_onopen_first_time) {
+      // ChartingRequestMap uses this event to refresh charts
+      events.trigger('connection-reopen');
+      notification.clear();
+   }
+   is_onopen_first_time = false;
 }
 
 /* execute buffered executes */
@@ -97,11 +103,6 @@ const onmessage = (message) => {
          promise.resolve(data);
    }
 }
-
-// TODO: 
-//this is triggering asycn loading of tick_handler.
-//the module will automatically start working as soon as its loaded
-// require(['websockets/stream_handler']); // require tick_handler to handle ticks.
 
 /* send a raw request and return a promise */
 let req_id_counter = 0;

@@ -86,7 +86,7 @@ const init = (chart_series, indicator) => {
       const options = {
          title: indicator.long_display_name,
          width: 350,
-         height: 350,
+         height: 330,
          buttons: [
             {
                text: i18n("Cancel"),

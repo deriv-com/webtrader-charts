@@ -29,9 +29,11 @@ export const warning =  (msg, target = 'body') => {
 export const info = (msg, target = 'body') => {
    toastr.info(msg, '', { target: target });
 };
+export const clear = () => toastr.clear();
 
 export default {
    error,
    warning,
    info,
+   clear,
 };

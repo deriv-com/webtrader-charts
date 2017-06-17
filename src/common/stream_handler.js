@@ -13,13 +13,13 @@ const setExtremePointsForXAxis = (chart, startTime, endTime) => {
 
 liveapi.events.on('tick', (e, data) => {
    let key = data.echo_req.ticks_history + data.echo_req.granularity;
-   if (key && chartingRequestMap[key.toUpperCase()]) {
+   if (key && chartingRequestMap.mapFor(key.toUpperCase())) {
       key = key.toUpperCase();
 
       const price = parseFloat(data.tick.quote);
       const time = parseInt(data.tick.epoch) * 1000;
 
-      const chartingRequest = chartingRequestMap[key];
+      const chartingRequest = chartingRequestMap.mapFor(key);
       const granularity = data.echo_req.granularity || 0;
       chartingRequest.id = chartingRequest.id || data.tick.id;
 
@@ -63,7 +63,7 @@ liveapi.events.on('tick', (e, data) => {
 
 liveapi.events.on('ohlc', (e, data) => {
    let key = data.ohlc.symbol + data.ohlc.granularity;
-   if (key && chartingRequestMap[key.toUpperCase()]) {
+   if (key && chartingRequestMap.mapFor(key.toUpperCase())) {
       key = key.toUpperCase();
       // TODO: 1-consume this notification 2-do not use global notifications, use a better approach.
       $(document).trigger("feedTypeNotification", [key, "realtime-feed"]);
@@ -74,7 +74,7 @@ liveapi.events.on('ohlc', (e, data) => {
       const close = parseFloat(data.ohlc.close);
       const time = parseInt(data.ohlc.open_time) * 1000;
 
-      const chartingRequest = chartingRequestMap[key];
+      const chartingRequest = chartingRequestMap.mapFor(key);
       chartingRequest.id = chartingRequest.id || data.ohlc.id;
       if (!(chartingRequest.chartIDs && chartingRequest.chartIDs.length > 0)) {
          return;

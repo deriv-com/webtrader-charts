@@ -65,7 +65,7 @@ export const retrieveChartDataAndRender = (options) => {
       series_compare = options.series_compare;
 
    const key = chartingRequestMap.keyFor(instrumentCode, timePeriod);
-   if (chartingRequestMap[key]) {
+   if (chartingRequestMap.mapFor(key)) {
       /* Since streaming for this instrument+timePeriod has already been requested,
                    we just take note of containerIDWithHash so that once the data is received, we will just
                    call refresh for all registered charts */
@@ -106,7 +106,7 @@ export const retrieveChartDataAndRender = (options) => {
             );
 
             //start the timer
-            chartingRequestMap[key].timerHandler = setInterval(() => {
+            chartingRequestMap.mapFor(key).timerHandler = setInterval(() => {
                let lastBar = barsTable.query({instrumentCdAndTp : key, take: 1, reverse: true });
                if (lastBar && lastBar.length > 0) {
                   lastBar = lastBar[0];
@@ -125,7 +125,7 @@ export const retrieveChartDataAndRender = (options) => {
          }
       });
 
-   chartingRequestMap[key].chartIDs.push({
+   chartingRequestMap.mapFor(key).chartIDs.push({
       containerIDWithHash : containerIDWithHash,
       series_compare : series_compare,
       instrumentCode : instrumentCode,

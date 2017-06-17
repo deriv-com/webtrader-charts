@@ -15,6 +15,7 @@ import _ from 'lodash';
 import $ from 'jquery';
 import liveapi from './liveapi.js';
 import notification from './notification.js';
+import { refresh } from '../charts.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
@@ -66,12 +67,10 @@ export const barsTable = {
 };
 
 export const barsLoaded = function(instrumentCdAndTp) {
-
     const key = instrumentCdAndTp;
-    if (!this[key] || !this[key].chartIDs) return;
+    if (!map[key] || !map[key].chartIDs) return;
 
-    const chartIDList = this[key].chartIDs;
-    const processOHLC = this.processOHLC;
+    const chartIDList = map[key].chartIDs;
 
     for(let i =0;i<chartIDList.length;i++){
         let chartID = chartIDList[i];
@@ -207,6 +206,10 @@ export const keyFor = (symbol, granularity_or_timeperiod) => {
     return (symbol + granularity).toUpperCase();
 }
 
+
+const map = { };
+export const mapFor = key => map[key];
+
 /*  options: {
       symbol,
       granularity: // could be a number or a string in 1t, 2m, 3h, 4d format.
@@ -218,10 +221,8 @@ export const keyFor = (symbol, granularity_or_timeperiod) => {
     }
     will return a promise
 */
-
 export const register = function(options, dialog_id) {
-    const map = this;
-    const key = map.keyFor(options.symbol, options.granularity);
+    const key = keyFor(options.symbol, options.granularity);
 
     let granularity = options.granularity || 0;
     //If granularity = 0, then style should be ticks
@@ -287,7 +288,6 @@ export const register = function(options, dialog_id) {
   when all dependent modules call unregister function.
   you should also make sure to call unregister when you no longer need the stream to avoid "stream leack!" */
 export const subscribe = function(key, chartID) {
-    const map = this;
     if (!map[key]) {
         return;
     }
@@ -298,7 +298,6 @@ export const subscribe = function(key, chartID) {
 }
 
 export const unregister = function(key, containerIDWithHash) {
-    const map = this;
     if (!map[key]) {
         return;
     }
@@ -310,27 +309,8 @@ export const unregister = function(key, containerIDWithHash) {
         clearInterval(map[key].timerHandler);
         map[key].timerHandler = null;
     }
-    /* Remove the following code if backend fixes this issue: 
-     * https://trello.com/c/1IZRihrH/4662-1-forget-call-for-one-stream-id-affects-all-other-streams-with-the-same-symbol
-     * Also remove instrument from function argument list.
-     */
-    //-----Start-----//
-    const instrument = map[key].symbol;
-    const tickSubscribers = map[map.keyFor(instrument, 0)] && map[map.keyFor(instrument, 0)].subscribers;
-    //-----End-----//
     if (map[key].subscribers === 0 && map[key].id) { /* id is set in stream_handler.js */
         liveapi.send({ forget: map[key].id })
-            // Remove this part as well.
-            .then(()=>{
-                // Resubscribe to tick stream if there are any tickSubscribers.
-                if(tickSubscribers)
-                    map.register({
-                        symbol: instrument,
-                        granularity: 0,
-                        subscribe: 1,
-                        count: 50 // To avoid missing any ticks.
-                    });
-            })
             .catch((err) => { console.error(err); });
     }
     if (map[key].subscribers === 0) {
@@ -340,13 +320,13 @@ export const unregister = function(key, containerIDWithHash) {
 
 /* this will be use for charts.drawCharts method which wants to : Just make sure that everything has been cleared out before starting a new thread! */
 export const removeChart = function(key, containerIDWithHash) {
-    const map = this;
     if (!map[key]) return;
     if (_.includes(_.map(map[key].chartIDs,'containerIDWithHash'), containerIDWithHash)) {
         map[key].subscribers -= 1;
         _.remove(map[key].chartIDs, { containerIDWithHash: containerIDWithHash });
     }
 }
+
 
 export const digits_after_decimal = function(pip, symbol) {
     pip = pip && pip + '';
@@ -361,7 +341,7 @@ export const digits_after_decimal = function(pip, symbol) {
          *      Fetch last 10 tick values
          *      Take the maximum decimal places all these ticks
          */
-        const key = this.keyFor(symbol, 0);
+        const key = keyFor(symbol, 0);
         let decimal_digits = 0;
 		  const db_bars = barsTable.query({ instrumentCdAndTp: key, take: 10, reverse: true });
 		  db_bars.forEach((d) => {
@@ -375,6 +355,14 @@ export const digits_after_decimal = function(pip, symbol) {
     return pip.substring(pip.indexOf(".") + 1).length;
 }
 
+liveapi.events.on('connection-reopen', () => {
+   _.each(map, (data, key) => {
+      const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
+      _.each(chartIds, chartId => removeChart(key, chartId));
+      _.each(chartIds, chartId => refresh(chartId));
+   });
+});
+
 export const events = $('<div/>');
 export default {
     barsLoaded,
@@ -386,5 +374,6 @@ export default {
     unregister,
     removeChart,
     digits_after_decimal,
+    mapFor,
     events
 }
