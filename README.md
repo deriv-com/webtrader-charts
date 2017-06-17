@@ -1,6 +1,7 @@
 # webtrader-charts ![Build Status](https://travis-ci.org/binary-com/webtrader-charts.svg?branch=master)
 
-A charting library extracted from [Webtrader](https://github.com/binary-com/webtrader) so that other projects can use it as nodejs package
+The charting library extracted from [Webtrader](https://github.com/binary-com/webtrader).
+See [Demo](http://aminroosta.ir/webtrader-charts)
 
 ## How to use it
 
@@ -29,7 +30,6 @@ Take a look at `webpack.config.js -> externals`.
  const chart =  wtcharts.chartWindow.addNewChart($parent, {
     "type": "line",
     "timePeriod": "1m",
-    "delayAmount": 0,
     "instrumentCode": "RDBULL",
     "instrumentName": "Bull Market Index",
     "showInstrumentName": true, // default is false
@@ -63,16 +63,10 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.destroy(); // Destroys the chart.
 ```
 
-### Globals
-Handle notification by providing your own `wtcharts.globals.notification`.
-```js
- import $ from 'jquery';
- import 'jquery-growl'; // notification library
- export const globals = {
-    notification: {
-       error: (msg) => $.growl.error({message: msg}),
-       warning: (msg) => $.growl.warning({message: msg}),
-       notice: (msg) => $.growl.notice({message: msg}),
-    }
- };
- ```
+### How to extend it
+- clone the repo
+- change `webpack.config.js` to write the output into `/example` folder.
+- do `yarn install` on both main project and `/example` folder.
+- do `yarn watch` on main project.
+- do `yarn watch` on `/example` folder.
+- open `localhost:8080`

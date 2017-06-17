@@ -46,6 +46,14 @@
     background: #fff;
     border: 1px solid #c2c2c2;
     color: #2a3052;
+    span[data-balloon]:before {
+       line-height: 0;
+       height: 0;
+       font-size: 12px;
+       box-shadow: none;
+       border-radius: 0;
+       border: none;
+    }
   }
 
   .img {
@@ -277,9 +285,15 @@
     span.back-arrow {
       cursor: pointer;
        & > span {
-        display: inline-block;
-        position: relative;
-        top: 2px;
+          position: relative;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          top: 2px;
+          margin-right: 5px;
+          background-image: url('./images/back-arrow.svg') !important;
+          background-repeat: round;
+          cursor: pointer;
       }
     }
   }

@@ -1,0 +1,51 @@
+#lean_overlay {
+	position: fixed;
+	z-index: 9999990;
+	top: 0px;
+	left: 0px;
+	height:100%;
+	width:100%;
+	background: #000;
+	display: none;
+
+	.lean_overlay_titlebar {
+		left : 50%;
+		position: fixed;
+		box-sizing: border-box;
+		padding: 5px;
+		color: white;
+		background: #2A3052;
+		font-size: 16px;
+		.close {
+			background-image: url('../images/close.svg') !important;
+			width: 16px;
+			display: inline-block;
+			height: 16px;
+			float: right;
+			cursor: pointer;
+			top: 3px;
+			position: relative;
+		}
+	}
+	.lean_overlay_buttonpane {
+		z-index: 11000;
+		left : 50%;
+		position: fixed;
+		box-sizing: border-box;
+		padding: 5px;
+		background: white;
+		font-size: 16px;
+		text-align: right;
+		> div {
+			width: 120px;
+			color: white;
+			background: #2A3052;
+			padding: 5px;
+			border-radius: 3px;
+			text-align: center;
+			display: inline-block;
+			margin-left: 5px;
+			cursor: pointer;
+		}
+	}
+}

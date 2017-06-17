@@ -50,11 +50,14 @@
 
    .add-overlays {
       position: relative;
-      span.ui-icon {
-         color: #777;
+      span.circle-close {
          position: absolute;
          right: 7px;
          top: 6px;
+         width: 14px;
+         height: 14px;
+         background-image: url('./images/circle-close.svg');
+         background-repeat: round;
          cursor: pointer;
       }
       input {

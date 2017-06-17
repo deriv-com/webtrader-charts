@@ -1,4 +1,4 @@
-<div class='overlay-dialog' rv-dialog-title='dialog.title'>
+<div class='overlay-dialog'>
 
     <div class='current category' rv-show='overlays.current | prop "length"'>
        <span class='title-big' rv-text='"Current comparisons" | i18n'></span>
@@ -11,7 +11,7 @@
     <div class='add-overlays'>
         <span class='title-big' rv-text='"Add comparisons" | i18n'></span>
         <input rv-value='overlays.search' placeholder=' &#x1F50E; Search' />
-        <span class='ui-icon ui-icon-circle-close' rv-on-click='overlays.clear_search' rv-show='overlays.search' />
+        <span class='circle-close' rv-on-click='overlays.clear_search' rv-show='overlays.search' />
     </div>
 
     <div class='categories' rv-each-cat='overlays.array' rv-show='overlays.array | prop "length"'>

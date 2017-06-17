@@ -9,8 +9,8 @@ import liveapi from './common/liveapi.js';
 import ohlc_handler from './common/ohlc_handler.js';
 import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
-import indicatorsArray from './indicators.json';
-import {globals} from './common/globals.js';
+import indicatorsArray from './indicators-config.js';
+import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js'
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import {i18n} from './common/utils.js';
@@ -21,7 +21,7 @@ import './charts.scss';
 // if(lang !== "en") // Load moment js locale file.
 //     require(['moment-locale/'+lang]); 
 
-const indicator_values = _.values(indicatorsArray);
+const indicator_values = _.values(_.cloneDeep(indicatorsArray));
 Highcharts.Chart.prototype.get_indicators = function() {
     const chart = this;
     const indicators = [];
@@ -105,7 +105,7 @@ export const destroy = (options) => {
     chartingRequestMap.unregister(key, containerIDWithHash);
 }
 
-export const generate_csv = (chart, data) => {
+export const generate_csv = (chart, data, dialog_id) => {
     let lines = [],
         dataToBeProcessTolines = [];
     const flattenData = (d) => {
@@ -135,11 +135,7 @@ export const generate_csv = (chart, data) => {
             else lines.push('Date,Time,"' + series.userOptions.name + '"');
             //newDataLines is incorrect - get it from lokijs
             const key = chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod);
-            const bars = chartingRequestMap.barsTable
-                .chain()
-                .find({ instrumentCdAndTp: key })
-                .simplesort('time', false)
-                .data();
+            const bars = chartingRequestMap.barsTable.query({ instrumentCdAndTp: key });
             lines = lines.concat(bars.map((b) => {
                 return ohlc ? ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm') + '"', b.open, b.high, b.low, b.close].join(',') : ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm:ss') + '"', b.close].join(',');
             }));
@@ -149,7 +145,7 @@ export const generate_csv = (chart, data) => {
         }
     });
 
-    globals.notification.notice(i18n('Downloading .csv'));
+    notification.info(i18n('Downloading .csv'), `#${dialog_id}`);
 
 
     const filename = data.instrumentName + ' (' + data.timePeriod + ')' + '.csv';
@@ -194,7 +190,7 @@ export const generate_csv = (chart, data) => {
           }
        }
        catch(e) {
-          globals.notification.error('Error downloading .csv');
+          notification.error('Error downloading .csv', `#${dialog_id}`);
           console.error(e);
        }
     });
@@ -269,7 +265,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             delayAmount: options.delayAmount
                         }).catch((err) => {
                             const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
-                            globals.notification.error(msg);
+                            notification.error(msg, containerIDWithHash.replace('_chart', ''));
                             const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);
@@ -449,7 +445,6 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
 
     //Get all series details from this chart
     const chart = $(containerIDWithHash).highcharts();
-    const chartObj = this;
     let loadedMarketData = [],
         series_compare = undefined;
     /* for ohlc and candlestick series_compare must NOT be percent */
@@ -480,7 +475,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
         });
     }
    overlaysReadyPromise.then(() => {
-      chartObj.drawChart(containerIDWithHash, {
+      drawChart(containerIDWithHash, {
          instrumentCode: instrumentCode,
          instrumentName: $(containerIDWithHash).data("instrumentName"),
          timePeriod: $(containerIDWithHash).data("timePeriod"),

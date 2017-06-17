@@ -1,4 +1,10 @@
-import {uuid, toFixed} from '../common/utils.js';
+/* amin:
+* This file is too big, even after minfiying with uglifyjs.
+* But uglifyjs has an option to mangle property names, we can carefully take advantage of this option.
+* Use this command to mangle object properties, the file cdl-mangled-props.js is included in the project bundle.
+* "uglifyjs cdl.js --beautify --mangle-props regex=/^(candle|isCandle).*$/  > cdl-mangled-props.js"
+* This will reduce the file size from 108kb to 38kb.
+*/
 /**
  * Created by Arnab Karmakar on 1/23/16.
  */
@@ -29,8 +35,7 @@ CDL.prototype.constructor = CDL;
 CDL.prototype.addPoint = function(data) {
     this.priceData.push(data);
     var ret = this.calculateIndicatorValue(this.options.cdlIndicatorCode)|| {};
-    if(ret.text)
-    {
+    if(ret.text) {
         this.indicatorData.push(ret);
     }
     return [{
@@ -46,8 +51,7 @@ CDL.prototype.update = function(data) {
     this.priceData[index].low   = data.low;
     this.priceData[index].close = data.close;
     var ret = this.calculateIndicatorValue(this.options.cdlIndicatorCode) || {};
-    if(ret.text)
-    {
+    if(ret.text) {
         this.indicatorData[index] = ret;
     }
     return [{

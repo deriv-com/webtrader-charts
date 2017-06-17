@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import rv from 'rivets';
-import 'jquery-ui/ui/widgets/slider';
 import 'spectrum-colorpicker';
 import 'spectrum-colorpicker/spectrum.css';
 import '../lib/jquery.ddslick.js';
@@ -13,35 +12,29 @@ rv.binders['attr-*'] = {
       el.setAttribute(this.args[0],value)
    }
 }
-rv.binders.slider = {
+rv.binders.range = {
    priority: 95,
    publishes: true,
    bind: function (el) {
-      const div = $(el);
-      const handle = $('<div class="ui-slider-handle"></div>');
-      div.append(handle);
+      const input = $(el);
+		input.parent().css({position: 'relative'});
+		input.css({position: 'relative', top: '8px'});
+      const handle = $('<div style="position: absolute; top: -4px; font-size: 12px;"></div>');
+		handle.insertAfter(input);
 
-      const publish = this.publish;
-      const model = this.model;
-
-      div.slider({
-         step: div.attr('step')*1 || 1,
-         min: div.attr('min') === undefined ? 1 : div.attr('min')*1,
-         max: div.attr('max')*1 || 100,
-         create: function() {
-            handle.text($(this).slider("value"));
-         },
-         slide: ( event, ui ) => {
-            handle.text(ui.value);
-            model.value = ui.value*1;
-         }
-      });
+		const update =  () => {
+			const min = (input.attr('min') || 0)*1;
+			const max = (input.attr('max') || 0)*1;
+			const val = input.val()*1;
+			handle.text(val);
+			const left = ((val-min)/(max - min))*(input.width()-16) + 16 - handle.width()/2;
+			handle.css({left: `${left.toFixed(2)}px`});
+		};
+		input.on('change input', update);
+		setTimeout(() => update(), 1000);
    },
-   unbind: (el) => $(el).slider('destroy'),
-   routine: (el, value) => {
-      $(el).slider('value', value);
-      $(el).find('> div').text(value);
-   }
+   unbind: (el) => { },
+   routine: (el, value) => { }
 }
 rv.binders['color-picker'] = {
    priority: 96,
@@ -52,6 +45,7 @@ rv.binders['color-picker'] = {
       const model = this.model;
       const color = model.value || '#cd0a0a';
 
+      input.scrollParent().on('scroll', () => input.spectrum('hide'));
       input.spectrum({
          color: color,
          showButtons: false,
@@ -60,12 +54,6 @@ rv.binders['color-picker'] = {
             model.value = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
          }
       });
-      setTimeout(() => {
-         parent = input.scrollParent();
-         parent.scroll(
-            () => input.spectrum('hide')
-         );
-      }, 1000);
    },
    unbind: (el) => { },
    routine: (el, value) => { }
@@ -134,9 +122,6 @@ rv.binders['css-*'] = function (el, value) {
    style[this.args[0]] = value;
    $(el).css(style);
 }
-rv.binders['dialog-*'] = function (el, value) {
-   $(el).dialog('option', this.args[0], value);
-}
 rv.binders['show'] = (el, value) => {
    el.style.display = value ? '' : 'none';
    return value;
@@ -156,3 +141,14 @@ rv.formatters['prop'] = (value, prop) => value && value[prop];
 rv.formatters['bind'] = (fn, value) => fn.bind(undefined, value);
 rv.formatters['i18n'] = i18n;
 
+
+// shim for jquery-ui scrollParent
+$.fn.scrollParent = $.fn.scrollParent || function (e){
+	var i=this.css("position"),
+	s="absolute"===i,
+	n=e?/(auto|scroll|hidden)/:/(auto|scroll)/,
+	o=this.parents().filter(function(){
+		var e=$(this);return s&&"static"===e.css("position")?!1:n.test(e.css("overflow")+e.css("overflow-y")+e.css("overflow-x"))
+	}).eq(0);
+	return"fixed"!==i&&o.length?o:$(this[0].ownerDocument||document);
+}

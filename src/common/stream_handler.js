@@ -13,13 +13,13 @@ const setExtremePointsForXAxis = (chart, startTime, endTime) => {
 
 liveapi.events.on('tick', (e, data) => {
    let key = data.echo_req.ticks_history + data.echo_req.granularity;
-   if (key && chartingRequestMap[key.toUpperCase()]) {
+   if (key && chartingRequestMap.mapFor(key.toUpperCase())) {
       key = key.toUpperCase();
 
       const price = parseFloat(data.tick.quote);
       const time = parseInt(data.tick.epoch) * 1000;
 
-      const chartingRequest = chartingRequestMap[key];
+      const chartingRequest = chartingRequestMap.mapFor(key);
       const granularity = data.echo_req.granularity || 0;
       chartingRequest.id = chartingRequest.id || data.tick.id;
 
@@ -37,10 +37,7 @@ liveapi.events.on('tick', (e, data) => {
          barsTable.insert(tick);
          /* notify subscribers */
          let preTick = tick;
-         const bars = barsTable.chain()
-            .find({ instrumentCdAndTp: key })
-            .simplesort('time', true)
-            .limit(2).data();
+         const bars = barsTable.query({ instrumentCdAndTp: key, take: 2, reverse: true });
          if (bars.length > 1)
             preTick = bars[1];
          events.trigger('tick', [{ tick: tick, key: key, preTick: preTick }]);
@@ -66,7 +63,7 @@ liveapi.events.on('tick', (e, data) => {
 
 liveapi.events.on('ohlc', (e, data) => {
    let key = data.ohlc.symbol + data.ohlc.granularity;
-   if (key && chartingRequestMap[key.toUpperCase()]) {
+   if (key && chartingRequestMap.mapFor(key.toUpperCase())) {
       key = key.toUpperCase();
       // TODO: 1-consume this notification 2-do not use global notifications, use a better approach.
       $(document).trigger("feedTypeNotification", [key, "realtime-feed"]);
@@ -77,7 +74,7 @@ liveapi.events.on('ohlc', (e, data) => {
       const close = parseFloat(data.ohlc.close);
       const time = parseInt(data.ohlc.open_time) * 1000;
 
-      const chartingRequest = chartingRequestMap[key];
+      const chartingRequest = chartingRequestMap.mapFor(key);
       chartingRequest.id = chartingRequest.id || data.ohlc.id;
       if (!(chartingRequest.chartIDs && chartingRequest.chartIDs.length > 0)) {
          return;
@@ -87,13 +84,9 @@ liveapi.events.on('ohlc', (e, data) => {
          return;
       }
 
-      let bar = barsTable.chain()
-         .find({ '$and': [{instrumentCdAndTp: key}, {time : time}] })
-         .simplesort("time", true)
-         .limit(1)
-         .data();
+      let bar = barsTable.find({ instrumentCdAndTp: key, time: time });
       let isNew = false;
-      if (!bar || bar.length <= 0) {
+      if (!bar) {
          bar = {
             instrumentCdAndTp: key,
             time: time,
@@ -105,7 +98,6 @@ liveapi.events.on('ohlc', (e, data) => {
          barsTable.insert(bar);
          isNew = true;
       } else {
-         bar = bar[0];
          bar.open = open;
          bar.high = high;
          bar.low = low;
@@ -114,10 +106,7 @@ liveapi.events.on('ohlc', (e, data) => {
       }
 
       let preOhlc = bar;
-      const bars = barsTable.chain()
-         .find({ instrumentCdAndTp: key })
-         .simplesort('time', true)
-         .limit(2).data();
+      const bars = barsTable.query({ instrumentCdAndTp: key, take: 2, reverse: true });
       if (bars.length > 1) {
          preOhlc = bars[1];
       }

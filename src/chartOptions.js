@@ -404,7 +404,7 @@ export const init = (m_newTabId, m_tableViewCb, options) => {
                     });
                     break;
                 case 'csv':
-                    charts.generate_csv(chart, $(id).data());
+                    charts.generate_csv(chart, $(id).data(), m_newTabId);
                     break;
                 case 'svg':
                     chart.exportChartLocal({

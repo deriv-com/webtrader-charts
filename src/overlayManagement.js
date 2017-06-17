@@ -19,7 +19,7 @@ rv.formatters['overlays-filter'] = (array, search) => {
    );
 };
 
-const chartableMarkets = () => {
+export const chartableMarkets = () => {
    return liveapi
       .cached.send({ trading_times: new Date().toISOString().slice(0, 10) })
       .then(function(data) {
@@ -129,39 +129,6 @@ export const specificMarketDataSync = function(marketDataDisplayName, marketData
     return present;
 }
 
-const init = () => {
-   if(!win) {
-      return init_dialog_async();
-   }
-   return Promise.resolve();
-}
-
-const init_dialog_async = () => {
-   return new Promise((resolve, reject) => {
-      const root = $(html);
-
-      let option = {
-         title: i18n('Add/remove overlays'),
-         modal: true,
-         resizable: false,
-         dialogClass:'webtrader-charts-dialog',
-         destroy: () => {
-            win_view && win_view.unbind();
-            win_view = null;
-            win.dialog('destroy').remove();
-            win = null;
-         },
-         width: ($(window).width() > 800) ? 700 : Math.min(480, $(window).width() - 10),
-         height: 400,
-         open: () => { },
-      };
-
-      win = root.dialog(option);
-      init_state(root);
-      resolve();
-   });
-}
-
 const init_state = (root) =>{
    state = {
       dialog: {
@@ -201,7 +168,7 @@ const init_state = (root) =>{
 
       state.overlays.current.push(displaySymbol);
       ovlay.dont_show = true;
-      win.dialog("close");
+      win.trigger("close");
    }
 
    state.overlays.remove = (ovlay) => {
@@ -289,25 +256,34 @@ const update_overlays = (chart) => {
    });
 }
 
-let first_time = true;
 export const openDialog = (containerIDWithHash, title ) => {
-   init().then(() => {
+      const root = $(html);
+
+      init_state(root);
+
       state.dialog.title = i18n('Add/remove comparisons') + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;
       state.overlays.current = $(containerIDWithHash).data('overlays-current') || [];
 
       const chart = $(containerIDWithHash).highcharts();
       update_overlays(chart);
-      const normal_open = first_time || isAffiliates();
-      win.dialog('open');
-      first_time = false;
-   }).catch(console.error.bind(console));
+
+      win = root.leanModal({
+         title: state.dialog.title,
+         width: ($(window).width() > 800) ? 700 : Math.min(480, $(window).width() - 10),
+         height: 400,
+         onClose: () => {
+            win_view && win_view.unbind();
+            win_view = null;
+         }
+      });
 }
 
 export const events = $('<div/>');
 export default { 
    openDialog,
    specificMarketDataSync,
+   chartableMarkets,
    events
 }
 

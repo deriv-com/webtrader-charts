@@ -1,11 +1,13 @@
 {
   "name": "webtrader-charts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
     "build": "webpack --progress",
     "watch": "webpack --watch --progress",
+    "deploy-origin" : "git subtree push --prefix example origin gh-pages",
+    "deploy-upstream" : "git subtree push --prefix example upstream gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -52,11 +54,10 @@
   "dependencies": {
     "datatables.net-dt": "^1.10.15",
     "imports-loader": "^0.7.1",
-    "jquery-ui": "^1.12.1",
     "lodash": "^4.17.4",
-    "lokijs": "1.3.19",
     "paralleljs": "^0.2.1",
     "rivets": "0.8.1",
-    "spectrum-colorpicker": "^1.8.0"
+    "spectrum-colorpicker": "^1.8.0",
+    "toastr": "^2.1.2"
   }
 }

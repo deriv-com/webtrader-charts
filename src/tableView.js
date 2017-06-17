@@ -13,8 +13,6 @@ import html from './tableView.html';
 import './tableView.scss';
 import './common/rivetsExtra.js';
 
-const barsTable = chartingRequestMap.barsTable;
-
 const show_table_view = (dialog, instrumentCode, state) => {
    const table = dialog.find('.table-view');
    const chart = dialog.find('.chart-view');
@@ -47,12 +45,11 @@ const refresh_table = (dialog, instrumentCode, state) => {
    const data = dialog.find('#' + dialog.attr('id') + '_chart').data();
    const is_tick = isTick(data.timePeriod);
    const table = dialog.find('.table-view');
-   const bars = barsTable
-      .chain()
-      .find({instrumentCdAndTp: chartingRequestMap.keyFor(instrumentCode, data.timePeriod)})
-      .simplesort('time', true)
-      .limit(100)
-      .data();
+	const db_bars = chartingRequestMap.barsTable.query({
+		instrumentCdAndTp: chartingRequestMap.keyFor(instrumentCode, data.timePeriod),
+		take: 100,
+		reverse: true
+	});
    const rows = bars.map((bar, index) => {
       //The bars list has been sotrted decending by time
       const preBar = index == bars.length - 1 ? bars[index] : bars[index + 1];

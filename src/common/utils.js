@@ -1,4 +1,5 @@
 import dictionary  from '../i18n/dictionary.json';
+import '../lib/leanModal.js';
 import { globals } from './globals.js';
 
 /* simple localStorage cache to differentiate between live and beta */

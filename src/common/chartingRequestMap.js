@@ -11,27 +11,66 @@
       ]
    }
 */
-import loki from 'lokijs';
 import _ from 'lodash';
 import $ from 'jquery';
 import liveapi from './liveapi.js';
-import {globals} from './globals.js';
+import notification from './notification.js';
+import { refresh } from '../charts.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
-   isTick, isLineDotType, isDotType
+   isTick, isLineDotType, isDotType,
+   i18n
 } from './utils.js';
 
-const db = new loki();
-export const barsTable = db.addCollection('bars_table');
+const bars = {};
+export const barsTable = {
+   insert: bar => {
+      const key = bar.instrumentCdAndTp;
+      const array = bars[key] = bars[key] || [];
+      array.splice(_.sortedIndexBy(array, bar, 'time'), 0, bar);
+   },
+	update: bar => {
+      const key = bar.instrumentCdAndTp;
+      const array = bars[key] = bars[key] || [];
+		const index = _.sortedIndexBy(array, bar, 'time');
+		array[index] = bar;
+	},
+	find: bar => {
+      const key = bar.instrumentCdAndTp;
+      const array = bars[key] = bars[key] || [];
+		const index = _.sortedIndexBy(array, bar, 'time');
+		if(array.length > index && array[index].time == bar.time)
+			return _.clone(array[index]);
+		return null;
+	},
+	/* = {key, take, reverse, time) */
+	query: options  => {
+      const key = options.instrumentCdAndTp;
+      let array = bars[key] = bars[key] || [];
+		if(options.time) {
+			const index = _.sortedIndexBy(array, {time: options.time}, 'time');
+			array = array.slice(index);
+		}
+		if(options.take) {
+			if(options.reverse)
+				array = _.takeRight(array, options.take);
+			else
+				array = _.take(array, options.take);
+		}
+		array = _.clone(array);
+		if(options.reverse) {
+			_.reverse(array);
+		}
+		return array;
+	}
+};
 
 export const barsLoaded = function(instrumentCdAndTp) {
-
     const key = instrumentCdAndTp;
-    if (!this[key] || !this[key].chartIDs) return;
+    if (!map[key] || !map[key].chartIDs) return;
 
-    const chartIDList = this[key].chartIDs;
-    const processOHLC = this.processOHLC;
+    const chartIDList = map[key].chartIDs;
 
     for(let i =0;i<chartIDList.length;i++){
         let chartID = chartIDList[i];
@@ -45,13 +84,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
 
             const lastBarOpenTime = series.data[series.data.length - 1] && (series.data[series.data.length - 1].x || series.data[series.data.length - 1].time);
             if(!lastBarOpenTime) return;
-            const db_bars = barsTable
-                .chain()
-                .find({ instrumentCdAndTp: key })
-                .where((obj) => {
-                    return obj.time >= lastBarOpenTime;
-                })
-                .simplesort('time', false).data();
+            const db_bars = barsTable.query({instrumentCdAndTp: key, time: lastBarOpenTime});
 
             for (let index in db_bars) {
                 const dbBar = db_bars[index];
@@ -90,11 +123,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
             //We just want to get bars which are after the last complete rendered bar on chart(excluding the currently forming bar because that might change its values)
             const dataInHighChartsFormat = [];
 
-            const db_bars = barsTable
-                .chain()
-                .find({ instrumentCdAndTp: key })
-                .simplesort('time', false)
-                .data();
+            const db_bars = barsTable.query({ instrumentCdAndTp: key });
             for (const barIndex in db_bars) {
                 processOHLC(db_bars[barIndex].open, db_bars[barIndex].high, db_bars[barIndex].low, db_bars[barIndex].close,
                     db_bars[barIndex].time, type, dataInHighChartsFormat);
@@ -177,6 +206,10 @@ export const keyFor = (symbol, granularity_or_timeperiod) => {
     return (symbol + granularity).toUpperCase();
 }
 
+
+const map = { };
+export const mapFor = key => map[key];
+
 /*  options: {
       symbol,
       granularity: // could be a number or a string in 1t, 2m, 3h, 4d format.
@@ -188,10 +221,8 @@ export const keyFor = (symbol, granularity_or_timeperiod) => {
     }
     will return a promise
 */
-
-export const register = function(options) {
-    const map = this;
-    const key = map.keyFor(options.symbol, options.granularity);
+export const register = function(options, dialog_id) {
+    const key = keyFor(options.symbol, options.granularity);
 
     let granularity = options.granularity || 0;
     //If granularity = 0, then style should be ticks
@@ -241,9 +272,7 @@ export const register = function(options) {
         .catch((up) => {
             /* if the market is closed try the same request without subscribing */
             if (req.subscribe && up.code == 'MarketIsClosed') {
-                // TODO: i18n
-                //({ message: options.symbol + ' market is presently closed.'.i18n() }); 
-                globals.notification.notice(options.symbol + ' market is presently closed.'); 
+                notification.info(`${options.symbol} ${i18n('market is presently closed')}.`, dialog_id); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
                 map[key].subscribers -= 1;
@@ -259,7 +288,6 @@ export const register = function(options) {
   when all dependent modules call unregister function.
   you should also make sure to call unregister when you no longer need the stream to avoid "stream leack!" */
 export const subscribe = function(key, chartID) {
-    const map = this;
     if (!map[key]) {
         return;
     }
@@ -270,7 +298,6 @@ export const subscribe = function(key, chartID) {
 }
 
 export const unregister = function(key, containerIDWithHash) {
-    const map = this;
     if (!map[key]) {
         return;
     }
@@ -282,27 +309,8 @@ export const unregister = function(key, containerIDWithHash) {
         clearInterval(map[key].timerHandler);
         map[key].timerHandler = null;
     }
-    /* Remove the following code if backend fixes this issue: 
-     * https://trello.com/c/1IZRihrH/4662-1-forget-call-for-one-stream-id-affects-all-other-streams-with-the-same-symbol
-     * Also remove instrument from function argument list.
-     */
-    //-----Start-----//
-    const instrument = map[key].symbol;
-    const tickSubscribers = map[map.keyFor(instrument, 0)] && map[map.keyFor(instrument, 0)].subscribers;
-    //-----End-----//
     if (map[key].subscribers === 0 && map[key].id) { /* id is set in stream_handler.js */
         liveapi.send({ forget: map[key].id })
-            // Remove this part as well.
-            .then(()=>{
-                // Resubscribe to tick stream if there are any tickSubscribers.
-                if(tickSubscribers)
-                    map.register({
-                        symbol: instrument,
-                        granularity: 0,
-                        subscribe: 1,
-                        count: 50 // To avoid missing any ticks.
-                    });
-            })
             .catch((err) => { console.error(err); });
     }
     if (map[key].subscribers === 0) {
@@ -312,13 +320,13 @@ export const unregister = function(key, containerIDWithHash) {
 
 /* this will be use for charts.drawCharts method which wants to : Just make sure that everything has been cleared out before starting a new thread! */
 export const removeChart = function(key, containerIDWithHash) {
-    const map = this;
     if (!map[key]) return;
     if (_.includes(_.map(map[key].chartIDs,'containerIDWithHash'), containerIDWithHash)) {
         map[key].subscribers -= 1;
         _.remove(map[key].chartIDs, { containerIDWithHash: containerIDWithHash });
     }
 }
+
 
 export const digits_after_decimal = function(pip, symbol) {
     pip = pip && pip + '';
@@ -333,21 +341,27 @@ export const digits_after_decimal = function(pip, symbol) {
          *      Fetch last 10 tick values
          *      Take the maximum decimal places all these ticks
          */
-        const key = this.keyFor(symbol, 0);
+        const key = keyFor(symbol, 0);
         let decimal_digits = 0;
-        barsTable.chain()
-            .find({ instrumentCdAndTp: key })
-            .simplesort("time", true).limit(10).data()
-            .forEach((d) => {
-                const quote = d.close + '';
-                const len = quote.substring(quote.indexOf('.') + 1).length;
-                if (len > decimal_digits)
-                    decimal_digits = len;
-            });
+		  const db_bars = barsTable.query({ instrumentCdAndTp: key, take: 10, reverse: true });
+		  db_bars.forEach((d) => {
+			  const quote = d.close + '';
+			  const len = quote.substring(quote.indexOf('.') + 1).length;
+			  if (len > decimal_digits)
+				  decimal_digits = len;
+		  });
         return decimal_digits;
     }
     return pip.substring(pip.indexOf(".") + 1).length;
 }
+
+liveapi.events.on('connection-reopen', () => {
+   _.each(map, (data, key) => {
+      const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
+      _.each(chartIds, chartId => removeChart(key, chartId));
+      _.each(chartIds, chartId => refresh(chartId));
+   });
+});
 
 export const events = $('<div/>');
 export default {
@@ -360,5 +374,6 @@ export default {
     unregister,
     removeChart,
     digits_after_decimal,
+    mapFor,
     events
 }

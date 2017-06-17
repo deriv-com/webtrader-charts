@@ -1,19 +1,14 @@
 import $ from 'jquery';
 import liveapi from './liveapi.js';
 import chartingRequestMap from './chartingRequestMap.js';
-import { convertToTimeperiodObject, isTick } from './utils.js';
-import {globals} from './globals.js';
+import { convertToTimeperiodObject, isTick, i18n } from './utils.js';
+import notification from './notification.js';
 
 const barsTable = chartingRequestMap.barsTable;
 
 const processCandles = (key, time, open, high, low, close) => {
-   let bar = barsTable.chain()
-      .find({time : time})
-      .find({instrumentCdAndTp : key})
-      .limit(1)
-      .data();
-   if (bar && bar.length > 0) {
-      bar = bar[0];
+   let bar = barsTable.find({time: time, instrumentCdAndTp: key});
+   if (bar) {
       bar.open = open;
       bar.high = high;
       bar.low = low;
@@ -70,7 +65,7 @@ export const retrieveChartDataAndRender = (options) => {
       series_compare = options.series_compare;
 
    const key = chartingRequestMap.keyFor(instrumentCode, timePeriod);
-   if (chartingRequestMap[key]) {
+   if (chartingRequestMap.mapFor(key)) {
       /* Since streaming for this instrument+timePeriod has already been requested,
                    we just take note of containerIDWithHash so that once the data is received, we will just
                    call refresh for all registered charts */
@@ -86,6 +81,8 @@ export const retrieveChartDataAndRender = (options) => {
       return Promise.resolve();
    }
 
+   const dialog_id = containerIDWithHash.replace('_chart', '');
+
    const done_promise = chartingRequestMap.register({
       symbol: instrumentCode,
       granularity: timePeriod,
@@ -93,31 +90,24 @@ export const retrieveChartDataAndRender = (options) => {
       style: !isTick(timePeriod) ? 'candles' : 'ticks',
       count: 1000,          //We are only going to request 1000 bars if possible
       adjust_start_time: 1
-   })
+   }, dialog_id)
       .catch((err) => {
-         // TODO: i18n
-         // const msg = 'Error getting data for %1'.i18n().replace('%1', instrumentName);
-         const msg = 'Error getting data for %1'.replace('%1', instrumentName);
-         globals.notification.error(msg);
+         const msg = i18n('Error getting data for %1').replace('%1', instrumentName);
+         notification.error(msg, dialog_id);
          const chart = $(containerIDWithHash).highcharts();
          chart && chart.showLoading(msg);
          console.error(err);
       })
       .then((data) => {
          if (data && !data.error && options.delayAmount > 0) {
-            // TODO: i18n ({
-            //    message: instrumentName + ' feed is delayed by '.i18n() +
-            //    options.delayAmount + ' minutes'.i18n()
-            // })
-            globals.notification.warning(`${instrumentName} feed is delayed by ${options.delayAmount} minutes`);
+            notification.warning(
+                  `${instrumentName} ${i18n('feed is delayed by')} ${options.delayAmount} ${i18n('minutes')}`,
+                  dialog_id
+            );
 
             //start the timer
-            chartingRequestMap[key].timerHandler = setInterval(() => {
-               let lastBar = barsTable.chain()
-                  .find({instrumentCdAndTp : key})
-                  .simplesort('time', true)
-                  .limit(1)
-                  .data();
+            chartingRequestMap.mapFor(key).timerHandler = setInterval(() => {
+               let lastBar = barsTable.query({instrumentCdAndTp : key, take: 1, reverse: true });
                if (lastBar && lastBar.length > 0) {
                   lastBar = lastBar[0];
                   //requests new bars
@@ -135,7 +125,7 @@ export const retrieveChartDataAndRender = (options) => {
          }
       });
 
-   chartingRequestMap[key].chartIDs.push({
+   chartingRequestMap.mapFor(key).chartIDs.push({
       containerIDWithHash : containerIDWithHash,
       series_compare : series_compare,
       instrumentCode : instrumentCode,

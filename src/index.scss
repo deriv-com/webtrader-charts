@@ -2,49 +2,4 @@
    background: white;
    outline: 0;
    padding: 0;
-   .ui-dialog-titlebar {
-      padding: 5px 5px;
-      position: relative;
-      border-radius: 0;
-   }
-   .ui-dialog-buttonpane {
-      text-align: right;
-      button {
-         outline: 0;
-         box-sizing: border-box;
-         margin: 5px 3px;
-         border-radius: 3px!important;
-         width: 100px;
-         line-height: 14px;
-         text-align: center;
-         background-color: #2A3052;
-      }
-   }
-  .ui-dialog-titlebar-close {
-     margin: -7px 0 0 0 !important;
-     width: 14px;
-     height: 14px;
-  }
-}
-.ui-dialog-titlebar-close {
-   text-indent: 100%;
-   white-space: nowrap;
-   width: 14px;
-   height: 14px;
-   padding: 0;
-   position: absolute;
-   top: 50%;
-   right: 0.3em;
-   overflow: hidden;
-   background: transparent !important;
-   cursor: pointer;
-   background-image: url('./images/close.svg') !important;
-   margin: -7px 0 0 0;
-
-   .ui-icon-closethick { display: none; } 
-}
-
-.ui-widget-overlay {
-   background: #333;
-   opacity: 0.3;
 }
