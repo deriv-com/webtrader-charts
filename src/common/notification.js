@@ -1,6 +1,4 @@
-import toastr from 'toastr/build/toastr.min.js';
-import 'toastr/build/toastr.min.css';
-import './notification.scss';
+import toastr from '../lib/toastr.js';
 
 toastr.options = {
   closeButton: false,

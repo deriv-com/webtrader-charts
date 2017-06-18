@@ -272,7 +272,7 @@ export const register = function(options, dialog_id) {
         .catch((up) => {
             /* if the market is closed try the same request without subscribing */
             if (req.subscribe && up.code == 'MarketIsClosed') {
-                notification.info(`${options.symbol} ${i18n('market is presently closed')}.`, dialog_id); 
+                notification.warning(`${options.symbol} ${i18n('market is presently closed')}.`, dialog_id); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
                 map[key].subscribers -= 1;
