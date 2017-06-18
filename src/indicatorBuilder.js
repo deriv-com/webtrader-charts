@@ -127,7 +127,7 @@ const init = (chart_series, indicator) => {
                   }
 
                   if(!fields_are_valid) {
-                     notification.error(i18n('Invalid parameter(s)!'), '.indicator-builder-ui-dialog.webtrader-charts-dialog');
+                     notification.error(i18n('Invalid parameter(s)') + '!', '.indicator-builder-ui-dialog.webtrader-charts-dialog');
                      return;
                   }
 

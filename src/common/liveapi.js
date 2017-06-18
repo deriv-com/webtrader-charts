@@ -32,6 +32,10 @@ const connect = () => {
    return ws;
 }
 
+const send_raw = obj => {
+   socket.send(JSON.stringify(obj));
+}
+
 let timeoutIsSet = false;
 const onclose = () => {
    notification.error(`${i18n('Connection error')}.`, '.webtrader-charts-chart-window-contianer');
@@ -57,7 +61,7 @@ const onopen = () => {
    while(buffered_sends.length > 0) {
       const data = buffered_sends.shift();
       if(!unresolved_promises[data.req_id]) {
-         socket.send(JSON.stringify(data));
+         send_raw(data);
       }
    }
    /* if the connection got closed while the result of an unresolved request
@@ -69,7 +73,7 @@ const onopen = () => {
          promise.reject({message: `${i18n('connection closed')}.`});
       } else { /* send */
          promise.sent_before = true;
-         socket.send(JSON.stringify(promise.data));
+         send_raw(promise.data);
       }
    }
    while (buffered_execs.length > 0)
@@ -112,7 +116,7 @@ const send_request = (data) => {
    return new Promise((resolve,reject) => {
       unresolved_promises[data.req_id] = { resolve: resolve, reject: reject, data: data };
       if (is_connected()) {
-         socket.send(JSON.stringify(data));
+         send_raw(data);
       } else
          buffered_sends.push(data);
    });
