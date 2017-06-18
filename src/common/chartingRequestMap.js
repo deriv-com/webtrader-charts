@@ -304,14 +304,38 @@ export const unregister = function(key, containerIDWithHash) {
     if (containerIDWithHash) {
         _.remove(map[key].chartIDs, { containerIDWithHash: containerIDWithHash });
     }
-    map[key].subscribers -= 1;
+    if(map[key].subscribers) {
+       map[key].subscribers -= 1;
+    }
     if (map[key].chartIDs.length === 0 && map[key].timerHandler) {
         clearInterval(map[key].timerHandler);
         map[key].timerHandler = null;
     }
+    /* Remove the following code if backend fixes this issue: 
+     * https://trello.com/c/1IZRihrH/4662-1-forget-call-for-one-stream-id-affects-all-other-streams-with-the-same-symbol
+     * Also remove instrument from function argument list.
+     */
+    //<<<<<<<<<<<<<<<<<<<<< start
+    const instrument = map[key].symbol;
+    const tickMap = map[keyFor(instrument, 0)];
+    //>>>>>>>>>>>>>>>>>>>> end
     if (map[key].subscribers === 0 && map[key].id) { /* id is set in stream_handler.js */
-        liveapi.send({ forget: map[key].id })
-            .catch((err) => { console.error(err); });
+       liveapi.send({ forget: map[key].id })
+          //<<<<<<<<<<<<<<<<<<<<< start
+          .then(()=> {
+             // Resubscribe to tick stream if there are any tickSubscribers.
+             if(tickMap && tickMap.subscribers)
+                register({
+                   symbol: instrument,
+                   granularity: 0,
+                   subscribe: 1,
+                   count: 50 // To avoid missing any ticks.
+                }).then(() => {
+                   map[keyFor(instrument, 0)] = tickMap;
+                });
+          })
+          //>>>>>>>>>>>>>>>>>>>> end
+          .catch((err) => { console.error(err); });
     }
     if (map[key].subscribers === 0) {
         delete map[key];
@@ -331,15 +355,9 @@ export const removeChart = function(key, containerIDWithHash) {
 export const digits_after_decimal = function(pip, symbol) {
     pip = pip && pip + '';
     if (!pip) {
-        console.warn();
-        ('pip value is invalid', pip);
         /**
-         * This is disaster. If pip value is invalid, then it could several trade related issues.
-         * Try to guess decimal places from whatever data we have from local database
-         * (This is a fallback method. the execution never come here)
-         * Technique -
-         *      Fetch last 10 tick values
-         *      Take the maximum decimal places all these ticks
+         * Fetch last 10 tick values
+         * Take the maximum decimal places all these ticks
          */
         const key = keyFor(symbol, 0);
         let decimal_digits = 0;
@@ -358,7 +376,7 @@ export const digits_after_decimal = function(pip, symbol) {
 liveapi.events.on('connection-reopen', () => {
    _.each(map, (data, key) => {
       const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
-      _.each(chartIds, chartId => removeChart(key, chartId));
+      map[key] = null;
       _.each(chartIds, chartId => refresh(chartId));
    });
 });

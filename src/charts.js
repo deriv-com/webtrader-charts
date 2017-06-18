@@ -317,7 +317,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
                             //Add current price indicator
                             //If we already added currentPriceLine for this series, ignore it
-                            //console.log(this.options.id, this.yAxis.plotLinesAndBands);
                             this.removeCurrentPrice();
                             this.addCurrentPrice();
 

@@ -22,7 +22,6 @@ export const mousewheel = (containerIdWitHash) => {
    });
 
    function setNewExtremes() {
-        console.log("called");
       const extremes = xAxis.getExtremes();
       //If its positive, then move up
       if(noOfCandles > 0) {

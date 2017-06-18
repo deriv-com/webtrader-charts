@@ -20,7 +20,6 @@ var ALMA = function (data, options, indicators) {
 	        $norm += $coeff;
         }
         return $sum / $norm;*/
-        console.info(this.options.sigma, this.options.offset, this.options.period);
         var m = Math.floor(this.options.offset * (this.options.period - 1));
         var s = this.options.period / this.options.sigma;
         var sum = 0.0;
