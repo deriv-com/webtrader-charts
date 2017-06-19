@@ -374,9 +374,10 @@ export const digits_after_decimal = function(pip, symbol) {
 }
 
 liveapi.events.on('connection-reopen', () => {
-   _.each(map, (data, key) => {
+   const map_clone = _.cloneDeep(map);
+   _.each(map_clone, (data, key) => {
       const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
-      map[key] = null;
+      delete map[key];
       _.each(chartIds, chartId => refresh(chartId));
    });
 });
