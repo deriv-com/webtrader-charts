@@ -105,6 +105,9 @@ export const retrieveChartDataAndRender = (options) => {
                   dialog_id
             );
 
+            if(!chartingRequestMap.mapFor(key)) {
+               return;
+            }
             //start the timer
             chartingRequestMap.mapFor(key).timerHandler = setInterval(() => {
                let lastBar = barsTable.query({instrumentCdAndTp : key, take: 1, reverse: true });

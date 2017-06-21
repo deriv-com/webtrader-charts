@@ -1,10 +1,10 @@
 ﻿import {uuid, toFixed} from '../common/utils.js';
+
 /**
  * Created by Mahboob.M on 1/29/16.
  */
 
 var NATR = function (data, options, indicators) {
-
     IndicatorBase.call(this, data, options, indicators);
     this.priceData = [];
     /*Calculate ATR
@@ -46,7 +46,7 @@ NATR.prototype.update = function (data) {
     this.priceData[index].high = data.high;
     this.priceData[index].low = data.low;
     this.priceData[index].close = data.close;
-    var atr = this.atr.update(data)[0].value;;
+    var atr = this.atr.update(data)[0].value;
     var price = this.indicators.getIndicatorOrPriceValue(data, this.options.appliedTo);
     var natr = toFixed(((atr / price) * 100), 4);
     this.indicatorData[index].value = natr;
