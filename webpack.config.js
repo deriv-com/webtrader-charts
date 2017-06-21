@@ -7,8 +7,8 @@ module.exports = {
    entry: './src/index.js',
    output: {
       filename: 'webtrader-charts.js',
-      // path: path.resolve(__dirname, 'dist'),
-      path: path.resolve(__dirname, './example/node_modules/webtrader-charts/dist'),
+      path: path.resolve(__dirname, 'dist'),
+      // path: path.resolve(__dirname, './example/node_modules/webtrader-charts/dist'),
       // path: path.resolve(__dirname, '../dist/uncompressed/v2.2.0/lib/webtrader-charts/dist'),
       library: 'WebtraderCharts',
       libraryTarget: 'umd'
