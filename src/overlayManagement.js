@@ -106,7 +106,7 @@ export const marketData = () => {
                      instruments: _.filter(sm.instruments,
                         (ins) => active_symbols.indexOf(ins.symbol) !== -1
                      )
-                  }
+                  };
                }).filter((sm) => sm.instruments.length !== 0)
             })
          ).filter((m) => m.submarkets.length !== 0)
@@ -127,7 +127,7 @@ export const specificMarketDataSync = function(marketDataDisplayName, marketData
         return $.isEmptyObject(present);
     });
     return present;
-}
+};
 
 const init_state = (root) =>{
    state = {
@@ -142,7 +142,7 @@ const init_state = (root) =>{
       }
    };
 
-   state.overlays.clear_search = () => { state.overlays.search = ''; }
+   state.overlays.clear_search = () => { state.overlays.search = ''; };
 
    state.overlays.add = (ovlay) => {
       const symbol = ovlay.symbol;
@@ -169,7 +169,7 @@ const init_state = (root) =>{
       state.overlays.current.push(displaySymbol);
       ovlay.dont_show = true;
       win.trigger("close");
-   }
+   };
 
    state.overlays.remove = (ovlay) => {
       const containerIDWithHash = state.dialog.container_id;
@@ -229,10 +229,10 @@ const init_state = (root) =>{
          dialog.trigger('chart-overlay-remove', {displaySymbol: ovlay});
       }
 
-   }
+   };
 
    win_view = rv.bind(root[0], state);
-}
+};
 
 
 const update_overlays = (chart) => {
@@ -254,7 +254,7 @@ const update_overlays = (chart) => {
       state.overlays.array = markets;
       state.overlays.current = current;
    });
-}
+};
 
 export const openDialog = (containerIDWithHash, title ) => {
       const root = $(html);
@@ -277,7 +277,7 @@ export const openDialog = (containerIDWithHash, title ) => {
             win_view = null;
          }
       });
-}
+};
 
 export const events = $('<div/>');
 export default { 
@@ -285,5 +285,5 @@ export default {
    specificMarketDataSync,
    chartableMarkets,
    events
-}
+};
 

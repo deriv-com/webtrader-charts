@@ -8,6 +8,7 @@ wtcharts.init({
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
+
 const $parent = $('#container');
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
    "instrumentCode": "GDAXI",
@@ -17,38 +18,52 @@ const chart =  wtcharts.chartWindow.addNewChart($parent, {
    "indicators": [],
    "overlays": []
 });
-
-// const chart =  wtcharts.chartWindow.addNewChart($parent, {
-//    "type": "line",
-//    "timePeriod": "1m",
-//    "instrumentCode": "RDBULL",
-//    "instrumentName": "Bull Market Index",
-//    "showInstrumentName": true, // default is false
-//    "showOverlays": false, // default is true
-//    "indicators": [
-//       {
-//          "id": "cks",
-//          "name": "Chande Kroll Stop",
-//          "options": {
-//             "period": 10,
-//             "maxMinPeriod": 20,
-//             "multiplier": 3,
-//             "longStopStroke": "#00C176",
-//             "shortStopStroke": "#FF003C",
-//             "strokeWidth": 1,
-//             "dashStyle": "Solid"
-//          }
-//       },
-//    ],
-//    // "overlays": [
-//    //   {
-//    //     "symbol": "frxAUDJPY",
-//    //     "displaySymbol": "AUD/JPY",
-//    //     "delay_amount": 0
-//    //   }
-//    // ],
-// });
-
 chart.events.anyChange = () => {
    console.warn(chart.data());
 }; 
+
+
+// This is a test for a timing issue in need to fix.
+const run_timing_issue_test = () => {
+   const configs = [
+      {
+         "type": "line",
+         "timePeriod": "1m",
+         "instrumentCode": "RDBULL",
+         "instrumentName": "Bull Market Index",
+         "showInstrumentName": true, // default is false
+         "showOverlays": false, // default is true
+         "indicators": [
+            {
+               "id": "cks",
+               "name": "Chande Kroll Stop",
+               "options": {
+                  "period": 10, "maxMinPeriod": 20,
+                  "multiplier": 3, "longStopStroke": "#00C176",
+                  "shortStopStroke": "#FF003C", "strokeWidth": 1,
+                  "dashStyle": "Solid"
+               }
+            },
+         ],
+      },
+      {
+         "instrumentCode": "GDAXI",
+         "instrumentName": "German Index",
+         "timePeriod": "1d",
+         "type": "candlestick",
+         "indicators": [],
+         "overlays": []
+      }
+   ];
+
+   let chart = null;
+   const rerender = () => {
+      chart && chart.actions.destroy();
+      const config = configs[Math.random() > 0.5 ? 1 : 0];
+      chart =  wtcharts.chartWindow.addNewChart($parent, config);
+      const timeout = Math.random()*4000;
+      console.warn(timeout | 0);
+      setTimeout(rerender, timeout | 0);
+   };
+   rerender();
+};

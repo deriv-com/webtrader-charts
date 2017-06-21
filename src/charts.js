@@ -11,7 +11,7 @@ import currentPrice from './common/currentprice.js';
 import indicators from './common/indicators.js';
 import indicatorsArray from './indicators-config.js';
 import notification from './common/notification.js';
-import HMW from './common/highchartsMousewheel.js'
+import HMW from './common/highchartsMousewheel.js';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import {i18n} from './common/utils.js';
 import './charts.scss';
@@ -29,13 +29,13 @@ Highcharts.Chart.prototype.get_indicators = function() {
         indicator_values.forEach((ind) => {
             const id = ind.id;
             chart.series[0][id] && chart.series[0][id].forEach((entry) => {
-                indicators.push({ id: id, name: ind.long_display_name, options: entry.options })
+                indicators.push({ id: id, name: ind.long_display_name, options: entry.options });
             });
         });
     }
 
     return indicators;
-}
+};
 
 Highcharts.Chart.prototype.set_indicators = function(indicators) {
     const chart = this;
@@ -47,7 +47,7 @@ Highcharts.Chart.prototype.set_indicators = function(indicators) {
             chart.series[0].addIndicator(ind.id, ind.options);
         });
     }
-}
+};
 
 Highcharts.Chart.prototype.get_indicator_series = function() {
     const chart = this;
@@ -55,31 +55,31 @@ Highcharts.Chart.prototype.get_indicator_series = function() {
     if (chart.series.length > 0) {
         indicator_values.forEach((ind) => {
             const id = ind.id;
-            chart.series[0][id] && chart.series[0][id][0] && series.push({ id: id, series: chart.series[0][id] })
+            chart.series[0][id] && chart.series[0][id][0] && series.push({ id: id, series: chart.series[0][id] });
         });
     }
     return series;
-}
+};
 
 Highcharts.Chart.prototype.set_indicator_series = function(series) {
     const chart = this;
-    if (!chart.series || chart.series.length == 0) {
+    if (!chart.series || chart.series.length === 0) {
         return;
     }
     series.forEach((seri) => {
         chart.series[0][seri.id] = seri.series;
     });
-}
+};
 
 Highcharts.Chart.prototype.get_overlay_count = function() {
     let overlayCount = 0;
     this.series.forEach((s, index) => {
-        if (s.options.isInstrument && s.options.id.indexOf('navigator') == -1 && index != 0) {
+        if (s.options.isInstrument && s.options.id.indexOf('navigator') == -1 && index !== 0) {
             overlayCount++;
         }
     });
     return overlayCount;
-}
+};
 
 $(() => {
 
@@ -103,7 +103,7 @@ export const destroy = (options) => {
     //granularity will be 0 for tick timePeriod
     const key = chartingRequestMap.keyFor(instrumentCode, timePeriod);
     chartingRequestMap.unregister(key, containerIDWithHash);
-}
+};
 
 export const generate_csv = (chart, data, dialog_id) => {
     let lines = [],
@@ -129,7 +129,7 @@ export const generate_csv = (chart, data, dialog_id) => {
         const newDataLines = series.userOptions.data.map((d) => {
             return flattenData(d);
         }) || [];
-        if (index == 0) {
+        if (index === 0) {
             const ohlc = newDataLines[0].split(',').length > 2;
             if (ohlc) lines.push('Date,Time,Open,High,Low,Close');
             else lines.push('Date,Time,"' + series.userOptions.name + '"');
@@ -194,7 +194,7 @@ export const generate_csv = (chart, data, dialog_id) => {
           console.error(e);
        }
     });
-}
+};
 
 /**
  * This method is the core and the starting point of highstock charts drawing
@@ -399,7 +399,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 $.each(this.points, function(i){
                     s += '<span style="color:' + this.point.color + '">\u25CF </span>';
                     if(typeof this.point.open !=="undefined") { //OHLC chart
-                        s += "<b>" + this.series.name + "</b>"
+                        s += "<b>" + this.series.name + "</b>";
                         s += `<br>  ${i18n('Open')}: ` + this.point.open;
                         s += `<br>  ${i18n('High')}: ` + this.point.high;
                         s += `<br>  ${i18n('Low')}: ` + this.point.low;
@@ -408,7 +408,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                         s += this.series.name + ": <b>" + this.point.y + "</b>";
                     }
                     s += "<br>";
-                })
+                });
                 return s;
             },
             enabled: true,
@@ -423,13 +423,13 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         }
 
     });
-}
+};
 
 export const triggerReflow = (containerIDWithHash) => {
     if ($(containerIDWithHash).highcharts()) {
         $(containerIDWithHash).highcharts().reflow();
     }
-}
+};
 
 export const refresh = function(containerIDWithHash, newTimePeriod, newChartType, indicators, overlays) {
     const instrumentCode = $(containerIDWithHash).data("instrumentCode");
@@ -444,8 +444,8 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
 
     //Get all series details from this chart
     const chart = $(containerIDWithHash).highcharts();
-    let loadedMarketData = [],
-        series_compare = undefined;
+    let loadedMarketData = [];
+    let series_compare;
     /* for ohlc and candlestick series_compare must NOT be percent */
     if (newChartType !== 'ohlc' && newChartType !== 'candlestick') {
         $(chart.series).each((index, series) => {
@@ -462,7 +462,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
         overlaysReadyPromise = marketData().then((markets) => {
            loadedMarketData.forEach((value) => {
                const marketDataObj = specificMarketDataSync(value, markets);
-               if (marketDataObj.symbol != undefined && $.trim(marketDataObj.symbol) != $(containerIDWithHash).data("instrumentCode")) {
+               if (marketDataObj.symbol !== undefined && $.trim(marketDataObj.symbol) != $(containerIDWithHash).data("instrumentCode")) {
                    const overlay = {
                        symbol: marketDataObj.symbol,
                        displaySymbol: value,
@@ -485,7 +485,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          indicators: indicators
       });
    });
-}
+};
 
 export const addIndicator = (containerIDWithHash, options) => {
     if ($(containerIDWithHash).highcharts()) {
@@ -497,7 +497,7 @@ export const addIndicator = (containerIDWithHash, options) => {
             }, options));
         }
     }
-}
+};
 
 /**
  * Function to overlay instrument on base chart
@@ -551,12 +551,12 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         });
     }
     return Promise.resolve();
-}
+};
 
 export const changeTitle = (containerIDWithHash, newTitle) => {
     const chart = $(containerIDWithHash).highcharts();
     chart.setTitle(newTitle);
-}
+};
 
 export default {
     drawChart,
@@ -567,4 +567,4 @@ export default {
     addIndicator,
     overlay,
     changeTitle
-}
+};

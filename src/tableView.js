@@ -45,7 +45,7 @@ const refresh_table = (dialog, instrumentCode, state) => {
    const data = dialog.find('#' + dialog.attr('id') + '_chart').data();
    const is_tick = isTick(data.timePeriod);
    const table = dialog.find('.table-view');
-	const db_bars = chartingRequestMap.barsTable.query({
+	const bars = chartingRequestMap.barsTable.query({
 		instrumentCdAndTp: chartingRequestMap.keyFor(instrumentCode, data.timePeriod),
 		take: 100,
 		reverse: true

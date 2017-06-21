@@ -37,6 +37,7 @@ export const addNewChart = function($parent, options) {
     Store[id].indicators = Store[id].indicators || [];
     Store[id].overlays = Store[id].overlays || [];
 
+    let drawChartPromise = null;
     const instance = {
        data: () => Store[id],
        actions: {
@@ -45,14 +46,18 @@ export const addNewChart = function($parent, options) {
             const container = $("#" + id + "_chart");
             const timePeriod = container.data("timePeriod");
             const instrumentCode = container.data('instrumentCode');
-            container.highcharts().destroy();
-            charts.destroy({
-                containerIDWithHash: "#" + id + "_chart",
-                timePeriod: timePeriod,
-                instrumentCode: instrumentCode
+            dialog.hide();
+            dialog.insertBefore(dialog.parent());
+            return drawChartPromise.then(() => {
+               container.highcharts().destroy();
+               charts.destroy({
+                   containerIDWithHash: "#" + id + "_chart",
+                   timePeriod: timePeriod,
+                   instrumentCode: instrumentCode
+               });
+               chartOptions.cleanBinding(id);
+               dialog.remove();
             });
-            chartOptions.cleanBinding(id);
-            dialog.remove();
           },
           refresh: () => charts.refresh(`#${id}_chart`)
        },
@@ -92,21 +97,28 @@ export const addNewChart = function($parent, options) {
     dialog.on('chart-options-changed', function(e) {
         instance.events.anyChange && instance.events.anyChange({data: Store[id]});
     });
-    delayAmountFor(options.instrumentCode).then(delayAmount => {
+
+    drawChartPromise = delayAmountFor(options.instrumentCode).then(delayAmount => {
        options.delayAmount = options.delayAmount || delayAmount;
        Store[id].delayAmount = Store[id].delayAmount || delayAmount;
-       /* initialize chartOptions & table-view once chart is rendered */
-       charts.drawChart("#" + id + "_chart", options, instance.actions.reflow);
-       const table_view = tableView.init(dialog);
-       chartOptions.init(id, table_view.show, {
-          timePeriod: options.timePeriod,
-          chartType: options.type,
-          instrumentName: options.instrumentName,
-          instrumentCode: options.instrumentCode,
-          showInstrumentName: options.showInstrumentName,
-          showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
-          showShare: true,
-       });
+
+       return new Promise((resolve, reject) => {
+         charts.drawChart("#" + id + "_chart", options, () => {
+            instance.actions.reflow();
+            resolve();
+         });
+         /* initialize chartOptions & table-view once chart is rendered */
+         const table_view = tableView.init(dialog);
+         chartOptions.init(id, table_view.show, {
+            timePeriod: options.timePeriod,
+            chartType: options.type,
+            instrumentName: options.instrumentName,
+            instrumentCode: options.instrumentCode,
+            showInstrumentName: options.showInstrumentName,
+            showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
+            showShare: true,
+         });
+      });
     });
 
     return instance;
