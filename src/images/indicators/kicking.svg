@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="211.8px" height="169.71px" viewBox="0 0 211.8 169.71" enable-background="new 0 0 211.8 169.71" xml:space="preserve">
-<g>
-	<rect x="50" y="1" fill="#FFFFFF" stroke="#231F20" stroke-width="2" width="21" height="54"/>
-	<rect x="147" y="1" fill="#FFFFFF" stroke="#231F20" stroke-width="2" width="21" height="54"/>
-	<rect x="1.33" y="72.5" width="23" height="67"/>
-	<rect x="186.33" y="72.83" width="23" height="67"/>
-	<text transform="matrix(1 0 0 1 -2.441406e-004 164.833)" font-family="'Roboto-Bold'" font-size="18">Bullish</text>
-	<text transform="matrix(1 0 0 1 150.6667 164.501)" font-family="'Roboto-Bold'" font-size="18">Bearish</text>
-</g>
-</svg>
+<svg version="1" xmlns="http://www.w3.org/2000/svg" width="211.8" height="169.71" viewBox="0 0 211.8 169.71"><path fill="#FFF" stroke="#231F20" stroke-width="2" d="M50 1h21v54H50zM147 1h21v54h-21z"/><path d="M1.33 72.5h23v67h-23zM186.33 72.83h23v67h-23z"/><text transform="translate(0 164.833)" font-family="'Roboto-Bold'" font-size="18">Bullish</text><text transform="translate(150.667 164.501)" font-family="'Roboto-Bold'" font-size="18">Bearish</text></svg>

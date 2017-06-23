@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
-    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
-    <title>rickshaw man</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="rickshaw-man" fill="#000000">
-            <rect id="Rectangle-5" x="145" y="25" width="10" height="250" rx="5"></rect>
-            <rect id="Rectangle-5-Copy" x="100" y="153" width="100" height="9" rx="4.5"></rect>
-        </g>
-    </g>
-</svg>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="background:#fff"><title>rickshaw man</title><g fill="#000" fill-rule="evenodd"><rect x="145" y="25" width="10" height="250" rx="5"/><rect x="100" y="153" width="100" height="9" rx="4.5"/></g></svg>
