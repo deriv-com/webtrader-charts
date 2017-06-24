@@ -92,12 +92,4 @@ VAR.prototype.toString = function() {
     return 'VAR (' + this.options.period + ')';
 };
 
-//VAR.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) {
-//    var confObjects = IndicatorBase.prototype.buildSeriesAndAxisConfFromData.call(this, indicatorMetadata);
-//    confObjects.forEach(function(confObject) {
-//        confObject.axisConf.title.x = 73;
-//    });
-//    return confObjects;
-//};
-//
-//window.VAR = VAR;
+window.VAR = VAR;

@@ -16,6 +16,7 @@ import './cdl-mangled-props.js';
 
 import './stoch.js';
 import './sma.js';
+import './WILLR.js';
 import './wma.js';
 import './ema.js';
 import './tema.js';
