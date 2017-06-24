@@ -63,7 +63,7 @@ const getParameterByNameFromURL = (name) => {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 };
 
-export const isTick = (ohlc) => ohlc.indexOf('t') != -1;
+export const isTick = (ohlc) => ohlc && (ohlc.indexOf('t') != -1);
 export const isDotType = (type) => type === 'dot';
 export const isLineDotType = (type) => type === 'linedot';
 export const isDataTypeClosePriceOnly = (type) => !(type === 'candlestick' || type === 'ohlc');
