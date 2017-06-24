@@ -10,7 +10,7 @@ var CC = function (data, options, indicators) {
     this.shortRoc = new ROC(data, { period: options.shortRocPeriod, appliedTo: options.appliedTo }, indicators);
     this.longRoc = new ROC(data, { period: options.longRocPeriod, appliedTo: options.appliedTo }, indicators);
 
-    rocData=[];
+    var rocData=[];
     for (var index = 0; index < data.length; index++) {
         rocData.push({ time: data[index].time, close: this.shortRoc.indicatorData[index].value + this.longRoc.indicatorData[index].value });
     };

@@ -1,5 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,0 100,0 50,100" style="fill:#e98024;stroke:#e98024;stroke-width:1" />
-  Sorry, your browser does not support inline SVG.
-</svg>
+<svg height="100" width="100" xmlns="http://www.w3.org/2000/svg"><path fill="#e98024" stroke="#e98024" d="M0 0h100L50 100z"/>Sorry, your browser does not support inline SVG.</svg>

@@ -981,7 +981,7 @@ export const config = {
     short_display_name: "CDLSTALLEDPATTERN",
     fields: [ ],
     cdl_indicator: {
-      image: "salled_pattern"
+      image: "stalled_pattern"
     },
     category: [
       "Pattern Recognition"

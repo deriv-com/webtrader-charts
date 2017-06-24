@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import {each, find, cloneDeep, minby, maxBy} from 'lodash';
+import {each, find, cloneDeep, minBy, maxBy} from 'lodash';
 import rv from 'rivets';
 import html from './indicatorBuilder.html';
 import './indicatorBuilder.scss';
