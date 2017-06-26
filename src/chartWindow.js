@@ -53,7 +53,8 @@ export const addNewChart = function($parent, options) {
                charts.destroy({
                    containerIDWithHash: "#" + id + "_chart",
                    timePeriod: timePeriod,
-                   instrumentCode: instrumentCode
+                   instrumentCode: instrumentCode,
+                   start: options.start
                });
                chartOptions.cleanBinding(id);
                dialog.remove();
@@ -99,6 +100,7 @@ export const addNewChart = function($parent, options) {
     });
 
     drawChartPromise = delayAmountFor(options.instrumentCode).then(delayAmount => {
+       delayAmount = options.start ? 0 : delayAmount; // No delay for historical-data
        options.delayAmount = options.delayAmount || delayAmount;
        Store[id].delayAmount = Store[id].delayAmount || delayAmount;
 
