@@ -146,20 +146,19 @@ export const init = (dialog, offset) => {
       }
    });
 
-   dialog.on('dialogdestroy', () => {
-      stream_handler.events.off('tick', on_tick);
-      stream_handler.events.off('ohlc', on_ohlc);
-      view &&  view.unbind();
-      view = null;
-      root && root.remove();
-      root = null;
-   });
-
    let view = rv.bind(root[0], state);
 
    return {
       show: () => show_table_view(dialog, data.instrumentCode, state),
-      hide: () => hide_table_view(dialog)
+      hide: () => hide_table_view(dialog),
+      destroy: () => {
+         stream_handler.events.off('tick', on_tick);
+         stream_handler.events.off('ohlc', on_ohlc);
+         view &&  view.unbind();
+         view = null;
+         root && root.remove();
+         root = null;
+      }
    }
 }
 
