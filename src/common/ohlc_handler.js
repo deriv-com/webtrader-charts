@@ -27,7 +27,8 @@ const processCandles = (key, time, open, high, low, close) => {
 };
 
 liveapi.events.on('candles', (e, data) => {
-   const key = (data.echo_req.ticks_history + data.echo_req.granularity).toUpperCase();
+   const start = data.echo_req.end !== 'latest' ? data.echo_req.start : undefined;
+   const key = chartingRequestMap.keyFor(data.echo_req.ticks_history, data.echo_req.granularity*1, start);
    data.candles.forEach((eachData) => {
       const open  = parseFloat(eachData.open),
          high  = parseFloat(eachData.high),
@@ -41,7 +42,8 @@ liveapi.events.on('candles', (e, data) => {
 
 liveapi.events.on('history', (e, data) => {
    //For tick history handling
-   const key = (data.echo_req.ticks_history + '0').toUpperCase();
+   const start = data.echo_req.end !== 'latest' ? data.echo_req.start : undefined;
+   const key = chartingRequestMap.keyFor(data.echo_req.ticks_history, 0, start);
    data.history.times.forEach((eachData,index) => {
       const time = parseInt(eachData) * 1000,
          price = parseFloat(data.history.prices[index]);
@@ -64,7 +66,7 @@ export const retrieveChartDataAndRender = (options) => {
       instrumentName = options.instrumentName,
       series_compare = options.series_compare;
 
-   const key = chartingRequestMap.keyFor(instrumentCode, timePeriod);
+   const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, options.start);
    if (chartingRequestMap.mapFor(key)) {
       /* Since streaming for this instrument+timePeriod has already been requested,
                    we just take note of containerIDWithHash so that once the data is received, we will just
@@ -83,13 +85,15 @@ export const retrieveChartDataAndRender = (options) => {
 
    const dialog_id = containerIDWithHash.replace('_chart', '');
 
+   const is_tick = isTick(timePeriod);
    const done_promise = chartingRequestMap.register({
       symbol: instrumentCode,
       granularity: timePeriod,
-      subscribe: options.delayAmount === 0 ? 1 : 0,
-      style: !isTick(timePeriod) ? 'candles' : 'ticks',
+      style: !is_tick ? 'candles' : 'ticks',
+      delayAmount: options.delayAmount,
       count: 1000,          //We are only going to request 1000 bars if possible
-      adjust_start_time: 1
+      adjust_start_time: 1,
+      start: options.start
    }, dialog_id)
       .catch((err) => {
          const msg = i18n('Error getting data for %1').replace('%1', instrumentName);
@@ -99,7 +103,22 @@ export const retrieveChartDataAndRender = (options) => {
          console.error(err);
       })
       .then((data) => {
-         if (data && !data.error && options.delayAmount > 0) {
+         if(options.start) {
+            const count = is_tick ? data.history.times.length : data.candles.length;
+
+            if (count === 0) { 
+                const msg = i18n("There is no historical data available!");
+                notification.error(msg, dialog_id);
+                const chart = $(containerIDWithHash).highcharts();
+                chart && chart.showLoading(msg);
+            }
+            return;
+         }
+         
+         let needs_timer = data && !data.error;
+         needs_timer = needs_timer && options.delayAmount > 0; // chart is not delayed
+         needs_timer = needs_timer && !options.start; // it's not historical data
+         if (needs_timer) {
             notification.warning(
                   `${instrumentName} ${i18n('feed is delayed by')} ${options.delayAmount} ${i18n('minutes')}`,
                   dialog_id

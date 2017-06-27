@@ -49,11 +49,13 @@ export const addNewChart = function($parent, options) {
             dialog.hide();
             dialog.insertBefore(dialog.parent());
             return drawChartPromise.then(() => {
+               table_view && table_view.destroy();
                container.highcharts().destroy();
                charts.destroy({
                    containerIDWithHash: "#" + id + "_chart",
                    timePeriod: timePeriod,
-                   instrumentCode: instrumentCode
+                   instrumentCode: instrumentCode,
+                   start: options.start
                });
                chartOptions.cleanBinding(id);
                dialog.remove();
@@ -98,17 +100,19 @@ export const addNewChart = function($parent, options) {
         instance.events.anyChange && instance.events.anyChange({data: Store[id]});
     });
 
+    let table_view = null;
     drawChartPromise = delayAmountFor(options.instrumentCode).then(delayAmount => {
+       delayAmount = options.start ? 0 : delayAmount; // No delay for historical-data
        options.delayAmount = options.delayAmount || delayAmount;
        Store[id].delayAmount = Store[id].delayAmount || delayAmount;
 
        return new Promise((resolve, reject) => {
          charts.drawChart("#" + id + "_chart", options, () => {
             instance.actions.reflow();
-            resolve();
+            _.delay(resolve);
          });
          /* initialize chartOptions & table-view once chart is rendered */
-         const table_view = tableView.init(dialog);
+         table_view = tableView.init(dialog);
          chartOptions.init(id, table_view.show, {
             timePeriod: options.timePeriod,
             chartType: options.type,

@@ -97,11 +97,12 @@ indicators.initHighchartIndicators(chartingRequestMap.barsTable);
 export const destroy = (options) => {
     const containerIDWithHash = options.containerIDWithHash,
         timePeriod = options.timePeriod,
-        instrumentCode = options.instrumentCode;
+        instrumentCode = options.instrumentCode,
+        start = options.start;
     if (!timePeriod || !instrumentCode) return;
 
     //granularity will be 0 for tick timePeriod
-    const key = chartingRequestMap.keyFor(instrumentCode, timePeriod);
+    const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, start);
     chartingRequestMap.unregister(key, containerIDWithHash);
 };
 
@@ -134,7 +135,7 @@ export const generate_csv = (chart, data, dialog_id) => {
             if (ohlc) lines.push('Date,Time,Open,High,Low,Close');
             else lines.push('Date,Time,"' + series.userOptions.name + '"');
             //newDataLines is incorrect - get it from lokijs
-            const key = chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod);
+            const key = chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod, data.start);
             const bars = chartingRequestMap.barsTable.query({ instrumentCdAndTp: key });
             lines = lines.concat(bars.map((b) => {
                 return ohlc ? ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm') + '"', b.open, b.high, b.low, b.close].join(',') : ['"' + moment.utc(b.time).format('YYYY-MM-DD HH:mm:ss') + '"', b.close].join(',');
@@ -216,7 +217,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     if ($(containerIDWithHash).highcharts()) {
         //Just making sure that everything has been cleared out before starting a new thread
-        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod);
+        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod, options.start);
         chartingRequestMap.removeChart(key, containerIDWithHash);
         const chart = $(containerIDWithHash).highcharts();
         indicators = chart.get_indicators() || [];
@@ -242,7 +243,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         instrumentName: options.instrumentName,
         timePeriod: options.timePeriod,
         type: options.type,
-        delayAmount: options.delayAmount
+        delayAmount: options.delayAmount,
+        start: options.start
     });
 
     // Create the chart
@@ -262,7 +264,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             type: options.type,
                             instrumentName: options.instrumentName,
                             series_compare: options.series_compare,
-                            delayAmount: options.delayAmount
+                            delayAmount: options.delayAmount,
+                            start: options.start
                         }).catch((err) => {
                             const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
                             notification.error(msg, containerIDWithHash.replace('_chart', ''));
@@ -432,18 +435,22 @@ export const triggerReflow = (containerIDWithHash) => {
 };
 
 export const refresh = function(containerIDWithHash, newTimePeriod, newChartType, indicators, overlays) {
-    const instrumentCode = $(containerIDWithHash).data("instrumentCode");
+    const dialog = $(containerIDWithHash);
+    const options = $(containerIDWithHash).data();
     if (newTimePeriod) {
         //Unsubscribe from tickstream.
-        const key = chartingRequestMap.keyFor(instrumentCode, $(containerIDWithHash).data("timePeriod"));
+        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod, options.start);
         chartingRequestMap.unregister(key, containerIDWithHash);
-        $(containerIDWithHash).data("timePeriod", newTimePeriod);
+        dialog.data("timePeriod", newTimePeriod);
     }
-    if (newChartType) $(containerIDWithHash).data("type", newChartType);
-    else newChartType = $(containerIDWithHash).data("type", newChartType);
+    if (newChartType) {
+       dialog.data("type", newChartType);
+    } else {
+       newChartType = options.type;
+    }
 
     //Get all series details from this chart
-    const chart = $(containerIDWithHash).highcharts();
+    const chart = dialog.highcharts();
     let loadedMarketData = [];
     let series_compare;
     /* for ohlc and candlestick series_compare must NOT be percent */
@@ -462,7 +469,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
         overlaysReadyPromise = marketData().then((markets) => {
            loadedMarketData.forEach((value) => {
                const marketDataObj = specificMarketDataSync(value, markets);
-               if (marketDataObj.symbol !== undefined && $.trim(marketDataObj.symbol) != $(containerIDWithHash).data("instrumentCode")) {
+               if (marketDataObj.symbol !== undefined && $.trim(marketDataObj.symbol) != options.instrumentCode) {
                    const overlay = {
                        symbol: marketDataObj.symbol,
                        displaySymbol: value,
@@ -475,14 +482,15 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
     }
    overlaysReadyPromise.then(() => {
       drawChart(containerIDWithHash, {
-         instrumentCode: instrumentCode,
-         instrumentName: $(containerIDWithHash).data("instrumentName"),
-         timePeriod: $(containerIDWithHash).data("timePeriod"),
-         type: $(containerIDWithHash).data("type"),
+         instrumentCode: options.instrumentCode,
+         instrumentName: options.instrumentName,
+         timePeriod: options.timePeriod,
+         type: options.type,
          series_compare: series_compare,
-         delayAmount: $(containerIDWithHash).data("delayAmount"),
+         delayAmount: options.delayAmount,
          overlays: overlays,
-         indicators: indicators
+         indicators: indicators,
+         start: options.start
       });
    });
 };

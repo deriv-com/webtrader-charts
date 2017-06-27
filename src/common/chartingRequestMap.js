@@ -13,6 +13,7 @@
 */
 import _ from 'lodash';
 import $ from 'jquery';
+import moment from 'moment';
 import liveapi from './liveapi.js';
 import notification from './notification.js';
 import { refresh } from '../charts.js';
@@ -198,12 +199,13 @@ export const processOHLC = (open, high, low, close, time, type, dataInHighCharts
     }
 }
 
-export const keyFor = (symbol, granularity_or_timeperiod) => {
+export const keyFor = (symbol, granularity_or_timeperiod, start) => {
+    start = start || 'live';
     let granularity = granularity_or_timeperiod || 0;
     if (typeof granularity === 'string') {
         granularity = convertToTimeperiodObject(granularity).timeInSeconds();
     }
-    return (symbol + granularity).toUpperCase();
+    return `${symbol}-${granularity}-${start}`.toUpperCase();
 }
 
 
@@ -222,7 +224,7 @@ export const mapFor = key => map[key];
     will return a promise
 */
 export const register = function(options, dialog_id) {
-    const key = keyFor(options.symbol, options.granularity);
+    const key = keyFor(options.symbol, options.granularity, options.start);
 
     let granularity = options.granularity || 0;
     //If granularity = 0, then style should be ticks
@@ -241,29 +243,37 @@ export const register = function(options, dialog_id) {
     const req = {
         "ticks_history": options.symbol,
         "granularity": granularity,
-        "count": options.count || 1,
-        "end": 'latest',
         "style": style
     };
-    if (options.subscribe === 1) {
-        req.subscribe = 1;
-    }
 
-    if (!is_tick) {
-        const count = options.count || 1;
-        let start = (new Date().getTime() / 1000 - count * granularity) | 0;
+    if(!options.start) { // live-chart
+       req.count = options.count || 1;
+       req.end = 'latest';
 
-        //If the start time is less than 3 years, adjust the start time
-        const _3YearsBack = new Date();
-        _3YearsBack.setUTCFullYear(_3YearsBack.getUTCFullYear() - 3);
-        //Going back exactly 3 years fails. I am adding 1 day
-        _3YearsBack.setDate(_3YearsBack.getDate() + 1);
+       if (options.delayAmount === 0) {
+           req.subscribe = 1;
+       }
 
-        if ((start * 1000) < _3YearsBack.getTime()) { start = (_3YearsBack.getTime() / 1000) | 0; }
+       if (!is_tick) {
+           const count = options.count || 1;
+           let start = (new Date().getTime() / 1000 - count * granularity) | 0;
 
-        req.style = 'candles';
-        req.start = start;
-        req.adjust_start_time = options.adjust_start_time || 1;
+           //If the start time is less than 3 years, adjust the start time
+           const _3YearsBack = new Date();
+           _3YearsBack.setUTCFullYear(_3YearsBack.getUTCFullYear() - 3);
+           //Going back exactly 3 years fails. I am adding 1 day
+           _3YearsBack.setDate(_3YearsBack.getDate() + 1);
+
+           if ((start * 1000) < _3YearsBack.getTime()) { start = (_3YearsBack.getTime() / 1000) | 0; }
+
+           req.style = 'candles';
+           req.start = start;
+           req.adjust_start_time = options.adjust_start_time || 1;
+       }
+    } else { // for historical-data
+       req.start = options.start;
+       req.end = options.start + (req.granularity*1000 || 60*60); // by default load 1 hour of ticks
+       req.end = Math.min(req.end, moment.utc().unix());
     }
 
     map[key] = { symbol: options.symbol, granularity: granularity, subscribers: 0, chartIDs: [] };
@@ -317,7 +327,7 @@ export const unregister = function(key, containerIDWithHash) {
      */
     //<<<<<<<<<<<<<<<<<<<<< start
     const instrument = map[key].symbol;
-    const tickMap = map[keyFor(instrument, 0)];
+    const tickMap = map[keyFor(instrument, 0, undefined)];
     //>>>>>>>>>>>>>>>>>>>> end
     if (map[key].subscribers === 0 && map[key].id) { /* id is set in stream_handler.js */
        liveapi.send({ forget: map[key].id })
@@ -331,7 +341,7 @@ export const unregister = function(key, containerIDWithHash) {
                    subscribe: 1,
                    count: 50 // To avoid missing any ticks.
                 }).then(() => {
-                   map[keyFor(instrument, 0)] = tickMap;
+                   map[keyFor(instrument, 0, undefined)] = tickMap;
                 });
           })
           //>>>>>>>>>>>>>>>>>>>> end
@@ -352,27 +362,6 @@ export const removeChart = function(key, containerIDWithHash) {
 }
 
 
-export const digits_after_decimal = function(pip, symbol) {
-    pip = pip && pip + '';
-    if (!pip) {
-        /**
-         * Fetch last 10 tick values
-         * Take the maximum decimal places all these ticks
-         */
-        const key = keyFor(symbol, 0);
-        let decimal_digits = 0;
-		  const db_bars = barsTable.query({ instrumentCdAndTp: key, take: 10, reverse: true });
-		  db_bars.forEach((d) => {
-			  const quote = d.close + '';
-			  const len = quote.substring(quote.indexOf('.') + 1).length;
-			  if (len > decimal_digits)
-				  decimal_digits = len;
-		  });
-        return decimal_digits;
-    }
-    return pip.substring(pip.indexOf(".") + 1).length;
-}
-
 liveapi.events.on('connection-reopen', () => {
    const map_clone = _.cloneDeep(map);
    _.each(map_clone, (data, key) => {
@@ -392,7 +381,6 @@ export default {
     subscribe,
     unregister,
     removeChart,
-    digits_after_decimal,
     mapFor,
     events
 }

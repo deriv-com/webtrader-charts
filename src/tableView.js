@@ -46,7 +46,7 @@ const refresh_table = (dialog, instrumentCode, state) => {
    const is_tick = isTick(data.timePeriod);
    const table = dialog.find('.table-view');
 	const bars = chartingRequestMap.barsTable.query({
-		instrumentCdAndTp: chartingRequestMap.keyFor(instrumentCode, data.timePeriod),
+		instrumentCdAndTp: chartingRequestMap.keyFor(instrumentCode, data.timePeriod, data.start),
 		take: 100,
 		reverse: true
 	});
@@ -112,7 +112,7 @@ export const init = (dialog, offset) => {
    };
 
    const on_tick = stream_handler.events.on('tick', (e, d) => {
-      if (d.key !== chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod)) return;
+      if (d.key !== chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod, data.start)) return;
       if (!dialog.view_table_visible) return;
       const tick = d.tick;
       const diff = findDiff(d.preTick.open, tick.open);
@@ -125,7 +125,7 @@ export const init = (dialog, offset) => {
    });
 
    const on_ohlc = stream_handler.events.on('ohlc', (e, d) => {
-      if (d.key !== chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod)) return;
+      if (d.key !== chartingRequestMap.keyFor(data.instrumentCode, data.timePeriod, data.start)) return;
       if (!dialog.view_table_visible) return;
       const ohlc = d.ohlc;
       const diff = findDiff(d.preOhlc.close, ohlc.close);
@@ -146,20 +146,19 @@ export const init = (dialog, offset) => {
       }
    });
 
-   dialog.on('dialogdestroy', () => {
-      stream_handler.events.off('tick', on_tick);
-      stream_handler.events.off('ohlc', on_ohlc);
-      view &&  view.unbind();
-      view = null;
-      root && root.remove();
-      root = null;
-   });
-
    let view = rv.bind(root[0], state);
 
    return {
       show: () => show_table_view(dialog, data.instrumentCode, state),
-      hide: () => hide_table_view(dialog)
+      hide: () => hide_table_view(dialog),
+      destroy: () => {
+         stream_handler.events.off('tick', on_tick);
+         stream_handler.events.off('ohlc', on_ohlc);
+         view &&  view.unbind();
+         view = null;
+         root && root.remove();
+         root = null;
+      }
    }
 }
 
