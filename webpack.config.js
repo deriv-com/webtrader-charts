@@ -98,9 +98,6 @@ module.exports = {
    },
    plugins: [
       new UglifyJSPlugin(),
-      new webpack.ProvidePlugin({
-         Highcharts: 'highstock-release/highstock',
-      })
    ],
    node: {
       fs: 'empty',
