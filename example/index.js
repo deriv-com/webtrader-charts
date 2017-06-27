@@ -61,10 +61,11 @@ const run_timing_issue_test = () => {
       chart && chart.actions.destroy();
       const config = configs[Math.random() > 0.5 ? 1 : 0];
       chart =  wtcharts.chartWindow.addNewChart($parent, config);
-      const timeout = Math.random()*4000;
+      const timeout = Math.random()*2500;
       console.warn(timeout | 0);
       if(!window.stop_test)
          setTimeout(rerender, timeout | 0);
    };
    rerender();
 }; 
+// run_timing_issue_test();
