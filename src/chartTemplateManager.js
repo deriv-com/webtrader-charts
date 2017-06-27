@@ -12,7 +12,7 @@ if(!local_storage.get('templates')) {
 }
 
 class ChartTemplateManager {
-  constructor(root, dialog_id) {
+  constructor(root, dialog, dialog_id) {
     const _this = this;
     const templates = local_storage.get("templates");
     templates.forEach(function(tmpl){
@@ -22,15 +22,15 @@ class ChartTemplateManager {
     });
     local_storage.set("templates",templates);
 
-    const state = this.init_state(root, dialog_id);
+    const state = this.init_state(root, dialog, dialog_id);
     root.append(html);
     this.view = rv.bind(root[0], state);
     this.target = `#${dialog_id}`;
   }
 
-  init_state(root, dialog_id) {
+  init_state(root, dialog, dialog_id) {
 
-    const chart = $('#' + dialog_id + '_chart').highcharts();
+    const chart = dialog.find(`#${dialog_id}_chart`).highcharts();
     const state = {
       route: { value: 'menu' },
       menu: {
@@ -270,11 +270,11 @@ class ChartTemplateManager {
 }
 
 
-export const init = (root, dialog_id) => new ChartTemplateManager(root, dialog_id);
+export const init = (root, dialog, dialog_id) => new ChartTemplateManager(root, dialog, dialog_id);
 const store = { };
-chartOptions.events.on('chart-options-add', (e, Id) => {
-   const root = $(`#${Id}`).find('.chart-template-manager-root');
-   store[Id] = init(root, Id);
+chartOptions.events.on('chart-options-add', (e, dialog, Id) => {
+   const root = dialog.find('.chart-template-manager-root');
+   store[Id] = init(root, dialog, Id);
 });
 chartOptions.events.on('chart-options-remove', (e, Id) => {
    store[Id] && store[Id].unbind();

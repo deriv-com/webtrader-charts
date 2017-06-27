@@ -4,16 +4,16 @@ import wtcharts from 'webtrader-charts';
 
 wtcharts.init({
    appId: 11,
-   lang: 'de', // default is 'en'
+   lang: 'en', // default is 'en'
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
 
 const $parent = $('#container');
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
-   "instrumentCode": "GDAXI",
-   "instrumentName": "German Index",
-   "timePeriod": "1d",
+   "instrumentCode": "RDBULL",
+   "instrumentName": "Bull Market Index",
+   "timePeriod": "1m",
    "type": "candlestick",
    "indicators": [],
    "overlays": []
@@ -63,7 +63,8 @@ const run_timing_issue_test = () => {
       chart =  wtcharts.chartWindow.addNewChart($parent, config);
       const timeout = Math.random()*4000;
       console.warn(timeout | 0);
-      setTimeout(rerender, timeout | 0);
+      if(!window.stop_test)
+         setTimeout(rerender, timeout | 0);
    };
    rerender();
-};
+}; 

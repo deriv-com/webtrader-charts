@@ -217,7 +217,7 @@ const format = (str, ...args) => {
    );
 }
 
-export const init = (m_newTabId, m_tableViewCb, options) => {
+export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
 
     calculateStringWidth(options.instrumentName);
     if (view[m_newTabId]) view[m_newTabId].unbind();
@@ -416,30 +416,30 @@ export const init = (m_newTabId, m_tableViewCb, options) => {
     };
 
     // Listen for indicator changes.
-    $("#" + m_newTabId).on('chart-indicators-changed', (e, chart) => {
+    dialog.on('chart-indicators-changed', (e, chart) => {
         state[m_newTabId].indicatorsCount = chart.get_indicators().length;
     });
 
-    state[m_newTabId].overlayCount = $("#" + m_newTabId + "_chart").data('overlayCount');
+    state[m_newTabId].overlayCount = dialog.find(`#${m_newTabId}_chart`).data('overlayCount');
 
     // Listen for overlay changes.
-    $("#" + m_newTabId).on('chart-overlay-add', (e, overlay) => {
-        const chart = $("#" + m_newTabId + "_chart").highcharts();
+    dialog.on('chart-overlay-add', (e, overlay) => {
+        const chart = dialog.find(`#${m_newTabId}_chart`).highcharts();
         state[m_newTabId].overlayCount = chart.get_overlay_count();
 
     });
-    $("#" + m_newTabId).on('chart-overlay-remove', (e, overlay) => {
-        const chart = $("#" + m_newTabId + "_chart").highcharts();
+    dialog.on('chart-overlay-remove', (e, overlay) => {
+        const chart = dialog.find(`#${m_newTabId}_chart`).highcharts();
         state[m_newTabId].overlayCount = chart.get_overlay_count();
     });
 
     // Listen for resize event
     if (isAffiliates()) {
        $(window).resize(
-          () => responsiveButtons(state[m_newTabId], $("#" + m_newTabId).find(".chart-view"))
+          () => responsiveButtons(state[m_newTabId], dialog.find(".chart-view"))
        );
     } else {
-        $("#" + m_newTabId).on('resize-event', function(e) {
+        dialog.on('resize-event', function(e) {
             responsiveButtons(state[m_newTabId], $(this).find(".chart-view"));
         });
     }
@@ -456,7 +456,7 @@ export const init = (m_newTabId, m_tableViewCb, options) => {
 
     const $html = $(html);
 
-    $("#" + m_newTabId + "_header").prepend($html);
+    dialog.find(`#${m_newTabId}_header`).prepend($html);
 
     // Used to filter timeperiod array.
     rv.formatters['filter'] = (arr, type) => {
@@ -467,13 +467,12 @@ export const init = (m_newTabId, m_tableViewCb, options) => {
 
     view[m_newTabId] = rv.bind($html[0], state[m_newTabId]);
 
-    events.trigger('chart-options-add', [m_newTabId]);
+    events.trigger('chart-options-add', [dialog, m_newTabId]);
 
     // Stop event propagation for these overlays.
     $html.find(".loadSaveOverlay").on("click", (e) => e.stopPropagation());
     $html.find(".exportOverlay").on("click", (e) => e.stopPropagation());
-    responsiveButtons(state[m_newTabId], $("#" + m_newTabId).find(".chart-view"));
-
+    responsiveButtons(state[m_newTabId], dialog.find(".chart-view"));
 }
 
 /* allow settings to be updated when a new chart template is applied */

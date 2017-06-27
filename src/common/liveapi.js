@@ -28,7 +28,7 @@ const connect = () => {
    });
 
    socket = ws;
-   window.ss = socket;
+   // window.ss = socket;
    return ws;
 }
 

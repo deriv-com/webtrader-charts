@@ -43,16 +43,15 @@ export const addNewChart = function($parent, options) {
        actions: {
           reflow: () =>  triggerResizeEffects(dialog),
           destroy: () => {
-            const container = $("#" + id + "_chart");
-            const timePeriod = container.data("timePeriod");
-            const instrumentCode = container.data('instrumentCode');
-            dialog.hide();
-            dialog.insertBefore(dialog.parent());
+            dialog.remove();
+            const container = dialog.find(`#${id}_chart`);
+            const timePeriod = Store[id].timePeriod;
+            const instrumentCode = Store[id].instrumentCode
             return drawChartPromise.then(() => {
                table_view && table_view.destroy();
                container.highcharts().destroy();
                charts.destroy({
-                   containerIDWithHash: "#" + id + "_chart",
+                   containerIDWithHash: `#${id}_chart`,
                    timePeriod: timePeriod,
                    instrumentCode: instrumentCode,
                    start: options.start
@@ -113,7 +112,7 @@ export const addNewChart = function($parent, options) {
          });
          /* initialize chartOptions & table-view once chart is rendered */
          table_view = tableView.init(dialog);
-         chartOptions.init(id, table_view.show, {
+         chartOptions.init(dialog, id, table_view.show, {
             timePeriod: options.timePeriod,
             chartType: options.type,
             instrumentName: options.instrumentName,
