@@ -103,6 +103,7 @@ module.exports = {
       fs: 'empty',
       net: 'empty',
       tls: 'empty',
+      Buffer: false,
       'crypto': 'empty'
    }
 };
