@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Highcharts from 'highstock-release/highstock';
 import { toFixed } from '../common/utils.js';
 
 function removePlotLine() {

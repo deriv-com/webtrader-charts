@@ -1,9 +1,10 @@
 /**
  * Created by arnab on 2/11/15.
  */
+import _ from 'lodash';
 import $ from 'jquery';
 import moment from 'moment';
-import _ from 'lodash';
+import Highcharts from 'highstock-release/highstock';
 import chartingRequestMap from './common/chartingRequestMap.js';
 import liveapi from './common/liveapi.js';
 import ohlc_handler from './common/ohlc_handler.js';

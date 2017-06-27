@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Highcharts from 'highstock-release/highstock';
 import popup from './properties_selector.js';
 import {i18n} from '../common/utils.js';
 
