@@ -112,7 +112,8 @@ const showCandlestickAndOHLC = (newTabId, show) => {
 
 }
 
-const responsiveButtons = (scope, ele) => {
+const responsiveButtons = (scope, dialog) => {
+    const ele = dialog.find('.chart-view');
     const loadSaveOverlay = ele.find(".loadSaveOverlay");
     const exportOverlay = ele.find(".exportOverlay");
     const timePeriodButton = ele.find(".timeperiod");
@@ -127,15 +128,14 @@ const responsiveButtons = (scope, ele) => {
     scope.showInstrumentName = isAffiliates() || scope.showInstrumentName;
     if (scope.showInstrumentName) {
         if ($(window).width() > minWidth + stringWidth.inst) {
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px 0px");
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "left");
-            $("#" + scope.newTabId + " .chartOptions .instrument_name");
+            $(dialog.find(".chartOptions .table")[0]).css({ "margin": "5px 0px", "float": "left" });
             scope.showInstrumentName = true;
-            $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: "" });
+            const chart = dialog.find(`#${scope.newTabId}_chart`).highcharts();
+            chart && chart.setTitle({ text: "" });
         } else {
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px auto");
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "");
-            $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: scope.instrumentName });
+            $(dialog.find(".chartOptions .table")[0]).css({ "margin": "5px auto", "float": "" });
+            const chart = dialog.find(`#${scope.newTabId}_chart`).highcharts();
+            chart && chart.setTitle({ text: scope.instrumentName });
         }
     }
 
@@ -305,7 +305,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             scope.timePeriod = timeperiod_arr.filter((obj) => {
                 return timePeriod == obj.value
             })[0];
-            responsiveButtons(scope, $("#" + scope.newTabId).find(".chart-view"));
+            responsiveButtons(scope, dialog);
             const tick = isTick(timePeriod);
             if (tick && (scope.chartType.value === 'candlestick' || scope.chartType.value === 'ohlc')) {
                 changeChartType(scope, 'line', timePeriod);
@@ -436,11 +436,11 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     // Listen for resize event
     if (isAffiliates()) {
        $(window).resize(
-          () => responsiveButtons(state[m_newTabId], dialog.find(".chart-view"))
+          () => responsiveButtons(state[m_newTabId], dialog)
        );
     } else {
         dialog.on('resize-event', function(e) {
-            responsiveButtons(state[m_newTabId], $(this).find(".chart-view"));
+            responsiveButtons(state[m_newTabId], $(this));
         });
     }
 
@@ -472,7 +472,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     // Stop event propagation for these overlays.
     $html.find(".loadSaveOverlay").on("click", (e) => e.stopPropagation());
     $html.find(".exportOverlay").on("click", (e) => e.stopPropagation());
-    responsiveButtons(state[m_newTabId], dialog.find(".chart-view"));
+    responsiveButtons(state[m_newTabId], dialog);
 }
 
 /* allow settings to be updated when a new chart template is applied */
@@ -489,7 +489,7 @@ export const updateOptions = (newTabId, chartType, timePeriod, indicatorsCount, 
     s.overlayCount = overlayCount;
     //Disable candlestick and OHLC if it is a tick chart or overlaid view
     showCandlestickAndOHLC(newTabId, !isTick(timePeriod) && overlayCount > 0);
-    responsiveButtons(s, $("#" + newTabId).find(".chart-view"));
+    responsiveButtons(s, $("#" + newTabId));
 }
 
 /* chartTypes are - candlestick, dot, line, dotline, ohlc, spline, table */
