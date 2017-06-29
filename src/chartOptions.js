@@ -52,6 +52,7 @@ const hideOverlays = (scope) => {
     scope.toggleChartTypeSelector(null, scope);
     scope.toggleDrawingToolSelector(null, scope);
     scope.toggleExportSelector(null, scope);
+    scope.addRemoveIndicator(null, scope);
 }
 
 const changeChartType = (scope, chartType, newTimePeriod = null) => {
@@ -116,6 +117,7 @@ const responsiveButtons = (scope, dialog) => {
     const ele = dialog.find('.chart-view');
     const loadSaveOverlay = ele.find(".loadSaveOverlay");
     const exportOverlay = ele.find(".exportOverlay");
+    const indicatorOverlay = ele.find(".indicators");
     const timePeriodButton = ele.find(".timeperiod");
     const chartTypeButton = ele.find(".chart_type");
     ele.find(".chartTypeOverlay").css("width", stringWidth.ct + 53 + "px");
@@ -127,15 +129,17 @@ const responsiveButtons = (scope, dialog) => {
     //Place instrument name for affiliates based on frame width
     scope.showInstrumentName = isAffiliates() || scope.showInstrumentName;
     if (scope.showInstrumentName) {
-        if ($(window).width() > minWidth + stringWidth.inst) {
-            $(dialog.find(".chartOptions .table")[0]).css({ "margin": "5px 0px", "float": "left" });
+        if ($('#'+scope.newTabId).width() > minWidth + stringWidth.inst) {
+            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px 0px");
+            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "left");
             scope.showInstrumentName = true;
             const chart = dialog.find(`#${scope.newTabId}_chart`).highcharts();
             chart && chart.setTitle({ text: "" });
         } else {
-            $(dialog.find(".chartOptions .table")[0]).css({ "margin": "5px auto", "float": "" });
-            const chart = dialog.find(`#${scope.newTabId}_chart`).highcharts();
-            chart && chart.setTitle({ text: scope.instrumentName });
+            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px auto");
+            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "");
+            $("#" + scope.newTabId + " .chartOptions .instrument_name").hide();
+            $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: scope.instrumentName });
         }
     }
 
@@ -157,13 +161,15 @@ const responsiveButtons = (scope, dialog) => {
 
     let positionRight = ele.width() - (shareButton.offset().left + shareButton.outerWidth() - ele.offset().left);
 
-    if (ele.width() <= 730) {
+    if (ele.width() <= 740) {
         positionRight = positionRight > 0 ? positionRight : 25;
         exportOverlay.css("right", positionRight + "px");
         loadSaveOverlay.css("right", positionRight + 35 + "px");
+        indicatorOverlay.css("right","10px");
     } else {
         loadSaveOverlay.css("right", "auto");
         exportOverlay.css("right", "auto");
+        indicatorOverlay.css("right","auto");
     }
 }
 
@@ -247,6 +253,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         showShare: options.showShare,
         showOverlay: options.showOverlays,
         showInstrumentName: options.showInstrumentName,
+        showIndicatorDropDown: false,
 
         exportChartURLShare: format(urlShareTemplate, options.instrumentCode, options.timePeriod),
         exportChartIframeShare: format(iframeShareTemplate, options.instrumentCode, options.timePeriod),
@@ -282,8 +289,17 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     };
 
     state[m_newTabId].addRemoveIndicator = (event, scope) => {
-        const title = scope.instrumentName + ' (' + scope.timePeriod.value + ')';
-        indicatorManagement.openDialog('#' + scope.newTabId + '_chart', title);
+        const temp = !scope.showIndicatorDropDown;
+        const ele = $("#" + scope.newTabId + ' [rv-on-click="addRemoveIndicator"] .img span')[0];
+        if (temp == true && event) {
+            hideOverlays(scope);
+            scope.showIndicatorDropDown = temp;
+            toggleIcon(ele, true);
+            event.originalEvent.scope = scope.newTabId;
+        } else {
+            scope.showIndicatorDropDown = false;
+            toggleIcon(ele, false);
+        }
     };
 
     state[m_newTabId].addRemoveOverlay = (event, scope) => {

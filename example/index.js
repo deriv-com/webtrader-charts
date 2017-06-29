@@ -11,8 +11,9 @@ wtcharts.init({
 
 const $parent = $('#container');
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
-   "instrumentCode": "RDBULL",
-   "instrumentName": "Bull Market Index",
+   "instrumentCode": "R_50",
+   "instrumentName": "Volatility index",
+   "showInstrumentName": true,
    "timePeriod": "1m",
    "type": "candlestick",
    "indicators": [],

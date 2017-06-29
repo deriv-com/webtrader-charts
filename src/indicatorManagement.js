@@ -156,7 +156,7 @@ export const openDialog = (containerIDWithHash, title) => {
 	chart_series = $(containerIDWithHash).highcharts().series;
 	const series = _.filter(chart_series, 'options.isInstrument');
 	update_indicators(series);
-
+      console.log('here');
 	ind_win = root.leanModal({
       title: state.dialog.title,
       width: ($(window).width() > 800) ? 700 : Math.min(480, $(window).width() - 10),
