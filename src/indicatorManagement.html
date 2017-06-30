@@ -1,70 +1,115 @@
 <div class='indicator-dialog'>
-
-  <div class='current' rv-show='indicators.current | prop "length"'>
-    <span class='title-big' rv-text='"Current indicators" | i18n'></span>
-    <br />
-    <div rv-each-ind='indicators.current' class="table">
-      <div class="row">
-        <div class="cell">
-          <div class="table">
-            <div class="row">
-              <div class="cell">
-                <span rv-text='ind.name' />
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell">
-                <span rv-text='ind.shortName' />
-              </div>
-              <div class="cell icons">
-                <span href="#" rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'>&#x270e;</span>
-                <span rv-on-click='indicators.remove | bind ind'>&#x2718;</span>
-              </div>
-            </div>
-          </div>
+  <div class="header-bar">
+    <div class="categories text" rv-on-click="route.update | bind 'all'">
+      <span rv-class-active="route.value | eq 'all'">All</span>
+    </div>
+    <div class="categories text" rv-on-click="route.update | bind 'popular'">
+      <span rv-class-active="route.value | eq 'popular'">Popular</span>
+    </div>
+    <div class="categories text" rv-on-click="route.update | bind 'active'">
+      <span rv-class-active="route.value | eq 'active'">Active</span>
+    </div>
+    <div class="categories text" rv-on-click="route.update | bind 'favorites'">
+      <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
+    </div>
+    <div class="categories icon" rv-on-click="openSearch">
+      <span class="search"></span>
+      <input type="text" rv-value='indicators.search'>
+    </div>
+  </div>
+  <div class="view" rv-show="route.value | eq 'all'">
+    <div class='types' rv-each-cat='categories'>
+      <div class='type'>
+        <span class='title' rv-text='cat | i18n'></span>
+        <div rv-each-ind='indicators.array | indicators-filter cat'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class='option-1 question-mark' rv-show='ind.description' rv-data-balloon='ind.description' data-balloon-length='large' data-balloon-pos='down'></span>
+          <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
         </div>
       </div>
     </div>
   </div>
-
-  <div class='add-indicators'>
-    <span class='title-big' rv-text='"Add indicator" | i18n'></span>
-    <input rv-value='indicators.search' placeholder=' &#x1F50E; Search' />
-    <span class='circle-close'
-          rv-on-click='indicators.clear_search'
-          rv-show='indicators.search'></span>
-  </div>
-  <div class='favorite category'
-       rv-show='indicators.favorites | indicators-favorites-filter indicators.search | prop "length"'>
-    <span class='title' rv-text='"Favorites" | i18n'></span>
-    <div rv-each-ind='indicators.favorites | indicators-favorites-filter indicators.search'>
-      <span rv-text='ind.long_display_name'
-            rv-on-click='indicators.add | bind ind'></span>
-      <span class='question-mark'
-            rv-show='ind.description'
-            rv-data-balloon='ind.description' data-balloon-length='large'
-            data-balloon-pos='down'> ? </span>
-      <span class='full-star'
-            rv-on-click='indicators.favorite | bind ind'></span>
-    </div>
-  </div>
-
-  <div class='categories' rv-each-cat='indicators.array | indicators-categories indicators.search'>
-    <div class='category'>
-      <span class='title' rv-text='cat | i18n'></span>
-      <div rv-each-ind='indicators.array | indicators-filter cat indicators.search'>
-        <span rv-text='ind.long_display_name'
-              rv-on-click='indicators.add | bind ind'></span>
-        <span class='question-mark'
-              rv-show='ind.description'
-              rv-data-balloon='ind.description'
-              data-balloon-length='large'
-              data-balloon-pos='down'> ? </span>
-        <span class='empty-star'
-              rv-on-click='indicators.favorite | bind ind'></span>
+  <div class="view" rv-show="route.value | eq 'popular'">
+    <div class='types' rv-each-cat='indicators.popular_cat'>
+      <div class='type'>
+        <span class='title' rv-text='cat | i18n'></span>
+        <div rv-each-ind='indicators.popular | indicators-filter cat'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class='option-1 question-mark' rv-show='ind.description' rv-data-balloon='ind.description' data-balloon-length='large' data-balloon-pos='down'></span>
+          <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
+        </div>
+        <div class="empty" rv-show="indicators.popular | prop 'length' | eq 0">
+          <span>Oops, nothing is here. :(</span>
+        </div>
       </div>
     </div>
   </div>
-
-
+  <div class="view" rv-show="route.value | eq 'active'">
+    <div class='types'>
+      <div class='type'>
+        <div rv-each-ind='indicators.current'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class='option-1 edit' rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'></span>
+          <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
+        </div>
+        <div class="empty" rv-show="indicators.current | prop 'length' | eq 0">
+          <span>Oops, nothing is here. :(</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="view" rv-show="route.value | eq 'favorites'">
+    <div class='types'>
+      <div class='type'>
+        <div rv-each-ind='indicators.favorites'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class="option-2 full-star" rv-on-click='indicators.favorite | bind ind'></span>
+        </div>
+        <div class="empty" rv-show="indicators.favorites | prop 'length' | eq 0">
+          <span>Oops, nothing is here. :(</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="view" rv-show="route.value | eq 'search'">
+    <div class='types' rv-show="indicators.popular | search indicators.search | prop 'length'">
+      <div class='type'>
+        <span class='title'>Popular</span>
+        <div rv-each-ind='indicators.popular | search indicators.search'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class='option-1 question-mark' rv-show='ind.description' rv-data-balloon='ind.description' data-balloon-length='large' data-balloon-pos='down'></span>
+          <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
+        </div>
+      </div>
+    </div>
+    <div class='types' rv-show="indicators.current | search indicators.search | prop 'length'">
+      <div class='type'>
+        <span class='title'>Active</span>
+        <div rv-each-ind='indicators.current | search indicators.search'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class='option-1 edit' rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'></span>
+          <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
+        </div>
+      </div>
+    </div>
+    <div class='types' rv-show="indicators.favorites | search indicators.search | prop 'length'">
+      <div class='type'>
+        <span class='title'>Favorites</span>
+        <div rv-each-ind='indicators.favorites | search indicators.search'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class="option-2 full-star" rv-on-click='indicators.favorite | bind ind'></span>
+        </div>
+      </div>
+    </div>
+    <div class='types'>
+      <div class='type'>
+        <span class='title'>Results for: <b>{indicators.search}</b></span>
+        <div rv-each-ind='indicators.array | search indicators.search'>
+          <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
+          <span class='option-1 question-mark' rv-show='ind.description' rv-data-balloon='ind.description' data-balloon-length='large' data-balloon-pos='down'></span>
+          <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

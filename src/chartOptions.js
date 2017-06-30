@@ -296,6 +296,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             scope.showIndicatorDropDown = temp;
             toggleIcon(ele, true);
             event.originalEvent.scope = scope.newTabId;
+            indicatorManagement.openDialog('#' + scope.newTabId + '_chart');
         } else {
             scope.showIndicatorDropDown = false;
             toggleIcon(ele, false);
@@ -488,6 +489,8 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     // Stop event propagation for these overlays.
     $html.find(".loadSaveOverlay").on("click", (e) => e.stopPropagation());
     $html.find(".exportOverlay").on("click", (e) => e.stopPropagation());
+    $html.find(".chartOptions_overlay.indicators").on("click", (e) => e.stopPropagation());
+    
     responsiveButtons(state[m_newTabId], dialog);
 }
 

@@ -11,21 +11,20 @@ import {isTick, local_storage, i18n} from './common/utils.js';
 let ind_win = null,
    ind_win_view = null,
    chart_series = null,
-   state = {};
+   state = {},
+   state_arr = {};
 
-rv.formatters['indicators-filter'] = (array, cat, search) => { /* rviets formatter to filter indicators based on their category */
-   search = search && search.toLowerCase();
+rv.formatters['indicators-filter'] = (array, cat) => { /* rviets formatter to filter indicators based on their category */
    return array && array.filter((ind) => {
-      return ind.category.indexOf(cat) !== -1 &&
-         (ind.long_display_name.toLowerCase().indexOf(search) !== -1 ||
-            ind.id.toLowerCase().indexOf(search) !== -1);
+      return ind.category.indexOf(cat) !== -1;
    }).sort((a, b) => {
       if (a.long_display_name < b.long_display_name) return -1;
       if (a.long_display_name > b.long_display_name) return +1;
       return 0;
    });
 };
-rv.formatters['indicators-favorites-filter'] = (array, search) => {
+
+rv.formatters['search'] = (array, search) => {
    search = search && search.toLowerCase();
    return array && array.filter((ind) => {
       return (ind.long_display_name.toLowerCase().indexOf(search) !== -1 ||
@@ -35,15 +34,7 @@ rv.formatters['indicators-favorites-filter'] = (array, search) => {
       if (a.long_display_name > b.long_display_name) return +1;
       return 0;
    });
-};
-rv.formatters['indicators-categories'] = (array, search) => { /* rviets formatter to extract and filter categories */
-   search = search && search.toLowerCase();
-   const indicators = array && array.filter((ind) => {
-      return (ind.long_display_name.toLowerCase().indexOf(search) !== -1 ||
-         ind.id.toLowerCase().indexOf(search) !== -1);
-   });
-   return indicators && _.uniq(_.flatten(_.map(indicators,'category')));
-};
+}
 
 const init = () => {
 	return root;
@@ -62,21 +53,27 @@ const init_state = (root) => {
          search: '',
          array: [],
          current: [],
+         popular: [],
          favorites: []
       },
+      route: {
+         prev_val: null,
+         value: 'all',
+         update: (val, e , scope) => {
+            scope.route.value = val;
+         }
+      }
    };
 
    state.indicators.clear_search = () => { state.indicators.search = ''; };
 
    state.indicators.add = (indicator) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      ind_win.trigger('close');
       indicatorBuilder.open(copy, chart_series);
    };
 
    state.indicators.edit = (indicator) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      ind_win.trigger('close');
       indicatorBuilder.open(copy, chart_series, () => {
          state.indicators.remove(indicator);
       });
@@ -102,20 +99,40 @@ const init_state = (root) => {
       else {
          indicator.is_favorite = true;
          state.indicators.favorites.push(indicator);
+         state.indicators.favorites.sort(
+            (a, b) => a.long_display_name.toLowerCase() > b.long_display_name.toLowerCase() ? 1 : -1
+         );
       }
 
       const favorite_ids = state.indicators.favorites.map((ind) => { return ind.id; });
       local_storage.set('indicator-management-favorite-ids', JSON.stringify(favorite_ids));
    };
 
+   state.openSearch = (e, scope) => {
+      if(e.target.tagName != 'SPAN') {
+         return;
+      }
+      const ele = $(e.target).parent();
+      ele.toggleClass('active');      
+      if(ele.hasClass("active")) {
+         state.route.prev_val = state.route.value;
+         state.route.value = "search";
+         $(ele.find("input")[0]).focus();
+      } else {
+         state.route.value = state.route.prev_val;
+      }
+   }
+
    ind_win_view = rv.bind(root[0], state);
 };
 
 const update_indicators = (series) => {
    let indicators = _.cloneDeep(indicatorsArray);
+   const popular_ids = ["apo", "alligator", "alma", "adx", "atr", "ao", "bbands", "cks", "cdleveningdojistar", "fractal", "hma", "mass", "max", "sma", "stddev", "tema"];
    const favorite_ids = local_storage.get('indicator-management-favorite-ids') || [];
    indicators = _.filter(indicators, (ind) => {
       ind.is_favorite = favorite_ids.indexOf(ind.id) !== -1;
+      ind.is_popular = popular_ids.indexOf(ind.id) !== -1;
       return !(ind.isTickChartNotAllowed && state.dialog.is_tick_chart);
    });
 
@@ -137,17 +154,32 @@ const update_indicators = (series) => {
    });
 
    state.categories = _.uniq(_.flatten(_.map(indicators,'category')));
-   state.indicators.favorites = _.filter(indicators, 'is_favorite');
+   state.indicators.favorites = _.filter(indicators, 'is_favorite').sort(
+      (a, b) => a.long_display_name.toLowerCase() > b.long_display_name.toLowerCase() ? 1 : -1
+   );
+   state.indicators.popular = _.filter(indicators,'is_popular');
+   state.indicators.popular_cat = Object.keys(_.groupBy(state.indicators.popular, "category"));
    state.indicators.array = indicators;
    state.indicators.current = current;
 };
 
-export const openDialog = (containerIDWithHash, title) => {
+export const openDialog = (containerIDWithHash) => {
 	const root = $(html);
+   ind_win = $(containerIDWithHash.replace("_chart", "") + 
+         " .chartSubContainerHeader .chartOptions_overlay.indicators").find(".indicator-dialog").length;
+   if(ind_win){
+      state = state_arr[containerIDWithHash];
+      chart_series = $(containerIDWithHash).highcharts().series;
+      const series = _.filter(chart_series, 'options.isInstrument');
+      update_indicators(series);
+      return;
+   }
+   
+   ind_win = root.appendTo($(containerIDWithHash.replace("_chart", "") + 
+         " .chartSubContainerHeader .chartOptions_overlay.indicators"));
 
 	init_state(root);
 
-	state.dialog.title = i18n('Add/remove indicators') + (title ? ' - ' + title : '');
 	state.dialog.container_id = containerIDWithHash;
 	state.indicators.current = $(containerIDWithHash).data('indicators-current') || [];
 	const time_period = $(containerIDWithHash).data('timePeriod');
@@ -156,16 +188,11 @@ export const openDialog = (containerIDWithHash, title) => {
 	chart_series = $(containerIDWithHash).highcharts().series;
 	const series = _.filter(chart_series, 'options.isInstrument');
 	update_indicators(series);
-      console.log('here');
-	ind_win = root.leanModal({
-      title: state.dialog.title,
-      width: ($(window).width() > 800) ? 700 : Math.min(480, $(window).width() - 10),
-      height: 400,
-      onClose: () => {
-         ind_win_view && ind_win_view.unbind();
-         ind_win_view = null;
-      }
+   // Update indicators when new indicators are added / removed
+   $(containerIDWithHash.replace("_chart", "")).on('chart-indicators-changed', () => {
+      update_indicators(series);      
    });
+   state_arr[containerIDWithHash] = state;
 };
 
 export default {

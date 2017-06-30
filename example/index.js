@@ -21,6 +21,18 @@ const chart =  wtcharts.chartWindow.addNewChart($parent, {
 });
 chart.events.anyChange = () => {
    console.warn(chart.data());
+};
+const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
+   "instrumentCode": "R_50",
+   "instrumentName": "Volatility index",
+   "showInstrumentName": true,
+   "timePeriod": "1m",
+   "type": "candlestick",
+   "indicators": [],
+   "overlays": []
+});
+chart2.events.anyChange = () => {
+   console.warn(chart.data());
 }; 
 
 
