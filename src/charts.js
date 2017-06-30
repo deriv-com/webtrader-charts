@@ -397,19 +397,19 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 dashStyle: 'dash'
             }],
             formatter: function() {
-               // TODO: fix moment locale
-                // moment.locale(lang); //Setting locale
+                // TODO: fix moment locale
+                // moment.locale(lang);
                 var s = "<i>" + moment.utc(this.x).format("dddd, DD MMM YYYY, HH:mm:ss") + "</i><br>";
-                $.each(this.points, function(i){
-                    s += '<span style="color:' + this.point.color + '">\u25CF </span>';
-                    if(typeof this.point.open !=="undefined") { //OHLC chart
-                        s += "<b>" + this.series.name + "</b>";
-                        s += `<br>  ${i18n('Open')}: ` + this.point.open;
-                        s += `<br>  ${i18n('High')}: ` + this.point.high;
-                        s += `<br>  ${i18n('Low')}: ` + this.point.low;
-                        s += `<br>  ${i18n('Close')}: ` + this.point.close;
+                _.each(this.points, (row) => {
+                    s += '<span style="color:' + row.point.color + '">\u25CF </span>';
+                    if(typeof row.point.open !=="undefined") { //OHLC chart
+                        s += "<b>" + row.series.name + "</b>";
+                        s += `<br>  ${i18n('Open')}: ` + row.point.open;
+                        s += `<br>  ${i18n('High')}: ` + row.point.high;
+                        s += `<br>  ${i18n('Low')}: ` + row.point.low;
+                        s += `<br>  ${i18n('Close')}: ` + row.point.close;
                     } else {
-                        s += this.series.name + ": <b>" + this.point.y + "</b>";
+                        s += row.series.name + ": <b>" + row.point.y + "</b>";
                     }
                     s += "<br>";
                 });
