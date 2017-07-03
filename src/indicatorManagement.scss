@@ -2,7 +2,6 @@
   z-index: +1;
   position: absolute;
   width: 100%;
-  height: 40px;
   background: #293055;
   .categories {
     display: inline-flex;
@@ -55,6 +54,7 @@
           outline: none;
           opacity: 0.9;
           width: calc(100% - 80px);
+          font-weight: 100;
         }
         .search {
           margin: auto 0 auto 10px;
@@ -76,6 +76,41 @@
       }
     }
   }
+  .title, .tabs {
+    height: 40px;
+    width: 100%;
+    display: block;
+    line-height: 40px;
+    color: #fff;
+    .back-arrow {
+      width: 12px;
+      height: 12px;
+      margin: 14px 15px 14px 15px;
+      display: inline-block;
+      background-image: url('images/back-arrow-w.svg');
+      background-repeat: round;
+    }
+    .text {
+      font-size: 16px;
+      font-weight: 100;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block;
+      width: calc(100% - 60px);
+    }
+    .tab {
+      display: inline-block;
+      width: 49%;
+      font-size: 14.4px;
+      font-weight: 400;
+      text-align: center;
+      &.active {
+        line-height: 30px;
+        border-bottom: 4px solid #e98024;
+      }
+    }
+  }
 }
 
 .view {
@@ -85,6 +120,21 @@
   height: calc(100% - 40px);
   position: absolute;
   padding-bottom: 20px;
+  &.indicator {
+    padding-top: 80px;
+    > div {
+      margin: 15px 15px 0 15px;
+      font-size: 13px;
+      color: #293055;
+      font-weight: 100;
+      line-height: 25px;
+    }
+    #settings {
+      margin: 0;
+      height: calc(100% - 40px);
+      overflow-y: scroll;
+    }
+  }
   .types {
     .type {
       > span{
@@ -111,7 +161,9 @@
             color: #293055;
             opacity: 0.8;
             width: calc(100% - 77px);
-            padding: 12px 10px 13px 15px;
+            padding: 7px 10px 13px 15px;
+            font-weight: 100;
+            line-height: 20px;
           }
           &.option-1 {
             background-repeat: no-repeat;

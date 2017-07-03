@@ -36,6 +36,11 @@ rv.formatters['search'] = (array, search) => {
    });
 }
 
+rv.formatters['trim_string'] = (val) => {
+   if(typeof val !== 'string') return;
+   return val.length > 30 ? val.substr(0,30) + '...' : val;
+}
+
 const init = () => {
 	return root;
 };
@@ -43,45 +48,57 @@ const init = () => {
 const init_state = (root) => {
    state = {
       dialog: {
-         // TODO: i18n
-         // title: 'Add/remove indicators'.i18n(),
-         title: 'Add/remove indicators',
          container_id: '',
          is_tick_chart: false
       },
       indicators: {
          search: '',
          array: [],
-         current: [],
+         active: [],
          popular: [],
-         favorites: []
+         favorites: [],
+         current: null,
       },
       route: {
          prev_val: null,
          value: 'all',
          update: (val, e , scope) => {
+            scope.indicators.search = ''; //clear search
             scope.route.value = val;
          }
       }
    };
 
-   state.indicators.clear_search = () => { state.indicators.search = ''; };
-
-   state.indicators.add = (indicator) => {
+   state.indicators.add = (indicator, e, scope) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      indicatorBuilder.open(copy, chart_series);
+      scope.indicators.current = indicator;
+      scope.route.prev_val = scope.route.value;
+      scope.route.update('indicatorBuilder-s', e, scope);
+      // Clear settings tab
+      $($(scope.dialog.container_id.replace("_chart", ""))
+                  .find('.chartOptions_overlay.indicators #settings')[0]).empty();
+      indicatorBuilder.open(copy, chart_series, 
+         $(scope.dialog.container_id.replace("_chart", ""))
+            .find('.chartOptions_overlay.indicators #settings')[0]);
    };
 
-   state.indicators.edit = (indicator) => {
+   state.indicators.edit = (indicator, e, scope) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      indicatorBuilder.open(copy, chart_series, () => {
-         state.indicators.remove(indicator);
+      scope.indicators.current = indicator;
+      scope.route.prev_val = scope.route.value;
+      scope.route.update('indicatorBuilder-s', e, scope);
+      // Clear settings tab
+      $($(scope.dialog.container_id.replace("_chart", ""))
+                  .find('.chartOptions_overlay.indicators #settings')[0]).empty();
+      indicatorBuilder.open(copy, chart_series, $(scope.dialog.container_id.replace("_chart", "")).find('.chartOptions_overlay.indicators #settings')[0], 
+         () => {
+            state.indicators.remove(indicator);
       });
    };
 
    state.indicators.remove = (indicator) => {
-      const inx = state.indicators.current.indexOf(indicator);
-      inx !== -1 && state.indicators.current.splice(inx, 1);
+      const inx = state.indicators.active.indexOf(indicator);
+      inx !== -1 && state.indicators.active.splice(inx, 1);
 
       chart_series.forEach((series) => {
          if (series.options.isInstrument) {
@@ -115,11 +132,11 @@ const init_state = (root) => {
       const ele = $(e.target).parent();
       ele.toggleClass('active');      
       if(ele.hasClass("active")) {
-         state.route.prev_val = state.route.value;
-         state.route.value = "search";
+         scope.route.prev_val = scope.route.value;
+         scope.route.update("search", e, scope);
          $(ele.find("input")[0]).focus();
       } else {
-         state.route.value = state.route.prev_val;
+         scope.route.value = scope.route.prev_val;
       }
    }
 
@@ -136,7 +153,7 @@ const update_indicators = (series) => {
       return !(ind.isTickChartNotAllowed && state.dialog.is_tick_chart);
    });
 
-   let current = [];
+   let active = [];
    indicators.forEach((ind) => {
       series.forEach((seri) => {
          seri[ind.id] && seri[ind.id].forEach((instance) => {
@@ -148,7 +165,7 @@ const update_indicators = (series) => {
             ind_clone.showEdit = ind.editable;
             ind_clone.series_ids = instance.getIDs();
             ind_clone.current_options = _.cloneDeep(instance.options); /* used in indicatorBuilder.es6 */
-            current.push(ind_clone);
+            active.push(ind_clone);
          });
       });
    });
@@ -160,7 +177,7 @@ const update_indicators = (series) => {
    state.indicators.popular = _.filter(indicators,'is_popular');
    state.indicators.popular_cat = Object.keys(_.groupBy(state.indicators.popular, "category"));
    state.indicators.array = indicators;
-   state.indicators.current = current;
+   state.indicators.active = active;
 };
 
 export const openDialog = (containerIDWithHash) => {
@@ -169,6 +186,7 @@ export const openDialog = (containerIDWithHash) => {
          " .chartSubContainerHeader .chartOptions_overlay.indicators").find(".indicator-dialog").length;
    if(ind_win){
       state = state_arr[containerIDWithHash];
+      state.route.value = 'all'; //Reset route
       chart_series = $(containerIDWithHash).highcharts().series;
       const series = _.filter(chart_series, 'options.isInstrument');
       update_indicators(series);
@@ -181,7 +199,7 @@ export const openDialog = (containerIDWithHash) => {
 	init_state(root);
 
 	state.dialog.container_id = containerIDWithHash;
-	state.indicators.current = $(containerIDWithHash).data('indicators-current') || [];
+	state.indicators.active = $(containerIDWithHash).data('indicators-current') || [];
 	const time_period = $(containerIDWithHash).data('timePeriod');
 	state.dialog.is_tick_chart = isTick(time_period);
 

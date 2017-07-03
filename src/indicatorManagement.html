@@ -1,5 +1,5 @@
 <div class='indicator-dialog'>
-  <div class="header-bar">
+  <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder' | negate">
     <div class="categories text" rv-on-click="route.update | bind 'all'">
       <span rv-class-active="route.value | eq 'all'">All</span>
     </div>
@@ -47,12 +47,12 @@
   <div class="view" rv-show="route.value | eq 'active'">
     <div class='types'>
       <div class='type'>
-        <div rv-each-ind='indicators.current'>
+        <div rv-each-ind='indicators.active'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
           <span class='option-1 edit' rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'></span>
           <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
         </div>
-        <div class="empty" rv-show="indicators.current | prop 'length' | eq 0">
+        <div class="empty" rv-show="indicators.active | prop 'length' | eq 0">
           <span>Oops, nothing is here. :(</span>
         </div>
       </div>
@@ -82,10 +82,10 @@
         </div>
       </div>
     </div>
-    <div class='types' rv-show="indicators.current | search indicators.search | prop 'length'">
+    <div class='types' rv-show="indicators.active | search indicators.search | prop 'length'">
       <div class='type'>
         <span class='title'>Active</span>
-        <div rv-each-ind='indicators.current | search indicators.search'>
+        <div rv-each-ind='indicators.active | search indicators.search'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
           <span class='option-1 edit' rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'></span>
           <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
@@ -111,5 +111,29 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder'">
+    <div class="title">
+      <div class="back-arrow" rv-on-click="route.update | bind route.prev_val"></div>
+      <span class="text">{indicators.current.long_display_name}</span>
+    </div>
+    <div class="tabs">
+      <span class="tab" 
+        rv-class-active="route.value | eq 'indicatorBuilder-s'"
+        rv-on-click="route.update | bind 'indicatorBuilder-s'">
+        Settings
+      </span>
+      <span class="tab" 
+        rv-class-active="route.value | eq 'indicatorBuilder-d'"
+        rv-on-click="route.update | bind 'indicatorBuilder-d'">
+        Description
+      </span>
+    </div>
+  </div>
+  <div class="indicator view" rv-show="route.value | contains 'indicatorBuilder'">
+    <div rv-show="route.value | eq 'indicatorBuilder-d'">
+      {indicators.current.description}
+    </div>
+    <div id="settings" rv-show="route.value | eq 'indicatorBuilder-s'"></div>
   </div>
 </div>

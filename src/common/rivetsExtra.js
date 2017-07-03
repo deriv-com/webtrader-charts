@@ -49,7 +49,7 @@ rv.binders['color-picker'] = {
       input.spectrum({
          color: color,
          showButtons: false,
-         change: (color) => {
+         move: (color) => {
             const rgba = color.toRgb();
             model.value = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
          }
@@ -140,6 +140,7 @@ rv.formatters['append'] = (value, other) => (other && value) ? value + other : v
 rv.formatters['prop'] = (value, prop) => value && value[prop];
 rv.formatters['bind'] = (fn, value) => fn.bind(undefined, value);
 rv.formatters['i18n'] = i18n;
+rv.formatters.contains = (str, substr) => str.indexOf(substr) !== -1 ? true : false;
 
 
 // shim for jquery-ui scrollParent
