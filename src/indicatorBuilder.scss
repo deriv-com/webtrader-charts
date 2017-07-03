@@ -1,24 +1,37 @@
-.indicator-builder-ui-dialog.webtrader-charts-dialog {
+.indicator-builder {
   padding: 0;
   background: white;
   overflow-x: hidden;
   > table {
-     tr:nth-child(n+2) td:nth-child(1) {
-        width: 40%;
-        font-size: 14px;
-        height: 100%;
-     }
-     tr:nth-child(n+2) {
-        td:nth-child(2) {
-           height: 100%;
-        }
-     }
+    tr {
+      border-top: solid 1px #c2c2c2;
+      border-bottom: solid 1px #c2c2c2;      
+      height: 40px;
+      td {
+        border: none;
+      }
+      td:nth-child(1) {
+        display: inline-block;
+        width: 30%;
+        padding: 12px 15px 13px 15px;
+        font-weight: 100;
+        font-size: 13px;
+        border-bottom: 0;
+      }
+      td:nth-child(2) {
+        display: inline-block;
+        font-weight: 100;
+        font-size: 13px;
+        border-bottom: 0;
+        width: calc(70% - 40px);;
+      }
+    }
   }
   .ui-slider {
       height: 2px;
       border: 1px solid #2A3052;
       position: relative;
-      top: 17px;
+      top: 27px;
       box-sizing: border-box;
       padding: 0 3px 0 5px;
       .ui-state-focus {
@@ -65,12 +78,24 @@
   .colorpicker-td {
      .sp-replacer {
         box-sizing: border-box;
-        width: 100% !important;
+        width: 100%;
+        border: none;
+        padding: 0;
+        background: none;
         .sp-preview {
-           width: calc(100% - 18px) !important;
+           width: 100%;
+           border: none;
+           margin: 7px 0;
+           background: none;
            .sp-preview-inner {
               top: 0 !important;
+              border-radius: 3px;
+              border: 3px solid rgba(0,0,0,0.1);
+              transition: all 0.3s linear;
            }
+        }
+        .sp-dd {
+          display: none;
         }
      }
   }
@@ -89,15 +114,23 @@
      justify-content: space-around;
      .dd-container {
         width: 100% !important;
-        .dd-select, .dd-options {
-           width: 100% !important;
-           margin: 0 !important;
+        .dd-select {
+          width: 100% !important;
+          margin-top: 7px;
+        }
+        .dd-options {
+          width: 100% !important;
+          margin: 0;
         }
         li {
            line-height: 1em;
            margin: 0;
         }
-        img { max-width: 200px; max-height: 4px; }
+        img { 
+          max-width: 260px; 
+          max-height: 4px;
+          width: calc(100% - 25px);
+        }
      }
   }
 
@@ -109,13 +142,13 @@
     box-sizing: border-box;
     border: 1px solid #2A3052;
     border-radius: 3px;
+    margin: 7px 0;
       div {
        flex-grow: 1;
        text-align: center;
        font-size: 12px;
-       padding: 0 4px;
        cursor: pointer;
-       transition: color 0.3s;
+       transition: all 0.3s linear;
        color: #2A3052;
      }
      div.selected {
@@ -140,12 +173,10 @@
         background-repeat: round;
         cursor: pointer;
      }
-     td {
+     tr td {
+        padding: 12px 0 13px 15px;
         text-align: center;
-        width: 24%;
-     }
-     tr td:nth-child(1) {
-        width: 20%;
+        font-weight: 100;
      }
   }
 
@@ -155,7 +186,7 @@
     height: 10px;
     position: relative;
     top: 10px;
-    left: 25%;
+    margin: auto;
     background-repeat: no-repeat;
   }
 
@@ -200,7 +231,6 @@
      border-bottom: 0px;
      cursor: pointer;
      &:before {
-        padding: 0.5em;
         font-size: 0.8em;
         border: none;
         box-shadow: none;
@@ -210,7 +240,6 @@
      }
      &:after {
         bottom: 12px;
-        left: -4px;
      }
   }
 
@@ -218,8 +247,11 @@
 	  -webkit-appearance: none;
 	  width: 100%;
 	  outline: none;
-	  margin: 0;
+	  margin: 10px 0;
 	  box-sizing: border-box;
+  }
+  input[type=range] + div {
+    top: 2px !important;
   }
   input[type=range]:focus {
 	  outline: none;
@@ -297,6 +329,19 @@
   }
 }
 
-.indicator-builder-ui-dialog {
+.indicator-builder {
    .image { text-align: center; }
+}
+
+.action_btn {
+  text-align: right;
+  height: 40px;
+  margin: 15px 15px 15px 0;
+  font-size: 14px;
+  a:hover, a:active, a:visited:hover, a:visited:active {
+    text-decoration: none;
+  }
+  .button {
+    margin-right: 15px;
+  }
 }

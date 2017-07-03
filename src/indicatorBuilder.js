@@ -10,13 +10,14 @@ import {i18n} from './common/utils.js';
 
 import indicatorImages from './images/indicators/indicatorImages.js';
 
-let before_add_callback = null;
+let before_add_callback = null,
+   setting_view = null;
 
 const init = (chart_series, indicator) => {
+
    return new Promise((resolve) => {
-
       const $html = $(html);
-
+      $(setting_view).append($html);
       const state = {
          id: indicator.id,
          fields: indicator.fields.map(f => ({...f, is_valid: true})),
@@ -94,50 +95,7 @@ const init = (chart_series, indicator) => {
             },
             {
                text: i18n("OK"),
-               click: () => {
-                  const options = { };
-                  let fields_are_valid = true;
-                  if(!indicator.cdl_indicator) { /* normal indicator */
-                     if(state.levels) {
-                        options.levels = JSON.parse(JSON.stringify(state.levels.values));
-                     }
-                     state.fields.forEach(field => {
-                        fields_are_valid = field.is_valid && fields_are_valid;
-                        if(field.type !== 'plotcolor') {
-                           options[field.key] = field.value
-                           return;
-                        }
-                        options[field.key] = [];
-                        if(options.levels && options.levels.length > 0) {
-                           options[field.key].push({
-                              color: field.value,
-                              from: minBy(options.levels, 'value').value,
-                              to: maxBy(options.levels, 'value').value
-                           });
-                        }
-                     });
-                  }
-                  else { /* cdl indicator */
-                     options.cdlIndicatorCode = state.id;
-                     options.onSeriesID = chart_series[0].options.id
-                  }
-
-                  if(state.id === 'fractal') { /* special case */
-                     options.onSeriesID = chart_series[0].options.id
-                  }
-
-                  if(!fields_are_valid) {
-                     notification.error(i18n('Invalid parameter(s)') + '!', '.indicator-builder-ui-dialog.webtrader-charts-dialog');
-                     return;
-                  }
-
-                  before_add_callback && before_add_callback();
-
-                  //Add indicator for the main series
-                  chart_series[0].addIndicator(state.id, options);
-
-                  win.trigger('close');
-               }
+               click: 1
             },
          ],
          onClose: () => {
@@ -145,7 +103,58 @@ const init = (chart_series, indicator) => {
 				view = null;
          }
       };
-      const win = $html.leanModal(options);
+      state.apply = () => {
+         const options = { };
+         let fields_are_valid = true;
+         if(!indicator.cdl_indicator) { /* normal indicator */
+            if(state.levels) {
+               options.levels = JSON.parse(JSON.stringify(state.levels.values));
+            }
+            console.log(state.fields);
+            state.fields.forEach(field => {
+               fields_are_valid = field.is_valid && fields_are_valid;
+               if(field.type !== 'plotcolor') {
+                  options[field.key] = field.value
+                  return;
+               }
+               options[field.key] = [];
+               if(options.levels && options.levels.length > 0) {
+                  options[field.key].push({
+                     color: field.value,
+                     from: minBy(options.levels, 'value').value,
+                     to: maxBy(options.levels, 'value').value
+                  });
+               }
+            });
+         }
+         else { /* cdl indicator */
+            options.cdlIndicatorCode = state.id;
+            options.onSeriesID = chart_series[0].options.id
+         }
+
+         if(state.id === 'fractal') { /* special case */
+            options.onSeriesID = chart_series[0].options.id
+         }
+
+         if(!fields_are_valid) {
+            notification.error(i18n('Invalid parameter(s)') + '!', '.indicator-builder-ui-dialog.webtrader-charts-dialog');
+            return;
+         }
+
+         before_add_callback && before_add_callback();
+
+         //Add indicator for the main series
+         chart_series[0].addIndicator(state.id, options);
+         state.cancel(); // Close Overlay
+         return false;
+      };
+      state.cancel = () => {
+         view && view.unbind();
+         $(setting_view).closest('.chartOptions_overlay.indicators')
+            .parent().find('.chartOptions_button').click();
+         return false;
+      };
+      //const win = $html.leanModal(options);
       resolve($html);
    });
 }
@@ -153,11 +162,12 @@ const init = (chart_series, indicator) => {
 /**
  * @param indicator - indicator options from indicators-config.js
  * @param chart_series - chart.highcharts().series
- * @param before_add_cb - callback that will be called just before adding the indicator
+ * @param view - view to add indicator builder to
+ * @param cb - callback that will be called just before adding the indicator
  */
-export const open = (indicator, chart_series, before_add_cb) => {
-   before_add_callback = before_add_cb || before_add_callback;
-
+export const open = (indicator, chart_series, view, cb) => {
+   before_add_callback = cb || before_add_callback;
+   setting_view = view;
    return init(chart_series, indicator);
 }
 export default { open };

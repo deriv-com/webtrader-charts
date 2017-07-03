@@ -45,7 +45,7 @@
             </div>
             
             <div class="cell">
-                <div class="chartOptions_button chart_type" rv-on-click="toggleChartTypeSelector"rv-class-button_selected="showChartTypeSelector">
+                <div class="chartOptions_button chart_type" rv-on-click="toggleChartTypeSelector" rv-class-button_selected="showChartTypeSelector">
                     <span rv-attr-data-balloon='"Chart type" | i18n' data-balloon-pos="down">
                         <div class="img"><span rv-class="chartType.value | append '-icon'"></span></div>
                         <span class="vertical-bottom name" rv-show="showChartTypeLabel" rv-text="chartType.name | i18n"></span>
@@ -69,12 +69,13 @@
             </div>
 
             <div class="cell">
-                <div class="chartOptions_button" rv-on-click="addRemoveIndicator">
+                <div class="chartOptions_button" rv-on-click="addRemoveIndicator" rv-class-button_selected="showIndicatorDropDown">
                     <span rv-attr-data-balloon='"Indicators" | i18n' data-balloon-pos="down">
                         <div class="img"><span class="indicator-icon"></span></div>
                     </span>
                 </div>
                 <span class="countBubl" rv-show="indicatorsCount | gt 0" rv-text="indicatorsCount"></span>
+                <div class="chartOptions_overlay indicators" rv-show="showIndicatorDropDown"></div>
             </div>
 
             <div class="cell" rv-show="showOverlay">

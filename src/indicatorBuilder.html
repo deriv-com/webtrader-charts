@@ -1,19 +1,9 @@
-<div class="indicator-builder-ui-dialog webtrader-charts-dialog">
+<div class="indicator-builder">
     <table width="100%">
       <colgroup>
-        <col style="width:30%">
-        <col style="width:70%">
+        <col style="width:40%">
+        <col style="width:60%">
       </colgroup>
-        <tr rv-if="formula">
-          <td colspan="2" class="image">
-            <img rv-attr-src="formula">
-          </td>
-        </tr>
-        <tr rv-if="formula | negate">
-          <td colspan="2" class="description">
-            {description}
-          </td>
-        </tr>
         <tr rv-each-row="fields">
           <td>{row.title}</td>
           <td rv-if="row.type | eq 'slider'">
@@ -69,12 +59,16 @@
           </td>
         </tr>
 
-        <tr rv-if="levels" class="levels-tr">
+        <tr rv-if="levels" class="levels-tr" style="border-bottom:none;">
             <td>Levels:</td>
-            <td><button rv-on-click='level.add'>Add level</button></td>
+            <td>
+              <a rv-on-click='level.add' class="button" href="#">
+                <span>Add Levels</span>
+              </a>
+            </td>
         </tr>
-        <tr rv-if="levels" rv-css-visibility='level.dialog.visible | ternary "hidden" "visible"'>
-            <td colspan="2">
+        <tr rv-if="levels" style="border-top:none;" rv-css-visibility='level.dialog.visible | ternary "hidden" "visible"'>
+            <td colspan="2" style="width: calc(100% - 30px);">
                 <table class="levels">
                     <thead> <tr>
                         <td rv-each-row="levels.fields">{row.title}</td>
@@ -85,7 +79,7 @@
                         <td>{row.value}</td>
                         <td>{row.width}</td>
                         <td>
-                          <div style="width:width:100%; height: 20px;" rv-css-background-color="row.color"/>
+                          <div style="width:100%; height: 20px;" rv-css-background-color="row.color"/>
                         </td>
                         <td>
                           <div class="levels-dash-style"
@@ -102,7 +96,8 @@
             </td>
         </tr>
         <tr rv-if="cdl_indicator">
-          <td colspan="2" class="image">
+          <td colspan="2" style="width:100%;padding:0" class="image">
+            <p style="text-align:left;padding:0 15px 0 15px;">{description}</p>
             <img rv-attr-src="cdl_indicator.image">
           </td>
         </tr>
@@ -136,6 +131,14 @@
           <td><button rv-on-click='level.dialog.cancel'>Cancel</button><button rv-on-click='level.dialog.add'>Add</button></td>
         </tr>
       </table>
+    </div>
+    <div class="action_btn">
+      <a rv-on-click="apply" class="button" href="#">
+          <span>Okay</span>
+      </a>
+      <a rv-on-click="cancel" class="button-secondary" href="#">
+          <span>Cancel</span>
+      </a>
     </div>
 </div>
 

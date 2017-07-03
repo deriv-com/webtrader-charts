@@ -36,6 +36,10 @@
      &.button_selected {
         color: #FFF !important;
         background: #2A3052 !important;
+        z-index: +1;
+        .indicator-w-icon {
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 50 50'%3E %3Cpolyline fill='none' stroke='%23fff' stroke-miterlimit='10' stroke-width='2' points='7.14 16.68 18.02 7.5 31.84 19.3 42.86 10.75'/%3E %3Crect fill='%23fff' x='7.14' y='23.37' width='3.88' height='19.13'/%3E %3Crect fill='%23fff' x='15.1' y='15.67' width='3.88' height='26.83'/%3E %3Crect fill='%23fff' x='23.06' y='22.3' width='3.88' height='20.2'/%3E %3Crect fill='%23fff' x='31.02' y='26.8' width='3.88' height='15.7'/%3E %3Crect fill='%23fff' x='38.98' y='18.83' width='3.88' height='23.67'/%3E%3C/svg%3E");
+        }
      }
   }
   .chartOptions_overlay {
@@ -53,6 +57,13 @@
        box-shadow: none;
        border-radius: 0;
        border: none;
+    }
+    &.indicators {
+       width: 90%;
+       height: 80%;
+       max-width: 500px;
+       max-height: 500px;
+       overflow: hidden;
     }
   }
 
