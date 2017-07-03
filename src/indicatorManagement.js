@@ -125,9 +125,6 @@ const init_state = (root) => {
    };
 
    state.openSearch = (e, scope) => {
-      if(e.target.tagName != 'SPAN') {
-         return;
-      }
       const ele = $(e.target).parent();
       ele.toggleClass('active');      
       if(ele.hasClass("active")) {
