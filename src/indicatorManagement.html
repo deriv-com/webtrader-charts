@@ -6,14 +6,14 @@
     <div class="categories text" rv-on-click="route.update | bind 'popular'">
       <span rv-class-active="route.value | eq 'popular'">Popular</span>
     </div>
-    <div class="categories text" rv-on-click="route.update | bind 'active'">
+    <div class="categories text" rv-class-disabled="indicators.active | prop 'length' | eq 0" rv-on-click="route.update | bind 'active'">
       <span rv-class-active="route.value | eq 'active'">Active</span>
     </div>
-    <div class="categories text" rv-on-click="route.update | bind 'favorites'">
+    <div class="categories text" rv-class-disabled="indicators.favorites | prop 'length' | eq 0" rv-on-click="route.update | bind 'favorites'">
       <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
     </div>
-    <div class="categories icon" rv-on-click="openSearch">
-      <span class="search"></span>
+    <div class="categories icon">
+      <span class="search" rv-on-click="openSearch"></span>
       <input type="text" rv-value='indicators.search'>
     </div>
   </div>
