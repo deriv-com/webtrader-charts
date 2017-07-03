@@ -160,10 +160,23 @@
             font-size: 13px;
             color: #293055;
             opacity: 0.8;
-            width: calc(100% - 77px);
+            width: calc(100% - 154px);
             padding: 7px 10px 13px 15px;
             font-weight: 100;
             line-height: 20px;
+          }
+          &.option-0 {
+            margin-top: 10px;
+            width: auto;
+            height: 16px;
+            font-size: 11px;
+            display: inline-block;
+            position: absolute;
+            right: 77px;
+            color: #e98024;
+            padding: 2px 6px 0px 6px;
+            border-radius: 4px;
+            border: 1px solid #e98024;
           }
           &.option-1 {
             background-repeat: no-repeat;

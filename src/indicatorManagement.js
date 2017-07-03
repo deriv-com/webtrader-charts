@@ -34,11 +34,10 @@ rv.formatters['search'] = (array, search) => {
       if (a.long_display_name > b.long_display_name) return +1;
       return 0;
    });
-}
+};
 
-rv.formatters['trim_string'] = (val) => {
-   if(typeof val !== 'string') return;
-   return val.length > 30 ? val.substr(0,30) + '...' : val;
+rv.formatters['find-indicator'] = (array, ind) => {
+   return _.find(array, {id: ind.id});
 }
 
 const init = () => {
