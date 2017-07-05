@@ -432,6 +432,13 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         }
     };
 
+    state[m_newTabId].closeOverlays = (e, scope) => {
+        if(e.keyCode === 27) {
+            e.stopPropagation();
+            hideOverlays(scope);
+        }
+    }
+
     // Listen for indicator changes.
     dialog.on('chart-indicators-changed', (e, chart) => {
         state[m_newTabId].indicatorsCount = chart.get_indicators().length;
