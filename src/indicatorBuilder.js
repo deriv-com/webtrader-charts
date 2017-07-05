@@ -84,25 +84,6 @@ const init = (chart_series, indicator) => {
 
       let view = rv.bind($html[0], state);
 
-      const options = {
-         title: indicator.long_display_name,
-         width: 350,
-         height: 330,
-         buttons: [
-            {
-               text: i18n("Cancel"),
-               click: () => win.trigger('close')
-            },
-            {
-               text: i18n("OK"),
-               click: 1
-            },
-         ],
-         onClose: () => {
-				view && view.unbind();
-				view = null;
-         }
-      };
       state.apply = () => {
          const options = { };
          let fields_are_valid = true;
@@ -154,7 +135,6 @@ const init = (chart_series, indicator) => {
             .parent().find('.chartOptions_button').click();
          return false;
       };
-      //const win = $html.leanModal(options);
       resolve($html);
    });
 }
