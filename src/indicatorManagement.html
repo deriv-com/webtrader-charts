@@ -1,16 +1,16 @@
 <div class='indicator-dialog'>
   <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder' | negate">
     <div class="categories text" rv-on-click="route.update | bind 'all'">
-      <span rv-class-active="route.value | eq 'all'">All</span>
+      <span rv-class-active="route.value | eq 'all'" rv-text='"All" | i18n'></span>
     </div>
     <div class="categories text" rv-on-click="route.update | bind 'popular'">
-      <span rv-class-active="route.value | eq 'popular'">Popular</span>
+      <span rv-class-active="route.value | eq 'popular'" rv-text='"Popular" | i18n'></span>
     </div>
     <div class="categories text" rv-class-disabled="indicators.active | prop 'length' | eq 0" rv-on-click="route.update | bind 'active'">
-      <span rv-class-active="route.value | eq 'active'">Active</span>
+      <span rv-class-active="route.value | eq 'active'" rv-text='"Active" | i18n'></span>
     </div>
     <div class="categories text" rv-class-disabled="indicators.favorites | prop 'length' | eq 0" rv-on-click="route.update | bind 'favorites'">
-      <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
+      <span rv-class-active="route.value | eq 'favorites'" rv-text='"Favorites" | i18n'></span>
     </div>
     <div class="categories icon">
       <span class="search" rv-on-click="openSearch"></span>
