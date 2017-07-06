@@ -4,8 +4,8 @@ const path = require('path');
 const i18nDir = path.dirname(require.main.filename);
 
 const languages =  [
-   'ar', 'en', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw',
-   // 'ach', 'ja', 'nl', 'zh', 
+   'ar', 'en', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw', 'ja',
+   // 'ach',  'nl', 'zh', 
 ];
 const keys = [
    // overlay-management + indicator-management
