@@ -37,7 +37,7 @@ rv.formatters['search'] = (array, search) => {
 };
 
 rv.formatters['find-indicator'] = (array, ind) => {
-   return _.find(array, {id: ind.id});
+   return (_.find(array, {id: ind.id}) || {}).showEdit;
 }
 
 const init = () => {
@@ -83,6 +83,7 @@ const init_state = (root) => {
 
    state.indicators.edit = (indicator, e, scope) => {
       const copy = JSON.parse(JSON.stringify(indicator));
+      console.log(copy);
       scope.indicators.current = indicator;
       scope.route.prev_val = scope.route.value;
       scope.route.update('indicatorBuilder-s', e, scope);
@@ -126,13 +127,12 @@ const init_state = (root) => {
 
    state.openSearch = (e, scope) => {
       const ele = $(e.target).parent();
-      ele.toggleClass('active');      
-      if(ele.hasClass("active")) {
+      if(scope.route.value !== 'search') {
          scope.route.prev_val = scope.route.value;
          scope.route.update("search", e, scope);
          $(ele.find("input")[0]).focus();
       } else {
-         scope.route.value = scope.route.prev_val;
+         scope.route.update(scope.route.prev_val, e, scope);
       }
    }
 

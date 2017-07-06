@@ -19,9 +19,9 @@
     <div rv-each-tmpl='templates.array' class='template'>
       <div class='name' rv-class-active='tmpl.random | eq templates.current.random' 
       rv-on-click='templates.apply| bind tmpl'>{tmpl.name}</div>
-      <a class="options" href="#" rv-on-click='templates.rename | bind tmpl' rv-text='"Rename" | i18n'></a>
-      <a class="options" href="#" rv-on-click='templates.confirm | bind tmpl | bind "Delete"' rv-text='"Delete" | i18n'></a>
-      <a class="options" href="#" rv-on-click='templates.download | bind tmpl' rv-text='"Download" | i18n'></a>
+      <a class="options" href="javascript:;" rv-on-click='templates.rename | bind tmpl' rv-text='"Rename" | i18n'></a>
+      <a class="options" href="javascript:;" rv-on-click='templates.confirm | bind tmpl | bind "Delete"' rv-text='"Delete" | i18n'></a>
+      <a class="options" href="javascript:;" rv-on-click='templates.download | bind tmpl' rv-text='"Download" | i18n'></a>
     </div>
   </div>
 </div>
