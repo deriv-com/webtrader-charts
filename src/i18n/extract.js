@@ -21,7 +21,7 @@ const keys = [
    '1 Day', 'Ticks', 'Minutes', 'Hours', 'Days',
 
    // chart-template-manager
-   'Cancel', 'OK', 'Delete', 'Remove', 'Rename', 'Back', 'Save', 'Yes', 'No',
+   'Cancel', 'OK', 'Delete', 'Remove', 'Rename', 'Back', 'Save', 'Yes', 'No', 'Ok',
    'Load chart template', 'Save changes', 'Save as', 'Upload template',
    `You haven't saved any templates yet`, 'Name', 'This field is required',
    `Use the "Save as ..." button to save the chart settings, type, time period, indicators and comparisons`,
@@ -39,28 +39,50 @@ const keys = [
    'You have no favorite indicators yet', 
 ];
 
-const dictionary = { };
-keys.forEach(key => {
-   dictionary[key] = { };
+const create_crowding_json_files = () => {
    languages.forEach(lang => {
-      dictionary[key][lang] = '';
-   });
-});
-
-for(const lang of languages) {
-   const filePath = path.join(i18nDir, `${lang}.json`);
-   const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-   keys.forEach(key => {
-         if(key === 'OK') {
-            dictionary[key][lang] = (content['Ok'] && content['Ok'][1]) || '';
-         }
-         else {
-            dictionary[key][lang] = (content[key] && content[key][1]) || '';
-         }
-         if(dictionary[key][lang] === key)
-            dictionary[key][lang] = '';
+      const filePath = path.join(i18nDir, `json_files_from_webtrader/${lang}.json`);
+      const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      const dictionary = { };
+      keys.forEach(key => {
+         const new_key = key.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\\"]/g,"") // remove punctuation.
+                            .replace(/\s{2,}/g," ") // remove extra whitespaces.
+                            .replace(/\s+/g, '-').toLowerCase(); // add hyphens.
+         dictionary[new_key] = (content[key] && content[key][1]) || '';
+         if(lang === 'en')
+            dictionary[new_key] = key;
       });
+      fs.writeFileSync(path.join(i18nDir, `${lang}.json`), JSON.stringify(dictionary, null, 4), 'utf-8'); 
+   });
+   console.log('Done.');
 }
 
-fs.writeFileSync(path.join(i18nDir, 'dictionary.json'), JSON.stringify(dictionary), 'utf-8'); 
-console.log('Done.');
+const extract_dictionary_old_way = () => {
+   const dictionary = { };
+   keys.forEach(key => {
+      dictionary[key] = { };
+      languages.forEach(lang => {
+         dictionary[key][lang] = '';
+      });
+   });
+
+   for(const lang of languages) {
+      const filePath = path.join(i18nDir, `json_files_from_webtrader/${lang}.json`);
+      const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      keys.forEach(key => {
+            if(key === 'OK') {
+               dictionary[key][lang] = (content['Ok'] && content['Ok'][1]) || '';
+            }
+            else {
+               dictionary[key][lang] = (content[key] && content[key][1]) || '';
+            }
+            if(dictionary[key][lang] === key)
+               dictionary[key][lang] = '';
+         });
+   }
+
+   fs.writeFileSync(path.join(i18nDir, 'dictionary.json'), JSON.stringify(dictionary), 'utf-8'); 
+   console.log('Done.');
+}
+
+create_crowding_json_files();
