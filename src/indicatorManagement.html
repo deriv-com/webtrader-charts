@@ -1,20 +1,20 @@
 <div class='indicator-dialog'>
-  <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder' | negate">
+  <div class="header-bar primary-color" rv-show="route.value | contains 'indicatorBuilder' | negate">
     <div class="categories text" rv-on-click="route.update | bind 'all'">
       <span rv-class-active="route.value | eq 'all'" rv-text='"All" | i18n'></span>
     </div>
     <div class="categories text" rv-on-click="route.update | bind 'popular'">
       <span rv-class-active="route.value | eq 'popular'" rv-text='"Popular" | i18n'></span>
     </div>
-    <div class="categories text" rv-class-disabled="indicators.active | prop 'length' | eq 0" rv-on-click="route.update | bind 'active'">
-      <span rv-class-active="route.value | eq 'active'" rv-text='"Active" | i18n'></span>
+    <div class="categories text" rv-on-click="route.update | bind 'active'">
+      <span rv-class-active="route.value | eq 'active'">Active</span>
     </div>
-    <div class="categories text" rv-class-disabled="indicators.favorites | prop 'length' | eq 0" rv-on-click="route.update | bind 'favorites'">
-      <span rv-class-active="route.value | eq 'favorites'" rv-text='"Favorites" | i18n'></span>
+    <div class="categories text" rv-on-click="route.update | bind 'favorites'">
+      <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
     </div>
-    <div class="categories icon">
+    <div class="categories icon primary-color" rv-class-active="route.value | eq 'search'">
       <span class="search" rv-on-click="openSearch"></span>
-      <input type="text" rv-value='indicators.search'>
+      <input class="primary-color" type="text" rv-value='indicators.search'>
     </div>
   </div>
   <div class="view" rv-show="route.value | eq 'all'">
@@ -23,7 +23,6 @@
         <span class='title' rv-text='cat | i18n'></span>
         <div rv-each-ind='indicators.array | indicators-filter cat'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
-          <span class='option-1 question-mark' rv-show='ind.description' rv-data-balloon='ind.description' data-balloon-length='large' data-balloon-pos='down'></span>
           <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
         </div>
       </div>
@@ -35,38 +34,48 @@
         <span class='title' rv-text='cat | i18n'></span>
         <div rv-each-ind='indicators.popular | indicators-filter cat'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
-          <span class='option-1 question-mark' rv-show='ind.description' rv-data-balloon='ind.description' data-balloon-length='large' data-balloon-pos='down'></span>
           <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
-        </div>
-        <div class="empty" rv-show="indicators.popular | prop 'length' | eq 0">
-          <span>Oops, nothing is here. :(</span>
         </div>
       </div>
     </div>
   </div>
   <div class="view" rv-show="route.value | eq 'active'">
-    <div class='types'>
-      <div class='type'>
+    <div class='types' rv-css-height="indicators.active | prop 'length' | eq 0 | ternary '100%' ''">
+      <div class='type' rv-css-display="indicators.active | prop 'length' | eq 0 | ternary 'flex' ''">
         <div rv-each-ind='indicators.active'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
           <span class='option-1 edit' rv-show='ind.showEdit' rv-on-click='indicators.edit | bind ind'></span>
           <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
         </div>
-        <div class="empty" style="font-weight:100;" rv-show="indicators.active | prop 'length' | eq 0">
-          <span>Oops, nothing is here. :(</span>
+        <div class="empty" rv-show="indicators.active | prop 'length' | eq 0">
+          <span>You have no active indicators yet.</span>
+          <span>You can choose any indicator available in our list.</span>
+          <a rv-on-click="route.update | bind 'popular'" class="button-secondary" href="javascript:;">
+            <span>View Popular Indicators</span>
+          </a>
+          <a rv-on-click="route.update | bind 'all'" class="button-secondary" href="javascript:;">
+            <span>View All Indicators</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
   <div class="view" rv-show="route.value | eq 'favorites'">
-    <div class='types'>
-      <div class='type'>
+    <div class='types'rv-css-height="indicators.favorites | prop 'length' | eq 0 | ternary '100%' ''">
+      <div class='type' rv-css-display="indicators.favorites | prop 'length' | eq 0 | ternary 'flex' ''">
         <div rv-each-ind='indicators.favorites'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
           <span class="option-2 full-star" rv-on-click='indicators.favorite | bind ind'></span>
         </div>
         <div class="empty" rv-show="indicators.favorites | prop 'length' | eq 0">
-          <span>Oops, nothing is here. :(</span>
+          <span>You have no favorite indicators yet.</span>
+          <span>You can choose any indicator available in our list.</span>
+          <a rv-on-click="route.update | bind 'popular'" class="button-secondary" href="javascript:;">
+            <span>View Popular Indicators</span>
+          </a>
+          <a rv-on-click="route.update | bind 'all'" class="button-secondary" href="javascript:;">
+            <span>View All Indicators</span>
+          </a>
         </div>
       </div>
     </div>
@@ -78,13 +87,13 @@
         <div rv-each-ind='indicators.array | search indicators.search'>
           <span class="display_name" rv-text='ind.long_display_name' rv-on-click='indicators.add | bind ind'></span>
           <span class="option-0 popular" rv-show='indicators.popular | contains ind'>Popular</span>
-          <span class='option-1 edit' rv-show='indicators.active | find-indicator ind | and ind.showEdit' rv-on-click='indicators.edit | bind ind'></span>
+          <span class='option-1 edit' rv-show='indicators.active | find-indicator ind' rv-on-click='route.update | bind "active"'></span>
           <span class="option-2" rv-class-empty-star='ind.is_favorite | eq false' rv-class-full-star='ind.is_favorite | eq true' rv-on-click='indicators.favorite | bind ind'></span>
         </div>
       </div>
     </div>
   </div>
-  <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder'">
+  <div class="header-bar primary-color" rv-show="route.value | contains 'indicatorBuilder'">
     <div class="title">
       <div class="back-arrow" rv-on-click="route.update | bind route.prev_val"></div>
       <span class="text">{indicators.current.long_display_name}</span>

@@ -160,7 +160,7 @@ const responsiveButtons = (scope, dialog) => {
     }
 
     let positionRight = ele.width() - (shareButton.offset().left + shareButton.outerWidth() - ele.offset().left);
-
+    
     if (ele.width() <= 740) {
         positionRight = positionRight > 0 ? positionRight : 25;
         exportOverlay.css("right", positionRight + "px");
@@ -170,6 +170,10 @@ const responsiveButtons = (scope, dialog) => {
         loadSaveOverlay.css("right", "auto");
         exportOverlay.css("right", "auto");
         indicatorOverlay.css("right","auto");
+    }
+
+    if(!scope.showInstrumentName && ele.width() < 1080) {
+        indicatorOverlay.css("right","10px");        
     }
 }
 
@@ -431,6 +435,13 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             }
         }
     };
+
+    state[m_newTabId].closeOverlays = (e, scope) => {
+        if(e.keyCode === 27) {
+            e.stopPropagation();
+            hideOverlays(scope);
+        }
+    }
 
     // Listen for indicator changes.
     dialog.on('chart-indicators-changed', (e, chart) => {

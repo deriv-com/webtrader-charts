@@ -62,7 +62,7 @@
         <tr rv-if="levels" class="levels-tr" style="border-bottom:none;">
             <td>Levels:</td>
             <td>
-              <a rv-on-click='level.add' class="button" href="#">
+              <a rv-on-click='level.add' class="button" href="javascript:;">
                 <span>Add Levels</span>
               </a>
             </td>
@@ -98,7 +98,7 @@
         <tr rv-if="cdl_indicator">
           <td colspan="2" style="width:100%;padding:0" class="image">
             <p style="text-align:left;padding:0 15px 0 15px;">{description}</p>
-            <img rv-attr-src="cdl_indicator.image">
+            <img style="width: 300px; height: 300px; margin: 20px auto 10px auto; padding: 5px; border: 1px solid #c2c2c2;" rv-attr-src="cdl_indicator.image">
           </td>
         </tr>
     </table>
@@ -133,10 +133,10 @@
       </table>
     </div>
     <div class="action_btn">
-      <a rv-on-click="apply" class="button" href="#">
-          <span>Okay</span>
+      <a rv-on-click="apply" class="button" href="javascript:;">
+          <span>OK</span>
       </a>
-      <a rv-on-click="cancel" class="button-secondary" href="#">
+      <a rv-on-click="cancel" class="button-secondary" href="javascript:;">
           <span>Cancel</span>
       </a>
     </div>
