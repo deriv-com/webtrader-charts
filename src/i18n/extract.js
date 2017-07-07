@@ -34,7 +34,9 @@ const keys = [
    'Template changes saved', 'Invalid JSON file', 'Invalid template type', 'Successfully applied the template and saved it as',
    'Downloading template as', 'Template name already exists',
    'Add/Remove indicators', 'Add/Remove comparisons',
-   'Error getting data for %1', 'Downloading .csv', 'Stroke width', 'Stroke color'
+   'Error getting data for %1', 'Downloading .csv', 'Stroke width', 'Stroke color',
+   'You have no active indicators yet', 'You can choose any indicator available in our list',
+   'You have no favorite indicators yet', 
 ];
 
 const dictionary = { };
