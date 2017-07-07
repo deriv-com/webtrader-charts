@@ -142,7 +142,7 @@ class ChartTemplateManager {
         array.push(data);
         local_storage.set('templates', array);
         templates.array = array;
-        notification.notice(`${i18n('Successfully applied the template and saved it as')} <b>${data.name}</b>`, this.target);
+        notification.warning(`${i18n('Successfully applied the template and saved it as')} <b>${data.name}</b>`, this.target);
       };
 
       reader.readAsText(file);
@@ -169,7 +169,7 @@ class ChartTemplateManager {
 
     templates.download = (tmpl) => {
       var json = JSON.stringify(tmpl);
-      download_file_in_browser(tmpl.name + '.json', 'text/json;charset=utf-8;', json);
+      this.download_file_in_browser(tmpl.name + '.json', 'text/json;charset=utf-8;', json);
       notification.info(`${i18n('Downloading template as')} <b>${tmpl.name}.json</b>`, this.target);
     };
 
@@ -261,6 +261,27 @@ class ChartTemplateManager {
       return true;
     }
     return false;
+  }
+
+
+  /* type = "text/csv;charset=utf-8;" */
+  download_file_in_browser (filename, type, content){
+    var blob = new Blob([content], { type: type });
+    if (navigator.msSaveBlob) { // IE 10+
+        navigator.msSaveBlob(blob, filename);
+    }
+    else {
+        var link = document.createElement("a");
+        if (link.download !== undefined) {  /* Evergreen Browsers :) */
+            var url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", filename);
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
   }
 
   unbind() {

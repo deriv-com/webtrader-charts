@@ -310,7 +310,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
         plotOptions: {
             candlestick: {
-                shadow: false
+                shadow: false,
+                color: '#d11415',
+                upColor: '#2b920f'
             },
             series: {
                 events: {
@@ -564,7 +566,7 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
 
 export const changeTitle = (containerIDWithHash, newTitle) => {
     const chart = $(containerIDWithHash).highcharts();
-    chart.setTitle(newTitle);
+    chart && chart.setTitle(newTitle);
 };
 
 export default {

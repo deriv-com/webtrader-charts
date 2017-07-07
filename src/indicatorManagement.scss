@@ -2,7 +2,6 @@
   z-index: +1;
   position: absolute;
   width: 100%;
-  background: #293055;
   .categories {
     display: inline-flex;
     height: 100%;
@@ -43,10 +42,8 @@
       &.active {
         width: 100%;
         left: 3px;
-        background: #293055;
         input {
           display: inline-block;
-          background: #293055;
           padding-left: 5px;
           font-size: 12px;
           color: #fff;
@@ -62,6 +59,7 @@
           opacity: 0.9;
           width: calc(100% - 80px);
           font-weight: 100;
+          box-shadow: none;
         }
         .search {
           background-image: url("images/close-white.svg");
@@ -119,6 +117,7 @@
 .view {
   padding-top:40px;
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100%;
   height: calc(100% - 40px);
   position: absolute;
@@ -130,12 +129,19 @@
       font-size: 13px;
       color: #293055;
       font-weight: 100;
-      line-height: 25px;
+      line-height: 1.4em;
     }
     #settings {
       margin: 0;
       height: calc(100% - 40px);
       overflow-y: scroll;
+    }
+  }
+  &[rv-show="route.value | eq 'active'"], &[rv-show="route.value | eq 'favorites'"] {
+    .types .type {
+      height: 100%;
+      justify-content: center;
+      align-items: center;
     }
   }
   .types {
@@ -166,7 +172,7 @@
             width: calc(100% - 154px);
             padding: 7px 10px 13px 15px;
             font-weight: 100;
-            line-height: 20px;
+            line-height: 1.4em;
           }
           &.option-0 {
             margin-top: 10px;
@@ -189,21 +195,6 @@
             display: inline-block;
             position: absolute;
             right: 46px;
-            &.question-mark {
-              background-image: url("images/ic-tip.svg");
-              &[data-balloon] {
-                border-bottom: none;
-                &:before {
-                  transform: translate(-90%,0);
-                  width: 250px;
-                  height: auto;
-                  line-height: 1.5;
-                  font-size: 12px;
-                  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-                  border-radius: 4px;
-                }
-              }
-            }
             &.edit {
               background-image: url("images/ic-edit.svg");              
             }
@@ -232,11 +223,20 @@
         }
       }
       .empty {
-        margin-top: 13px;
-        span {
-          padding-left: 15px;
-          color: #293055;
-          opacity: 0.8;
+        text-align: center;        
+        > span {
+          color: #000;
+          font-size: 13px;
+          display: block;
+        }
+        > a {
+          display: block;
+          &:first-of-type > span {
+            margin-top: 20px;
+          }
+          &:last-of-type > span {
+            width: 168.43px;
+          }
         }
       }
     }
