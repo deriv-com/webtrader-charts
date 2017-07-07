@@ -1,5 +1,5 @@
 <div class='indicator-dialog'>
-  <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder' | negate">
+  <div class="header-bar primary-color" rv-show="route.value | contains 'indicatorBuilder' | negate">
     <div class="categories text" rv-on-click="route.update | bind 'all'">
       <span rv-class-active="route.value | eq 'all'" rv-text='"All" | i18n'></span>
     </div>
@@ -12,9 +12,9 @@
     <div class="categories text" rv-on-click="route.update | bind 'favorites'">
       <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
     </div>
-    <div class="categories icon" rv-class-active="route.value | eq 'search'">
+    <div class="categories icon primary-color" rv-class-active="route.value | eq 'search'">
       <span class="search" rv-on-click="openSearch"></span>
-      <input type="text" rv-value='indicators.search'>
+      <input class="primary-color" type="text" rv-value='indicators.search'>
     </div>
   </div>
   <div class="view" rv-show="route.value | eq 'all'">
@@ -93,7 +93,7 @@
       </div>
     </div>
   </div>
-  <div class="header-bar" rv-show="route.value | contains 'indicatorBuilder'">
+  <div class="header-bar primary-color" rv-show="route.value | contains 'indicatorBuilder'">
     <div class="title">
       <div class="back-arrow" rv-on-click="route.update | bind route.prev_val"></div>
       <span class="text">{indicators.current.long_display_name}</span>

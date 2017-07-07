@@ -2,13 +2,13 @@
     <div class="table">
         <div class="row">
             <div class="cell">
-                <div class="chartOptions_button timeperiod" rv-on-click="toggleTimerPeriodSelector" rv-class-button_selected="showTimePeriodSelector">
+                <div class="chartOptions_button timeperiod primary-color" rv-on-click="toggleTimerPeriodSelector" rv-class-button_selected="showTimePeriodSelector">
                     <span rv-attr-data-balloon='"Time interval" | i18n' data-balloon-pos="down">
                         <span class="vertical-bottom" rv-text="timePeriod_name"></span>
                         <span class="nav-caret triangle"></span>
                     </span>
                 </div>
-                <div class="chartOptions_overlay table timePeriodOverlay" rv-show="showTimePeriodSelector">
+                <div class="chartOptions_overlay primary-color table timePeriodOverlay" rv-show="showTimePeriodSelector">
                     <div class="row">
                         <div class="cell">
                             <span class="vertical-bottom time" rv-text='"Ticks" | i18n'></span>
@@ -45,14 +45,14 @@
             </div>
             
             <div class="cell">
-                <div class="chartOptions_button chart_type" rv-on-click="toggleChartTypeSelector" rv-class-button_selected="showChartTypeSelector">
+                <div class="chartOptions_button chart_type primary-color" rv-on-click="toggleChartTypeSelector" rv-class-button_selected="showChartTypeSelector">
                     <span rv-attr-data-balloon='"Chart type" | i18n' data-balloon-pos="down">
                         <div class="img"><span rv-class="chartType.value | append '-icon'"></span></div>
                         <span class="vertical-bottom name" rv-show="showChartTypeLabel" rv-text="chartType.name | i18n"></span>
                         <span class="nav-caret triangle"></span>
                     </span>
                 </div>
-                <div class="chartOptions_overlay chartTypeOverlay table" rv-show="showChartTypeSelector">
+                <div class="chartOptions_overlay primary-color chartTypeOverlay table" rv-show="showChartTypeSelector">
                     <div class="row" rv-each-item="chartTypes" rv-class-showBorder="item.showBorder">
                         <div class="cell" rv-data-charttype="item.value" rv-on-click="changeChartType">
                             <div class="img"><div rv-data-charttype="item.value" rv-class="item.value | append '-icon'"></div></div>
@@ -69,17 +69,17 @@
             </div>
 
             <div class="cell">
-                <div class="chartOptions_button" rv-on-click="addRemoveIndicator" rv-class-button_selected="showIndicatorDropDown">
+                <div class="chartOptions_button primary-color" rv-on-click="addRemoveIndicator" rv-class-button_selected="showIndicatorDropDown">
                     <span rv-attr-data-balloon='"Indicators" | i18n' data-balloon-pos="down">
                         <div class="img"><span class="indicator-icon"></span></div>
                     </span>
                 </div>
                 <span class="countBubl" rv-show="indicatorsCount | gt 0" rv-text="indicatorsCount"></span>
-                <div class="chartOptions_overlay indicators" rv-show="showIndicatorDropDown"></div>
+                <div class="chartOptions_overlay primary-color indicators" rv-show="showIndicatorDropDown"></div>
             </div>
 
             <div class="cell" rv-show="showOverlay">
-                <div class="chartOptions_button" rv-on-click="addRemoveOverlay">
+                <div class="chartOptions_button primary-color" rv-on-click="addRemoveOverlay">
                     <span rv-attr-data-balloon='"Comparisons" | i18n' data-balloon-pos="down">
                         <div class="img"> <span class="comparison-icon" ></span></div>
                     </span>
@@ -88,12 +88,12 @@
             </div>
 
             <div class="cell">
-                <div class="chartOptions_button" rv-on-click="toggleDrawingToolSelector" rv-class-button_selected="showDrawingToolSelector">
+                <div class="chartOptions_button primary-color" rv-on-click="toggleDrawingToolSelector" rv-class-button_selected="showDrawingToolSelector">
                     <span class = "drawButton" rv-attr-data-balloon='"Drawing tools" | i18n' data-balloon-pos="down">
                         <div class="img"><span class="drawing-icon"></span></div>
                     </span>
                 </div>
-                <div class="chartOptions_overlay drawingToolOverlay table" rv-show="showDrawingToolSelector">
+                <div class="chartOptions_overlay primary-color drawingToolOverlay table" rv-show="showDrawingToolSelector">
                     <div class="row">
                         <div class="cell" rv-on-click="addDrawingTool">
                             <span rv-attr-data-balloon='"Vertical line" | i18n' class='no-underline'>
@@ -112,22 +112,22 @@
             </div>
 
             <div class="cell">
-                <div class="chartOptions_button" rv-on-click="toggleLoadSaveSelector" rv-class-button_selected="showLoadSaveSelector">
+                <div class="chartOptions_button primary-color" rv-on-click="toggleLoadSaveSelector" rv-class-button_selected="showLoadSaveSelector">
                   <span class = "templateButton" rv-attr-data-balloon='"Chart template" | i18n' data-balloon-pos="down">
                     <div class="img"><span class="chart_template-icon"></span></div>
                   </span>
                 </div>
-                <div class="chartOptions_overlay table font-s loadSaveOverlay" rv-show="showLoadSaveSelector">
+                <div class="chartOptions_overlay primary-color table font-s loadSaveOverlay" rv-show="showLoadSaveSelector">
                     <div class='chart-template-manager-root'><!-- chartTemplateManger.es6 will render here --></div>
                 </div>
             </div>
             <div class="cell" rv-show="showShare">
-                <div class="chartOptions_button" rv-on-click="toggleExportSelector" rv-class-button_selected="showExportSelector">
+                <div class="chartOptions_button primary-color" rv-on-click="toggleExportSelector" rv-class-button_selected="showExportSelector">
                     <span class = "shareButton" rv-attr-data-balloon='"Share chart" | i18n' data-balloon-pos="down">
                         <div class="img"><span class="share-icon"></span></div>
                     </span>
                 </div>
-                <div class="table chartOptions_overlay exportOverlay" rv-show="showExportSelector">
+                <div class="table chartOptions_overlay primary-color exportOverlay" rv-show="showExportSelector">
                     <div class="row">
                         <div class="cell">
                             <span class="vertical-bottom share" rv-text='"Share" | i18n'></span>

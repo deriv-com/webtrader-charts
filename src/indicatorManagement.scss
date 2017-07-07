@@ -2,7 +2,6 @@
   z-index: +1;
   position: absolute;
   width: 100%;
-  background: #293055;
   .categories {
     display: inline-flex;
     height: 100%;
@@ -43,10 +42,8 @@
       &.active {
         width: 100%;
         left: 3px;
-        background: #293055;
         input {
           display: inline-block;
-          background: #293055;
           padding-left: 5px;
           font-size: 12px;
           color: #fff;
@@ -62,6 +59,7 @@
           opacity: 0.9;
           width: calc(100% - 80px);
           font-weight: 100;
+          box-shadow: none;
         }
         .search {
           background-image: url("images/close-white.svg");

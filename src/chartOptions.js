@@ -161,9 +161,7 @@ const responsiveButtons = (scope, dialog) => {
 
     let positionRight = ele.width() - (shareButton.offset().left + shareButton.outerWidth() - ele.offset().left);
     
-    if(!scope.showInstrumentName && ele.width() < 1080) {
-        indicatorOverlay.css("right","10px");        
-    } else if (scope.showInstrumentName && ele.width() <= 740) {
+    if (ele.width() <= 740) {
         positionRight = positionRight > 0 ? positionRight : 25;
         exportOverlay.css("right", positionRight + "px");
         loadSaveOverlay.css("right", positionRight + 35 + "px");
@@ -172,6 +170,10 @@ const responsiveButtons = (scope, dialog) => {
         loadSaveOverlay.css("right", "auto");
         exportOverlay.css("right", "auto");
         indicatorOverlay.css("right","auto");
+    }
+
+    if(!scope.showInstrumentName && ele.width() < 1080) {
+        indicatorOverlay.css("right","10px");        
     }
 }
 
