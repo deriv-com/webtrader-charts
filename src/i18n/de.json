@@ -92,5 +92,8 @@
   "stroke-color":"Konturfarbe",
   "you-have-no-active-indicators-yet":"Sie haben noch keine aktiven Indikatoren",
   "you-can-choose-any-indicator-available-in-our-list":"Sie können jeden Indikator auswählen, den Sie in unserer Liste finden",
-  "you-have-no-favorite-indicators-yet":"Sie haben noch keine Lieblings-Indikatoren"
+  "you-have-no-favorite-indicators-yet":"Sie haben noch keine Lieblings-Indikatoren",
+  "active":"Active",
+  "all":"All",
+  "popular":"Popular"
 }
