@@ -82,8 +82,17 @@ export const uuid = () => {
 };
 
 export const i18n = key => {
-   const lang = globals.config.lang;
-   return (dictionary[key] && dictionary[key][lang]) || key;
+    const lang = globals.config.lang;
+    if(lang === 'en') return key;
+    const index = dictionary.languages.indexOf(lang);
+    if(index === -1) return key;
+
+
+    const new_key = key.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\\"]/g,"") // remove punctuation.
+                       .replace(/\s{2,}/g," ") // remove extra whitespaces.
+                       .replace(/\s+/g, '-').toLowerCase(); // add hyphens.
+
+    return (dictionary.dictionary[new_key] && dictionary.dictionary[new_key][index]) || key;
 };
 
 export default {
