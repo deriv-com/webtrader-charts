@@ -7,10 +7,10 @@
       <span rv-class-active="route.value | eq 'popular'" rv-text='"Popular" | i18n'></span>
     </div>
     <div class="categories text" rv-on-click="route.update | bind 'active'">
-      <span rv-class-active="route.value | eq 'active'">Active</span>
+      <span rv-class-active="route.value | eq 'active'" rv-text='"Active" | i18n'></span>
     </div>
     <div class="categories text" rv-on-click="route.update | bind 'favorites'">
-      <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
+      <span rv-class-active="route.value | eq 'favorites'" rv-text='"Favorites" | i18n'></span>
     </div>
     <div class="categories icon primary-color" rv-class-active="route.value | eq 'search'">
       <span class="search" rv-on-click="openSearch"></span>

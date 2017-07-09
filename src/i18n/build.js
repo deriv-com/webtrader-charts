@@ -26,6 +26,8 @@ Object.keys(en).forEach(key => {
     dictionary[key] = [];
     languages.forEach((lang, inx) => {
         dictionary[key][inx] = contents[lang][key] || '';
+        if(dictionary[key][inx] === en[key])
+            dictionary[key][inx] = '';
     });
 });
 

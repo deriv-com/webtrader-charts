@@ -4,7 +4,7 @@ import wtcharts from 'webtrader-charts';
 
 wtcharts.init({
    appId: 11,
-   lang: 'de', // default is 'en'
+   lang: 'ja', // default is 'en'
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
