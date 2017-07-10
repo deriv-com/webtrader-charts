@@ -90,10 +90,10 @@
   "downloading-csv":"下载.csv",
   "stroke-width":"笔画宽度",
   "stroke-color":"笔画颜色",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet",
-  "active":"Active",
-  "all":"All",
-  "popular":"Popular"
+  "you-have-no-active-indicators-yet":"还没有任何激活指标",
+  "you-can-choose-any-indicator-available-in-our-list":"您可选择列表中的任一指标",
+  "you-have-no-favorite-indicators-yet":"还没有任何偏爱指标",
+  "active":"活跃",
+  "all":"所有",
+  "popular":"受欢迎"
 }
