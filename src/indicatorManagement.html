@@ -48,8 +48,8 @@
           <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
         </div>
         <div class="empty" rv-show="indicators.active | prop 'length' | eq 0">
-          <span rv-text='"You have no active indicators yet" | i18n | append "."'></span>
-          <span rv-text='"You can choose any indicator available in our list" | i18n | append "."'></span>
+          <span rv-text='"You do not have any active indicators" | i18n | append "."'></span>
+          <span rv-text='"Choose from any indicator in our list to get started" | i18n | append "."'></span>
           <a rv-on-click="route.update | bind 'popular'" class="button-secondary" href="javascript:;">
             <span>View Popular Indicators</span>
           </a>
@@ -68,8 +68,8 @@
           <span class="option-2 full-star" rv-on-click='indicators.favorite | bind ind'></span>
         </div>
         <div class="empty" rv-show="indicators.favorites | prop 'length' | eq 0">
-          <span rv-text='"You have no favorite indicators yet" | i18n | append "."'></span>
-          <span rv-text='"You can choose any indicator available in our list" | i18n | append "."'></span>
+          <span rv-text='"You do not have any favorite indicators" | i18n | append "."'></span>
+          <span rv-text='"Choose from any indicator in our list to get started" | i18n | append "."'></span>
           <a rv-on-click="route.update | bind 'popular'" class="button-secondary" href="javascript:;">
             <span>View Popular Indicators</span>
           </a>
