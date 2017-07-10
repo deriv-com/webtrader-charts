@@ -10,7 +10,7 @@
   "price-transformation":"價格轉換",
   "statistical-functions":"統計函數",
   "pattern-recognition":"圖形辨識",
-  "bill-williams":"Bill Williams",
+  "bill-williams":"比爾威廉姆指標",
   "time-interval":"時間間隔",
   "chart-type":"圖表類型",
   "indicators":"指標",
@@ -90,7 +90,10 @@
   "downloading-csv":"下載.csv",
   "stroke-width":"筆畫寬度",
   "stroke-color":"筆畫色彩",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet"
+  "you-have-no-active-indicators-yet":"還沒有任何激活指標",
+  "you-can-choose-any-indicator-available-in-our-list":"您你可選擇清單中的任一指標",
+  "you-have-no-favorite-indicators-yet":"還沒有任何最愛指標",
+  "active":"活躍",
+  "all":"所有",
+  "popular":"受歡迎"
 }

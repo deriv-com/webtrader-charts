@@ -90,7 +90,10 @@
   "downloading-csv":"Baixando .csv",
   "stroke-width":"Largura do traço",
   "stroke-color":"Cor do traço",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet"
+  "you-have-no-active-indicators-yet":"Você ainda não tem nenhum indicador",
+  "you-can-choose-any-indicator-available-in-our-list":"É possível escolher qualquer indicador disponível na nossa lista",
+  "you-have-no-favorite-indicators-yet":"Você ainda não tem nenhum indicador favorito",
+  "active":"Active",
+  "all":"All",
+  "popular":"Popular"
 }

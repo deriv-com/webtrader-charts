@@ -42,7 +42,7 @@
   "hours":"Stunden",
   "days":"Tage",
   "cancel":"Abbrechen",
-  "ok":"Ok",
+  "ok":"Okay",
   "delete":"Löschen",
   "remove":"Entfernen",
   "rename":"Umbenennen",
@@ -90,7 +90,10 @@
   "downloading-csv":".cvs wird heruntergeladen",
   "stroke-width":"Strichstärke",
   "stroke-color":"Konturfarbe",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet"
+  "you-have-no-active-indicators-yet":"Sie haben noch keine aktiven Indikatoren",
+  "you-can-choose-any-indicator-available-in-our-list":"Sie können jeden Indikator auswählen, den Sie in unserer Liste finden",
+  "you-have-no-favorite-indicators-yet":"Sie haben noch keine Lieblings-Indikatoren",
+  "active":"Active",
+  "all":"All",
+  "popular":"Popular"
 }

@@ -58,7 +58,7 @@
   "name":"お名前",
   "this-field-is-required":"この項目は必須です",
   "use-the-save-as-button-to-save-the-chart-settings-type-time-period-indicators-and-comparisons":"「名前を付けて保存」から、チャート設定、タイプ、期間、指標、比較などを保存することができます",
-  "open":"Open",
+  "open":"オープン",
   "high":"HIGH",
   "low":"LOW",
   "close":"閉じる",
@@ -90,7 +90,10 @@
   "downloading-csv":".csvファイルをダウンロード",
   "stroke-width":"境界線の幅",
   "stroke-color":"境界線の色",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet"
+  "you-have-no-active-indicators-yet":"アクティブなインディケーターがありません",
+  "you-can-choose-any-indicator-available-in-our-list":"当社のリストにあるインディケーターをご利用いただけます",
+  "you-have-no-favorite-indicators-yet":"お気に入りのインディケーターはありません",
+  "active":"Active",
+  "all":"All",
+  "popular":"Popular"
 }
