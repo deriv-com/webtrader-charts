@@ -6,7 +6,7 @@
   "add-indicator":"Tambah indikator",
   "volatility-indicators":"Indikator Volatilitas",
   "overlap-studies":"Studi Tumpang Tindih",
-  "momentum-indicators":"Indikator momentum",
+  "momentum-indicators":"Indikator Momentum",
   "price-transformation":"Transformasi Harga",
   "statistical-functions":"Fungsi Statistik",
   "pattern-recognition":"Pengakuan Pola",
@@ -48,7 +48,7 @@
   "rename":"Ganti nama",
   "back":"Kembali",
   "save":"Simpan",
-  "yes":"Iya",
+  "yes":"Ya",
   "no":"Tidak",
   "load-chart-template":"Memuat template grafik",
   "save-changes":"Simpan perubahan",
@@ -90,7 +90,10 @@
   "downloading-csv":"Men-download .csv",
   "stroke-width":"Lebar stroke",
   "stroke-color":"Warna stroke",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet"
+  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
+  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
+  "active":"Active",
+  "all":"All",
+  "popular":"Popular"
 }

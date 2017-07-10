@@ -10,7 +10,7 @@
   "price-transformation":"价格转换",
   "statistical-functions":"统计函数",
   "pattern-recognition":"图形辨识",
-  "bill-williams":"Bill Williams",
+  "bill-williams":"比尔威廉姆指标",
   "time-interval":"时间间隔",
   "chart-type":"图表类型",
   "indicators":"指标",
@@ -90,7 +90,10 @@
   "downloading-csv":"下载.csv",
   "stroke-width":"笔画宽度",
   "stroke-color":"笔画颜色",
-  "you-have-no-active-indicators-yet":"You have no active indicators yet",
-  "you-can-choose-any-indicator-available-in-our-list":"You can choose any indicator available in our list",
-  "you-have-no-favorite-indicators-yet":"You have no favorite indicators yet"
+  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
+  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
+  "active":"活跃",
+  "all":"所有",
+  "popular":"受欢迎"
 }
