@@ -90,9 +90,9 @@
   "downloading-csv":".cvs wird heruntergeladen",
   "stroke-width":"Strichstärke",
   "stroke-color":"Konturfarbe",
-  "you-have-no-active-indicators-yet":"Sie haben noch keine aktiven Indikatoren",
-  "you-can-choose-any-indicator-available-in-our-list":"Sie können jeden Indikator auswählen, den Sie in unserer Liste finden",
-  "you-have-no-favorite-indicators-yet":"Sie haben noch keine Lieblings-Indikatoren",
+  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
+  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
   "active":"Active",
   "all":"All",
   "popular":"Popular"

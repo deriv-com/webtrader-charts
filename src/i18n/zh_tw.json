@@ -90,9 +90,9 @@
   "downloading-csv":"下載.csv",
   "stroke-width":"筆畫寬度",
   "stroke-color":"筆畫色彩",
-  "you-have-no-active-indicators-yet":"還沒有任何激活指標",
-  "you-can-choose-any-indicator-available-in-our-list":"您你可選擇清單中的任一指標",
-  "you-have-no-favorite-indicators-yet":"還沒有任何最愛指標",
+  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
+  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
   "active":"活躍",
   "all":"所有",
   "popular":"受歡迎"

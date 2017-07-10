@@ -90,9 +90,9 @@
   "downloading-csv":"Men-download .csv",
   "stroke-width":"Lebar stroke",
   "stroke-color":"Warna stroke",
-  "you-have-no-active-indicators-yet":"Anda belum memiliki indikator aktif",
-  "you-can-choose-any-indicator-available-in-our-list":"Anda dapat memilih setiap indikator yang tersedia pada daftar kami",
-  "you-have-no-favorite-indicators-yet":"Anda belum memiliki indikator favorit",
+  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
+  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
   "active":"Active",
   "all":"All",
   "popular":"Popular"
