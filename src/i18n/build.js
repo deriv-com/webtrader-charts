@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const i18nDir = path.dirname(require.main.filename);
 const contentOf = (lang) => {
@@ -9,8 +9,8 @@ const contentOf = (lang) => {
 };
 
 const languages =  [
-   'ar', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw', 'ja', 'ach'
-   // 'nl', 'zh', 
+   "ar", "de", "es", "fr", "id", "it", "pl", "pt", "ru", "th", "vi", "zh_cn", "zh_tw", "ja", "ach"
+   // "nl", "zh", 
 ];
 
 const contents = languages.reduce((obj, lang) => {
@@ -31,5 +31,4 @@ Object.keys(en).forEach(key => {
     });
 });
 
-fs.writeFileSync(path.join(i18nDir, 'dictionary.json'), JSON.stringify({languages, dictionary}), 'utf-8'); 
-console.warn('done');
+fs.writeFileSync(path.join(i18nDir, "dictionary.json"), JSON.stringify({languages, dictionary}), "utf-8"); 
