@@ -95,5 +95,7 @@
   "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
   "active":"Active",
   "all":"Tudo",
-  "popular":"Popular"
+  "popular":"Popular",
+  "view-popular-indicators":"View Popular Indicators",
+  "view-all-indicators":"View All Indicators"
 }
