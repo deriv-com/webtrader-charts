@@ -34,6 +34,7 @@ Take a look at `webpack.config.js -> externals`.
     "instrumentName": "Bull Market Index",
     "showInstrumentName": true, // default is false
     "showOverlays": false, // default is true
+    "showShare": false, // default is true
     "indicators": [
        {
           "id": "cks",
@@ -50,6 +51,9 @@ Take a look at `webpack.config.js -> externals`.
        },
     ],
     "overlays": [ ],
+     /* optional field timezoneOffset in minutes, see (http://api.highcharts.com/highstock/global.timezoneOffset)
+        timezone is global in highcharts, this option will effect other charts on the page */
+    "timezoneOffset": 0,
  });
 
  // Will be called every time user makes a change

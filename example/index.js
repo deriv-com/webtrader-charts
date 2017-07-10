@@ -28,6 +28,8 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
    "showInstrumentName": true,
    "timePeriod": "1m",
    "type": "candlestick",
+   "showShare": false,
+   "timezoneOffset": -9*60, // GMT+9
    "indicators": [],
    "overlays": []
 });
