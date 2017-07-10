@@ -7,10 +7,10 @@
       <span rv-class-active="route.value | eq 'popular'" rv-text='"Popular" | i18n'></span>
     </div>
     <div class="categories text" rv-on-click="route.update | bind 'active'">
-      <span rv-class-active="route.value | eq 'active'">Active</span>
+      <span rv-class-active="route.value | eq 'active'" rv-text='"Active" | i18n'></span>
     </div>
     <div class="categories text" rv-on-click="route.update | bind 'favorites'">
-      <span rv-class-active="route.value | eq 'favorites'">Favorites</span>
+      <span rv-class-active="route.value | eq 'favorites'" rv-text='"Favorites" | i18n'></span>
     </div>
     <div class="categories icon primary-color" rv-class-active="route.value | eq 'search'">
       <span class="search" rv-on-click="openSearch"></span>
@@ -48,8 +48,8 @@
           <span class="option-2 remove" rv-on-click='indicators.remove | bind ind'></span>
         </div>
         <div class="empty" rv-show="indicators.active | prop 'length' | eq 0">
-          <span>You do not have any active indicators.</span>
-          <span>Choose from any indicator in our list to get started.</span>
+          <span rv-text='"You do not have any active indicators." | i18n | append "."'></span>
+          <span rv-text='"Choose from any indicator in our list to get started." | i18n | append "."'></span>
           <a rv-on-click="route.update | bind 'popular'" class="button-secondary" href="javascript:;">
             <span>View Popular Indicators</span>
           </a>
@@ -68,8 +68,8 @@
           <span class="option-2 full-star" rv-on-click='indicators.favorite | bind ind'></span>
         </div>
         <div class="empty" rv-show="indicators.favorites | prop 'length' | eq 0">
-          <span>You have no favorite indicators yet.</span>
-          <span>You can choose any indicator available in our list.</span>
+          <span rv-text='"You have no favorite indicators yet" | i18n | append "."'></span>
+          <span rv-text='"You can choose any indicator available in our list" | i18n | append "."'></span>
           <a rv-on-click="route.update | bind 'popular'" class="button-secondary" href="javascript:;">
             <span>View Popular Indicators</span>
           </a>

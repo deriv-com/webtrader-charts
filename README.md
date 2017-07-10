@@ -64,9 +64,14 @@ Take a look at `webpack.config.js -> externals`.
 ```
 
 ### How to extend it
-- clone the repo
-- change `webpack.config.js` to write the output into `/example` folder.
-- do `yarn install` on both main project and `/example` folder.
-- do `yarn watch` on main project.
-- do `yarn watch` on `/example` folder.
-- open `localhost:8080`
+- Clone the repo
+- Change `webpack.config.js` to write the output into `/example` folder.
+- `yarn install` on both main project and `/example` folder.
+- `yarn watch` on main project.
+- `yarn watch` on `/example` folder.
+- Open `localhost:8080`
+
+### building translations
+- Run `node build.js` to get `dictionary.json` file.
+- The language files `/src/i18/{lang}.json` files.
+- The library uses the generated `dictionary.json` file.
