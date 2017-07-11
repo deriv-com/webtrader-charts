@@ -1,4 +1,6 @@
 ﻿import {uuid, toFixed} from '../common/utils.js';
+import upFractal from '../images/indicators/up_fractal.svg';
+import downFractal from '../images/indicators/down_fractal.svg';
 import _ from 'lodash';
 /**
  * Created by Mahboob.M on 2/18/16.
@@ -10,8 +12,8 @@ var FRACTAL = function (data, options, indicators) {
     this.BULL = 1, this.BEAR = 2;
     this.middleBar_shift = Math.floor(this.options.numberOfBars / 2) | 0;
     
-    this.BULL_IMAGE_URL = 'url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjMwIiB3aWR0aD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0iZ3JlZW4iIHN0cm9rZT0iZ3JlZW4iIGQ9Ik0wIDIwbDUgNSA1LTUtNSAxMHoiLz5Tb3JyeSwgeW91ciBicm93c2VyIGRvZXMgbm90IHN1cHBvcnQgaW5saW5lIFNWRy48L3N2Zz4=)';
-    this.BEAR_IMAGE_URL = 'url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjMwIiB3aWR0aD0iMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0icmVkIiBzdHJva2U9InJlZCIgZD0iTTUgMEwwIDEwbDUtNSA1IDV6Ii8+U29ycnksIHlvdXIgYnJvd3NlciBkb2VzIG5vdCBzdXBwb3J0IGlubGluZSBTVkcuPC9zdmc+)';
+    this.BULL_IMAGE_URL = `url(${upFractal})`;
+    this.BEAR_IMAGE_URL = `url(${downFractal})`;
 
     /**
      * @param data
