@@ -62,7 +62,6 @@ const init_state = (root) => {
          prev_val: null,
          value: 'all',
          update: (val, e , scope) => {
-            scope.indicators.search = ''; //clear search
             scope.route.value = val;
          }
       }
@@ -86,7 +85,7 @@ const init_state = (root) => {
       console.log(copy);
       scope.indicators.current = indicator;
       scope.route.prev_val = scope.route.value;
-      scope.route.update('indicatorBuilder-s', e, scope);
+      scope.route.update('indicatorBuilder-s', null, scope);
       // Clear settings tab
       $($(scope.dialog.container_id.replace("_chart", ""))
                   .find('.chartOptions_overlay.indicators #settings')[0]).empty();
@@ -132,6 +131,7 @@ const init_state = (root) => {
          scope.route.update("search", e, scope);
          $(ele.find("input")[0]).focus();
       } else {
+         scope.route.prev_val = scope.route.prev_val === 'search' ? 'all' : scope.route.prev_val;
          scope.route.update(scope.route.prev_val, e, scope);
       }
    }

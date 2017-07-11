@@ -1,4 +1,6 @@
 import {uuid, toFixed} from '../common/utils.js';
+import _ from 'lodash';
+
 var ALLIGATOR = function(data, options, indicators) {
 
     IndicatorBase.call(this, data, options, indicators);

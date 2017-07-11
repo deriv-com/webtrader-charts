@@ -91,7 +91,7 @@ const init = (chart_series, indicator) => {
             if(state.levels) {
                options.levels = JSON.parse(JSON.stringify(state.levels.values));
             }
-            console.log(state.fields);
+
             state.fields.forEach(field => {
                fields_are_valid = field.is_valid && fields_are_valid;
                if(field.type !== 'plotcolor') {

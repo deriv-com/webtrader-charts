@@ -9,7 +9,7 @@ import Highcharts from 'highstock-release/highstock';
 import {chartableMarkets} from './overlayManagement.js';
 
 const triggerResizeEffects = (dialog) => {
-    dialog.find('.chartSubContainer').width(dialog.width());
+    dialog.find('.chartSubContainer').width("100%");
     //Because of title taking space, we have to reduce height
     dialog.find('.chartSubContainer').height(dialog.height() - 42);
     dialog.trigger('resize-event');
