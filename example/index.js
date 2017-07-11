@@ -23,16 +23,40 @@ chart.events.anyChange = () => {
    console.warn(chart.data());
 };
 const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
-   "instrumentCode": "R_50",
-   "instrumentName": "Volatility index",
-   "showInstrumentName": true,
-   "timePeriod": "1m",
-   "type": "candlestick",
-   "showShare": false,
-   "timezoneOffset": -9*60, // GMT+9
-   "indicators": [],
-   "overlays": []
+  "instrumentCode": "R_50",
+  "instrumentName": "Volatility index",
+  "showInstrumentName": true,
+  "timePeriod": "1t",
+  "type": "line",
+  "indicators": [
+    {
+      "id": "alligator",
+      "name": "Alligator",
+      "options": {
+        "jawStroke": "#0070ff",
+        "teethStroke": "#ff003c",
+        "lipsStroke": "#00c176",
+        "width": 1,
+        "dashStyle": "Dash",
+        "appliedTo": 3
+      }
+    },
+    {
+      "id": "smma",
+      "name": "Smoothed Moving Average",
+      "options": {
+         "period": 20,
+         "strokeWidth": 1,
+         "stroke": "#036564",
+         "dashStyle": "Solid",
+         "appliedTo": 3
+      }
+    }
+  ],
+  "overlays": [],
+  "delayAmount": 0
 });
+
 chart2.events.anyChange = () => {
    console.warn(chart.data());
 }; 
