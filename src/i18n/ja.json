@@ -95,5 +95,7 @@
   "you-do-not-have-any-favorite-indicators":"お気に入りの指標はありません",
   "active":"適用済み",
   "all":"全て",
-  "popular":"人気"
+  "popular":"人気",
+  "view-popular-indicators":"人気のある指標を表示",
+  "view-all-indicators":"全ての指標を表示"
 }
