@@ -3,7 +3,7 @@ import wtcharts from 'webtrader-charts';
 
 wtcharts.init({
    appId: 11,
-   lang: 'en', // default is 'en'
+   lang: 'de', // default is 'en'
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
