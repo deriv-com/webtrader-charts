@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {uuid, toFixed} from '../common/utils.js';
 var ALLIGATOR = function(data, options, indicators) {
 
@@ -17,7 +18,7 @@ var ALLIGATOR = function(data, options, indicators) {
      * Lips = SMMA(5, CLOSE)
      */
     this.jaw = new SMMA(data, $.extend({ period: 13, color: options.jawStroke }, options), indicators);
-    this.indicatorData = this.jaw.indicatorData;
+    this.indicatorData = _.cloneDeep(this.jaw.indicatorData);
     this.teeth = new SMMA(data, $.extend({ period: 8, color: options.teethStroke }, options), indicators);
     this.lips = new SMMA(data, $.extend({ period: 5, color: options.lipsStroke }, options), indicators);
 }
