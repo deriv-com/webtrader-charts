@@ -401,7 +401,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             formatter: function() {
                 // TODO: fix moment locale
                 // moment.locale(lang);
-                var s = "<i>" + moment.utc(this.x).format("dddd, DD MMM YYYY, HH:mm:ss") + "</i><br>";
+                var offset = options.timezoneOffset*-1 || 0;
+                var s = "<i>" + moment.utc(this.x).utcOffset(offset).format("dddd, DD MMM YYYY, HH:mm:ss") + "</i><br>";
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
@@ -488,6 +489,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          instrumentCode: options.instrumentCode,
          instrumentName: options.instrumentName,
          timePeriod: options.timePeriod,
+         timezoneOffset: options.timezoneOffset || 0,
          type: options.type,
          series_compare: series_compare,
          delayAmount: options.delayAmount,

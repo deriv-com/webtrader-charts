@@ -1,3 +1,0 @@
-- Run `node extract.js` to get `dictionary.json` file.
-- The language files are extracted from [webtrader](https://github.com/binary-com/webtrader) project.
-- This library only depends on the `dictionary.json` file.

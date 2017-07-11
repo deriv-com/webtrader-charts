@@ -5,6 +5,7 @@ import charts from './charts.js';
 import tableView from './tableView.js';
 import chartOptions from './chartOptions.js';
 import liveapi from './common/liveapi.js';
+import Highcharts from 'highstock-release/highstock';
 import {chartableMarkets} from './overlayManagement.js';
 
 const triggerResizeEffects = (dialog) => {
@@ -36,6 +37,12 @@ export const addNewChart = function($parent, options) {
     Store[id] = _.cloneDeep(options);
     Store[id].indicators = Store[id].indicators || [];
     Store[id].overlays = Store[id].overlays || [];
+
+    let timezoneOffset = 0;
+    if(_.isNumber(options.timezoneOffset)) {
+        Highcharts.setOptions({ global: { timezoneOffset: options.timezoneOffset } });
+        timezoneOffset = options.timezoneOffset;
+    }
 
     let drawChartPromise = null;
     const instance = {
@@ -111,7 +118,7 @@ export const addNewChart = function($parent, options) {
             _.delay(resolve);
          });
          /* initialize chartOptions & table-view once chart is rendered */
-         table_view = tableView.init(dialog);
+         table_view = tableView.init(dialog, timezoneOffset);
          chartOptions.init(dialog, id, table_view.show, {
             timePeriod: options.timePeriod,
             chartType: options.type,
@@ -119,7 +126,7 @@ export const addNewChart = function($parent, options) {
             instrumentCode: options.instrumentCode,
             showInstrumentName: options.showInstrumentName,
             showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
-            showShare: true,
+            showShare: ("showShare" in options) ? options.showShare : true,
          });
       });
     });
