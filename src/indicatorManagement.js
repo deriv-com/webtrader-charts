@@ -82,7 +82,6 @@ const init_state = (root) => {
 
    state.indicators.edit = (indicator, e, scope) => {
       const copy = JSON.parse(JSON.stringify(indicator));
-      console.log(copy);
       scope.indicators.current = indicator;
       scope.route.prev_val = scope.route.value;
       scope.route.update('indicatorBuilder-s', null, scope);
