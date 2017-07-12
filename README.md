@@ -76,6 +76,6 @@ Take a look at `webpack.config.js -> externals`.
 - Open `localhost:8080`
 
 ### building translations
-- Run `node build.js` to get `dictionary.json` file.
+- Run `yarn build-translation` to get `dictionary.json` file.
 - The language files `/src/i18/{lang}.json` files.
 - The library uses the generated `dictionary.json` file.
