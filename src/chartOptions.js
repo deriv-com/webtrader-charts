@@ -464,7 +464,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     // Listen for resize event
     if (isAffiliates()) {
        $(window).resize(
-          () => responsiveButtons(state[m_newTabId], dialog)
+          () => state[m_newTabId] && responsiveButtons(state[m_newTabId], dialog)
        );
     } else {
         dialog.on('resize-event', function(e) {
