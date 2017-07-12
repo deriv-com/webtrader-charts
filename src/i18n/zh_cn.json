@@ -90,13 +90,13 @@
   "downloading-csv":"下载.csv",
   "stroke-width":"笔画宽度",
   "stroke-color":"笔画颜色",
-  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
-  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
-  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
+  "you-do-not-have-any-active-indicators":"没有任何激活指标",
+  "choose-from-any-indicator-in-our-list-to-get-started":"从列表中任选一个指标开始交易",
+  "you-do-not-have-any-favorite-indicators":"没有任何偏好指标",
   "active":"活跃",
   "all":"所有",
   "popular":"受欢迎",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators",
-  "template-changes-saved-as":"Template changes saved as"
+  "view-popular-indicators":"查看流行指标",
+  "view-all-indicators":"查看所有指标",
+  "template-changes-saved-as":"模板更改已保存为"
 }
