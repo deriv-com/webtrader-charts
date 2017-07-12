@@ -1,4 +1,7 @@
 ﻿import {uuid, toFixed} from '../common/utils.js';
+import upFractal from '../images/indicators/up_fractal.svg';
+import downFractal from '../images/indicators/down_fractal.svg';
+import _ from 'lodash';
 /**
  * Created by Mahboob.M on 2/18/16.
  */
@@ -9,8 +12,8 @@ var FRACTAL = function (data, options, indicators) {
     this.BULL = 1, this.BEAR = 2;
     this.middleBar_shift = Math.floor(this.options.numberOfBars / 2) | 0;
     
-    this.BULL_IMAGE_URL = 'url(images/indicators/down_fractal.svg)';
-    this.BEAR_IMAGE_URL = 'url(images/indicators/up_fractal.svg)';
+    this.BULL_IMAGE_URL = `url(${upFractal})`;
+    this.BEAR_IMAGE_URL = `url(${downFractal})`;
 
     /**
      * @param data

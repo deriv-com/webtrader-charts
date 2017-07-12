@@ -166,9 +166,9 @@
     .row {
       display: flex;
       width: 100%;
-      &:nth-child(2n):not(:last-child) {
+      /*&:nth-child(2n):not(:last-child) {
         border-bottom: 1px solid #c2c2c2;
-      }
+      }*/
       .cell {
         display: flex;
         width: 100%;
@@ -183,7 +183,7 @@
           margin-bottom: 0px;
         }
         .table.download {
-          margin:0px 4px 10px 4px;
+          margin:10px 6px 10px 4px;
           span {
             padding-top: 11px;
             height: 19px;

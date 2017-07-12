@@ -97,5 +97,6 @@
   "all":"全て",
   "popular":"人気",
   "view-popular-indicators":"人気のある指標を表示",
-  "view-all-indicators":"全ての指標を表示"
+  "view-all-indicators":"全ての指標を表示",
+  "template-changes-saved-as":"テンプレートを別名で保存します"
 }

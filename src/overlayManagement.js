@@ -237,15 +237,15 @@ const init_state = (root) =>{
 
 const update_overlays = (chart) => {
    marketData().then((markets) => {
-      const mainSeriesName = chart.series[0].userOptions.name;
+      const mainSeriesId = chart.series[0].userOptions.id.split('-')[0];
       const current = _.filter(chart.series, (s, index) => {
          return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
-      }).map((s) => s.userOptions.name) || [];
+      }).map((s) => s.userOptions.id.split('-')[0]) || [];
 
       markets.forEach((market) => {
          market.submarkets.forEach((submarket) => {
             submarket.instruments.forEach((ind) => {
-               if(_.includes(current, ind.display_name) || mainSeriesName === ind.display_name) ind.dont_show = true;
+               if(_.includes(current, ind.symbol) || mainSeriesId === ind.symbol) ind.dont_show = true;
                else ind.dont_show = false;
             });
          });

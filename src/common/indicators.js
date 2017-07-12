@@ -175,7 +175,7 @@ var indicators = {
                            } else if (iu.value instanceof CDLUpdateObject || iu.value instanceof FractalUpdateObject) {
                               updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries);
                            } else {
-                              seriesData[seriesData.length - 1]
+                              seriesData && seriesData[seriesData.length - 1]
                                  .update({
                                     y: iu.value
                                  });

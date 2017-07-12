@@ -123,8 +123,8 @@ const responsiveButtons = (scope, dialog) => {
     ele.find(".chartTypeOverlay").css("width", stringWidth.ct + 53 + "px");
 
     // This is needed for calculating relative position.
-    const shareButton = ele.find('.shareButton'),
-        minWidth = 420 + ((stringWidth.tp.max + stringWidth.ct + 65) - (97 + 87));
+    const templateButton = ele.find('.templateButton'),
+        minWidth = 420 + ((stringWidth.tp.max + stringWidth.ct + 65) - 184);
 
     //Place instrument name for affiliates based on frame width
     scope.showInstrumentName = isAffiliates() || scope.showInstrumentName;
@@ -132,6 +132,7 @@ const responsiveButtons = (scope, dialog) => {
         if ($('#'+scope.newTabId).width() > minWidth + stringWidth.inst) {
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px 0px");
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "left");
+            $("#" + scope.newTabId + " .chartOptions .instrument_name").show();            
             scope.showInstrumentName = true;
             const chart = dialog.find(`#${scope.newTabId}_chart`).highcharts();
             chart && chart.setTitle({ text: "" });
@@ -139,7 +140,7 @@ const responsiveButtons = (scope, dialog) => {
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px auto");
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "");
             $("#" + scope.newTabId + " .chartOptions .instrument_name").hide();
-            $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: scope.instrumentName });
+            $("#" + scope.newTabId + "_chart").highcharts() && $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: scope.instrumentName });
         }
     }
 
@@ -159,7 +160,7 @@ const responsiveButtons = (scope, dialog) => {
         chartTypeButton.css("width", "45px");
     }
 
-    let positionRight = ele.width() - (shareButton.offset().left + shareButton.outerWidth() - ele.offset().left);
+    let positionRight = ele.width() - (templateButton.offset().left + templateButton.outerWidth() - ele.offset().left) - 35;
     
     if (ele.width() <= 740) {
         positionRight = positionRight > 0 ? positionRight : 25;
@@ -228,7 +229,6 @@ const format = (str, ...args) => {
 }
 
 export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
-
     calculateStringWidth(options.instrumentName);
     if (view[m_newTabId]) view[m_newTabId].unbind();
     state[m_newTabId] = {
@@ -462,11 +462,11 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     });
 
     // Listen for resize event
-    if (isAffiliates()) {
+    if (!dialog.dialog) {
        $(window).resize(
           () => state[m_newTabId] && responsiveButtons(state[m_newTabId], dialog)
        );
-    } else {
+    } else { 
         dialog.on('resize-event', function(e) {
             responsiveButtons(state[m_newTabId], $(this));
         });
