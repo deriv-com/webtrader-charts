@@ -1,4 +1,4 @@
-import {uuid, toFixed} from '../common/utils.js';
+import {uuid, toFixed, guessDigits} from '../common/utils.js';
 import _ from 'lodash';
 /**
  * Created by Arnab Karmakar on 1/16/16.
