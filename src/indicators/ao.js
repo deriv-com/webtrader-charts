@@ -32,7 +32,10 @@ var AO = function (data, options, indicators) {
     var index = 0;
     var _this = this;
     this.shortMa.indicatorData.forEach(function (shortMa) {
-        var aoValue = toFixed((shortMa.value - _this.longMa.indicatorData[index].value), 4);
+        var aoValue = 0;
+        if(shortMa.value && _this.longMa.indicatorData[index].value) {
+            aoValue = toFixed((shortMa.value - _this.longMa.indicatorData[index].value), 4);
+        }
         _this.indicatorData.push({ time: data[index].time, value: aoValue });
         index++;
     });
@@ -105,6 +108,7 @@ AO.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
                  name: this.toString(),
                  data: aoData,
                  type: 'column',
+                 turboThreshold: 0,
                  yAxis: indicatorMetadata.id + '-' + this.uniqueID,
                  onChartIndicator: false
              }

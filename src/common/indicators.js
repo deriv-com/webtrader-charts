@@ -129,10 +129,7 @@ var indicators = {
                            } else {
                               //iu.color is used by Awesome indicator
                               if (iu.color) {
-                                 indicatorSeries.addPoint([time, iu.value], false);
-                                 indicatorSeries.data[indicatorSeries.data.length - 1].update({
-                                    color: iu.color
-                                 }, false);
+                                 indicatorSeries.addPoint({x:time, y:iu.value, color:iu.color}, false);
                               } else if (iu.time) { // iu.time is used by ichimoku indicator
                                  indicatorSeries.addPoint([iu.time, iu.value], false);
                               }
@@ -175,7 +172,7 @@ var indicators = {
                            } else if (iu.value instanceof CDLUpdateObject || iu.value instanceof FractalUpdateObject) {
                               updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries);
                            } else {
-                              seriesData && seriesData[seriesData.length - 1]
+                              seriesData[seriesData.length - 1]
                                  .update({
                                     y: iu.value
                                  });
