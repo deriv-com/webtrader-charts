@@ -95,6 +95,19 @@ export const i18n = key => {
     return (dictionary.dictionary[new_key] && dictionary.dictionary[new_key][index]) || key;
 };
 
+export const guessDigits = (prices) => {
+    var defaultDigits = 0;
+    (prices || []).forEach(function(price) {
+        var priceStr = (price + "");
+        var priceSplitted = priceStr.split(".") || [];
+        if (priceSplitted.length > 1) {
+            var len = priceSplitted[1].length;
+            if ( len > defaultDigits) defaultDigits = len;
+        }
+    });
+    return defaultDigits || 4;
+};
+
 export default {
    local_storage,
    isTick,
@@ -104,6 +117,7 @@ export default {
    isDataTypeClosePriceOnly,
    isAffiliates,
    toFixed,
+   guessDigits,
    i18n,
    uuid,
 };
