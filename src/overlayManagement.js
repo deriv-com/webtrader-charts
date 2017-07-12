@@ -240,12 +240,12 @@ const update_overlays = (chart) => {
       const mainSeriesId = chart.series[0].userOptions.id.split('-')[0];
       const current = _.filter(chart.series, (s, index) => {
          return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
-      }).map((s) => s.userOptions.id.split('-')[0]) || [];
+      }).map((s) => s.userOptions.name) || [];
 
       markets.forEach((market) => {
          market.submarkets.forEach((submarket) => {
             submarket.instruments.forEach((ind) => {
-               if(_.includes(current, ind.symbol) || mainSeriesId === ind.symbol) ind.dont_show = true;
+               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol) ind.dont_show = true;
                else ind.dont_show = false;
             });
          });
