@@ -8,6 +8,8 @@
 /**
  * Created by Arnab Karmakar on 1/23/16.
  */
+import _ from 'lodash';
+
 var CDL = function(data, options, indicators) {
 
     IndicatorBase.call(this, data, options, indicators);

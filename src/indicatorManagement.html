@@ -98,7 +98,7 @@
       <div class="back-arrow" rv-on-click="route.update | bind route.prev_val"></div>
       <span class="text">{indicators.current.long_display_name}</span>
     </div>
-    <div class="tabs">
+    <div class="tabs" rv-if="indicators.current.cdl_indicator | negate">
       <span class="tab" 
         rv-class-active="route.value | eq 'indicatorBuilder-s'"
         rv-on-click="route.update | bind 'indicatorBuilder-s'">
@@ -111,7 +111,10 @@
       </span>
     </div>
   </div>
-  <div class="indicator view" rv-show="route.value | contains 'indicatorBuilder'">
+  <div class="indicator view" 
+    rv-css-height="indicators.current.cdl_indicator | ternary '100%' 'calc(100% - 40px)'"
+    rv-css-padding-top="indicators.current.cdl_indicator | ternary '40px' '80px'" 
+    rv-show="route.value | contains 'indicatorBuilder'">
     <div rv-show="route.value | eq 'indicatorBuilder-d'">
       {indicators.current.description}
     </div>

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 var CDL = function(e, n, a) {
     IndicatorBase.call(this, e, n, a);
     this.priceData = [];
