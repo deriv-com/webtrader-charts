@@ -114,7 +114,6 @@ const showCandlestickAndOHLC = (newTabId, show) => {
 }
 
 const responsiveButtons = (scope, dialog) => {
-    if(!scope || !dialog) return;
     const ele = dialog.find('.chart-view');
     const loadSaveOverlay = ele.find(".loadSaveOverlay");
     const exportOverlay = ele.find(".exportOverlay");
@@ -127,8 +126,6 @@ const responsiveButtons = (scope, dialog) => {
     const templateButton = ele.find('.templateButton'),
         minWidth = 420 + ((stringWidth.tp.max + stringWidth.ct + 65) - 184);
 
-    //Place instrument name for affiliates based on frame width
-    scope.showInstrumentName = dialog.dialog ? true : scope.showInstrumentName;
     if (scope.showInstrumentName) {
         if ($('#'+scope.newTabId).width() > minWidth + stringWidth.inst) {
             $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px 0px");
