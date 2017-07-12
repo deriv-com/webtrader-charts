@@ -90,12 +90,13 @@
   "downloading-csv":"Men-download .csv",
   "stroke-width":"Lebar stroke",
   "stroke-color":"Warna stroke",
-  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
-  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
-  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
-  "active":"Active",
-  "all":"All",
-  "popular":"Popular",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators"
+  "you-do-not-have-any-active-indicators":"Anda tidak memiliki indikator aktif",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Pilih dari setiap indikator pada daftar kami untuk memulai",
+  "you-do-not-have-any-favorite-indicators":"Anda tidak memiliki indikator favorit",
+  "active":"Aktif",
+  "all":"Semua",
+  "popular":"Populer",
+  "view-popular-indicators":"Lihat Indikator Populer",
+  "view-all-indicators":"Lihat Semua Indikator",
+  "template-changes-saved-as":"Perubahan template disimpan sebagai"
 }
