@@ -5,6 +5,7 @@
   "main": "dist/webtrader-charts.js",
   "scripts": {
     "build": "webpack --progress",
+    "build-translation": "node src/i18n/build.js",
     "watch": "webpack --watch --progress",
     "deploy-origin": "git subtree push --prefix example origin gh-pages",
     "deploy-upstream": "git subtree push --prefix example upstream gh-pages",
