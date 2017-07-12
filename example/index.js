@@ -1,10 +1,9 @@
-import _ from 'lodash';
 import $ from 'jquery';
 import wtcharts from 'webtrader-charts';
 
 wtcharts.init({
    appId: 11,
-   lang: 'ja', // default is 'en'
+   lang: 'en', // default is 'en'
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 

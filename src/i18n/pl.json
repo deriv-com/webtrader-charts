@@ -90,12 +90,13 @@
   "downloading-csv":"Pobieranie pliku .csv",
   "stroke-width":"Szerokość pędzla",
   "stroke-color":"Kolor pędzla",
-  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
-  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
-  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
-  "active":"Active",
-  "all":"All",
-  "popular":"Popular",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators"
+  "you-do-not-have-any-active-indicators":"Nie masz żadnych aktywnych wskaźników",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Aby rozpocząć, wybierz dowolny wskaźnik z naszej listy",
+  "you-do-not-have-any-favorite-indicators":"Nie masz żadnych ulubionych wskaźników",
+  "active":"Aktywne",
+  "all":"Wszystkie",
+  "popular":"Popularne",
+  "view-popular-indicators":"Zobacz popularne wskaźniki",
+  "view-all-indicators":"Zobacz wszystkie wskaźniki",
+  "template-changes-saved-as":"Template changes saved as"
 }

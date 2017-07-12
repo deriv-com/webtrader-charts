@@ -85,7 +85,7 @@ class ChartTemplateManager {
       local_storage.set('templates', array);
       templates.array = array;
       templates.current = current;
-      notification.info(`${i18n('Template changes saved')} (${current.name})`, this.target);
+      notification.warning(`${i18n('Template changes saved')} (${name})`, this.target);
     };
 
     menu.open_file_selector = (event) => {
@@ -164,6 +164,7 @@ class ChartTemplateManager {
         templates.array = array;
         route.update('menu');
         chartWindow.set_chart_options(dialog_id, options); /* update the name */
+        notification.warning(`${i18n('Template changes saved as')} (${name})`, this.target);
       }
     };
 
