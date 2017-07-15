@@ -24,9 +24,14 @@
      height: 30px;
      margin-left: 5px;
      border-radius: 2px;
-     span {
+     transition: none;
+     > span {
+        transition: none;
         display: inline-block;
         img { max-height: 20px; }
+        span {
+          transition: none;
+        }
      }
      span[data-balloon] {
         display: block;
