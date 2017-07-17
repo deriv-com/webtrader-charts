@@ -345,3 +345,42 @@
     margin-right: 15px;
   }
 }
+
+/* binary-style for colorpicker buttons */
+.sp-container {
+   background: white;
+   .sp-picker-container {
+      border: none;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-top: 5px;
+      .sp-button-container {
+         width: 100%;
+         .sp-cancel.sp-cancel,
+         .sp-choose.sp-choose {
+            text-decoration: none;
+            text-shadow: none;
+            text-align: center;
+            line-height: 100%;
+            text-transform: capitalize;
+            padding: 10px 25px;
+            display: inline-block;
+            font-weight: 400;
+            border-radius: 3px;
+            overflow: visible;
+            border: 0;
+            font-size: 12px !important;
+         }
+         .sp-choose.sp-choose {
+            float: right;
+            color: #FFF;
+            background: #2E8836;
+         }
+         .sp-cancel.sp-cancel {
+            float: left;
+            color: #000 !important;
+            background: #F2F2F2 !important;
+         }
+      }
+   }
+}

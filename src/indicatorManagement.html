@@ -17,7 +17,7 @@
       <input class="primary-color" type="text" rv-value='indicators.search'>
     </div>
   </div>
-  <div class="view" rv-show="route.value | eq 'all'">
+  <div class="view" rv-show="route.value | eq 'all'" rv-hide-color-picker='route.value'>
     <div class='types' rv-each-cat='categories'>
       <div class='type'>
         <span class='title' rv-text='cat | i18n'></span>
