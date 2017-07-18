@@ -1,4 +1,5 @@
 node_modules/
+binary-static/
 npm-debug.log
 **/.tern-port
 .DS_Store

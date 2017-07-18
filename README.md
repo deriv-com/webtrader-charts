@@ -79,3 +79,9 @@ Take a look at `webpack.config.js -> externals`.
 - Run `yarn build-translation` to get `dictionary.json` file.
 - The language files `/src/i18/{lang}.json` files.
 - The library uses the generated `dictionary.json` file.
+
+### deploying to gh-pages
+- `yarn deploy-example` to deploy the `/example` folder. 
+- `yarn deploy-hard` to deploy latest version embedded in binary-static (for testing)
+- `yarn deploy-soft` same as `yarn deploy-hard` (use it the second time you are deploying).
+- `app-id` for `aminroosta.github.io/binary-static` is `7770`
