@@ -24,6 +24,7 @@
     &.icon {
       width:9.7%;
       position: absolute;
+      right: 5px;
       input {
         display: none;
       }
@@ -94,6 +95,7 @@
     .text {
       font-size: 16px;
       font-weight: 100;
+      position: absolute;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -115,14 +117,15 @@
 }
 
 .view {
-  padding-top:40px;
+  margin-top:40px;
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
-  height: calc(100% - 40px);
+  height: calc(100% - 60px);
   position: absolute;
   padding-bottom: 20px;
   &.indicator {
+    overflow-y: hidden;
     > div {
       margin: 15px 15px 0 15px;
       font-size: 13px;

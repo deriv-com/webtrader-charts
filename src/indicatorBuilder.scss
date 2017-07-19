@@ -23,7 +23,7 @@
         font-weight: 100;
         font-size: 13px;
         border-bottom: 0;
-        width: calc(70% - 70px);;
+        width: calc(70% - 60px);;
       }
     }
   }
@@ -42,7 +42,7 @@
        text-align: center;
        border-radius: 3px;
        width: 30px;
-       font-size: 12px;
+       font-size: 11px;
        position: relative !important;
        top: -25px !important;
        text-align: center !important;
@@ -146,7 +146,7 @@
       div {
        flex-grow: 1;
        text-align: center;
-       font-size: 12px;
+       font-size: 11px;
        cursor: pointer;
        transition: all 0.3s linear;
        color: #2A3052;
@@ -344,4 +344,43 @@
   .button {
     margin-right: 15px;
   }
+}
+
+/* binary-style for colorpicker buttons */
+.sp-container {
+   background: white;
+   .sp-picker-container {
+      border: none;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-top: 5px;
+      .sp-button-container {
+         width: 100%;
+         .sp-cancel.sp-cancel,
+         .sp-choose.sp-choose {
+            text-decoration: none;
+            text-shadow: none;
+            text-align: center;
+            line-height: 100%;
+            text-transform: capitalize;
+            padding: 10px 25px;
+            display: inline-block;
+            font-weight: 400;
+            border-radius: 3px;
+            overflow: visible;
+            border: 0;
+            font-size: 12px !important;
+         }
+         .sp-choose.sp-choose {
+            float: right;
+            color: #FFF;
+            background: #2E8836;
+         }
+         .sp-cancel.sp-cancel {
+            float: left;
+            color: #000 !important;
+            background: #F2F2F2 !important;
+         }
+      }
+   }
 }

@@ -90,13 +90,13 @@
   "downloading-csv":".cvs wird heruntergeladen",
   "stroke-width":"Strichstärke",
   "stroke-color":"Konturfarbe",
-  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
-  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
-  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
-  "active":"Active",
-  "all":"All",
-  "popular":"Popular",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators",
-  "template-changes-saved-as":"Template changes saved as"
+  "you-do-not-have-any-active-indicators":"Sie haben keine aktiven Indikatoren",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Wählen Sie für den Einstieg jeglichen Indikator aus unserer Liste",
+  "you-do-not-have-any-favorite-indicators":"Sie haben keine Lieblings-Indikatoren",
+  "active":"Aktiv",
+  "all":"Alle",
+  "popular":"Beliebt",
+  "view-popular-indicators":"Beliebte Indikatoren anzeigen",
+  "view-all-indicators":"Alle Indikatoren anzeigen",
+  "template-changes-saved-as":"Vorlageänderungen gespeichert als"
 }

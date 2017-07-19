@@ -48,7 +48,9 @@ rv.binders['color-picker'] = {
       input.scrollParent().on('scroll', () => input.spectrum('hide'));
       input.spectrum({
          color: color,
-         showButtons: false,
+         showButtons: true,
+         cancelText: i18n('Cancel'),
+         chooseText: i18n('Ok'),
          move: (color) => {
             const rgba = color.toRgb();
             model.value = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
@@ -57,6 +59,12 @@ rv.binders['color-picker'] = {
    },
    unbind: (el) => { },
    routine: (el, value) => { }
+}
+rv.binders['hide-color-picker'] = {
+   priority: 97,
+   routine: () => {
+      $('input[rv-color-picker]').spectrum('hide');
+   }
 }
 rv.binders.ddslick = {
    priority: 101,
