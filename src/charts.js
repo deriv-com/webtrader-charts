@@ -286,8 +286,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                         });
                     });
 
+                    let chart = this;
                     if ($.isFunction(onload)) {
-                        onload();
+                        onload(chart);
                     }
 
                     this.margin[2] = 5;
@@ -337,14 +338,18 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             }
         },
 
-        title: {
-            text: "" //name to display
+        subtitle: {
+           text: `<div class="wt-line wt-line-solid"></div> ${i18n('Start time')} ` +
+                 `<div class="wt-circle wt-circle-empty"></div> ${i18n('Entry spot')} ` +
+                 `<div class="wt-circle wt-circle-fill"></div> ${i18n('Exit spot')} ` +
+                 `<div class="wt-line wt-line-dashed"></div> ${i18n('End time')} `,
+                 // `<span class="chart-delay"> ${i18n('Charting for this underlying is delayed')} </span>`,
+           useHTML: true
         },
 
-        credits: {
-            href: '#',
-            text: '',
-        },
+        credits: { href: '#', text: '' },
+        scrollbar: { liveRedraw: true },
+        rangeSelector: { enabled: false },
 
         xAxis: {
             events: {
@@ -364,9 +369,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             ordinal: false
         },
 
-        scrollbar: {
-            liveRedraw: true
-        },
 
         yAxis: [{
             opposite: false,
@@ -383,10 +385,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 align: 'center'
             }
         }],
-
-        rangeSelector: {
-            enabled: false
-        },
 
         tooltip: {
             crosshairs: [{
@@ -455,6 +453,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
 
     //Get all series details from this chart
     const chart = dialog.highcharts();
+    const plotLines = chart.xAxis[0].plotLinesAndBands.map(p => p.options);
     let loadedMarketData = [];
     let series_compare;
     /* for ohlc and candlestick series_compare must NOT be percent */
@@ -496,6 +495,9 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          overlays: overlays,
          indicators: indicators,
          start: options.start
+      }, (new_chart) => {
+         // restore plot lines after refresh.
+         plotLines.forEach(p => new_chart.xAxis[0].addPlotLine(p));
       });
    });
 };
@@ -571,6 +573,17 @@ export const changeTitle = (containerIDWithHash, newTitle) => {
     chart && chart.setTitle(newTitle);
 };
 
+export const draw = {
+   verticalLine: (dialog, options) => {
+      dialog.find('.chart-view').removeClass('hide-subtitle');
+      const container = dialog.find(`#${dialog.attr('id')}_chart`);
+      const chart = container.highcharts();
+      chart && chart.xAxis[0].addPlotLine(options);
+   },
+   startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2 }),
+   endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash' }),
+}
+
 export default {
     drawChart,
     destroy,
@@ -579,5 +592,6 @@ export default {
     refresh,
     addIndicator,
     overlay,
-    changeTitle
+    changeTitle,
+    draw
 };

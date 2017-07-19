@@ -22,6 +22,7 @@ import chartWindow from './chartWindow';
 import chartTemplateManager from './chartTemplateManager';
 import {globals} from './common/globals.js';
 import {init} from './common/liveapi'; 
+import liveapi from './common/liveapi'; 
 
 import './common/rivetsExtra.js';
 import './indicators/index.js';
@@ -35,7 +36,7 @@ export {default as indicatorBuilder} from './indicatorBuilder';
 export {default as indicatorManagement} from './indicatorManagement'; 
 export {default as overlayManagement} from './overlayManagement'; 
 export {default as chartingRequestMap} from './common/chartingRequestMap'; 
-export {init} from './common/liveapi'; 
+export {init, default as liveapi} from './common/liveapi'; 
 export {globals} from './common/globals.js';
 
 module.exports = {
@@ -48,5 +49,6 @@ module.exports = {
    overlayManagement,
    chartingRequestMap,
    globals,
-   init
+   init,
+   liveapi
 };

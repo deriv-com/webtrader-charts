@@ -67,7 +67,11 @@ export const addNewChart = function($parent, options) {
                dialog.remove();
             });
           },
-          refresh: () => charts.refresh(`#${id}_chart`)
+          refresh: () => charts.refresh(`#${id}_chart`),
+       },
+       draw: {
+          startTime: epoch => charts.draw.startTime(dialog, epoch),
+          endTime: epoch => charts.draw.endTime(dialog, epoch),
        },
        events: {
           typeChange: null,

@@ -56,6 +56,15 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "delayAmount": 0
 });
 
+wtcharts.liveapi.events.on('tick', (e, data) => {
+   const epoch = data.tick.epoch*1;
+   const rand = Math.random();
+   if(rand < .25)
+      chart2.draw.startTime(epoch*1000);
+   else if(rand > .75)
+      chart2.draw.endTime(epoch*1000);
+});
+
 chart2.events.anyChange = () => {
    console.warn(chart.data());
 }; 
