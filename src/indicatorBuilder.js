@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import {each, find, cloneDeep, minBy, maxBy} from 'lodash';
+import {each, find, cloneDeep, minBy, maxBy, includes} from 'lodash';
 import rv from 'rivets';
 import html from './indicatorBuilder.html';
 import './indicatorBuilder.scss';
@@ -96,6 +96,8 @@ const init = (chart_series, indicator) => {
                fields_are_valid = field.is_valid && fields_are_valid;
                if(field.type !== 'plotcolor') {
                   options[field.key] = field.value
+                  if(includes(['slider', 'appliedto', 'price', 'numeric' ], field.type))
+                     options[field.key] = field.value * 1;
                   return;
                }
                options[field.key] = [];
