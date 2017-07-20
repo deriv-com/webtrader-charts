@@ -56,6 +56,7 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "delayAmount": 0
 });
 
+false && 
 wtcharts.liveapi.events.on('tick', (e, data) => {
    const epoch = data.tick.epoch*1;
    const rand = Math.random();
