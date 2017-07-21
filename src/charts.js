@@ -610,12 +610,12 @@ export const draw = {
    },
    startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2 }),
    endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash' }),
-   point: (dialog, {value, color}) => {
+   point: (dialog, {value, color = 'orange'}, marker = null) => {
       dialog.find('.chart-view').removeClass('hide-subtitle');
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
       const points = chart && chart.series[0] && chart.series[0].data;
-      const marker = { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4, states: { hover: { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4 } } };
+      marker = marker || { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4, states: { hover: { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4 } } };
 
       draw.zoomTo(chart, value);
       for (let i = points.length - 1; i >= 0; i--) {
@@ -630,6 +630,46 @@ export const draw = {
    },
    exitSpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'orange' }),
    entrySpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'white' }),
+   barrier: (dialog, { value, from, to = null }) => {
+      dialog.find('.chart-view').removeClass('hide-subtitle');
+      const container = dialog.find(`#${dialog.attr('id')}_chart`);
+      const chart = container.highcharts();
+
+      const id = `barrier-${from}`;
+      const idFixed = `${id}-fixed`;
+
+      if(!to && !chart.get(id)) {
+         Highcharts.wrap(Highcharts.Series.prototype, 'addPoint', function(proceed, options, redraw, shift, animation) {
+            proceed.call(this, options, redraw, shift, animation);
+            const chart = container.highcharts();
+            const seri = chart.get(id);
+            if(seri && this === chart.series[0]) {
+               seri.addPoint({x: this.chart.xAxis[0].getExtremes().dataMax, y: value});
+            } 
+         });
+      }
+      chart.get(id) && chart.get(id).remove(); // remove if already exists.
+
+      chart.addSeries({
+         type: 'line',
+         id: to ? idFixed : id,
+         color: 'green',
+         connectNulls: true,
+         marker: {enabled: false},
+         enableMouseTracking: false,
+         data: [
+            {
+               y: value,
+               x: from,
+               dataLabels: { enabled: true, className: 'highlight', format: 'barrier {y}' }
+            },
+            {
+               y: value,
+               x: to || chart.xAxis[0].getExtremes().dataMax
+            }
+         ]
+      });
+   }
 }
 
 export default {

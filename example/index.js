@@ -34,16 +34,22 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
 
 wtcharts.liveapi.events.on('tick', (e, data) => {
    const epoch = data.tick.epoch*1;
+   const quote = data.tick.quote*1;
    const rand = Math.random();
-   // chart2.draw.entrySpot(epoch*1000);
-   if(rand < .25)
-      chart2.draw.startTime(epoch*1000);
-   else if(rand < .5)
-      chart2.draw.entrySpot(epoch*1000);
-   else if(rand < .75)
-      chart2.draw.endTime(epoch*1000);
-   else
-      chart2.draw.exitSpot(epoch*1000);
+   if(rand < 0.1) {
+      chart2.draw.barrier({ from: epoch*1000, value: quote });
+      setTimeout(() => {
+         chart2.draw.barrier({ from: epoch*1000, to: (epoch+15)*1000, value: quote });
+      }, 15*1000);
+   }
+   // if(rand < .25)
+   //    chart2.draw.startTime(epoch*1000);
+   // else if(rand < .5)
+   //    chart2.draw.entrySpot(epoch*1000);
+   // else if(rand < .75)
+   //    chart2.draw.endTime(epoch*1000);
+   // else
+   //    chart2.draw.exitSpot(epoch*1000);
 });
 
 chart2.events.anyChange = () => {

@@ -74,6 +74,7 @@ export const addNewChart = function($parent, options) {
           endTime: epoch => charts.draw.endTime(dialog, epoch),
           entrySpot: epoch => charts.draw.entrySpot(dialog, epoch),
           exitSpot: epoch => charts.draw.exitSpot(dialog, epoch),
+          barrier: options => charts.draw.barrier(dialog, options),
        },
        events: {
           typeChange: null,
