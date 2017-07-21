@@ -27,43 +27,23 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "showInstrumentName": true,
   "timePeriod": "1t",
   "type": "line",
-  "indicators": [
-    {
-      "id": "alligator",
-      "name": "Alligator",
-      "options": {
-        "jawStroke": "#0070ff",
-        "teethStroke": "#ff003c",
-        "lipsStroke": "#00c176",
-        "width": 1,
-        "dashStyle": "Dash",
-        "appliedTo": 3
-      }
-    },
-    {
-      "id": "smma",
-      "name": "Smoothed Moving Average",
-      "options": {
-         "period": 20,
-         "strokeWidth": 1,
-         "stroke": "#036564",
-         "dashStyle": "Solid",
-         "appliedTo": 3
-      }
-    }
-  ],
+  "indicators": [],
   "overlays": [],
   "delayAmount": 0
 });
 
-false && 
 wtcharts.liveapi.events.on('tick', (e, data) => {
    const epoch = data.tick.epoch*1;
    const rand = Math.random();
+   // chart2.draw.entrySpot(epoch*1000);
    if(rand < .25)
       chart2.draw.startTime(epoch*1000);
-   else if(rand > .75)
+   else if(rand < .5)
+      chart2.draw.entrySpot(epoch*1000);
+   else if(rand < .75)
       chart2.draw.endTime(epoch*1000);
+   else
+      chart2.draw.exitSpot(epoch*1000);
 });
 
 chart2.events.anyChange = () => {

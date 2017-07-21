@@ -28,7 +28,7 @@ export const addNewChart = function($parent, options) {
     const dialog = $(html);
     $parent.addClass('chart-dialog');
     dialog.appendTo($parent);
-    const id = `webtrader-charts-dialog-${++idCounter}`;
+    var id = `webtrader-charts-dialog-${++idCounter}`;
     dialog.attr('id', id);
     dialog.find('div.chartSubContainerHeader').attr('id', `${id}_header`);
     dialog.find('div.chartSubContainer').attr('id', `${id}_chart`);
@@ -72,6 +72,8 @@ export const addNewChart = function($parent, options) {
        draw: {
           startTime: epoch => charts.draw.startTime(dialog, epoch),
           endTime: epoch => charts.draw.endTime(dialog, epoch),
+          entrySpot: epoch => charts.draw.entrySpot(dialog, epoch),
+          exitSpot: epoch => charts.draw.exitSpot(dialog, epoch),
        },
        events: {
           typeChange: null,
