@@ -4,7 +4,7 @@
   "current-indicators":"Indicadores actuales",
   "favorites":"Favoritos",
   "add-indicator":"Añadir indicador",
-  "volatility-indicators":"Volatility Indicators",
+  "volatility-indicators":"Indicadores de volatilidad",
   "overlap-studies":"Overlap Studies",
   "momentum-indicators":"Indicadores de momentum",
   "price-transformation":"Transformación de precios",
@@ -94,9 +94,9 @@
   "choose-from-any-indicator-in-our-list-to-get-started":"Elija cualquier indicador de su lista para comenzar",
   "you-do-not-have-any-favorite-indicators":"No tiene ningún indicador favorito",
   "active":"Activo",
-  "all":"All",
+  "all":"Todo",
   "popular":"Popular",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators",
-  "template-changes-saved-as":"Template changes saved as"
+  "view-popular-indicators":"Ver indicadores populares",
+  "view-all-indicators":"Ver todos los indicadores",
+  "template-changes-saved-as":"Cambios de plantilla guardados como"
 }
