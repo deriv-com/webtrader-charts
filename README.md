@@ -68,7 +68,7 @@ Take a look at `webpack.config.js -> externals`.
 ```
 ### Displaying trade results
 
-![Alt text](example/screenshots/0.png?raw=true "Displaying trade results"){:height="100px" width="150px"}
+![Alt text](example/screenshots/0.png?raw=true "Displaying trade results")
 
 ```js
    // epoch is in milliseconds for all draw methods.
