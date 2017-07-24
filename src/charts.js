@@ -211,7 +211,7 @@ const Store = { }; //
  * @param onload // optional onload callback
  */
 export const drawChart = (containerIDWithHash, options, onload) => {
-    Store[containerIDWithHash] = Store[containerIDWithHash] || { points: [], plotLines: [] };
+    Store[containerIDWithHash] = Store[containerIDWithHash] || { points: [], plotLines: [], barriers: { } };
     let indicators = [];
     let overlays = [];
     let current_symbol = [];
@@ -298,6 +298,13 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                  if(inx !== -1)
                                     p.update({marker: drawn.points[inx].marker});
                               });
+
+                              _.each(drawn.barriers, conf => {
+                                 chart.addSeries(conf);
+                              });
+                           }
+                           else {
+                              $(containerIDWithHash).closest('.chart-view').addClass('hide-subtitle');
                            }
                         });
                     });
@@ -601,40 +608,53 @@ export const draw = {
          axis.setExtremes(min, Math.min(epoch + 10*interval, dataMax));
    },
    verticalLine: (dialog, options) => {
-      dialog.find('.chart-view').removeClass('hide-subtitle');
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
-      chart && chart.xAxis[0].addPlotLine(options);
+      const is_tick = isTick(container.data('timePeriod'));
+
       const id = `#${dialog.attr('id')}_chart`;
       Store[id] && Store[id].plotLines.push(options);
+
+      if(chart && is_tick) {
+         dialog.find('.chart-view').removeClass('hide-subtitle');
+         chart.xAxis[0].addPlotLine(options);
+      }
    },
    startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2 }),
    endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash' }),
-   point: (dialog, {value, color = 'orange'}, marker = null) => {
-      dialog.find('.chart-view').removeClass('hide-subtitle');
+   point: (dialog, {value, color = 'orange'}) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
-      const points = chart && chart.series[0] && chart.series[0].data;
-      marker = marker || { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4, states: { hover: { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4 } } };
 
-      draw.zoomTo(chart, value);
-      for (let i = points.length - 1; i >= 0; i--) {
-         const point = points[i];
-         if (point && point.x && value === point.x) {
-            point.update({ marker: marker });
-            const id = `#${dialog.attr('id')}_chart`;
-            Store[id] && Store[id].points.push({x: value, marker: marker});
-            return;
+      const marker = { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4, states: { hover: { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4 } } };
+      const is_tick = isTick(container.data('timePeriod'));
+
+      const id = `#${dialog.attr('id')}_chart`;
+      Store[id] && Store[id].points.push({x: value, marker: marker});
+
+      console.warn(id, Store[id]);
+
+      if(is_tick) {
+         dialog.find('.chart-view').removeClass('hide-subtitle');
+         const points = chart && chart.series[0] && chart.series[0].data;
+         draw.zoomTo(chart, value);
+         for (let i = points.length - 1; i >= 0; i--) {
+            const point = points[i];
+            if (point && point.x && value === point.x) {
+               point.update({ marker: marker });
+               return;
+            }
          }
       }
    },
    exitSpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'orange' }),
    entrySpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'white' }),
    barrier: (dialog, { value, from, to = null }) => {
-      dialog.find('.chart-view').removeClass('hide-subtitle');
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
 
+      const is_tick = isTick(container.data('timePeriod'));
+      const storeId = `#${dialog.attr('id')}_chart`;
       const id = `barrier-${from}`;
       const idFixed = `${id}-fixed`;
 
@@ -646,11 +666,19 @@ export const draw = {
             if(seri && this === chart.series[0]) {
                seri.addPoint({x: this.chart.xAxis[0].getExtremes().dataMax, y: value});
             } 
+            const conf = Store[storeId].barriers[id];
+            if(conf) {
+               conf.data = [conf.data[0], conf.data[1]];
+               conf.data[1].x = chart.xAxis[0].getExtremes().dataMax;
+            }
          });
       }
-      chart.get(id) && chart.get(id).remove(); // remove if already exists.
+      if(Store[storeId].barriers[id]) {
+         chart.get(id) && chart.get(id).remove(); // remove if already exists.
+         delete Store[storeId].barriers[id];
+      }
 
-      chart.addSeries({
+      const conf = {
          type: 'line',
          id: to ? idFixed : id,
          color: 'green',
@@ -668,7 +696,13 @@ export const draw = {
                x: to || chart.xAxis[0].getExtremes().dataMax
             }
          ]
-      });
+      };
+
+      Store[storeId].barriers[conf.id] = conf;
+      if(is_tick) {
+         dialog.find('.chart-view').removeClass('hide-subtitle');
+         chart.addSeries(conf);
+      }
    }
 }
 
