@@ -7,23 +7,20 @@ wtcharts.init({
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
-
 const $parent = $('#container');
+
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
-   "instrumentCode": "R_50",
-   "instrumentName": "Volatility index",
+   "instrumentCode": "R_100",
+   "instrumentName": "Volatility index 100",
    "showInstrumentName": true,
    "timePeriod": "1m",
    "type": "candlestick",
    "indicators": [],
    "overlays": []
 });
-chart.events.anyChange = () => {
-   console.warn(chart.data());
-};
 const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "instrumentCode": "R_50",
-  "instrumentName": "Volatility index",
+  "instrumentName": "Volatility index 50",
   "showInstrumentName": true,
   "timePeriod": "1t",
   "type": "line",
@@ -32,29 +29,9 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "delayAmount": 0
 });
 
-wtcharts.liveapi.events.on('tick', (e, data) => {
-   const epoch = data.tick.epoch*1;
-   const quote = data.tick.quote*1;
-   const rand = Math.random();
-   if(rand < 0.1) {
-      chart2.draw.barrier({ from: epoch*1000, value: quote });
-      setTimeout(() => {
-         chart2.draw.barrier({ from: epoch*1000, to: (epoch+15)*1000, value: quote });
-      }, 15*1000);
-   }
-   // if(rand < .25)
-   //    chart2.draw.startTime(epoch*1000);
-   // else if(rand < .5)
-   //    chart2.draw.entrySpot(epoch*1000);
-   // else if(rand < .75)
-   //    chart2.draw.endTime(epoch*1000);
-   // else
-   //    chart2.draw.exitSpot(epoch*1000);
-});
 
-chart2.events.anyChange = () => {
-   console.warn(chart.data());
-}; 
+chart.events.anyChange = () => console.warn(chart.data());
+chart2.events.anyChange = () => console.warn(chart.data()); 
 
 
 // This is a test for a timing issue in need to fix.
@@ -103,3 +80,35 @@ const run_timing_issue_test = () => {
    rerender();
 }; 
 // run_timing_issue_test();
+
+const run_display_results_test = () => {
+   const add_stuff_to_chart = (epoch, quote, chart) => {
+      const rand = Math.random();
+      if(rand < .1)
+         chart.draw.startTime(epoch*1000);
+      else if(rand < .2)
+         chart.draw.entrySpot(epoch*1000);
+      else if(rand < .3)
+         chart.draw.endTime(epoch*1000);
+      else if(rand < .4)
+         chart.draw.exitSpot(epoch*1000);
+      else if(rand < .5) {
+         chart.draw.barrier({ from: epoch*1000, value: quote });
+         setTimeout(() => {
+            chart.draw.barrier({ from: epoch*1000, to: (epoch+30)*1000, value: quote });
+         }, 30*1000);
+      }
+   };
+   wtcharts.liveapi.events.on('ohlc', (e, data) => {
+      const epoch = data.ohlc.epoch*1;
+      const quote = data.ohlc.close*1;
+      if(data.ohlc.symbol === 'R_50')
+         add_stuff_to_chart(epoch, quote, chart2);
+   });
+   wtcharts.liveapi.events.on('tick', (e, data) => {
+      const epoch = data.tick.epoch*1;
+      const quote = data.tick.quote*1;
+      add_stuff_to_chart(epoch, quote, chart2);
+   });
+}
+

@@ -632,8 +632,6 @@ export const draw = {
       const id = `#${dialog.attr('id')}_chart`;
       Store[id] && Store[id].points.push({x: value, marker: marker});
 
-      console.warn(id, Store[id]);
-
       if(is_tick) {
          dialog.find('.chart-view').removeClass('hide-subtitle');
          const points = chart && chart.series[0] && chart.series[0].data;
