@@ -121,6 +121,7 @@ btns.find('.start-time').on('click', () => {
 
    barrier_conf.from = epoch-1000*2;
    barrier_conf.value = value.toFixed(4)*1;
+   barrier_conf.to = null;
    chart2.draw.barrier(barrier_conf);
 });
 btns.find('.end-time').on('click', () => {
