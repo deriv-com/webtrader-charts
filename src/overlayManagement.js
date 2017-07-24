@@ -193,7 +193,7 @@ const init_state = (root) =>{
                });
                if (countInstrumentSeries == 1) {
                   chart.series.forEach((s) => {
-                     if ((s.userOptions.isInstrument || s.userOptions.onChartIndicator) && s.userOptions.id.indexOf('navigator') == -1) {
+                     if ((s.userOptions.isInstrument || s.userOptions.onChartIndicator || s.userOptions.isBarrier) && s.userOptions.id.indexOf('navigator') == -1) {
                         s.update({
                            compare: undefined
                         });

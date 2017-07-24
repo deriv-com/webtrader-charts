@@ -561,7 +561,7 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         chart.showLoading();
         for (let index = 0; index < chart.series.length; index++) {
             const series = chart.series[index];
-            if ((series.userOptions.isInstrument || series.userOptions.onChartIndicator) && series.userOptions.id !== 'navigator') {
+            if ((series.userOptions.isInstrument || series.userOptions.onChartIndicator || series.userOptions.isBarrier) && series.userOptions.id !== 'navigator') {
                 series.update({
                     compare: 'percent'
                 });
@@ -679,6 +679,7 @@ export const draw = {
       const conf = {
          type: 'line',
          id: to ? idFixed : id,
+         isBarrier: true,
          color: 'green',
          connectNulls: true,
          marker: {enabled: false},
