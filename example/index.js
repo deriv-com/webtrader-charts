@@ -29,10 +29,8 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "delayAmount": 0
 });
 
-
 chart.events.anyChange = () => console.warn(chart.data());
 chart2.events.anyChange = () => console.warn(chart.data()); 
-
 
 // This is a test for a timing issue in need to fix.
 const run_timing_issue_test = () => {
@@ -111,4 +109,33 @@ const run_display_results_test = () => {
       add_stuff_to_chart(epoch, quote, chart2);
    });
 }
+
+
+const btns = $('#container2 .display-results-buttons').show();
+let barrier_conf = { from: 0, to: null, value: 0 };
+btns.find('.start-time').on('click', () => {
+   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   const minMax = $('#container2').find('.chart-view .chartSubContainer').highcharts().yAxis[0].getExtremes();
+   const value = minMax.dataMin + Math.random()*(minMax.dataMax - minMax.dataMin);
+   chart2.draw.startTime(epoch);
+
+   barrier_conf.from = epoch-1000*2;
+   barrier_conf.value = value.toFixed(4)*1;
+   chart2.draw.barrier(barrier_conf);
+});
+btns.find('.end-time').on('click', () => {
+   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   chart2.draw.endTime(epoch);
+   barrier_conf.to = epoch + 1000*2;
+   chart2.draw.barrier(barrier_conf);
+});
+btns.find('.entry-spot').on('click', () => {
+   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   chart2.draw.entrySpot(epoch);
+});
+btns.find('.exit-spot').on('click', () => {
+   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   chart2.draw.exitSpot(epoch);
+});
+
 

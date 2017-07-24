@@ -66,6 +66,22 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart. returns a promise.
 ```
+### Displaying trade results
+
+![Alt text](example/screenshots/0.png?raw=true "Displaying trade results")
+
+```js
+   // epoch is in milliseconds for all draw methods.
+   chart.darw.startTime(epoch); // draws a vertical orange line at epoch.
+   chart.draw.endTime(epoch); // dashed vertical line at epoch.
+   chart.draw.entrySpot(epoch); // empty orange circle at epoch
+   chart.draw.exitSpot(epoch); // filled orange circle at epoch
+
+   // for barriers use this to start a barrier line
+   chart.draw.barrier({from: epoch, to: null, value: value}); // draw from "from" to the end and keep updating.
+   // after the trade is finished and the end of contract is known:
+   chart.draw.barrier({from: epoch, to: endEpoch, value: value}); // draw from "from" to "to" and stop updating.
+```
 
 ### How to extend it
 - Clone the repo

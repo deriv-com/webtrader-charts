@@ -15,6 +15,26 @@
             height: 600px;
             border: 1px solid black;
             float: left;
+            position: relative;
+         }
+         #container2 .display-results-buttons {
+            display: none;;
+            position: absolute;
+            left: 415px;
+            width: 310px;
+            height: 36px;
+            top: 5px;
+            z-index: +1;
+         }
+         #container2 .display-results-buttons button {
+            font-size: 12px;
+            line-height: 30px;
+            background: #f2f2f2;
+            padding: 0px 4px;
+            color: black;
+            cursor: pointer;
+            font-style: italic;
+            outline: 0;
          }
       </style>
    </head>
@@ -22,6 +42,12 @@
       <div id='container'>
       </div>
       <div id='container2'>
+         <div class='display-results-buttons'>
+            <button class='start-time'>start-time</button>
+            <button class='end-time'>end-time</button>
+            <button class='entry-spot'>entry-spot</button>
+            <button class='exit-spot'>exit-spot</button>
+         </div>
       </div>
 
       <script src="./jquery.js"></script>
