@@ -112,23 +112,24 @@ const run_display_results_test = () => {
 
 
 const btns = $('#container2 .display-results-buttons').show();
-let barrier_conf = { from: 0, to: null, value: 0 };
+let barrier_confs = [];
 btns.find('.start-time').on('click', () => {
    const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
    const minMax = $('#container2').find('.chart-view .chartSubContainer').highcharts().yAxis[0].getExtremes();
    const value = minMax.dataMin + Math.random()*(minMax.dataMax - minMax.dataMin);
    chart2.draw.startTime(epoch);
-
-   barrier_conf.from = epoch-1000*2;
-   barrier_conf.value = value.toFixed(4)*1;
-   barrier_conf.to = null;
-   chart2.draw.barrier(barrier_conf);
+   const conf = { from: epoch-1000*2, to: null, value: value.toFixed(4)*1 };
+   barrier_confs.push(conf);
+   chart2.draw.barrier(conf);
 });
 btns.find('.end-time').on('click', () => {
    const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
    chart2.draw.endTime(epoch);
-   barrier_conf.to = epoch + 1000*2;
-   chart2.draw.barrier(barrier_conf);
+   barrier_confs.forEach(conf => {
+      conf.to = epoch + 1000*2;
+      chart2.draw.barrier(conf);
+   });
+   barrier_confs = [];
 });
 btns.find('.entry-spot').on('click', () => {
    const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;

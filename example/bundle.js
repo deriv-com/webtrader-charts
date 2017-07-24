@@ -15745,23 +15745,23 @@ var run_display_results_test = function run_display_results_test() {
 };
 
 var btns = (0, _jquery2.default)('#container2 .display-results-buttons').show();
-var barrier_conf = { from: 0, to: null, value: 0 };
+var barrier_confs = [];
 btns.find('.start-time').on('click', function () {
    var epoch = (0, _jquery2.default)('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
    var minMax = (0, _jquery2.default)('#container2').find('.chart-view .chartSubContainer').highcharts().yAxis[0].getExtremes();
    var value = minMax.dataMin + Math.random() * (minMax.dataMax - minMax.dataMin);
    chart2.draw.startTime(epoch);
-
-   barrier_conf.from = epoch - 1000 * 2;
-   barrier_conf.value = value.toFixed(4) * 1;
-   barrier_conf.to = null;
+   barrier_confs.push({ from: epoch - 1000 * 2, to: null, value: value.toFixed(4) * 1 });
    chart2.draw.barrier(barrier_conf);
 });
 btns.find('.end-time').on('click', function () {
    var epoch = (0, _jquery2.default)('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
    chart2.draw.endTime(epoch);
-   barrier_conf.to = epoch + 1000 * 2;
-   chart2.draw.barrier(barrier_conf);
+   barrier_confs.forEach(function (conf) {
+      barrier_conf.to = epoch + 1000 * 2;
+      chart2.draw.barrier(barrier_conf);
+   });
+   barrier_conf = [];
 });
 btns.find('.entry-spot').on('click', function () {
    var epoch = (0, _jquery2.default)('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
