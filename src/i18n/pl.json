@@ -32,7 +32,7 @@
   "crosshair":"Krzyżyk",
   "vertical-line":"Linia pionowa",
   "horizontal-line":"Linia pozioma",
-  "tick":"Zmiana ceny",
+  "tick":"Najmniejsza zmiana ceny",
   "1-tick":"1 najmniejsza zmiana ceny",
   "1-minute":"1 minuta",
   "1-hour":"1 godzina",
