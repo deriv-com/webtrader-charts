@@ -122,9 +122,11 @@ wtcharts.liveapi.events.on('ohlc', (e, data) => {
    last_epoch = data.ohlc.epoch*1;
 });
 wtcharts.liveapi.events.on('tick', (e, data) => {
-   const quote = data.tick.quote*1;
-   minMax.max = Math.max(minMax.max, quote);
-   minMax.min = Math.min(minMax.min, quote);
+   if(data.tick.symbol === 'R_50') {
+      const quote = data.tick.quote*1;
+      minMax.max = Math.max(minMax.max, quote);
+      minMax.min = Math.min(minMax.min, quote);
+   }
    last_epoch = data.tick.epoch*1;
 });
 

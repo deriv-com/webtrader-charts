@@ -34,7 +34,11 @@ export const addNewChart = function($parent, options) {
     dialog.find('div.chartSubContainerHeader').attr('id', `${id}_header`);
     dialog.find('div.chartSubContainer').attr('id', `${id}_chart`);
 
-    /* tracking the chart, includion indicators & overlyas */
+
+    options.timePeriod = options.timePeriod || "1t";
+    options.type = options.type || "line";
+
+    /* tracking the chart, includion indicators & overlays */
     Store[id] = _.cloneDeep(options);
     Store[id].indicators = Store[id].indicators || [];
     Store[id].overlays = Store[id].overlays || [];
@@ -75,7 +79,7 @@ export const addNewChart = function($parent, options) {
           endTime: epoch => chartDraw.draw.endTime(dialog, epoch),
           entrySpot: epoch => chartDraw.draw.entrySpot(dialog, epoch),
           exitSpot: epoch => chartDraw.draw.exitSpot(dialog, epoch),
-          barrier: options => chartDraw.draw.barrier(dialog, options),
+          barrier: config => chartDraw.draw.barrier(dialog, config),
        },
        events: {
           typeChange: null,

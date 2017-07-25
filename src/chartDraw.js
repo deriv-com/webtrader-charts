@@ -76,6 +76,8 @@ export const draw = {
          id: to ? idFixed : id,
          isFixed: !!to,
          value: value,
+         from: from,
+         to: to,
          isBarrier: true,
          color: 'green',
          connectNulls: true,
@@ -85,7 +87,7 @@ export const draw = {
             {
                y: value,
                x: from,
-               dataLabels: { enabled: true, className: 'highlight', format: 'barrier {y}' }
+               dataLabels: { enabled: true, className: 'highlight', format: `barrier ${value}`, crop: false, overflow: 'none' }
             },
             {
                y: value,
@@ -96,6 +98,8 @@ export const draw = {
 
       Store[storeId].barriers[conf.id] = conf;
       if(is_tick) {
+         const compare = chart.series[0] && chart.series[0].userOptions.compare;
+         conf.compare = compare;
          dialog.find('.chart-view').removeClass('hide-subtitle');
          chart.addSeries(conf);
       }
