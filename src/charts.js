@@ -15,6 +15,8 @@ import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import {i18n, isTick} from './common/utils.js';
+import chartDraw from './chartDraw.js';
+
 import './charts.scss';
 
 // TODO: moemnt locale
@@ -198,9 +200,6 @@ export const generate_csv = (chart, data, dialog_id) => {
     });
 };
 
-
-const Store = { }; // 
-
 /**
  * This method is the core and the starting point of highstock charts drawing
  * @param containerIDWithHash
@@ -211,7 +210,6 @@ const Store = { }; //
  * @param onload // optional onload callback
  */
 export const drawChart = (containerIDWithHash, options, onload) => {
-    Store[containerIDWithHash] = Store[containerIDWithHash] || { points: [], plotLines: [], barriers: { } };
     let indicators = [];
     let overlays = [];
     let current_symbol = [];
@@ -260,6 +258,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
                     this.showLoading();
                     currentPrice.init();
+                    const chart = this;
                     liveapi.execute(() => {
                         ohlc_handler.retrieveChartDataAndRender({
                             timePeriod: options.timePeriod,
@@ -273,11 +272,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                         }).catch((err) => {
                             const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
                             notification.error(msg, containerIDWithHash.replace('_chart', ''));
-                            const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);
                         }).then(() => {
-                            const chart = $(containerIDWithHash).highcharts();
                             /* the data is loaded but is not applied yet, its on the js event loop,
                                wait till the chart data is applied and then add the indicators */
                             _.defer(() => {
@@ -286,30 +283,11 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                     overlay(containerIDWithHash, ovlay.symbol, ovlay.displaySymbol, ovlay.delay_amount);
                                 });
                             });
-                           // restore plot lines & points after refresh.
-                           if(isTick(options.timePeriod)) {
-                              const drawn = Store[containerIDWithHash];
-                              const chart = this;
-                              chart.xAxis[0] && drawn.plotLines.forEach(p => chart.xAxis[0].addPlotLine(p));
-
-                              const pointXs = drawn.points.map(p => p.x);
-                              chart.series[0] && chart.series[0].data.forEach(p => {
-                                 const inx = _.sortedIndexOf(pointXs, p.x);
-                                 if(inx !== -1)
-                                    p.update({marker: drawn.points[inx].marker});
-                              });
-
-                              _.each(drawn.barriers, conf => {
-                                 chart.addSeries(conf);
-                              });
-                           }
-                           else {
-                              $(containerIDWithHash).closest('.chart-view').addClass('hide-subtitle');
-                           }
+                            // restore plot lines & points after refresh.
+                            chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                         });
                     });
 
-                    let chart = this;
                     if ($.isFunction(onload)) {
                         onload(chart);
                     }
@@ -599,112 +577,6 @@ export const changeTitle = (containerIDWithHash, newTitle) => {
     chart && chart.setTitle(newTitle);
 };
 
-export const draw = {
-   zoomTo: (chart, epoch) => {
-      const axis = chart.xAxis[0];
-      const {min,max, dataMin, dataMax} = axis.getExtremes();
-      const interval = 2000;
-      if(epoch >= max)
-         axis.setExtremes(min, Math.min(epoch + 10*interval, dataMax));
-   },
-   verticalLine: (dialog, options) => {
-      const container = dialog.find(`#${dialog.attr('id')}_chart`);
-      const chart = container.highcharts();
-      const is_tick = isTick(container.data('timePeriod'));
-
-      const id = `#${dialog.attr('id')}_chart`;
-      Store[id] && Store[id].plotLines.push(options);
-
-      if(chart && is_tick) {
-         dialog.find('.chart-view').removeClass('hide-subtitle');
-         chart.xAxis[0].addPlotLine(options);
-      }
-   },
-   startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2 }),
-   endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash' }),
-   point: (dialog, {value, color = 'orange'}) => {
-      const container = dialog.find(`#${dialog.attr('id')}_chart`);
-      const chart = container.highcharts();
-
-      const marker = { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4, states: { hover: { fillColor: color, lineColor: 'orange', lineWidth: 3, radius: 4 } } };
-      const is_tick = isTick(container.data('timePeriod'));
-
-      const id = `#${dialog.attr('id')}_chart`;
-      Store[id] && Store[id].points.push({x: value, marker: marker});
-
-      if(is_tick) {
-         dialog.find('.chart-view').removeClass('hide-subtitle');
-         const points = chart && chart.series[0] && chart.series[0].data;
-         draw.zoomTo(chart, value);
-         for (let i = points.length - 1; i >= 0; i--) {
-            const point = points[i];
-            if (point && point.x && value === point.x) {
-               point.update({ marker: marker });
-               return;
-            }
-         }
-      }
-   },
-   exitSpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'orange' }),
-   entrySpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'white' }),
-   barrier: (dialog, { value, from, to = null }) => {
-      const container = dialog.find(`#${dialog.attr('id')}_chart`);
-      const chart = container.highcharts();
-
-      const is_tick = isTick(container.data('timePeriod'));
-      const storeId = `#${dialog.attr('id')}_chart`;
-      const id = `barrier-${from}`;
-      const idFixed = `${id}-fixed`;
-
-      if(!to && !chart.get(id)) {
-         Highcharts.wrap(Highcharts.Series.prototype, 'addPoint', function(proceed, options, redraw, shift, animation) {
-            proceed.call(this, options, redraw, shift, animation);
-            const chart = container.highcharts();
-            const seri = chart.get(id);
-            if(seri && this === chart.series[0]) {
-               seri.addPoint({x: this.chart.xAxis[0].getExtremes().dataMax, y: value});
-            } 
-            const conf = Store[storeId].barriers[id];
-            if(conf) {
-               conf.data = [conf.data[0], conf.data[1]];
-               conf.data[1].x = chart.xAxis[0].getExtremes().dataMax;
-            }
-         });
-      }
-      if(Store[storeId].barriers[id]) {
-         chart.get(id) && chart.get(id).remove(); // remove if already exists.
-         delete Store[storeId].barriers[id];
-      }
-
-      const conf = {
-         type: 'line',
-         id: to ? idFixed : id,
-         isBarrier: true,
-         color: 'green',
-         connectNulls: true,
-         marker: {enabled: false},
-         enableMouseTracking: false,
-         data: [
-            {
-               y: value,
-               x: from,
-               dataLabels: { enabled: true, className: 'highlight', format: 'barrier {y}' }
-            },
-            {
-               y: value,
-               x: to || chart.xAxis[0].getExtremes().dataMax
-            }
-         ]
-      };
-
-      Store[storeId].barriers[conf.id] = conf;
-      if(is_tick) {
-         dialog.find('.chart-view').removeClass('hide-subtitle');
-         chart.addSeries(conf);
-      }
-   }
-}
-
 export default {
     drawChart,
     destroy,
@@ -713,6 +585,5 @@ export default {
     refresh,
     addIndicator,
     overlay,
-    changeTitle,
-    draw
+    changeTitle
 };

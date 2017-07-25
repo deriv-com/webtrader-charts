@@ -7,6 +7,7 @@ import chartOptions from './chartOptions.js';
 import liveapi from './common/liveapi.js';
 import Highcharts from 'highstock-release/highstock';
 import {chartableMarkets} from './overlayManagement.js';
+import chartDraw from './chartDraw.js';
 
 const triggerResizeEffects = (dialog) => {
     dialog.find('.chartSubContainer').width("100%");
@@ -70,11 +71,11 @@ export const addNewChart = function($parent, options) {
           refresh: () => charts.refresh(`#${id}_chart`),
        },
        draw: {
-          startTime: epoch => charts.draw.startTime(dialog, epoch),
-          endTime: epoch => charts.draw.endTime(dialog, epoch),
-          entrySpot: epoch => charts.draw.entrySpot(dialog, epoch),
-          exitSpot: epoch => charts.draw.exitSpot(dialog, epoch),
-          barrier: options => charts.draw.barrier(dialog, options),
+          startTime: epoch => chartDraw.draw.startTime(dialog, epoch),
+          endTime: epoch => chartDraw.draw.endTime(dialog, epoch),
+          entrySpot: epoch => chartDraw.draw.entrySpot(dialog, epoch),
+          exitSpot: epoch => chartDraw.draw.exitSpot(dialog, epoch),
+          barrier: options => chartDraw.draw.barrier(dialog, options),
        },
        events: {
           typeChange: null,

@@ -111,19 +111,35 @@ const run_display_results_test = () => {
 }
 
 
+let last_epoch = 0;
+const minMax = {max: 0, min: 1000*1000};
+wtcharts.liveapi.events.on('ohlc', (e, data) => {
+   if(data.ohlc.symbol === 'R_50') {
+      const quote = data.ohlc.close*1;
+      minMax.max = Math.max(minMax.max, quote);
+      minMax.min = Math.min(minMax.min, quote);
+   }
+   last_epoch = data.ohlc.epoch*1;
+});
+wtcharts.liveapi.events.on('tick', (e, data) => {
+   const quote = data.tick.quote*1;
+   minMax.max = Math.max(minMax.max, quote);
+   minMax.min = Math.min(minMax.min, quote);
+   last_epoch = data.tick.epoch*1;
+});
+
 const btns = $('#container2 .display-results-buttons').show();
 let barrier_confs = [];
 btns.find('.start-time').on('click', () => {
-   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
-   const minMax = $('#container2').find('.chart-view .chartSubContainer').highcharts().yAxis[0].getExtremes();
-   const value = minMax.dataMin + Math.random()*(minMax.dataMax - minMax.dataMin);
+   const epoch = last_epoch * 1000;
+   const value = minMax.min + Math.random()*(minMax.max - minMax.min);
    chart2.draw.startTime(epoch);
    const conf = { from: epoch-1000*2, to: null, value: value.toFixed(4)*1 };
    barrier_confs.push(conf);
    chart2.draw.barrier(conf);
 });
 btns.find('.end-time').on('click', () => {
-   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   const epoch = last_epoch*1000;
    chart2.draw.endTime(epoch);
    barrier_confs.forEach(conf => {
       conf.to = epoch + 1000*2;
@@ -132,11 +148,11 @@ btns.find('.end-time').on('click', () => {
    barrier_confs = [];
 });
 btns.find('.entry-spot').on('click', () => {
-   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   const epoch = last_epoch * 1000;
    chart2.draw.entrySpot(epoch);
 });
 btns.find('.exit-spot').on('click', () => {
-   const epoch = $('#container2').find('.chart-view .chartSubContainer').highcharts().xAxis[0].getExtremes().dataMax;
+   const epoch = last_epoch * 1000;
    chart2.draw.exitSpot(epoch);
 });
 
