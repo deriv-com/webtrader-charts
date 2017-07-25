@@ -29,8 +29,8 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "delayAmount": 0
 });
 
-chart.events.anyChange = () => console.warn(chart.data());
-chart2.events.anyChange = () => console.warn(chart.data()); 
+chart.events.anyChange = () => console.log(chart.data());
+chart2.events.anyChange = () => console.log(chart.data()); 
 
 // This is a test for a timing issue in need to fix.
 const run_timing_issue_test = () => {
@@ -71,7 +71,7 @@ const run_timing_issue_test = () => {
       const config = configs[Math.random() > 0.5 ? 1 : 0];
       chart =  wtcharts.chartWindow.addNewChart($parent, config);
       const timeout = Math.random()*2500;
-      console.warn(timeout | 0);
+      console.log(timeout | 0);
       if(!window.stop_test)
          setTimeout(rerender, timeout | 0);
    };

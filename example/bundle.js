@@ -15675,10 +15675,10 @@ var chart2 = _webtraderCharts2.default.chartWindow.addNewChart((0, _jquery2.defa
 });
 
 chart.events.anyChange = function () {
-   return console.warn(chart.data());
+   return console.log(chart.data());
 };
 chart2.events.anyChange = function () {
-   return console.warn(chart.data());
+   return console.log(chart.data());
 };
 
 // This is a test for a timing issue in need to fix.
@@ -15715,7 +15715,7 @@ var run_timing_issue_test = function run_timing_issue_test() {
       var config = configs[Math.random() > 0.5 ? 1 : 0];
       chart = _webtraderCharts2.default.chartWindow.addNewChart($parent, config);
       var timeout = Math.random() * 2500;
-      console.warn(timeout | 0);
+      console.log(timeout | 0);
       if (!window.stop_test) setTimeout(rerender, timeout | 0);
    };
    rerender();
