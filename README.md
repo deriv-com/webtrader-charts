@@ -28,8 +28,8 @@ Take a look at `webpack.config.js -> externals`.
  // supported langauges are [ 'ar', 'ja', 'en', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw']
  
  const chart =  wtcharts.chartWindow.addNewChart($parent, {
-    "type": "line",
-    "timePeriod": "1m",
+    "type": "line", // default is 'line'
+    "timePeriod": "1m", // default is '1t'
     "instrumentCode": "RDBULL",
     "instrumentName": "Bull Market Index",
     "showInstrumentName": true, // default is false
@@ -66,10 +66,11 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart. returns a promise.
 ```
-### Displaying trade results
+### Displaying trade results (Exprimental)
 
 ![Alt text](example/screenshots/0.png?raw=true "Displaying trade results")
 
+**Note:** This is an exprimental api, it might change in future releases.
 ```js
    // epoch is in milliseconds for all draw methods.
    chart.darw.startTime(epoch); // draws a vertical orange line at epoch.
