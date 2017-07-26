@@ -7,6 +7,7 @@ import chartOptions from './chartOptions.js';
 import liveapi from './common/liveapi.js';
 import Highcharts from 'highstock-release/highstock';
 import {chartableMarkets} from './overlayManagement.js';
+import chartDraw from './chartDraw.js';
 
 const triggerResizeEffects = (dialog) => {
     dialog.find('.chartSubContainer').width("100%");
@@ -28,12 +29,16 @@ export const addNewChart = function($parent, options) {
     const dialog = $(html);
     $parent.addClass('chart-dialog');
     dialog.appendTo($parent);
-    const id = `webtrader-charts-dialog-${++idCounter}`;
+    var id = `webtrader-charts-dialog-${++idCounter}`;
     dialog.attr('id', id);
     dialog.find('div.chartSubContainerHeader').attr('id', `${id}_header`);
     dialog.find('div.chartSubContainer').attr('id', `${id}_chart`);
 
-    /* tracking the chart, includion indicators & overlyas */
+
+    options.timePeriod = options.timePeriod || "1t";
+    options.type = options.type || "line";
+
+    /* tracking the chart, includion indicators & overlays */
     Store[id] = _.cloneDeep(options);
     Store[id].indicators = Store[id].indicators || [];
     Store[id].overlays = Store[id].overlays || [];
@@ -70,8 +75,11 @@ export const addNewChart = function($parent, options) {
           refresh: () => charts.refresh(`#${id}_chart`),
        },
        draw: {
-          startTime: epoch => charts.draw.startTime(dialog, epoch),
-          endTime: epoch => charts.draw.endTime(dialog, epoch),
+          startTime: epoch => chartDraw.draw.startTime(dialog, epoch),
+          endTime: epoch => chartDraw.draw.endTime(dialog, epoch),
+          entrySpot: epoch => chartDraw.draw.entrySpot(dialog, epoch),
+          exitSpot: epoch => chartDraw.draw.exitSpot(dialog, epoch),
+          barrier: config => chartDraw.draw.barrier(dialog, config),
        },
        events: {
           typeChange: null,

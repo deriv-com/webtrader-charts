@@ -174,16 +174,13 @@ export const barsLoaded = function(instrumentCdAndTp) {
                     seriesConf.dashStyle = 'dot';
                 }
                 seriesConf.marker = {
-                    enabled: !isDotType(type),
-                    radius: 4
+                    enabled: true,
+                    radius: isDotType(type) ? 0 : 2,
                 };
             }
             chart.addSeries(seriesConf);
-
         }
-
     };
-
 }
 
 export const processOHLC = (open, high, low, close, time, type, dataInHighChartsFormat) => {

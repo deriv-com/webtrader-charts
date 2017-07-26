@@ -14,7 +14,9 @@ import indicatorsArray from './indicators-config.js';
 import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
-import {i18n} from './common/utils.js';
+import {i18n, isTick} from './common/utils.js';
+import chartDraw from './chartDraw.js';
+
 import './charts.scss';
 
 // TODO: moemnt locale
@@ -250,13 +252,13 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
-
         chart: {
             events: {
                 load: function(event) {
 
                     this.showLoading();
                     currentPrice.init();
+                    const chart = this;
                     liveapi.execute(() => {
                         ohlc_handler.retrieveChartDataAndRender({
                             timePeriod: options.timePeriod,
@@ -270,23 +272,22 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                         }).catch((err) => {
                             const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
                             notification.error(msg, containerIDWithHash.replace('_chart', ''));
-                            const chart = $(containerIDWithHash).highcharts();
                             chart && chart.showLoading(msg);
                             console.error(err);
                         }).then(() => {
-                            const chart = $(containerIDWithHash).highcharts();
                             /* the data is loaded but is not applied yet, its on the js event loop,
                                wait till the chart data is applied and then add the indicators */
-                            setTimeout(() => {
+                            _.defer(() => {
                                 chart && chart.set_indicators(indicators); // put back removed indicators
                                 overlays.forEach((ovlay) => {
                                     overlay(containerIDWithHash, ovlay.symbol, ovlay.displaySymbol, ovlay.delay_amount);
                                 });
-                            }, 0);
+                            });
+                            // restore plot lines & points after refresh.
+                            chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                         });
                     });
 
-                    let chart = this;
                     if ($.isFunction(onload)) {
                         onload(chart);
                     }
@@ -314,6 +315,12 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 shadow: false,
                 color: '#d11415',
                 upColor: '#2b920f'
+            },
+            line: {
+                marker: { radius: 0, enabled: true },
+            },
+            spline: {
+                marker: { radius: 0, enabled: true },
             },
             series: {
                 events: {
@@ -453,7 +460,6 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
 
     //Get all series details from this chart
     const chart = dialog.highcharts();
-    const plotLines = chart.xAxis[0].plotLinesAndBands.map(p => p.options);
     let loadedMarketData = [];
     let series_compare;
     /* for ohlc and candlestick series_compare must NOT be percent */
@@ -496,8 +502,6 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          indicators: indicators,
          start: options.start
       }, (new_chart) => {
-         // restore plot lines after refresh.
-         plotLines.forEach(p => new_chart.xAxis[0].addPlotLine(p));
       });
    });
 };
@@ -533,14 +537,19 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         const mainSeries_timePeriod = $(containerIDWithHash).data("timePeriod");
         const mainSeries_type = $(containerIDWithHash).data("type");
         chart.showLoading();
-        for (let index = 0; index < chart.series.length; index++) {
-            const series = chart.series[index];
-            if ((series.userOptions.isInstrument || series.userOptions.onChartIndicator) && series.userOptions.id !== 'navigator') {
-                series.update({
-                    compare: 'percent'
-                });
-            }
-        }
+
+        const barriers = chart.series.filter(series => series.userOptions.isBarrier).map(series => series.userOptions);
+        chart.series.filter(series => series.userOptions.isBarrier).map(series => series.remove());
+
+        chart.series.filter(
+           series => (series.userOptions.isInstrument || series.userOptions.onChartIndicator) && series.userOptions.id !== 'navigator'
+        ).forEach(series => series.update({ compare: 'percent' }));
+
+        // put barriers back!
+        barriers.forEach(barrier => {
+           barrier.compare = 'percent';
+           chart.addSeries(barrier);
+        });
 
         return new Promise((resolve, reject) => {
             liveapi.execute(() => {
@@ -573,17 +582,6 @@ export const changeTitle = (containerIDWithHash, newTitle) => {
     chart && chart.setTitle(newTitle);
 };
 
-export const draw = {
-   verticalLine: (dialog, options) => {
-      dialog.find('.chart-view').removeClass('hide-subtitle');
-      const container = dialog.find(`#${dialog.attr('id')}_chart`);
-      const chart = container.highcharts();
-      chart && chart.xAxis[0].addPlotLine(options);
-   },
-   startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2 }),
-   endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash' }),
-}
-
 export default {
     drawChart,
     destroy,
@@ -592,6 +590,5 @@ export default {
     refresh,
     addIndicator,
     overlay,
-    changeTitle,
-    draw
+    changeTitle
 };
