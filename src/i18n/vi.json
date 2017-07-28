@@ -90,13 +90,13 @@
   "downloading-csv":"Đang tải xuống tệp .csv",
   "stroke-width":"Chiều rộng Stroke",
   "stroke-color":"Màu Stroke",
-  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
-  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
-  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
-  "active":"Active",
-  "all":"All",
-  "popular":"Popular",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators",
-  "template-changes-saved-as":"Template changes saved as"
+  "you-do-not-have-any-active-indicators":"Bạn không có bất kỳ chỉ số hoạt động nào",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Chọn từ chỉ số bất kỳ nào trong danh sách của chúng tôi để bắt đầu",
+  "you-do-not-have-any-favorite-indicators":"Bạn không có bất kỳ chỉ số ưa thích nào",
+  "active":"Hoạt động",
+  "all":"Tất cả",
+  "popular":"Phổ biến",
+  "view-popular-indicators":"Xem các chỉ số phổ biến",
+  "view-all-indicators":"Xem tất cả chỉ số phổ biến",
+  "template-changes-saved-as":"Thay đổi mẫu đã được lưu lại dưới dạng"
 }
