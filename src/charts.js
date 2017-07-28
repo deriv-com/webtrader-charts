@@ -245,6 +245,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         instrumentCode: options.instrumentCode,
         instrumentName: options.instrumentName,
         timePeriod: options.timePeriod,
+        timezoneOffset: options.timezoneOffset || 0,
         type: options.type,
         delayAmount: options.delayAmount,
         start: options.start

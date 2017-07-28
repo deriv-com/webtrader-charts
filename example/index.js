@@ -3,7 +3,7 @@ import wtcharts from 'webtrader-charts';
 
 wtcharts.init({
    appId: 11,
-   lang: 'en', // default is 'en'
+   lang: 'ja', // default is 'en'
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
@@ -26,6 +26,7 @@ const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "type": "line",
   "indicators": [],
   "overlays": [],
+  "timezoneOffset": -9*60,
   "delayAmount": 0
 });
 
