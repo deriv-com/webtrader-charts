@@ -90,13 +90,13 @@
   "downloading-csv":"Téléchargement de .csv",
   "stroke-width":"Épaisseur du trait",
   "stroke-color":"Couleur du trait",
-  "you-do-not-have-any-active-indicators":"You do not have any active indicators",
-  "choose-from-any-indicator-in-our-list-to-get-started":"Choose from any indicator in our list to get started",
-  "you-do-not-have-any-favorite-indicators":"You do not have any favorite indicators",
-  "active":"Active",
-  "all":"All",
-  "popular":"Popular",
-  "view-popular-indicators":"View Popular Indicators",
-  "view-all-indicators":"View All Indicators",
-  "template-changes-saved-as":"Template changes saved as"
+  "you-do-not-have-any-active-indicators":"Vous n'avez pas pas d'indicateurs actifs",
+  "choose-from-any-indicator-in-our-list-to-get-started":"Choisissez n'importe quel indicateur dans notre liste pour débuter",
+  "you-do-not-have-any-favorite-indicators":"Vous n'avez pas d'indicateurs favoris",
+  "active":"Actif",
+  "all":"Tout",
+  "popular":"Populaire",
+  "view-popular-indicators":"Vue des indicateurs populaires",
+  "view-all-indicators":"Afficher tous les indicateurs",
+  "template-changes-saved-as":"Modifications apportées au modèle enregistrées"
 }
