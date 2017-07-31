@@ -1,15 +1,31 @@
 .chartOptions {
    font-family: Roboto,Verdana,Arial,sans-serif;
    outline: 0;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   align-items: center;
 
-  .table {
-    display: table;
-    margin: 5px auto;
+   > .table {
+    display: flex;
+    min-width: 290px;
+    flex-grow: 1;
+    height: 34px;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
     .row {
        display: table-row;
        .cell {
+          &:first-child > .chartOptions_button {
+             margin-left: 0;
+          }
           vertical-align: middle;
           display: table-cell;
+
+          .charttype-name, .timeperiod-name {
+             padding-right: 5px;
+          }
        }
     }
   }
@@ -84,7 +100,7 @@
     font-size: 0.8em;
     margin-top: 11px;
     line-height: 8px;
-    &.name {
+    &.charttype-name {
       margin-left: -5px;
       vertical-align: top;
     }
@@ -112,6 +128,7 @@
   }
 
   .timePeriodOverlay {
+     margin-left: 0 !important;
     .vertical-bottom.button{
       width: 15px;
       height: 18px;
@@ -315,10 +332,7 @@
   }
 
   .instrument_name {
-    float: right;
-    margin: 0px 11px 0px 5px;
-    padding: 0 5px 0 5px;
-    line-height: 40px;
+     padding: 0 5px;
   }
 }
 

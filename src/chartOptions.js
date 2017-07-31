@@ -14,8 +14,7 @@ import vertical_line from './draw/vertical_line.js';
 import horizontal_line from './draw/horizontal_line.js';
 
 const state = [],
-    view = [],
-    stringWidth = {};
+    view = [];
 let isListenerAdded = false;
 
 const timeperiod_arr = [{ value: "1t", name: "1 Tick", digit: 1, type: "ticks" },
@@ -104,99 +103,24 @@ const showCandlestickAndOHLC = (newTabId, show) => {
 }
 
 const responsiveButtons = (scope, dialog) => {
-    const ele = dialog.find('.chart-view');
-    const loadSaveOverlay = ele.find(".loadSaveOverlay");
-    const exportOverlay = ele.find(".exportOverlay");
-    const indicatorOverlay = ele.find(".indicators");
-    const timePeriodButton = ele.find(".timeperiod");
-    const chartTypeButton = ele.find(".chart_type");
-    ele.find(".chartTypeOverlay").css("width", stringWidth.ct + 53 + "px");
-
-    // This is needed for calculating relative position.
-    const templateButton = ele.find('.templateButton'),
-        minWidth = 420 + ((stringWidth.tp.max + stringWidth.ct + 65) - 184);
-
-    if (scope.showInstrumentName) {
-        if ($('#'+scope.newTabId).width() > minWidth + stringWidth.inst) {
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px 0px");
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "left");
-            $("#" + scope.newTabId + " .chartOptions .instrument_name").show();            
-            scope.showInstrumentName = true;
-            const chart = dialog.find(`#${scope.newTabId}_chart`).highcharts();
-            chart && chart.setTitle({ text: "" });
-        } else {
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("margin", "5px auto");
-            $($("#" + scope.newTabId + " .chartOptions .table")[0]).css("float", "");
-            $("#" + scope.newTabId + " .chartOptions .instrument_name").hide();
-            $("#" + scope.newTabId + "_chart").highcharts() && $("#" + scope.newTabId + "_chart").highcharts().setTitle({ text: scope.instrumentName });
-        }
-    }
-
-    if (ele.width() > minWidth) {
+   const view = dialog.find('.chart-view');
+   const tbl = view.find('.chartOptions > .table');
+   if (view.width() > 400) {
         scope.showChartTypeLabel = true;
         scope.timePeriod_name = timeperiod_i18n(scope.timePeriod.name);
-        timePeriodButton.css("width", stringWidth.tp.max + 25 + "px");
-        chartTypeButton.css("width", stringWidth.ct + 55 + "px");
-    } else {
+   } else {
         scope.showChartTypeLabel = false;
         if(globals.config.lang === 'en') {
            scope.timePeriod_name = scope.timePeriod.value.toUpperCase();
         } else {
            scope.timePeriod_name = i18n(scope.timePeriod.value);
         }
-        timePeriodButton.css("width", stringWidth.tp.min + 27 + "px");
-        chartTypeButton.css("width", "45px");
-    }
-
-    let positionRight = ele.width() - (templateButton.offset().left + templateButton.outerWidth() - ele.offset().left) - 35;
-    
-    if (ele.width() <= 740) {
-        positionRight = positionRight > 0 ? positionRight : 25;
-        exportOverlay.css("right", positionRight + "px");
-        loadSaveOverlay.css("right", positionRight + 35 + "px");
-        indicatorOverlay.css("right","10px");
-    } else {
-        loadSaveOverlay.css("right", "auto");
-        exportOverlay.css("right", "auto");
-        indicatorOverlay.css("right","auto");
-    }
-
-    if(!scope.showInstrumentName && ele.width() < 1080) {
-        indicatorOverlay.css("right","10px");        
-    }
-}
-
-const calculateStringWidth = (instrument_name) => {
-    const longTp1 = timeperiod_arr.map(tp => {
-         if(globals.config.lang === 'en')
-            return { value: tp.value.toUpperCase() };
-         return { value: i18n(tp.value) };
-       }).reduce((a, b) => a.value.length > b.value.length ? a : b);
-
-    const longTp2 = timeperiod_arr.map(tp => ({ name: timeperiod_i18n(tp.name) }))
-          .reduce((a, b) => a.name.length > b.name.length ? a : b);
-
-    const longCt = chartType_arr.map(ct => ({name: i18n(ct.name)}))
-          .reduce((a, b) => a.name.length > b.name.length ? a : b);
-
-    const getWidth = (string) => {
-        const font = '0.8em roboto,sans-serif',
-            obj = $(`<div>${string}</div>`)
-            .css({ 'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': font })
-            .appendTo($('body')),
-            width = obj.width();
-        obj.remove();
-        return width;
-    }
-    stringWidth.tp = {};
-    stringWidth.tp.min = getWidth(longTp1.value);
-    stringWidth.tp.max = getWidth(longTp2.name);
-    stringWidth.ct = getWidth(longCt.name);
-    stringWidth.inst = getWidth(instrument_name) + 20;
+   }
+   const justifyCenter = (tbl.parent().outerHeight() > tbl.outerHeight());
+   tbl.css({'justify-content': justifyCenter ? 'center' : 'flex-start' });
 }
 
 export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
-    calculateStringWidth(options.instrumentName);
     if (view[m_newTabId]) view[m_newTabId].unbind();
     state[m_newTabId] = {
         //Input parameters
