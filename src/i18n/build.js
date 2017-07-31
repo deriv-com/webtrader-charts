@@ -19,6 +19,7 @@ const contents = languages.reduce((obj, lang) => {
         obj[lang] = content;
         return obj;
     }, {});
+const ignore = ['download-as', 'share', 'link', 'embed-code' ]; // these are keys have been removed, but we are keeping them in crowdin.
 
 const dictionary = { };
 const en = contentOf('en'); 

@@ -36,15 +36,7 @@ const timeperiod_arr = [{ value: "1t", name: "1 Tick", digit: 1, type: "ticks" }
 const chartType_arr = [{ value: 'candlestick', name: 'Candles' }, { value: 'ohlc', name: 'OHLC' },
         { value: 'line', name: 'Line' }, { value: 'dot', name: 'Dot' }, { value: 'linedot', name: 'Line Dot' },
         { value: 'spline', name: 'Spline' }, { value: 'table', name: 'Table' }
-    ],
-    appURL = "https://webtrader.binary.com",
-    urlShareTemplate = `${appURL}?affiliates=true&instrument={0}&timePeriod={1}&lang=${globals.config.lang}`,
-    iframeShareTemplate = `<iframe src="${urlShareTemplate}" width="350" height="400" style="overflow-y : hidden;" scrolling="no" />`,
-    twitterShareTemplate = 'https://twitter.com/share?url={0}&text={1}',
-    fbShareTemplate = 'https://facebook.com/sharer/sharer.php?u={0}',
-    gPlusShareTemplate = 'https://plus.google.com/share?url={0}',
-    bloggerShareTemplate = 'https://www.blogger.com/blog-this.g?u={0}&n={1}',
-    vkShareTemplate = 'http://vk.com/share.php?url={0}&title={1}';
+    ];
 
 const hideOverlays = (scope) => {
     scope.showTimePeriodSelector = false;
@@ -66,8 +58,6 @@ const changeChartType = (scope, chartType, newTimePeriod = null) => {
         })[0];
         state[scope.newTabId].showChartTypeSelector = false;
         charts.refresh('#' + scope.newTabId + '_chart', newTimePeriod, chartType);
-        /* trigger an event on the chart dialog, so we can listen on type changes,
-         * note: this will be use to update chart state for tracker.js */
         $('#' + scope.newTabId).trigger('chart-type-changed', chartType);
     }
     hideOverlays(scope);
@@ -205,13 +195,6 @@ const calculateStringWidth = (instrument_name) => {
     stringWidth.inst = getWidth(instrument_name) + 20;
 }
 
-const format = (str, ...args) => {
-   return str.replace(
-      /{(\d+)}/g,
-      (match, number) => (typeof args[number] !== 'undefined') ? args[number] : match
-   );
-}
-
 export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     calculateStringWidth(options.instrumentName);
     if (view[m_newTabId]) view[m_newTabId].unbind();
@@ -242,16 +225,6 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         showOverlay: options.showOverlays,
         showInstrumentName: options.showInstrumentName,
         showIndicatorDropDown: false,
-
-        exportChartURLShare: format(urlShareTemplate, options.instrumentCode, options.timePeriod),
-        exportChartIframeShare: format(iframeShareTemplate, options.instrumentCode, options.timePeriod),
-
-        fbShareLink: format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod))),
-        twitterShareLink: format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')'),
-        gPlusShareLink: format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod))),
-        bloggerShareLink: format(bloggerShareTemplate, format(urlShareTemplate, options.instrumentCode, options.timePeriod), options.instrumentName + '(' + options.timePeriod + ')'),
-        vkShareLink: format(vkShareTemplate, format(urlShareTemplate, options.instrumentCode, options.timePeriod), options.instrumentName + '(' + options.timePeriod + ')')
-
     };
     view[m_newTabId] = null;
 
@@ -303,13 +276,6 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
                charts.refresh('#' + scope.newTabId + '_chart', timePeriod);
             }
             showCandlestickAndOHLC(scope.newTabId, !tick && !isOverlaidView('#' + m_newTabId + '_chart'));
-            scope.exportChartURLShare = format(urlShareTemplate, scope.instrumentCode, timePeriod);
-            scope.exportChartIframeShare = format(iframeShareTemplate, scope.instrumentCode, timePeriod);
-            scope.fbShareLink = format(fbShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)));
-            scope.twitterShareLink = format(twitterShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')');
-            scope.gPlusShareLink = format(gPlusShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)));
-            scope.bloggerShareLink = format(bloggerShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')');
-            scope.vkShareLink = format(vkShareTemplate, encodeURIComponent(format(urlShareTemplate, options.instrumentCode, options.timePeriod)), options.instrumentName + '(' + options.timePeriod + ')');
             $('#' + scope.newTabId).trigger('chart-time-period-changed', timePeriod);
         }
     };
