@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import rv from 'rivets';
 import _ from 'lodash';
+import rv from 'rivets';
 import './common/rivetsExtra.js';
 import charts from './charts.js';
 import crosshair from './crosshair.js';
@@ -38,8 +38,8 @@ const chartType_arr = [{ value: 'candlestick', name: 'Candles' }, { value: 'ohlc
         { value: 'spline', name: 'Spline' }, { value: 'table', name: 'Table' }
     ],
     appURL = "https://webtrader.binary.com",
-    urlShareTemplate = appURL + '?affiliates=true&instrument={0}&timePeriod={1}&lang=' + globals.config.lang,
-    iframeShareTemplate = '<iframe src="' + urlShareTemplate + '" width="350" height="400" style="overflow-y : hidden;" scrolling="no" />',
+    urlShareTemplate = `${appURL}?affiliates=true&instrument={0}&timePeriod={1}&lang=${globals.config.lang}`,
+    iframeShareTemplate = `<iframe src="${urlShareTemplate}" width="350" height="400" style="overflow-y : hidden;" scrolling="no" />`,
     twitterShareTemplate = 'https://twitter.com/share?url={0}&text={1}',
     fbShareTemplate = 'https://facebook.com/sharer/sharer.php?u={0}',
     gPlusShareTemplate = 'https://plus.google.com/share?url={0}',
@@ -48,11 +48,11 @@ const chartType_arr = [{ value: 'candlestick', name: 'Candles' }, { value: 'ohlc
 
 const hideOverlays = (scope) => {
     scope.showTimePeriodSelector = false;
-    scope.toggleLoadSaveSelector(null, scope);
-    scope.toggleChartTypeSelector(null, scope);
-    scope.toggleDrawingToolSelector(null, scope);
-    scope.toggleExportSelector(null, scope);
-    scope.addRemoveIndicator(null, scope);
+    scope.showLoadSaveSelector = false;
+    scope.showChartTypeSelector = false;
+    scope.showDrawingToolSelector = false;
+    scope.showShareSelector = false;
+    scope.showIndicatorDropDown = false;
 }
 
 const changeChartType = (scope, chartType, newTimePeriod = null) => {
@@ -205,20 +205,6 @@ const calculateStringWidth = (instrument_name) => {
     stringWidth.inst = getWidth(instrument_name) + 20;
 }
 
-const toggleIcon = (ele, active) => {
-    ele = $(ele);
-    let cls = ele.attr("class");
-    ele.toggleClass(cls);
-
-
-    let type = cls && cls.split("-")[0];
-    if(!type) {
-       type = ele.closest('.chart-view').find('.chartSubContainer').data('type');
-    }
-
-    cls = (active === true) ? type + "-w-icon" : type + "-icon";
-    ele.toggleClass(cls);
-}
 const format = (str, ...args) => {
    return str.replace(
       /{(\d+)}/g,
@@ -250,7 +236,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         showTableOption: true,
         enableCrosshair: true,
         showDrawingToolSelector: false,
-        showExportSelector: false,
+        showShareSelector: false,
         showLoadSaveSelector: false,
         showShare: options.showShare,
         showOverlay: options.showOverlays,
@@ -276,33 +262,17 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         event.originalEvent.scope = scope.newTabId;
     };
     state[m_newTabId].toggleChartTypeSelector = (event, scope) => {
-        const temp = !scope.showChartTypeSelector;
-        const ele = $("#" + scope.newTabId + " .chart_type .img span")[0];
-        if (temp == true && event) {
-            hideOverlays(scope);
-            scope.showChartTypeSelector = temp;
-            toggleIcon(ele, true);
-            event.originalEvent.scope = scope.newTabId;
-        } else {
-            scope.showChartTypeSelector = false;
-            toggleIcon(ele, false);
-        }
-
+        const perv = scope.showChartTypeSelector;
+        hideOverlays(scope);
+        scope.showChartTypeSelector = !perv;
     };
 
-    state[m_newTabId].addRemoveIndicator = (event, scope) => {
-        const temp = !scope.showIndicatorDropDown;
-        const ele = $("#" + scope.newTabId + ' [rv-on-click="addRemoveIndicator"] .img span')[0];
-        if (temp == true && event) {
-            hideOverlays(scope);
-            scope.showIndicatorDropDown = temp;
-            toggleIcon(ele, true);
-            event.originalEvent.scope = scope.newTabId;
+    state[m_newTabId].toggleIndicatorDropDown = (event, scope) => {
+        const perv = scope.showIndicatorDropDown;
+        hideOverlays(scope);
+        scope.showIndicatorDropDown = !perv;
+        if(scope.showIndicatorDropDown)
             indicatorManagement.openDialog('#' + scope.newTabId + '_chart');
-        } else {
-            scope.showIndicatorDropDown = false;
-            toggleIcon(ele, false);
-        }
     };
 
     state[m_newTabId].addRemoveOverlay = (event, scope) => {
@@ -357,17 +327,9 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     };
 
     state[m_newTabId].toggleDrawingToolSelector = (event, scope) => {
-        const temp = !scope.showDrawingToolSelector;
-        const ele = $("#" + scope.newTabId + ' .drawButton .img span')[0];
-        if (temp == true && event) {
-            hideOverlays(scope);
-            scope.showDrawingToolSelector = temp;
-            toggleIcon(ele, true);
-            event.originalEvent.scope = scope.newTabId;
-        } else {
-            scope.showDrawingToolSelector = false;
-            toggleIcon(ele, false);
-        }
+        const perv = scope.showDrawingToolSelector;
+        hideOverlays(scope);
+        scope.showDrawingToolSelector = !perv;
     };
     /* Convert this to support es-6 import */
     state[m_newTabId].addDrawingTool = (event, scope) => {
@@ -380,32 +342,16 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         }
     };
 
-    state[m_newTabId].toggleExportSelector = (event, scope) => {
-        const temp = !scope.showExportSelector;
-        const ele = $("#" + scope.newTabId + ' .shareButton .img span')[0];
-        if (temp == true && event) {
-            hideOverlays(scope);
-            scope.showExportSelector = temp;
-            toggleIcon(ele, true);
-            event.originalEvent.scope = scope.newTabId;
-        } else {
-            scope.showExportSelector = false;
-            toggleIcon(ele, false);
-        }
+    state[m_newTabId].toggleShareSelector = (event, scope) => {
+        const perv = scope.showShareSelector;
+        hideOverlays(scope);
+        scope.showShareSelector = !perv;
     };
 
     state[m_newTabId].toggleLoadSaveSelector = (event, scope) => {
-        const temp = !scope.showLoadSaveSelector;
-        const ele = $("#" + scope.newTabId + ' .templateButton .img span')[0];
-        if (temp == true && event) {
-            hideOverlays(scope);
-            scope.showLoadSaveSelector = temp;
-            toggleIcon(ele, true);
-            event.originalEvent.scope = scope.newTabId;
-        } else {
-            scope.showLoadSaveSelector = false;
-            toggleIcon(ele, false);
-        }
+        const perv = !scope.showLoadSaveSelector;
+        hideOverlays(scope);
+        scope.showLoadSaveSelector = perv;
     };
 
     state[m_newTabId].export = (event, scope) => {
@@ -473,7 +419,8 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     // Add event only once.
     !isListenerAdded && $('body').on('click', (event) => {
         _.forEach(Object.keys(state), (tab) => {
-            if (event.originalEvent && tab != event.originalEvent.scope)
+            const dialog_element = $(`#${tab}`)[0];
+            if(!dialog_element || !$.contains(dialog_element, event.target))
                 hideOverlays(state[tab]);
         });
     });

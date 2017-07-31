@@ -3,7 +3,7 @@ import wtcharts from 'webtrader-charts';
 
 wtcharts.init({
    appId: 11,
-   lang: 'ja', // default is 'en'
+   lang: 'en', // default is 'en'
    server: 'wss://ws.binaryws.com/websockets/v3'
 });
 
@@ -111,52 +111,53 @@ const run_display_results_test = () => {
    });
 }
 
+const show_buttons_for_display_results_test = () => {
+   let last_epoch = 0;
+   const minMax = {max: 0, min: 1000*1000};
+   wtcharts.liveapi.events.on('ohlc', (e, data) => {
+      if(data.ohlc.symbol === 'R_50') {
+         const quote = data.ohlc.close*1;
+         minMax.max = Math.max(minMax.max, quote);
+         minMax.min = Math.min(minMax.min, quote);
+      }
+      last_epoch = data.ohlc.epoch*1;
+   });
+   wtcharts.liveapi.events.on('tick', (e, data) => {
+      if(data.tick.symbol === 'R_50') {
+         const quote = data.tick.quote*1;
+         minMax.max = Math.max(minMax.max, quote);
+         minMax.min = Math.min(minMax.min, quote);
+      }
+      last_epoch = data.tick.epoch*1;
+   });
 
-let last_epoch = 0;
-const minMax = {max: 0, min: 1000*1000};
-wtcharts.liveapi.events.on('ohlc', (e, data) => {
-   if(data.ohlc.symbol === 'R_50') {
-      const quote = data.ohlc.close*1;
-      minMax.max = Math.max(minMax.max, quote);
-      minMax.min = Math.min(minMax.min, quote);
-   }
-   last_epoch = data.ohlc.epoch*1;
-});
-wtcharts.liveapi.events.on('tick', (e, data) => {
-   if(data.tick.symbol === 'R_50') {
-      const quote = data.tick.quote*1;
-      minMax.max = Math.max(minMax.max, quote);
-      minMax.min = Math.min(minMax.min, quote);
-   }
-   last_epoch = data.tick.epoch*1;
-});
-
-const btns = $('#container2 .display-results-buttons').show();
-let barrier_confs = [];
-btns.find('.start-time').on('click', () => {
-   const epoch = last_epoch * 1000;
-   const value = minMax.min + Math.random()*(minMax.max - minMax.min);
-   chart2.draw.startTime(epoch);
-   const conf = { from: epoch-1000*2, to: null, value: value.toFixed(4)*1 };
-   barrier_confs.push(conf);
-   chart2.draw.barrier(conf);
-});
-btns.find('.end-time').on('click', () => {
-   const epoch = last_epoch*1000;
-   chart2.draw.endTime(epoch);
-   barrier_confs.forEach(conf => {
-      conf.to = epoch + 1000*2;
+   const btns = $('#container2 .display-results-buttons').show();
+   let barrier_confs = [];
+   btns.find('.start-time').on('click', () => {
+      const epoch = last_epoch * 1000;
+      const value = minMax.min + Math.random()*(minMax.max - minMax.min);
+      chart2.draw.startTime(epoch);
+      const conf = { from: epoch-1000*2, to: null, value: value.toFixed(4)*1 };
+      barrier_confs.push(conf);
       chart2.draw.barrier(conf);
    });
-   barrier_confs = [];
-});
-btns.find('.entry-spot').on('click', () => {
-   const epoch = last_epoch * 1000;
-   chart2.draw.entrySpot(epoch);
-});
-btns.find('.exit-spot').on('click', () => {
-   const epoch = last_epoch * 1000;
-   chart2.draw.exitSpot(epoch);
-});
+   btns.find('.end-time').on('click', () => {
+      const epoch = last_epoch*1000;
+      chart2.draw.endTime(epoch);
+      barrier_confs.forEach(conf => {
+         conf.to = epoch + 1000*2;
+         chart2.draw.barrier(conf);
+      });
+      barrier_confs = [];
+   });
+   btns.find('.entry-spot').on('click', () => {
+      const epoch = last_epoch * 1000;
+      chart2.draw.entrySpot(epoch);
+   });
+   btns.find('.exit-spot').on('click', () => {
+      const epoch = last_epoch * 1000;
+      chart2.draw.exitSpot(epoch);
+   });
+};
 
 
