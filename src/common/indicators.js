@@ -4,6 +4,7 @@ import Highcharts from 'highstock-release/highstock';
 import indicatorsArray from '../indicators-config.js';
 
 const indicatorsMetaData = _.cloneDeep(indicatorsArray);
+const events = $('<div />'); // use in memory jquery object for events
 
 function updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries, redraw = true) {
    var seriesData = indicatorSeries.data;
@@ -59,6 +60,24 @@ var indicators = {
             chart.redraw();
             this[indicatorID] = this[indicatorID] || [];
             this[indicatorID].push(indicatorObject);
+
+            // send notification, used in bot.es6 -----------
+            const filteredSeries = seriesAndAxisConfArr
+                                    .filter(r => r.seriesConf.type === 'line')
+                                    .map(r => r.seriesConf);
+            if(filteredSeries.length) {
+               var dialog_id = chart.renderTo.id.replace("_chart", "");
+               var uniqueIds = seriesAndAxisConfArr.map(r => r.seriesConf.id);
+               var values = filteredSeries.map(r => r.data[r.data.length-1][1]);
+               events.trigger('indicator-add', [{
+                  dialogId: dialog_id,
+                  indicatorId: indicatorID,
+                  uniqueIds: uniqueIds,
+                  values: values,
+                  color: indicatorObject.options[_.find(indicatorMetadata.fields, { type: "colorpicker" }).key]
+               }]); 
+            }
+            // ----------------------------------------------
          } else {
             console.error('Unable to add indicator!');
          }
@@ -68,6 +87,7 @@ var indicators = {
       };
       Highcharts.Series.prototype.removeIndicator = function(indicatorSeriesIDArr) {
          var series = this;
+         var chartId = this.chart.renderTo.id;
          if (series.options.isInstrument && series.options.id !== 'navigator') {
             for (var key in indicatorsMetaData) {
                var each = indicatorsMetaData[key];
@@ -93,6 +113,17 @@ var indicators = {
                            }
                         });
                         series[each.id].splice(index, 1);
+
+                        // send notification for bot.es6 -----------
+                        var uniqueIds = eachInstanceOfTheIndicator.getIDs();
+                        var dialog_id = chartId.replace("_chart", "");
+                        events.trigger('indicator-remove', [{
+                           dialogId: dialog_id,
+                           indicatorId: each.id,
+                           uniqueId: uniqueIds[0]
+                        }]);
+                        // ------------------------------------------
+
                         return false;
                      }
                   });
@@ -100,7 +131,7 @@ var indicators = {
             }
          }
          this.chart.redraw();
-         var dialog_id = this.chart.renderTo.id.replace("_chart", "");
+         var dialog_id = chartId.replace("_chart", "");
          var dialog = $('#' + dialog_id);
          dialog.trigger('chart-indicators-changed', this.chart);
       };
@@ -110,6 +141,7 @@ var indicators = {
       Highcharts.wrap(Highcharts.Series.prototype, 'addPoint', function(proceed, options, redraw, shift, animation) {
          proceed.call(this, options, redraw, shift, animation);
          var series = this;
+         var chartId = this.chart.renderTo.id;
          if (series.options.isInstrument && series.options.id !== 'navigator') {
             var time = options[0];
             var bar = barsTable.find({instrumentCdAndTp: series.options.id, time: time});
@@ -138,6 +170,25 @@ var indicators = {
                               }
                            }
                         });
+
+                        // send notification, used in bot.es6 ----------
+                        var filteredValues = indicatorUpdated
+                              .filter(
+                                 r => !_.isArray(r.value) &&
+                                      !(r.value instanceof CDLUpdateObject || r.value instanceof FractalUpdateObject)
+                              )
+                              .map(r => r.value);
+                        var uniqueIds = eachInstanceOfTheIndicator.getIDs();
+                        if(filteredValues.length) {
+                           var dialog_id = chartId.replace("_chart", "");
+                           events.trigger('indicator-update', [{
+                              dialogId: dialog_id,
+                              indicatorId: each.id,
+                              uniqueIds: uniqueIds,
+                              values: filteredValues
+                           }]); 
+                        }
+                        // -----------------------------------------------
                      });
                   }
                }
@@ -272,11 +323,13 @@ var indicators = {
       var candleSize = Math.abs(high - low);
       return bodySize >= (.7 * candleSize);
    },
+
    /*Return indicators-config.js data*/
    getIndicatorsJSONData: function() {
       return indicatorsMetaData;
    },
 
+   events: events
 };
 
 export default indicators;

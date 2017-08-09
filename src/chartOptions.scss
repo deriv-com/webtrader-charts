@@ -17,9 +17,6 @@
     .row {
        display: table-row;
        .cell {
-          &:first-child > .chartOptions_button {
-             margin-left: 0;
-          }
           vertical-align: middle;
           display: table-cell;
 
@@ -128,7 +125,6 @@
   }
 
   .timePeriodOverlay {
-     margin-left: 0 !important;
     .vertical-bottom.button{
       width: 15px;
       height: 18px;

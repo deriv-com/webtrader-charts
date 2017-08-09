@@ -247,26 +247,15 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     state[m_newTabId].export = (event, scope) => {
         const exportType = event.target.dataset.exporttype;
         if (exportType) {
-            const id = '#' + scope.newTabId + '_chart';
+            const id = `#${scope.newTabId}_chart`;
             const chart = $(id).highcharts();
-            switch (exportType) {
-                case 'png':
-                    chart.exportChartLocal();
-                    break;
-                case 'pdf':
-                    chart.exportChart({
-                        type: 'application/pdf'
-                    });
-                    break;
-                case 'csv':
-                    charts.generate_csv(chart, $(id).data(), m_newTabId);
-                    break;
-                case 'svg':
-                    chart.exportChartLocal({
-                        type: 'image/svg+xml'
-                    });
-                    break;
-            }
+            const exporters = {
+              png: () => chart.exportChartLocal(),
+              pdf: () => chart.exportChart({ type: 'application/pdf' }),
+              svg: () => chart.exportChartLocal({ type: 'image/svg+xml' }),
+              csv: () => charts.generate_csv(chart, $(id).data(), m_newTabId),
+            };
+            exporters[exportType]();
         }
     };
 
@@ -378,7 +367,6 @@ overlayManagement.events.on('ohlc-update', (e, { tabId, enable}) => {
         showCandlestickAndOHLC(tabId, enable);
     }
 });
-
 
 export const cleanBinding = (newTabId) => {
     if (view[newTabId]) {
