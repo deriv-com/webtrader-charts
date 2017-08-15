@@ -25,6 +25,12 @@
           }
        }
     }
+    &.justified-center .indicator-dialog {
+       margin: auto;
+    }
+    &.justified-flex-start .indicator-dialog {
+       margin-left: 20px !important;
+    }
   }
 
   .nav-caret.triangle {
@@ -74,11 +80,26 @@
        border: none;
     }
     &.indicators {
-       width: 90%;
+       width: 100%;
+       margin-left: 0 !important;
        height: 80%;
-       max-width: 500px;
        max-height: 500px;
        overflow: hidden;
+       border: none;
+       left: 0;
+       background: transparent;
+       pointer-events: none;
+       & > .indicator-dialog {
+          pointer-events: all;
+          height: 100%;
+          width: 90%;
+          max-width: 400px;
+          position: relative;
+          box-sizing: border-box;
+          border: 1px solid #d2d2d2;
+          margin: auto;
+          background: white;
+       }
     }
   }
 
@@ -181,6 +202,7 @@
   }
 
   .exportOverlay {
+     margin-left: -140px !important;
     .row {
       display: flex;
       width: 100%;
@@ -225,6 +247,7 @@
   .chartOptions_overlay.loadSaveOverlay {
     width: 200px;
     font-size: 0.8em;
+    margin-left: -120px !important;
     .chart-template-manager-root {
       max-height: 310px;
       overflow-y: auto;

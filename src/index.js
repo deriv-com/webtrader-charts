@@ -7,8 +7,6 @@ HighchartsMore && HighchartsMore(Highcharts);
 HighchartsExporting && HighchartsExporting(Highcharts);
 HighchartsExporting && HighcartsOfflineExporting(Highcharts);
 
-console.log(`webtrader-charts -> Using highcharts ${Highcharts.version}`);
-
 import indicatorBuilder from './indicatorBuilder'; 
 import indicatorManagement from './indicatorManagement';
 import overlayManagement from './overlayManagement';

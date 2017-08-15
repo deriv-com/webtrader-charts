@@ -116,8 +116,10 @@ const responsiveButtons = (scope, dialog) => {
            scope.timePeriod_name = i18n(scope.timePeriod.value);
         }
    }
-   const justifyCenter = (tbl.parent().outerHeight() > tbl.outerHeight());
+   const justifyCenter = (tbl.parent().outerHeight() > tbl.outerHeight()) || !scope.showInstrumentName;
    tbl.css({'justify-content': justifyCenter ? 'center' : 'flex-start' });
+   tbl.removeClass('justified-center justified-flex-start');
+   tbl.addClass(justifyCenter ? 'justified-center' : 'justified-flex-start');
 }
 
 export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
@@ -156,7 +158,6 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         const temp = !scope.showTimePeriodSelector;
         hideOverlays(scope);
         scope.showTimePeriodSelector = temp;
-        event.originalEvent.scope = scope.newTabId;
     };
     state[m_newTabId].toggleChartTypeSelector = (event, scope) => {
         const perv = scope.showChartTypeSelector;
@@ -201,6 +202,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             }
             showCandlestickAndOHLC(scope.newTabId, !tick && !isOverlaidView('#' + m_newTabId + '_chart'));
             $('#' + scope.newTabId).trigger('chart-time-period-changed', timePeriod);
+            hideOverlays(scope);
         }
     };
 
@@ -296,10 +298,11 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     }
 
     // Add event only once.
-    !isListenerAdded && $('body').on('click', (event) => {
+    !isListenerAdded && $('html').on('click', (event) => {
         _.forEach(Object.keys(state), (tab) => {
             const dialog_element = $(`#${tab}`)[0];
-            if(!dialog_element || !$.contains(dialog_element, event.target))
+            const handler = $(event.target).closest('[rv-on-click]');
+            if(!dialog_element || !handler.length || !$.contains(dialog_element, handler[0]))
                 hideOverlays(state[tab]);
         });
     });
