@@ -1,10 +1,10 @@
-<div class="chartOptions" tabindex="1" rv-on-keydown="closeOverlays">
+<div class="chartOptions" tabindex="1" rv-on-keydown="closeOverlays" rv-class-show-instrument-name="showInstrumentName">
     <div class="table">
         <div class="row">
             <div class="cell">
                 <div class="chartOptions_button timeperiod primary-color" rv-on-click="toggleTimerPeriodSelector" rv-class-button_selected="showTimePeriodSelector">
                     <span rv-attr-data-balloon='"Time interval" | i18n' data-balloon-pos="down">
-                        <span class="vertical-bottom" rv-text="timePeriod_name"></span>
+                        <span class="vertical-bottom timeperiod-name" rv-text="timePeriod_name"></span>
                         <span class="nav-caret triangle"></span>
                     </span>
                 </div>
@@ -47,8 +47,11 @@
             <div class="cell">
                 <div class="chartOptions_button chart_type primary-color" rv-on-click="toggleChartTypeSelector" rv-class-button_selected="showChartTypeSelector">
                     <span rv-attr-data-balloon='"Chart type" | i18n' data-balloon-pos="down">
-                        <div class="img"><span rv-class="chartType.value | append '-icon'"></span></div>
-                        <span class="vertical-bottom name" rv-show="showChartTypeLabel" rv-text="chartType.name | i18n"></span>
+                        <div class="img">
+                           <span rv-class="chartType.value | append '-icon'" rv-show="showChartTypeSelector | negate"></span>
+                           <span rv-class="chartType.value | append '-w-icon'" rv-show="showChartTypeSelector"></span>
+                        </div>
+                        <span class="vertical-bottom charttype-name" rv-show="showChartTypeLabel" rv-text="chartType.name | i18n"></span>
                         <span class="nav-caret triangle"></span>
                     </span>
                 </div>
@@ -69,9 +72,12 @@
             </div>
 
             <div class="cell">
-                <div class="chartOptions_button primary-color" rv-on-click="addRemoveIndicator" rv-class-button_selected="showIndicatorDropDown">
+                <div class="chartOptions_button primary-color" rv-on-click="toggleIndicatorDropDown" rv-class-button_selected="showIndicatorDropDown">
                     <span rv-attr-data-balloon='"Indicators" | i18n' data-balloon-pos="down">
-                        <div class="img"><span class="indicator-icon"></span></div>
+                        <div class="img">
+                           <span class="indicator-icon" rv-show="showIndicatorDropDown | negate"></span>
+                           <span class="indicator-w-icon" rv-show="showIndicatorDropDown"></span>
+                        </div>
                     </span>
                 </div>
                 <span class="countBubl" rv-show="indicatorsCount | gt 0" rv-text="indicatorsCount"></span>
@@ -90,7 +96,10 @@
             <div class="cell">
                 <div class="chartOptions_button primary-color" rv-on-click="toggleDrawingToolSelector" rv-class-button_selected="showDrawingToolSelector">
                     <span class = "drawButton" rv-attr-data-balloon='"Drawing tools" | i18n' data-balloon-pos="down">
-                        <div class="img"><span class="drawing-icon"></span></div>
+                        <div class="img">
+                           <span class="drawing-icon" rv-show="showDrawingToolSelector | negate"></span>
+                           <span class="drawing-w-icon" rv-show="showDrawingToolSelector"></span>
+                        </div>
                     </span>
                 </div>
                 <div class="chartOptions_overlay primary-color drawingToolOverlay table" rv-show="showDrawingToolSelector">
@@ -114,7 +123,10 @@
             <div class="cell">
                 <div class="chartOptions_button primary-color" rv-on-click="toggleLoadSaveSelector" rv-class-button_selected="showLoadSaveSelector">
                   <span class = "templateButton" rv-attr-data-balloon='"Chart template" | i18n' data-balloon-pos="down">
-                    <div class="img"><span class="chart_template-icon"></span></div>
+                    <div class="img">
+                       <span class="chart_template-icon" rv-show="showLoadSaveSelector | negate"></span>
+                       <span class="chart_template-w-icon" rv-show="showLoadSaveSelector"></span>
+                    </div>
                   </span>
                 </div>
                 <div class="chartOptions_overlay primary-color table font-s loadSaveOverlay" rv-show="showLoadSaveSelector">
@@ -122,17 +134,15 @@
                 </div>
             </div>
             <div class="cell" rv-show="showShare">
-                <div class="chartOptions_button primary-color" rv-on-click="toggleExportSelector" rv-class-button_selected="showExportSelector">
+                <div class="chartOptions_button primary-color" rv-on-click="toggleShareSelector" rv-class-button_selected="showShareSelector">
                     <span class = "shareButton" rv-attr-data-balloon='"Share chart" | i18n' data-balloon-pos="down">
-                        <div class="img"><span class="share-icon"></span></div>
+                        <div class="img">
+                           <span class="share-icon" rv-show="showShareSelector | negate"></span>
+                           <span class="share-w-icon" rv-show="showShareSelector"></span>
+                        </div>
                     </span>
                 </div>
-                <div class="table chartOptions_overlay primary-color exportOverlay" rv-show="showExportSelector">
-                    <div class="row" style="display:none;">
-                        <div class="cell">
-                            <span class="vertical-bottom" rv-text='"Download as" | i18n'></span>
-                        </div>
-                    </div>
+                <div class="table chartOptions_overlay primary-color exportOverlay" rv-show="showShareSelector">
                     <div class="row">
                         <div class="cell">
                             <div class="table download">
@@ -151,54 +161,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row" style="display:none;">
-                        <div class="cell">
-                            <span class="vertical-bottom share" rv-text='"Share" | i18n'></span>
-                        </div>
-                    </div>
-                    <div class="row" style="display:none;">
-                        <div class="cell">
-                            <div class="table share-button">
-                                <div class="row">
-                                    <div class="cell">
-                                        <a rv-href="fbShareLink" target="_blank"><img src="images/fb.svg"></a>
-                                    </div>
-                                    <div class="cell">
-                                        <a rv-href="twitterShareLink" target="_blank"><img src="images/twitter.svg"></a>
-                                    </div>
-                                    <div class="cell">
-                                        <a rv-href="gPlusShareLink" target="_blank"><img src="images/g-plus.svg"></a>
-                                    </div>
-                                    <div class="cell">
-                                        <a rv-href="bloggerShareLink" target="_blank"><img src="images/blogger.svg"></a>
-                                    </div>
-                                    <div class="cell">
-                                        <a rv-href="vkShareLink" target="_blank"><img src="images/vk.svg"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="cell" style="display:none;">
-                            <span class="vertical-bottom" rv-text='"Link" | i18n'></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="cell" style="display:none;">
-                            <input rv-value="exportChartURLShare" onClick="this.select()" readonly>
-                        </div>
-                    </div>
-                    <div class="row" style="display:none;">
-                        <div class="cell">
-                            <span class="vertical-bottom" rv-text='"Embed code" | i18n'></span>
-                        </div>
-                    </div>
-                    <div class="row" style="display:none;">
-                        <div class="cell padding-bottom-5">
-                            <input rv-value="exportChartIframeShare" onClick="this.select()" readonly>
                         </div>
                     </div>
                 </div>

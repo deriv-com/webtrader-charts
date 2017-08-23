@@ -7,8 +7,6 @@ HighchartsMore && HighchartsMore(Highcharts);
 HighchartsExporting && HighchartsExporting(Highcharts);
 HighchartsExporting && HighcartsOfflineExporting(Highcharts);
 
-console.log(`webtrader-charts -> Using highcharts ${Highcharts.version}`);
-
 import indicatorBuilder from './indicatorBuilder'; 
 import indicatorManagement from './indicatorManagement';
 import overlayManagement from './overlayManagement';
@@ -23,6 +21,7 @@ import chartTemplateManager from './chartTemplateManager';
 import {globals} from './common/globals.js';
 import {init} from './common/liveapi'; 
 import liveapi from './common/liveapi'; 
+import indicators from './common/indicators';
 
 import './common/rivetsExtra.js';
 import './indicators/index.js';
@@ -36,6 +35,8 @@ export {default as indicatorBuilder} from './indicatorBuilder';
 export {default as indicatorManagement} from './indicatorManagement'; 
 export {default as overlayManagement} from './overlayManagement'; 
 export {default as chartingRequestMap} from './common/chartingRequestMap'; 
+export {default as indicators} from './common/indicators'; 
+export {default as stream_handler} from './common/stream_handler'; 
 export {init, default as liveapi} from './common/liveapi'; 
 export {globals} from './common/globals.js';
 
@@ -49,6 +50,8 @@ module.exports = {
    overlayManagement,
    chartingRequestMap,
    globals,
+   indicators,
+   stream_handler,
    init,
    liveapi
 };

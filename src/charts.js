@@ -251,11 +251,14 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         start: options.start
     });
 
+    var initialized = false;
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
             events: {
                 load: function(event) {
+                    if(initialized) { return; }
+                    initialized = true;
 
                     this.showLoading();
                     currentPrice.init();

@@ -1,16 +1,35 @@
 .chartOptions {
    font-family: Roboto,Verdana,Arial,sans-serif;
    outline: 0;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   align-items: center;
 
-  .table {
-    display: table;
-    margin: 5px auto;
+   > .table {
+    display: flex;
+    min-width: 290px;
+    flex-grow: 1;
+    height: 34px;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
     .row {
        display: table-row;
        .cell {
           vertical-align: middle;
           display: table-cell;
+
+          .charttype-name, .timeperiod-name {
+             padding-right: 5px;
+          }
        }
+    }
+    &.justified-center .indicator-dialog {
+       margin: auto;
+    }
+    &.justified-flex-start .indicator-dialog {
+       margin-left: 20px !important;
     }
   }
 
@@ -61,11 +80,26 @@
        border: none;
     }
     &.indicators {
-       width: 90%;
+       width: 100%;
+       margin-left: 0 !important;
        height: 80%;
-       max-width: 500px;
        max-height: 500px;
        overflow: hidden;
+       border: none;
+       left: 0;
+       background: transparent;
+       pointer-events: none;
+       & > .indicator-dialog {
+          pointer-events: all;
+          height: 100%;
+          width: 90%;
+          max-width: 400px;
+          position: relative;
+          box-sizing: border-box;
+          border: 1px solid #d2d2d2;
+          margin: auto;
+          background: white;
+       }
     }
   }
 
@@ -84,7 +118,7 @@
     font-size: 0.8em;
     margin-top: 11px;
     line-height: 8px;
-    &.name {
+    &.charttype-name {
       margin-left: -5px;
       vertical-align: top;
     }
@@ -168,6 +202,7 @@
   }
 
   .exportOverlay {
+     margin-left: -140px !important;
     .row {
       display: flex;
       width: 100%;
@@ -183,10 +218,6 @@
           margin-left: -8px;
           margin-right: -3px;
         }
-        .table.share-button {
-          margin-left: 8px;
-          margin-bottom: 0px;
-        }
         .table.download {
           margin:10px 6px 10px 4px;
           span {
@@ -198,9 +229,6 @@
         .vertical-bottom {
           margin-left: 7.5px;
           height: 22.5px;
-          &.share{
-            height: 8px;
-          }
         }
         input {
           margin-left: 7.5px;
@@ -219,6 +247,7 @@
   .chartOptions_overlay.loadSaveOverlay {
     width: 200px;
     font-size: 0.8em;
+    margin-left: -120px !important;
     .chart-template-manager-root {
       max-height: 310px;
       overflow-y: auto;
@@ -322,10 +351,7 @@
   }
 
   .instrument_name {
-    float: right;
-    margin: 0px 11px 0px 5px;
-    padding: 0 5px 0 5px;
-    line-height: 40px;
+     padding: 0 5px;
   }
 }
 

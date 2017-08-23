@@ -55,6 +55,10 @@ liveapi.events.on('tick', (e, data) => {
             if (!series) return;
 
             series.addPoint([time, price]);
+            // used int bot.es6 -----------------
+            events.trigger('chart-tick', [{ tick: { price: tick.price*1, time:tick.time }, containerId: chartID.containerIDWithHash, key: key}]);
+            // ----------------------------------
+
             //setExtremePointsForXAxis(chart, time);
          };
       }
@@ -129,6 +133,9 @@ liveapi.events.on('ohlc', (e, data) => {
             return;
          }
 
+         // used int bot.es6 -------------
+         events.trigger('chart-ohlc', [{ ohlc: { time, open, high, low, close, isNew }, containerId: chartID.containerIDWithHash, key: key}]);
+         // ------------------------------
          if (type && isDataTypeClosePriceOnly(type)) {//Only update when its not in loading mode
             if (isNew) {
                series.addPoint([time, close], true, true, false);
