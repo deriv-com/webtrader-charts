@@ -80,9 +80,9 @@ const timeperiod_i18n = value => {
       return value.toUpperCase();
    }
 
-   if(value.startsWith('1')) { value = i18n(value); }
+   const [first, second] = value.split(' ');
+   if(first === '1') { value = i18n(value); }
    else {
-      const [first, second] = value.split(' ');
       value = `${first} ${i18n(second)}`;
    }
 

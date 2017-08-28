@@ -1,6 +1,6 @@
 {
   "name": "webtrader-charts",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
