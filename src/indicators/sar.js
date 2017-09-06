@@ -198,6 +198,7 @@ SAR.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
                 lineWidth: 0,
                 marker: {
                     enabled: true,
+                    radius: 2,
                     symbol: 'circle'
                 },
                 color: this.options.stroke,
