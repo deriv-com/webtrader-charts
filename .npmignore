@@ -1,4 +1,5 @@
 node_modules/
+binary-static/
 npm-debug.log
 example/
 **/.tern-port
