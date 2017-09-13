@@ -63,8 +63,8 @@ const activeSymbols = () => {
    if(last_promise  && (new Date() - last_promise_time) > 5*1000) {
       return last_promise;
    }
-   const promise = liveapi
-      .send({ active_symbols: 'brief' })
+   const promise = liveapi.cached
+      .send({ active_symbols: 'brief' }, 5*60)
       .then((data) => {
          const active_symbols = [];
          const active_markets = _.map(_.groupBy(data.active_symbols,'market'), (symbols) => {
