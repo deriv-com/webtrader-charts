@@ -146,11 +146,19 @@ export const execute = (cb) => {
 
 export const cached  = {
    /* Note: Will cache only if the result was successfull.*/
-   send:(data) => {
+   send:(data, timeoutInSeconds = 60*60) => {
       const key = JSON.stringify(data);
-       if (cached_promises[key])
-           return cached_promises[key].promise;
-      cached_promises[key] = { data: data, promise: null };
+       if (cached_promises[key]) {
+           const now = new Date().getTime();
+           const then = cached_promises[key].time;
+           if(now - then <= timeoutInSeconds*1000) {
+               return cached_promises[key].promise;
+           }
+           else {
+              delete cached_promises[key];
+           }
+       }
+      cached_promises[key] = { data: data, promise: null, time: new Date().getTime() };
       return cached_promises[key].promise = api.send(data)
          .catch((up) => {
             /* we don't want to cache promises that are rejected,
