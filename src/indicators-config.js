@@ -282,6 +282,7 @@ export const config = {
     short_display_name: "WMA",
     onChartIndicator: true,
     editable: true,
+    print: ['period', 'appliedTo'],
     fields: [
       {title: "Period", key: "period", min: 1, max: 200, value: 21, type: "slider"},
       {title: "Stroke width", key: "strokeWidth", min: 1, max: 10, value: 1, type: "slider"},
