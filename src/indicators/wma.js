@@ -1,7 +1,7 @@
 import {toFixed} from '../common/utils.js';
 import {makeIndicator} from './new_indicatorbase.js';
 
-function WMA2state(options, indicators) {
+function WMAstate(options, indicators) {
     return {
         indicators: indicators,
         options: options,
@@ -32,7 +32,7 @@ function getWMA(data, start, period, getter) {
     return value;
 }
 
-function setupWMA2(data, state) {
+function setupWMA(data, state) {
     var windowStart = state.options.period - 1;
     return data.map((tick, i) => {
         var wma = null;
@@ -46,7 +46,7 @@ function setupWMA2(data, state) {
     });
 }
 
-function eachTickWMA2(data, state) {
+function eachTickWMA(data, state) {
     var wmaValue = getWMA(
         state.priceData,
         state.indicatorData.length - 1,
@@ -57,4 +57,4 @@ function eachTickWMA2(data, state) {
     return [data.time, wmaValue];
 }
 
-window.WMA = makeIndicator('wma', eachTickWMA2, setupWMA2, WMA2state);
+window.WMA = makeIndicator('wma', eachTickWMA, setupWMA, WMAstate);

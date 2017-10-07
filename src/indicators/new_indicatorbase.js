@@ -41,18 +41,27 @@ function buildConfig(options, indicator, metadata) {
 /**
  *
  * @param id - Indicator ID
- * @param f - Function called with ticks
- * @param g - ([tick...], options) => IndicatorData
- * @param h - Function called to get a state object
+ * @param f - (tick, state, isUpdate) => {time: t, value: x}
+ * @param g - ([tick...], options, indicators) => State Object
+ * @param h - (options, indicators) => State Object
+ * @param s - optional (state) => String
  *
  */
-export const makeIndicator = function(id, f, g, h) {
+export const makeIndicator = function(id, f, g, h, s) {
     const uniqueID = uuid();
     // NOTE: `indicators` is an injected helper module
-    return function(data, options, indicators) {
+    return function(priceData, options, indicators) {
+        var toString = s || (() => {
+            var metadata = indicatorsArray[id];
+            var s = metadata.short_display_name;
+            var q = metadata.print
+                .map(key => options[key])
+                .join(', ');
+            return s + '(' + q + ')';
+        });
+
         var state = h(options, indicators);
-        var priceData = data;
-        var indicatorData = g(data, state);
+        var indicatorData = g(priceData, state);
 
         state.priceData = priceData;
         state.indicatorData = indicatorData;
@@ -62,16 +71,16 @@ export const makeIndicator = function(id, f, g, h) {
             options: options,
             priceData: priceData,
             indicatorData: indicatorData,
-
-            buildSeriesAndAxisConfFromData: metadata => buildConfig(options, u, metadata),
+            toString: toString,
 
             getIDs: () => [uniqueID],
+            buildSeriesAndAxisConfFromData: metadata => buildConfig(options, u, metadata),
 
             // replace the last data point with the given `tick`
             update: tick => {
                 var last = priceData.length - 1;
                 priceData[last] = tick;
-                var [t, x] = f(tick, state);
+                var [t, x] = f(tick, state, true);
                 indicatorData[last] = {time: t, value: x};
                 return [{
                     id: this.uniqueID,
@@ -82,21 +91,12 @@ export const makeIndicator = function(id, f, g, h) {
             // called when we are given a new `tick`
             addPoint: tick => {
                 priceData.push(tick);
-                var [t, x] = f(tick, state, priceData);
+                var [t, x] = f(tick, state, false);
                 indicatorData.push({time: t, value: x});
                 return [{
                     id: uniqueID,
                     value: x,
                 }];
-            },
-
-            toString: () => {
-                var metadata = indicatorsArray[id];
-                var s = metadata.short_display_name;
-                var q = metadata.print
-                    .map(key => options[key])
-                    .join(', ');
-                return s + '(' + q + ')';
             },
         };
         return u;
