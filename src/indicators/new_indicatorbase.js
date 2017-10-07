@@ -40,17 +40,17 @@ function buildConfig(options, indicator, metadata) {
 
 /**
  *
+ * @param id - Indicator ID
  * @param f - Function called with ticks
- * @param g - Function called with array of historical data and options
+ * @param g - ([tick...], options) => IndicatorData
  * @param h - Function called to get a state object
  *
  */
 export const makeIndicator = function(id, f, g, h) {
     const uniqueID = uuid();
+    // NOTE: `indicators` is an injected helper module
     return function(data, options, indicators) {
-        var state = h(options);
-        state.indicators = indicators;
-
+        var state = h(options, indicators);
         var priceData = data;
         var indicatorData = g(data, state);
 
@@ -67,6 +67,7 @@ export const makeIndicator = function(id, f, g, h) {
 
             getIDs: () => [uniqueID],
 
+            // replace the last data point with the given `tick`
             update: tick => {
                 var last = priceData.length - 1;
                 priceData[last] = tick;
@@ -78,10 +79,11 @@ export const makeIndicator = function(id, f, g, h) {
                 }];
             },
 
+            // called when we are given a new `tick`
             addPoint: tick => {
+                priceData.push(tick);
                 var [t, x] = f(tick, state, priceData);
                 indicatorData.push({time: t, value: x});
-                priceData.push(tick);
                 return [{
                     id: uniqueID,
                     value: x,

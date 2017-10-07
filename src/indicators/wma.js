@@ -1,42 +1,60 @@
 import {toFixed} from '../common/utils.js';
 import {makeIndicator} from './new_indicatorbase.js';
 
-var WMA2state = function(options) {
+function WMA2state(options, indicators) {
     return {
+        indicators: indicators,
         options: options,
+        getter: tick => {
+            return indicators.getIndicatorOrPriceValue(
+                tick,
+                options.appliedTo
+            );
+        },
     };
-};
+}
 
-var setupWMA2 = function(data, state) {
-    var indicatorData = [];
-    var windowStart = state.options.period - 1;
-    for (var index = 0; index < data.length; index++) {
-        var wmaValue = null;
-        if (index >= windowStart) {
-            wmaValue = 0.0;
-            for (var subIndex = index, count = state.options.period; subIndex >= 0 && count >= 0; count--, subIndex--) {
-                var price = state.indicators.getIndicatorOrPriceValue(data[subIndex], state.options.appliedTo);
-                wmaValue += price * count;
-            }
-            wmaValue = wmaValue / (state.options.period * (state.options.period + 1) / 2);
-            wmaValue = toFixed(wmaValue, 4);
-        }
-        indicatorData.push({ time: data[index].time, value: wmaValue });
+/*
+ * @param data - array of numbers
+ * @param start - array index to start from
+ * @param period - WMA window size/length
+ * @param getter - function to get the next data value. if no getter is passed
+ *                 then the getter function will default to (x => x).
+ *
+ */
+function getWMA(data, start, period, getter) {
+    var getValue = getter || (x => x);
+    var value = 0;
+    for (var i=start, count=period; i >= 0 && count >= 0; i--, count--) {
+        value += getValue(data[i]) * count;
     }
-    return indicatorData;
-};
+    value = value / (period * (period + 1) / 2);
+    return value;
+}
+
+function setupWMA2(data, state) {
+    var windowStart = state.options.period - 1;
+    return data.map((tick, i) => {
+        var wma = null;
+        if (i >= windowStart) {
+            wma = getWMA(data, i, state.options.period, state.getter);
+        }
+        return {
+            time: tick.time,
+            value: wma,
+        };
+    });
+}
 
 function eachTickWMA2(data, state) {
-    var index = state.indicatorData.length - 1;
-    var price = state.indicators.getIndicatorOrPriceValue(data, state.options.appliedTo);
-    var wmaValue = state.options.period * price;
-    for (var subIndex = index, count = state.options.period - 1; subIndex >= 0 && count >= 1; count--, subIndex--) {
-        var price = state.indicators.getIndicatorOrPriceValue(state.priceData[subIndex], state.options.appliedTo);
-        wmaValue += price * count;
-    }
-    wmaValue = wmaValue / (state.options.period * (state.options.period + 1) / 2);
+    var wmaValue = getWMA(
+        state.priceData,
+        state.indicatorData.length - 1,
+        state.options.period,
+        state.getter
+    );
     wmaValue = toFixed(wmaValue, 4);
     return [data.time, wmaValue];
-};
+}
 
 window.WMA = makeIndicator('wma', eachTickWMA2, setupWMA2, WMA2state);

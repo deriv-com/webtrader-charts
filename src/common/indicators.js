@@ -32,7 +32,6 @@ var indicators = {
    initHighchartIndicators : function(barsTable) {
       Highcharts.Series.prototype.addIndicator = function(indicatorID, options) {
          var data = barsTable.query({instrumentCdAndTp: this.options.id});
-         console.log(data);
          //Class name for all CDL type of indicators is CDL
          var indicatorObject = new window[_.startsWith(indicatorID.toUpperCase(), 'CDL') ? 'CDL' : indicatorID.toUpperCase()](data, options, indicators);
          var series = this;
@@ -40,7 +39,6 @@ var indicators = {
          var indicatorMetadata = indicatorsMetaData[indicatorID];
          if (indicatorMetadata) {
             var seriesAndAxisConfArr = indicatorObject.buildSeriesAndAxisConfFromData(indicatorMetadata);
-            console.log(seriesAndAxisConfArr);
             seriesAndAxisConfArr.forEach(function(seriesAndAxisConf) {
                if (seriesAndAxisConf.axisConf) {
                   chart.addAxis(seriesAndAxisConf.axisConf, false, false, false);
