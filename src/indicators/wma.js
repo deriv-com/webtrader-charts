@@ -1,79 +1,60 @@
-import {uuid, toFixed} from '../common/utils.js';
-/**
- * Created by Arnab Karmakar on 1/15/16.
+import {toFixed} from '../common/utils.js';
+import {makeIndicator} from './new_indicatorbase.js';
+
+function WMAstate(options, indicators) {
+    return {
+        indicators: indicators,
+        options: options,
+        getter: tick => {
+            return indicators.getIndicatorOrPriceValue(
+                tick,
+                options.appliedTo
+            );
+        },
+    };
+}
+
+/*
+ * @param data - array of numbers
+ * @param start - array index to start from
+ * @param period - WMA window size/length
+ * @param getter - function to get the next data value. if no getter is passed
+ *                 then the getter function will default to (x => x).
+ *
  */
-var WMA = function(data, options, indicators) {
+function getWMA(data, start, period, getter) {
+    var getValue = getter || (x => x);
+    var value = 0;
+    for (var i=start, count=period; i >= 0 && count >= 0; i--, count--) {
+        value += getValue(data[i]) * count;
+    }
+    value = value / (period * (period + 1) / 2);
+    return value;
+}
 
-    IndicatorBase.call(this, data, options, indicators);
-    this.priceData = [];
-
-    /*
-     WMA = ( Price * n + Price(1) * n-1 + ... Price( n-1 ) * 1) / ( n * ( n + 1 ) / 2 )
-     Where: n = time period
-     *
-     *  Do not fill any value in wmaData from 0 index to options.period-1 index
-     */
-    for (var index = 0; index < data.length; index++) {
-        if(index >= (this.options.period - 1)) {
-            var wmaValue = 0.0;
-            for (var subIndex = index, count = this.options.period; subIndex >= 0 && count >= 0; count--, subIndex--) {
-                var price = indicators.getIndicatorOrPriceValue(data[subIndex], this.options.appliedTo);
-                wmaValue += price * count;
-            }
-            wmaValue = wmaValue / (this.options.period * (this.options.period + 1) / 2);
-            wmaValue = toFixed(wmaValue, 4);
-            this.indicatorData.push({ time : data[index].time, value : wmaValue });
-        } else {
-            this.indicatorData.push({ time : data[index].time, value : null });
+function setupWMA(data, state) {
+    var windowStart = state.options.period - 1;
+    return data.map((tick, i) => {
+        var wma = null;
+        if (i >= windowStart) {
+            wma = getWMA(data, i, state.options.period, state.getter);
         }
-        this.priceData.push(data[index]);
-    }
+        return {
+            time: tick.time,
+            value: wma,
+        };
+    });
+}
 
-};
-
-WMA.prototype = Object.create(IndicatorBase.prototype);
-WMA.prototype.constructor = WMA;
-
-WMA.prototype.addPoint = function(data) {
-    this.priceData.push(data);
-    var index = this.indicatorData.length - 1;
-    var price = this.indicators.getIndicatorOrPriceValue(data, this.options.appliedTo);
-    var wmaValue = this.options.period * price;
-    for (var subIndex = index, count = this.options.period - 1; subIndex >= 0 && count >= 1; count--, subIndex--) {
-        var price = this.indicators.getIndicatorOrPriceValue(this.priceData[subIndex], this.options.appliedTo);
-        wmaValue += price * count;
-    }
-    wmaValue = wmaValue / (this.options.period * (this.options.period + 1) / 2);
+function eachTickWMA(data, state) {
+    var wmaValue = getWMA(
+        state.priceData,
+        state.indicatorData.length - 1,
+        state.options.period,
+        state.getter
+    );
     wmaValue = toFixed(wmaValue, 4);
-    this.indicatorData.push({ time : data.time, value : wmaValue });
-    return [{
-        id : this.uniqueID,
-        value : wmaValue
-    }];
-};
+    return [data.time, wmaValue];
+}
 
-WMA.prototype.update = function(data) {
-    var index = this.indicatorData.length - 1;
-    this.priceData[index].open  = data.open;
-    this.priceData[index].high  = data.high;
-    this.priceData[index].low   = data.low;
-    this.priceData[index].close = data.close;
-    var wmaValue = 0.0;
-    for (var subIndex = index, count = this.options.period; subIndex >= 0 && count >= 1; count--, subIndex--) {
-        var price = this.indicators.getIndicatorOrPriceValue(this.priceData[subIndex], this.options.appliedTo);
-        wmaValue += price * count;
-    }
-    wmaValue = wmaValue / (this.options.period * (this.options.period + 1) / 2);
-    wmaValue = toFixed(wmaValue, 4);
-    this.indicatorData[index].value = wmaValue;
-    return [{
-        id : this.uniqueID,
-        value : wmaValue
-    }];
-};
-
-WMA.prototype.toString = function() {
-    return 'WMA (' + this.options.period  + ', ' + this.indicators.appliedPriceString(this.options.appliedTo) + ')';
-};
-
-window.WMA  = WMA;
+window.WMA = makeIndicator('wma', eachTickWMA, setupWMA, WMAstate);

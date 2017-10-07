@@ -3,49 +3,43 @@
  * Created by Mahboob.M on 5/2/16.
  */
 
-var CC = function (data, options, indicators) {
-
-    IndicatorBase.call(this, data, options, indicators);
-    /* Coppock = WMA[10] of  (ROC[14] + ROC[11]).*/
-    this.shortRoc = new ROC(data, { period: options.shortRocPeriod, appliedTo: options.appliedTo }, indicators);
-    this.longRoc = new ROC(data, { period: options.longRocPeriod, appliedTo: options.appliedTo }, indicators);
-
-    var rocData=[];
-    for (var index = 0; index < data.length; index++) {
-        rocData.push({ time: data[index].time, close: this.shortRoc.indicatorData[index].value + this.longRoc.indicatorData[index].value });
+function getCCstate(options, indicators) {
+    return {
+        indicators: indicators,
+        options: options,
     };
+}
 
-    this.wmaData = new WMA(rocData, { period: options.wmaPeriod }, indicators);
-    this.indicatorData = this.wmaData.indicatorData;
-};
+function setupCC(data, state) {
+    /* Coppock = WMA[10] of  (ROC[14] + ROC[11]).*/
+    state.shortRoc = new ROC(data, { period: options.shortRocPeriod, appliedTo: options.appliedTo }, indicators);
+    state.longRoc = new ROC(data, { period: options.longRocPeriod, appliedTo: options.appliedTo }, indicators);
 
-CC.prototype = Object.create(IndicatorBase.prototype);
-CC.prototype.constructor = CC;
+    var rocData = data.map((tick, i) => ({
+        time:  tick.time,
+        close: state.shortRoc.indicatorData[i].value,
+    }));
 
-CC.prototype.addPoint = function (data) {
-    var shortRoc = this.shortRoc.addPoint(data)[0].value;
-    var longRoc = this.longRoc.addPoint(data)[0].value;
-    var cc = this.wmaData.addPoint({ time: data.time, close: shortRoc + longRoc })[0].value;
-    this.indicatorData = this.wmaData.indicatorData;
-    return [{
-        id: this.uniqueID,
-        value: cc
-    }];
-};
+    state.wmaData = new WMA(rocData, { period: options.wmaPeriod }, indicators);
+    return state.wmaData.indicatorData;
+}
 
-CC.prototype.update = function (data) {
-    var shortRoc = this.shortRoc.update(data)[0].value;
-    var longRoc = this.longRoc.update(data)[0].value;
-    var cc = this.wmaData.update({ time: data.time, close: shortRoc + longRoc })[0].value;
-    this.indicatorData = this.wmaData.indicatorData;
-    return [{
-        id: this.uniqueID,
-        value: cc
-    }];
-};
+function eachCC(tick, state, isUpdate) {
+    var cc;
+    if (!isUpdate) {
+        var shortRoc = this.shortRoc.addPoint(tick)[0].value;
+        var longRoc = this.longRoc.addPoint(tick)[0].value;
+        cc = this.wmaData.addPoint({ time: tick.time, close: shortRoc + longRoc })[0].value;
+    } else {
+        var shortRoc = this.shortRoc.update(tick)[0].value;
+        var longRoc = this.longRoc.update(tick)[0].value;
+        cc = this.wmaData.update({ time: tick.time, close: shortRoc + longRoc })[0].value;
+    }
+    return [tick.time, cc];
+}
 
-CC.prototype.toString = function () {
+function toStringCC() {
     return 'CC (' + this.options.shortRocPeriod + ', ' + this.options.longRocPeriod + ', ' + this.options.wmaPeriod + ', ' + this.indicators.appliedPriceString(this.options.appliedTo) + ')';
-};
+}
 
-window.CC = CC;
+window.CC = makeIndicator('cc', eachTickCC, setupCC, getCCstate, toStringCC);
