@@ -93,7 +93,7 @@
                 <span class="countBubl" rv-show="overlayCount | gt 0" rv-text="overlayCount"></span>
             </div>
 
-            <div class="cell">
+            <div class="cell" rv-show="showDrawingTools">
                 <div class="chartOptions_button primary-color" rv-on-click="toggleDrawingToolSelector" rv-class-button_selected="showDrawingToolSelector">
                     <span class = "drawButton" rv-attr-data-balloon='"Drawing tools" | i18n' data-balloon-pos="down">
                         <div class="img">

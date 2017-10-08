@@ -300,11 +300,10 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     this.spacing[2] = 0;
                 }
             },
-            spacingLeft: 0,
-            marginLeft: 55,
-            /* disable the auto size labels so the Y axes become aligned */
-            marginBottom: 15,
-            spacingBottom: 15
+            marginLeft: 5,
+            marginRight: 5,
+            marginBottom: 0,
+            spacingBottom: 0,
         },
 
         navigator: {
@@ -369,13 +368,32 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                      'In future, I want to get more data from server if users is dragging the zoom control more.' +
                      'This will help to load data on chart forever! We can warn users if they are trying to load' +
                      'too much data!');*/
-                }
+                },
             },
             labels: {
                 formatter: function() {
                     const str = this.axis.defaultLabelFormatter.call(this);
                     return str.replace('.', '');
                 }
+            },
+            crosshair: {
+              snap: false,
+              color: '#2a3052',
+              dashStyle: 'LongDashDot',
+              zIndex: 100,
+              label: {
+                enabled: true,
+                padding: 3,
+                fontSize: 10,
+                shape: 'rect',
+                formatter: function() { 
+                  const offset = options.timezoneOffset*-1 || 0;
+                  return moment.utc(this.x).utcOffset(offset).format("DD MMM YY, HH:mm:ss");
+                },
+                style: {
+                  color: 'white',
+                },
+              },
             },
             ordinal: false
         },
@@ -393,20 +411,19 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     } 
                     return this.value.toFixed(digits_after_decimal);
                 },
-                align: 'center'
+                x: 0,
+                align: 'left'
+            },
+            crosshair: {
+              snap: false,
+              color: '#2a3052',
+              dashStyle: 'LongDashDot',
+              zIndex: 50,
+              label: { enabled: false },
             }
         }],
 
         tooltip: {
-            crosshairs: [{
-                width: 2,
-                color: 'red',
-                dashStyle: 'dash'
-            }, {
-                width: 2,
-                color: 'red',
-                dashStyle: 'dash'
-            }],
             formatter: function() {
                 // TODO: fix moment locale
                 // moment.locale(lang);
@@ -425,8 +442,10 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     }
                     s += "<br>";
                 });
+                console.warn(s);
                 return s;
             },
+            useHTML: true,
             enabled: true,
             enabledIndicators: true
         },

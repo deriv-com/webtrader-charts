@@ -13,7 +13,6 @@
     height: 34px;
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: 5px;
     .row {
        display: table-row;
        .cell {
@@ -147,8 +146,9 @@
 
   .timePeriodOverlay {
     .vertical-bottom.button{
-      width: 15px;
-      height: 18px;
+      width: 29px;
+      height: 31px;
+      box-sizing: border-box;
       text-align: center;
       margin-top: 3px;
       margin-bottom: 3px;

@@ -145,6 +145,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         showTableOption: true,
         enableCrosshair: true,
         showDrawingToolSelector: false,
+        showDrawingTools: !!options.showDrawingTools,
         showShareSelector: false,
         showLoadSaveSelector: false,
         showShare: options.showShare,

@@ -9,9 +9,34 @@ export const draw = {
    zoomTo: (chart, epoch) => {
       const axis = chart.xAxis[0];
       const {min,max, dataMin, dataMax} = axis.getExtremes();
-      const interval = 2000;
+      const interval = 6000;
       if(epoch >= max)
-         axis.setExtremes(min, Math.min(epoch + 10*interval, dataMax));
+         axis.setExtremes(Math.max(min, epoch - 10*interval), Math.min(epoch + 10*interval, dataMax));
+   },
+   clear: (dialog) => {
+      const container = dialog.find(`#${dialog.attr('id')}_chart`);
+      const chart = container.highcharts();
+
+      const id = `#${dialog.attr('id')}_chart`;
+      if(!Store[id]) { return ; }
+
+      _.each(Store[id].barriers, conf => {
+        const barrier = chart.get(conf.id);
+        barrier && barrier.remove();
+      });
+
+      chart.xAxis[0].removePlotLine('plot-line-start-time');
+      chart.xAxis[0].removePlotLine('plot-line-end-time');
+
+     dialog.find('.chart-view').addClass('hide-subtitle');
+     const points = chart && chart.series[0] && chart.series[0].data;
+     for (let i = points.length - 1; i >= 0; i--) {
+       const point = points[i];
+       if (point && point.marker) {
+         point.update({ marker: { enabled: false} });
+       }
+     }
+      delete Store[id];
    },
    verticalLine: (dialog, options) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
@@ -20,15 +45,17 @@ export const draw = {
 
       const id = `#${dialog.attr('id')}_chart`;
       Store[id] = Store[id] || { points: [], plotLines: [], barriers: { } };
+      if(_.find(Store[id].plotLines, options)) { return; }
       Store[id].plotLines.push(options);
 
       if(chart && is_tick) {
+         draw.zoomTo(chart, options.value);
          dialog.find('.chart-view').removeClass('hide-subtitle');
          chart.xAxis[0].addPlotLine(options);
       }
    },
-   startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2 }),
-   endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash' }),
+   startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, id: 'plot-line-start-time' }),
+   endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash', id: 'plot-line-end-time' }),
    point: (dialog, {value, color = 'orange'}) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
@@ -38,6 +65,8 @@ export const draw = {
 
       const id = `#${dialog.attr('id')}_chart`;
       Store[id] = Store[id] || { points: [], plotLines: [], barriers: { } };
+
+      if(_.find(Store[id].points, {x: value})) { return; }
       Store[id].points.push({x: value, marker: marker});
 
       if(is_tick) {
@@ -62,7 +91,6 @@ export const draw = {
       const is_tick = isTick(container.data('timePeriod'));
       const storeId = `#${dialog.attr('id')}_chart`;
       const id = `barrier-${from}`;
-      const idFixed = `${id}-fixed`;
 
       Store[storeId] = Store[storeId] || { points: [], plotLines: [], barriers: { } };
 
@@ -73,7 +101,7 @@ export const draw = {
 
       const conf = {
          type: 'line',
-         id: to ? idFixed : id,
+         id: id,
          isFixed: !!to,
          value: value,
          from: from,

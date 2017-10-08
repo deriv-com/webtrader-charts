@@ -6,16 +6,20 @@ import tableView from './tableView.js';
 import chartOptions from './chartOptions.js';
 import liveapi from './common/liveapi.js';
 import Highcharts from 'highstock-release/highstock';
-import {chartableMarkets} from './overlayManagement.js';
 import chartDraw from './chartDraw.js';
+import {chartableMarkets} from './overlayManagement.js';
 
 const triggerResizeEffects = (dialog) => {
-    dialog.find('.chartSubContainer').width("100%");
-    //Because of title taking space, we have to reduce height
-    dialog.find('.chartSubContainer').height(dialog.height() - 42);
-    dialog.trigger('resize-event');
-    const containerIDWithHash = '#' + dialog.find('.chartSubContainer').attr('id');
-    charts.triggerReflow(containerIDWithHash);
+    const subContainer = dialog.find('.chartSubContainer');
+    const subContainerHeader = dialog.find('.chartSubContainerHeader');
+    subContainer.width("100%").height(dialog.height() - 34);
+
+    setTimeout(() => {
+      subContainer.width("100%").height(dialog.height() - subContainerHeader.height());
+      dialog.trigger('resize-event');
+      const containerIDWithHash = '#' + dialog.find('.chartSubContainer').attr('id');
+      charts.triggerReflow(containerIDWithHash);
+    }, 0);
 }
 
 const delayAmountFor = (symbol) => chartableMarkets().then(markets => {
@@ -80,6 +84,7 @@ export const addNewChart = function($parent, options) {
           entrySpot: epoch => chartDraw.draw.entrySpot(dialog, epoch),
           exitSpot: epoch => chartDraw.draw.exitSpot(dialog, epoch),
           barrier: config => chartDraw.draw.barrier(dialog, config),
+          clear: () => chartDraw.draw.clear(dialog),
        },
        events: {
           typeChange: null,
@@ -88,6 +93,7 @@ export const addNewChart = function($parent, options) {
           overlaysChange: null,
           anyChange: null
        },
+       done: () => drawChartPromise,
     };
     dialog.on('chart-type-changed', function(e, type) {
         Store[id].type = type;
@@ -137,8 +143,9 @@ export const addNewChart = function($parent, options) {
             instrumentName: options.instrumentName,
             instrumentCode: options.instrumentCode,
             showInstrumentName: options.showInstrumentName,
-            showOverlays: ("showOverlays" in options) ? options.showOverlays : true,
-            showShare: ("showShare" in options) ? options.showShare : true,
+            showOverlays: ('showOverlays' in options) ? options.showOverlays : true,
+            showShare: ('showShare' in options) ? options.showShare : true,
+            showDrawingTools: ('showDrawingTools' in options) ? options.showDrawingTools : true,
          });
       });
     });

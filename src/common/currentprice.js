@@ -26,9 +26,9 @@ export const init = () => {
          //Merge the options
          var seriesID = this.options.id;
          currentPriceOptions = $.extend({
-            stroke : 'red',
+            stroke : '#c03',
             strokeWidth : 1,
-            dashStyle : 'dash',
+            dashStyle : 'line',
             parentSeriesID : seriesID
          }, currentPriceOptions);
 
@@ -114,16 +114,20 @@ export const init = () => {
             dashStyle: currentPriceOptions.dashStyle,
             width: currentPriceOptions.strokeWidth || currentPriceOptions.width,
             value: price,
-            zIndex: zIndex,
+            // zIndex: zIndex,
+            zIndex: 100,
             textAlign: 'left',
             label: {
                text:  price + (isChange ? '%' : ''),
                style: {
-                  'background': '#2E8836',
+                  'display': 'inline-block',
+                  'background': '#c03',
                   'color' : 'white',
-                  'padding' : '2px 2px 2px 2px'
+                  'font-size': '10px',
+                  'line-height': '14px',
+                  'padding' : '0 2px',
                },
-               x: -40,
+               x: 0,
                y: 4,
                useHTML: true,
             }

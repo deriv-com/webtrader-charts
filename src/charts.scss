@@ -90,8 +90,25 @@
       }
       &.hide-subtitle {
          .highcharts-subtitle {
-            visibility: hidden;
+            display: none;
          }
+      }
+      .highcharts-container {
+        .highcharts-plot-line-label {
+          &:after {
+            left: 100%;
+            top: 0;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-left-color: #c03;
+            border-width: 7px 0 7px 12px;
+          }
+        }
+        // .highcharts-label.highcharts-tooltip { }
       }
    }
 }
