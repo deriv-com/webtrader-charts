@@ -300,6 +300,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     this.spacing[2] = 0;
                 }
             },
+            backgroundColor: 'transparent',
             marginLeft: 5,
             marginRight: 5,
             marginBottom: 0,

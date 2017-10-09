@@ -163,7 +163,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
                 compare: series_compare,
                 states: {
                     hover: {
-                        enabled: false
+                        enabled: true
                     }
                 },
                 isInstrument: true //Its our variable
