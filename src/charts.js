@@ -377,12 +377,13 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 }
             },
             crosshair: {
+              enabled: true,
               snap: false,
               color: '#2a3052',
               dashStyle: 'LongDashDot',
-              zIndex: 100,
+              zIndex: 4,
               label: {
-                enabled: true,
+                enabled: false,
                 padding: 3,
                 fontSize: 10,
                 shape: 'rect',
@@ -402,7 +403,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         yAxis: [{
             opposite: false,
             labels: {
-                reserveSpace: true,
+                reserveSpace: false,
                 formatter: function() {
                     if(!current_symbol || !current_symbol.pip) return;
                     const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
@@ -415,10 +416,11 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 align: 'left'
             },
             crosshair: {
+              enabled: true,
               snap: false,
               color: '#2a3052',
               dashStyle: 'LongDashDot',
-              zIndex: 50,
+              zIndex: 4,
               label: { enabled: false },
             }
         }],
@@ -428,7 +430,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 // TODO: fix moment locale
                 // moment.locale(lang);
                 var offset = options.timezoneOffset*-1 || 0;
-                var s = "<i>" + moment.utc(this.x).utcOffset(offset).format("dddd, DD MMM YYYY, HH:mm:ss") + "</i><br>";
+                var s = "<i>" + moment.utc(this.x).utcOffset(offset).format("ddd DD MMM HH:mm:ss") + "</i><br>";
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
@@ -442,12 +444,13 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     }
                     s += "<br>";
                 });
-                console.warn(s);
                 return s;
             },
-            useHTML: true,
+            hideDelay: 0,
+            zIndex: 5,
+            shape: 'square',
             enabled: true,
-            enabledIndicators: true
+            // enabledIndicators: true
         },
 
         exporting: {

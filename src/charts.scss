@@ -94,6 +94,11 @@
          }
       }
       .highcharts-container {
+        &:hover {
+          .highcharts-plot-line-label {
+            display: none !important;
+          }
+        }
         .highcharts-plot-line-label {
           &:after {
             left: 100%;
@@ -108,10 +113,26 @@
             border-width: 7px 0 7px 12px;
           }
         }
-        // .highcharts-label.highcharts-tooltip { }
+        .highcharts-tooltip {
+            display: block !important;
+            transform: translate(5px, 5px) !important;
+            > .highcharts-tooltip-box {
+              display: none;
+            }
+            > .highcharts-tooltip-box:nth-child(1) {
+              display: block;
+              stroke: transparent !important;
+              fill: rgba(0,0,0, 0.55);
+            }
+            text {
+              fill: white !important;
+            }
+        }
       }
    }
 }
+
+
 
 .chartSubContainerHeader {
   margin: 0 5px;

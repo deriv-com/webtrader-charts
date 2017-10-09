@@ -114,10 +114,10 @@ export const init = () => {
             dashStyle: currentPriceOptions.dashStyle,
             width: currentPriceOptions.strokeWidth || currentPriceOptions.width,
             value: price,
-            // zIndex: zIndex,
-            zIndex: 100,
+            zIndex: 4,
             textAlign: 'left',
             label: {
+               align: 'left',
                text:  price + (isChange ? '%' : ''),
                style: {
                   'display': 'inline-block',
@@ -125,10 +125,10 @@ export const init = () => {
                   'color' : 'white',
                   'font-size': '10px',
                   'line-height': '14px',
-                  'padding' : '0 2px',
+                  'padding' : '0 4px',
                },
                x: 0,
-               y: 4,
+               y: 4.3,
                useHTML: true,
             }
          });
