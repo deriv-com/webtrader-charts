@@ -252,6 +252,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
     });
 
     var initialized = false;
+    var tooltip = $('<div class="webtrader-charts-tooltip"></div>');
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -259,6 +260,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 load: function(event) {
                     if(initialized) { return; }
                     initialized = true;
+                    $(containerIDWithHash).find('> .highcharts-container').append(tooltip);
 
                     this.showLoading();
                     currentPrice.init();
@@ -379,21 +381,23 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             },
             crosshair: {
               enabled: true,
-              snap: false,
+              snap: true,
               color: '#2a3052',
               dashStyle: 'LongDashDot',
               zIndex: 4,
               label: {
-                enabled: false,
+                enabled: true,
                 padding: 3,
                 fontSize: 10,
                 shape: 'rect',
-                formatter: function() { 
+                formatter: function(x) { 
                   const offset = options.timezoneOffset*-1 || 0;
-                  return moment.utc(this.x).utcOffset(offset).format("DD MMM YY, HH:mm:ss");
+                  if(x) return moment.utc(x).utcOffset(offset).format("ddd DD MMM HH:mm:ss");
+                  return false;
                 },
                 style: {
                   color: 'white',
+                  backgroundColor: '#2a3052'
                 },
               },
             },
@@ -414,7 +418,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     return this.value.toFixed(digits_after_decimal);
                 },
                 x: 0,
-                align: 'left'
+                align: 'left',
+                zIndex: 3,
             },
             crosshair: {
               enabled: true,
@@ -428,10 +433,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
         tooltip: {
             formatter: function() {
-                // TODO: fix moment locale
-                // moment.locale(lang);
-                var offset = options.timezoneOffset*-1 || 0;
-                var s = "<i>" + moment.utc(this.x).utcOffset(offset).format("ddd DD MMM HH:mm:ss") + "</i><br>";
+                var s = '';
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
@@ -445,6 +447,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     }
                     s += "<br>";
                 });
+                tooltip.html(s);
+                tooltip.addClass('with-content');
+                return false;
                 return s;
             },
             hideDelay: 0,

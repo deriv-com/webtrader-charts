@@ -114,7 +114,7 @@ export const init = () => {
             dashStyle: currentPriceOptions.dashStyle,
             width: currentPriceOptions.strokeWidth || currentPriceOptions.width,
             value: price,
-            zIndex: 4,
+            zIndex: 5,
             textAlign: 'left',
             label: {
                align: 'left',
@@ -128,7 +128,7 @@ export const init = () => {
                   'padding' : '0 4px',
                },
                x: 0,
-               y: 4.3,
+               y: 4,
                useHTML: true,
             }
          });

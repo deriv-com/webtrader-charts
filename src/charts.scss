@@ -94,11 +94,6 @@
          }
       }
       .highcharts-container {
-        &:hover {
-          .highcharts-plot-line-label {
-            display: none !important;
-          }
-        }
         .highcharts-plot-line-label {
           &:after {
             left: 100%;
@@ -113,20 +108,23 @@
             border-width: 7px 0 7px 12px;
           }
         }
-        .highcharts-tooltip {
-            display: block !important;
-            transform: translate(5px, 5px) !important;
-            > .highcharts-tooltip-box {
-              display: none;
-            }
-            > .highcharts-tooltip-box:nth-child(1) {
-              display: block;
-              stroke: transparent !important;
-              fill: rgba(0,0,0, 0.55);
-            }
-            text {
-              fill: white !important;
-            }
+        &:hover {
+          .webtrader-charts-tooltip.with-content {
+            display: block;
+          }
+        }
+        .webtrader-charts-tooltip {
+          background-color: rgba(0,0,0,.6);
+          color: white;
+          position: absolute;
+          top: 4px;
+          left: 5px;
+          font-size: 12px;
+          min-width: 120px;
+          padding: 4px;
+          border-radius: 3px;
+          z-index: 10;
+          display: none;
         }
       }
    }

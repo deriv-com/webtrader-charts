@@ -166,7 +166,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
                         enabled: true
                     }
                 },
-                isInstrument: true //Its our variable
+                isInstrument: true //Its our variable,
             };
             if (isLineDotType(type) || isDotType(type)) {
                 seriesConf.type = 'line';
