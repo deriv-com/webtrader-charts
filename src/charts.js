@@ -570,18 +570,11 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         const mainSeries_type = $(containerIDWithHash).data("type");
         chart.showLoading();
 
-        const barriers = chart.series.filter(series => series.userOptions.isBarrier).map(series => series.userOptions);
         chart.series.filter(series => series.userOptions.isBarrier).map(series => series.remove());
 
         chart.series.filter(
            series => (series.userOptions.isInstrument || series.userOptions.onChartIndicator) && series.userOptions.id !== 'navigator'
         ).forEach(series => series.update({ compare: 'percent' }));
-
-        // put barriers back!
-        barriers.forEach(barrier => {
-           barrier.compare = 'percent';
-           chart.addSeries(barrier);
-        });
 
         return new Promise((resolve, reject) => {
             liveapi.execute(() => {

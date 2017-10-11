@@ -198,6 +198,9 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             if (tick && (scope.chartType.value === 'candlestick' || scope.chartType.value === 'ohlc')) {
                 changeChartType(scope, 'line', timePeriod);
             }
+            else if (!tick && (scope.chartType.value === 'line')) {
+                changeChartType(scope, 'candlestick', timePeriod);
+            }
             else {
                charts.refresh('#' + scope.newTabId + '_chart', timePeriod);
             }

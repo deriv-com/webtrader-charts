@@ -108,6 +108,11 @@
             border-width: 7px 0 7px 12px;
           }
         }
+        .highcharts-plot-line-label[style*="green"] {
+          &:after {
+            border-left-color: green;
+          }
+        }
         &:hover {
           .webtrader-charts-tooltip.with-content {
             display: block;

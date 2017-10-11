@@ -21,8 +21,7 @@ export const draw = {
       if(!Store[id]) { return ; }
 
       _.each(Store[id].barriers, conf => {
-        const barrier = chart.get(conf.id);
-        barrier && barrier.remove();
+        chart.yAxis[0].removePlotLine(conf.id);
       });
 
       chart.xAxis[0].removePlotLine('plot-line-start-time');
@@ -48,7 +47,8 @@ export const draw = {
       if(_.find(Store[id].plotLines, options)) { return; }
       Store[id].plotLines.push(options);
 
-      if(chart && is_tick) {
+      // if(chart && is_tick) {
+      if(chart) {
          draw.zoomTo(chart, options.value);
          dialog.find('.chart-view').removeClass('hide-subtitle');
          chart.xAxis[0].addPlotLine(options);
@@ -84,73 +84,54 @@ export const draw = {
    },
    exitSpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'orange' }),
    entrySpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'white' }),
-   barrier: (dialog, { value, from, to = null }) => {
+   barrier: (dialog, { value }) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
 
       const is_tick = isTick(container.data('timePeriod'));
       const storeId = `#${dialog.attr('id')}_chart`;
-      const id = `barrier-${from}`;
+      const id = `barrier-${value}`;
 
       Store[storeId] = Store[storeId] || { points: [], plotLines: [], barriers: { } };
 
       if(Store[storeId].barriers[id]) {
-         chart.get(id) && chart.get(id).remove(); // remove if already exists.
-         delete Store[storeId].barriers[id];
+        return;
       }
 
-      const conf = {
-         type: 'line',
-         id: id,
-         isFixed: !!to,
-         value: value,
-         from: from,
-         to: to,
-         isBarrier: true,
-         color: 'green',
-         connectNulls: true,
-         marker: {enabled: false},
-         enableMouseTracking: false,
-         data: [
-            {
-               y: value,
-               x: from,
-               dataLabels: { enabled: true, className: 'highlight', format: `barrier ${value}`, crop: false, overflow: 'none' }
-            },
-            {
-               y: value,
-               x: Math.max(to || chart.xAxis[0].getExtremes().dataMax, from)
-            }
-         ]
-      };
+     const conf = {
+       id: id,
+       color: 'green',
+       dashStyle: 'solid',
+       width: 1,
+       value: value,
+       zIndex: 5,
+       textAlign: 'left',
+       label: {
+         align: 'left',
+         text:  'barrier: ' + value,
+         style: {
+           'display': 'inline-block',
+           'background': 'green', // used in charts.scss selectors ([style*="green"]) ¯\_(ツ)_/¯
+           'color' : 'white',
+           'font-size': '10px',
+           'line-height': '14px',
+           'padding' : '0 4px',
+         },
+         x: 0,
+         y: 4,
+         useHTML: true,
+       }
+     };
 
       Store[storeId].barriers[conf.id] = conf;
-      if(is_tick) {
-         const compare = chart.series[0] && chart.series[0].userOptions.compare;
-         conf.compare = compare;
+      // if(is_tick) {
+         // const compare = chart.series[0] && chart.series[0].userOptions.compare;
+         // conf.compare = compare;
          dialog.find('.chart-view').removeClass('hide-subtitle');
-         chart.addSeries(conf);
-      }
+         chart.yAxis[0].addPlotLine(conf);
+      // }
    }
 };
-
-Highcharts.wrap(Highcharts.Series.prototype, 'addPoint', function(proceed, options, redraw, shift, animation) {
-   proceed.call(this, options, redraw, shift, animation);
-   const chart = this.chart;
-   const id = `#${chart.renderTo.id}`;
-   Store[id] = Store[id] || { points: [], plotLines: [], barriers: { } };
-   _.each(Store[id].barriers, conf => {
-      const seri = chart.get(conf.id);
-      if(!conf.isFixed && seri) {
-         if(this === chart.series[0]) {
-            seri.addPoint({x: chart.xAxis[0].getExtremes().dataMax, y: conf.value});
-         } 
-         conf.data = [conf.data[0], conf.data[1]];
-         conf.data[1].x = chart.xAxis[0].getExtremes().dataMax;
-      }
-   });
-});
-
 
 export const restore = (is_tick, chart, id) => {
    if(is_tick) {
@@ -166,7 +147,7 @@ export const restore = (is_tick, chart, id) => {
       });
 
       _.each(drawn.barriers, conf => {
-         chart.addSeries(conf);
+         chart.yAxis[0].addPlotLine(conf);
       });
    }
    else {
