@@ -423,7 +423,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             },
             crosshair: {
               enabled: true,
-              snap: false,
+              snap: true,
               color: '#2a3052',
               dashStyle: 'LongDashDot',
               zIndex: 4,
