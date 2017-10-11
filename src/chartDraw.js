@@ -10,8 +10,7 @@ export const draw = {
       const axis = chart.xAxis[0];
       const {min,max, dataMin, dataMax} = axis.getExtremes();
       const interval = 6000;
-      if(epoch >= max)
-         axis.setExtremes(Math.max(min, epoch - 10*interval), Math.min(epoch + 10*interval, dataMax));
+      axis.setExtremes(Math.max(min, epoch - 10*interval), dataMax);
    },
    clear: (dialog) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
@@ -29,13 +28,15 @@ export const draw = {
 
      dialog.find('.chart-view').addClass('hide-subtitle');
      const points = chart && chart.series[0] && chart.series[0].data;
-     for (let i = points.length - 1; i >= 0; i--) {
-       const point = points[i];
-       if (point && point.marker) {
-         point.update({ marker: { enabled: false} });
+     if (points) {
+       for (let i = points.length - 1; i >= 0; i--) {
+         const point = points[i];
+         if (point && point.marker) {
+           point.update({ marker: { enabled: false} });
+         }
        }
      }
-      delete Store[id];
+     delete Store[id];
    },
    verticalLine: (dialog, options) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
@@ -49,12 +50,12 @@ export const draw = {
 
       // if(chart && is_tick) {
       if(chart) {
-         draw.zoomTo(chart, options.value);
+         options.zoom && draw.zoomTo(chart, options.value);
          dialog.find('.chart-view').removeClass('hide-subtitle');
          chart.xAxis[0].addPlotLine(options);
       }
    },
-   startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, id: 'plot-line-start-time' }),
+  startTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, id: 'plot-line-start-time', zoom: true }),
    endTime: (dialog, epoch) => draw.verticalLine(dialog, { value: epoch, color: '#e98024', width: 2, dashStyle: 'Dash', id: 'plot-line-end-time' }),
    point: (dialog, {value, color = 'orange'}) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
@@ -72,7 +73,6 @@ export const draw = {
       if(is_tick) {
          dialog.find('.chart-view').removeClass('hide-subtitle');
          const points = chart && chart.series[0] && chart.series[0].data;
-         draw.zoomTo(chart, value);
          for (let i = points.length - 1; i >= 0; i--) {
             const point = points[i];
             if (point && point.x && value === point.x) {
@@ -134,10 +134,8 @@ export const draw = {
 };
 
 export const restore = (is_tick, chart, id) => {
-   if(is_tick) {
-      Store[id] = Store[id] || { points: [], plotLines: [], barriers: { } };
+   if(Store[id]) {
       const drawn = Store[id];
-      chart.xAxis[0] && drawn.plotLines.forEach(p => chart.xAxis[0].addPlotLine(p));
 
       const pointXs = drawn.points.map(p => p.x);
       chart.series[0] && chart.series[0].data.forEach(p => {
@@ -148,6 +146,11 @@ export const restore = (is_tick, chart, id) => {
 
       _.each(drawn.barriers, conf => {
          chart.yAxis[0].addPlotLine(conf);
+      });
+
+      chart.xAxis[0] && drawn.plotLines.forEach(p => {
+        p.zoom && draw.zoomTo(chart, p.value);
+        chart.xAxis[0].addPlotLine(p);
       });
    }
    else {

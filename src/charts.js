@@ -288,9 +288,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 overlays.forEach((ovlay) => {
                                     overlay(containerIDWithHash, ovlay.symbol, ovlay.displaySymbol, ovlay.delay_amount);
                                 });
+                                // restore plot lines & points after refresh.
+                                chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                             });
-                            // restore plot lines & points after refresh.
-                            chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                         });
                     });
 
