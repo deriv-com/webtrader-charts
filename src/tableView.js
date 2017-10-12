@@ -7,11 +7,11 @@ import moment from 'moment';
 import rv from 'rivets';
 import chartingRequestMap from './common/chartingRequestMap.js';
 import stream_handler from './common/stream_handler.js';
-import images from './images/images.js';
 import {isTick, toFixed} from './common/utils.js';
 import html from './tableView.html';
 import './tableView.scss';
 import './common/rivetsExtra.js';
+import images from './images/images.js';
 
 const show_table_view = (dialog, instrumentCode, state) => {
    const table = dialog.find('.table-view');
@@ -108,6 +108,7 @@ export const init = (dialog, offset) => {
       renderDate: (epoch) => moment.utc(epoch).utcOffset(offset).format('YYYY-MM-DD HH:mm:ss'),
       is_tick: is_tick,
       thead: getColumns(is_tick),
+      images: images,
       tbody: []
    };
 

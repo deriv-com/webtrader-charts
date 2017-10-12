@@ -12,6 +12,7 @@ import {isTick, local_storage, isAffiliates, i18n} from './common/utils.js';
 import {globals} from './common/globals.js';
 import vertical_line from './draw/vertical_line.js';
 import horizontal_line from './draw/horizontal_line.js';
+import images from './images/images.js';
 
 const state = [],
     view = [];
@@ -152,6 +153,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         showOverlay: options.showOverlays,
         showInstrumentName: options.showInstrumentName,
         showIndicatorDropDown: false,
+        images:images,
     };
     view[m_newTabId] = null;
 

@@ -538,6 +538,16 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
    });
 };
 
+liveapi.events.on('connection-reopen', () => {
+   const map = chartingRequestMap.getMap();
+   const map_clone = _.cloneDeep(map);
+   _.each(map_clone, (data, key) => {
+      const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
+      delete map[key];
+      _.each(chartIds, chartId => refresh(chartId));
+   });
+});
+
 export const addIndicator = (containerIDWithHash, options) => {
     if ($(containerIDWithHash).highcharts()) {
         const chart = $(containerIDWithHash).highcharts();

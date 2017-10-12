@@ -16,7 +16,6 @@ import $ from 'jquery';
 import moment from 'moment';
 import liveapi from './liveapi.js';
 import notification from './notification.js';
-import { refresh } from '../charts.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
@@ -66,6 +65,10 @@ export const barsTable = {
 		return array;
 	}
 };
+
+const map = { };
+export const mapFor = key => map[key];
+export const getMap = () => map;
 
 export const barsLoaded = function(instrumentCdAndTp) {
     const key = instrumentCdAndTp;
@@ -205,9 +208,6 @@ export const keyFor = (symbol, granularity_or_timeperiod, start) => {
     return `${symbol}-${granularity}-${start}`.toUpperCase();
 }
 
-
-const map = { };
-export const mapFor = key => map[key];
 
 /*  options: {
       symbol,
@@ -358,16 +358,6 @@ export const removeChart = function(key, containerIDWithHash) {
     }
 }
 
-
-liveapi.events.on('connection-reopen', () => {
-   const map_clone = _.cloneDeep(map);
-   _.each(map_clone, (data, key) => {
-      const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
-      delete map[key];
-      _.each(chartIds, chartId => refresh(chartId));
-   });
-});
-
 export const events = $('<div/>');
 export default {
     barsLoaded,
@@ -379,5 +369,6 @@ export default {
     unregister,
     removeChart,
     mapFor,
-    events
+    events,
+    getMap,
 }

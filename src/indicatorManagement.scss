@@ -39,7 +39,7 @@
         display: inline-block;
         width: 40px;
         height: 40px;
-        background-image: url("images/ic-search.svg");
+        background-image: svg("images/ic-search.svg");
         background-repeat: no-repeat;
         background-position: 12px 12px;
         background-size: 16px 16px;
@@ -70,7 +70,7 @@
           box-shadow: none;
         }
         .search {
-          background-image: url("images/close-white.svg");
+          background-image: svg("images/close-white.svg");
         }
       }
     }
@@ -96,7 +96,7 @@
       height: 12px;
       margin: 14px 15px 14px 15px;
       display: inline-block;
-      background-image: url('images/back-arrow-w.svg');
+      background-image: svg('images/back-arrow-w.svg');
       background-repeat: round;
     }
     .text {
@@ -204,7 +204,7 @@
             position: absolute;
             right: 46px;
             &.edit {
-              background-image: url("images/ic-edit.svg");              
+              background-image: svg("images/ic-edit.svg");              
             }
           }
           &.option-2 {
@@ -217,15 +217,15 @@
             position: absolute;
             right: 15px;
             &.empty-star {
-              background-image: url("images/favorite-normal.svg");
+              background-image: svg("images/favorite-normal.svg");
               cursor: pointer;
             }
             &.full-star {
-              background-image: url("images/favorite-active.svg");
+              background-image: svg("images/favorite-active.svg");
               cursor: pointer;
             }
             &.remove {
-              background-image: url("images/close-blue.svg");              
+              background-image: svg("images/close-blue.svg");              
             }
           }
         }
