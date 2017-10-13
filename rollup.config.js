@@ -43,7 +43,13 @@ export default {
     postcss({
       preprocessor,
       extensions: ['.scss'],
-      plugins: [cssnano({ preset: 'default'})]
+      plugins: [cssnano({ preset: [
+        'default',
+        {
+          mergeLonghand: false
+        }
+      ]
+      })]
     }),
     json(),
     html({
