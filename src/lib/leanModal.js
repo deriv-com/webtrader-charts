@@ -48,7 +48,7 @@ $.fn.extend({
 			});
 			titlebar.css({
 				'margin-left' : -(o.width/2) + 'px',
-				top : (o.top - 29) + 'px',
+				top : (o.top - titlebar.outerHeight()) + 'px',
 				width: o.width + 'px'
 			});
 
