@@ -105,7 +105,7 @@
             position: absolute;
             pointer-events: none;
             border-left-color: #c03;
-            border-width: 7px 0 7px 12px;
+            border-width: 7px 0 7px 8px;
           }
         }
         .highcharts-plot-line-label[style*="green"] {
@@ -130,6 +130,17 @@
           border-radius: 3px;
           z-index: 10;
           display: none;
+          transition: top 0.3s;
+        }
+        .webtrader-charts-tooltip-top-half {
+          width: 100%;
+          background: transparent;
+          position: absolute;
+          height: 50%;
+          top: 0;
+        }
+        .webtrader-charts-tooltip-top-half:hover + .webtrader-charts-tooltip {
+          top: 50%;
         }
       }
    }

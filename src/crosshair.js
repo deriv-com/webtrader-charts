@@ -7,15 +7,17 @@ const crossHair_highchartsConf = {
 export const toggleCrossHair = (containerId) => {
   const chart = $(containerId).highcharts();
   if (chart) {
-    chart.xAxis[0].crosshair = chart.xAxis[0].crosshair ? false : crossHair_highchartsConf;
-    chart.yAxis[0].crosshair = chart.yAxis[0].crosshair ? false : crossHair_highchartsConf;
-    if (chart.yAxis[0].crosshair) {
-      chart.tooltip.options.formatter = null;
-    } else {
-      chart.tooltip.options.formatter = () => {
-        return false;
-      };
-    }
+    const xch = chart.xAxis[0].crosshair;
+    const ych = chart.yAxis[0].crosshair;
+    const show = xch.color === 'transparent';
+
+    xch.color = show ? '#2a3052' : 'transparent';
+    ych.color = show ? '#2a3052' : 'transparent';
+    ych.label.backgroundColor = show ? '#2a3052' : 'transparent';
+    ych.label.style.color = show ? 'white' : 'transparent';
+
+    chart.xAxis[0].update({crosshair: xch});
+    chart.yAxis[0].update({crosshair: ych});
   }
 };
 

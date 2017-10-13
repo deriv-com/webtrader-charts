@@ -253,6 +253,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     var initialized = false;
     var tooltip = $('<div class="webtrader-charts-tooltip"></div>');
+    var topHalf = $('<div class="webtrader-charts-tooltip-top-half"></div>')
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -260,6 +261,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 load: function(event) {
                     if(initialized) { return; }
                     initialized = true;
+                    $(containerIDWithHash).find('> .highcharts-container').append(topHalf);
                     $(containerIDWithHash).find('> .highcharts-container').append(tooltip);
 
                     this.showLoading();
@@ -290,6 +292,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 });
                                 // restore plot lines & points after refresh.
                                 chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
+                                // hack for z-index of the crosshiar!
+                                // chart &&  chart.yAxis[0].update({ crosshair: chart.yAxis[0].crosshair});
                             });
                         });
                     });
@@ -381,12 +385,12 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             },
             crosshair: {
               enabled: true,
-              snap: true,
+              snap: false,
               color: '#2a3052',
               dashStyle: 'LongDashDot',
               zIndex: 4,
               label: {
-                enabled: true,
+                enabled: false,
                 padding: 3,
                 fontSize: 10,
                 shape: 'rect',
@@ -419,31 +423,54 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 },
                 x: 0,
                 align: 'left',
-                zIndex: 3,
             },
             crosshair: {
               enabled: true,
-              snap: true,
+              snap: false,
               color: '#2a3052',
               dashStyle: 'LongDashDot',
-              zIndex: 4,
-              label: { enabled: false },
+              label: {
+                enabled: true,
+                align: 'left',
+                backgroundColor: '#2a3052',
+                padding: 1,
+                borderRadius: 0,
+                formatter: function(value) {
+                  if(!value || !current_symbol || !current_symbol.pip) return;
+                  const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
+
+                  return value.toFixed(digits_after_decimal);
+                },
+                style: {
+                  color : 'white',
+                  fontSize: '10px',
+                  textAlign: 'left',
+                },
+                x: 0,
+                y: 4,
+              },
             }
         }],
 
         tooltip: {
             formatter: function() {
-                var s = '';
+                if(!current_symbol || !current_symbol.pip) {
+                  tooltip.removeClass('with-content');
+                  return;
+                }
+                const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
+                const offset = options.timezoneOffset*-1 || 0;
+                let s = `<span>${moment.utc(this.x).utcOffset(offset).format("ddd DD MMM HH:mm:ss")}</span></br>`;
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
                         s += "<b>" + row.series.name + "</b>";
-                        s += `<br>  ${i18n('Open')}: ` + row.point.open;
-                        s += `<br>  ${i18n('High')}: ` + row.point.high;
-                        s += `<br>  ${i18n('Low')}: ` + row.point.low;
-                        s += `<br>  ${i18n('Close')}: ` + row.point.close;
+                        s += `<br>  ${i18n('Open')}: ` + row.point.open.toFixed(digits_after_decimal);
+                        s += `<br>  ${i18n('High')}: ` + row.point.high.toFixed(digits_after_decimal);
+                        s += `<br>  ${i18n('Low')}: ` + row.point.low.toFixed(digits_after_decimal);
+                        s += `<br>  ${i18n('Close')}: ` + row.point.close.toFixed(digits_after_decimal);
                     } else {
-                        s += row.series.name + ": <b>" + row.point.y + "</b>";
+                        s += row.series.name + ": <b>" + row.point.y.toFixed(digits_after_decimal) + "</b>";
                     }
                     s += "<br>";
                 });
