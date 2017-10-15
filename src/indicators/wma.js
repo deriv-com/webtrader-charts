@@ -1,19 +1,6 @@
 import {toFixed} from '../common/utils.js';
 import {makeIndicator} from './new_indicatorbase.js';
 
-function WMAstate(options, indicators) {
-    return {
-        indicators: indicators,
-        options: options,
-        getter: tick => {
-            return indicators.getIndicatorOrPriceValue(
-                tick,
-                options.appliedTo
-            );
-        },
-    };
-}
-
 /*
  * @param data - array of numbers
  * @param start - array index to start from
@@ -32,29 +19,28 @@ function getWMA(data, start, period, getter) {
     return value;
 }
 
-function setupWMA(data, state) {
-    var windowStart = state.options.period - 1;
-    return data.map((tick, i) => {
+window.WMA = makeIndicator('wma', function(ind) {
+    var getter = (tick) => ind.indicators.getIndicatorOrPriceValue(tick, ind.options.appliedTo);
+    var data = ind.priceData;
+    ind.indicatorData = data.map((tick, i) => {
         var wma = null;
-        if (i >= windowStart) {
-            wma = getWMA(data, i, state.options.period, state.getter);
+        if (i >= ind.options.period - 1) {
+            wma = getWMA(data, i, ind.options.period, getter);
         }
-        return {
-            time: tick.time,
-            value: wma,
-        };
+        return {time: tick.time, value: wma};
     });
-}
-
-function eachTickWMA(data, state) {
-    var wmaValue = getWMA(
-        state.priceData,
-        state.indicatorData.length - 1,
-        state.options.period,
-        state.getter
-    );
-    wmaValue = toFixed(wmaValue, 4);
-    return [data.time, wmaValue];
-}
-
-window.WMA = makeIndicator('wma', eachTickWMA, setupWMA, WMAstate);
+    var eachTick = (tick) => {
+        var wmaValue = getWMA(
+            ind.priceData,
+            ind.indicatorData.length - 1,
+            ind.options.period,
+            getter
+        );
+        wmaValue = toFixed(wmaValue, 4);
+        return [tick.time, wmaValue];
+    };
+    return {
+        update: eachTick,
+        next: eachTick,
+    };
+});
