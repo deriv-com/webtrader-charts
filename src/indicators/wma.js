@@ -32,7 +32,7 @@ window.WMA = makeIndicator('wma', function(ind) {
     var eachTick = (tick) => {
         var wmaValue = getWMA(
             ind.priceData,
-            ind.indicatorData.length - 1,
+            ind.priceData.length - 1,
             ind.options.period,
             getter
         );
