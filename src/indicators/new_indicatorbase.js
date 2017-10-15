@@ -18,21 +18,21 @@ export const makeIndicator = function(id, F) {
     klass.prototype = Object.create(IndicatorBase.prototype);
     klass.prototype.constructor = klass;
 
-    klass.toString = function() {
+    klass.prototype.toString = function() {
         var metadata = indicatorsArray[id];
         var s = metadata.short_display_name;
         var q = metadata.print
-            .map(key => options[key])
+            .map(key => this.options[key])
             .join(', ');
         return s + '(' + q + ')';
     };
 
-    klass.getIDs = function() {
+    klass.prototype.getIDs = function() {
         return [this.uniqueID];
     };
 
     // replace the last data point with the given `tick`
-    klass.update = function(tick) {
+    klass.prototype.update = function(tick) {
         var last = priceData.length - 1;
         this.priceData[last] = tick;
         var [time, value] = this._f.update(tick);
@@ -44,7 +44,7 @@ export const makeIndicator = function(id, F) {
     };
 
     // called when we are given a new `tick`
-    klass.addPoint = function(tick) {
+    klass.prototype.addPoint = function(tick) {
         this.priceData.push(tick);
         var [time, value] = this._f.next(tick);
         this.indicatorData.push({time, value});

@@ -1,63 +1,54 @@
 ﻿import {uuid, toFixed} from '../common/utils.js';
+import {makeIndicator} from './new_indicatorbase.js';
 /**
  * Created by Mahboob.M on 1/29/16.
  */
 
-var ROC = function (data, options, indicators) {
-    IndicatorBase.call(this, data, options, indicators);
-    this.priceData = [];
+/**
+ * @param data - array of datum
+ * @param index - get ROC for data[`index`]
+ * @param period - ROC period
+ * @param getter - function to get the numerical value from datum in the
+ *                 data array. if no getter is passed the default is
+ *                 (x => x).
+ */
+function getROC(data, index, period, getter) {
     /*
     * Formula(OHLC or Candlestick) -
     * 	ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100
     * 		n - period
     */
-    for (var index = 0; index < data.length; index++) {
-        if (index >= (this.options.period)) {
-            var price = this.indicators.getIndicatorOrPriceValue(data[index], this.options.appliedTo);
-            var nPrePrice = this.indicators.getIndicatorOrPriceValue(data[index - this.options.period], this.options.appliedTo);
-            var roc = toFixed((((price - nPrePrice) / nPrePrice) * 100), 4);
-            this.indicatorData.push({ time: data[index].time, value: roc });
-        } else {
-            this.indicatorData.push({ time: data[index].time, value: 0.0 });
-        }
-        this.priceData.push(data[index]);
+    if (index < period) {
+        return 0.0;
     }
-};
+    var getValue = getter || (x => x);
+    var prev = getter(data[index - period]);
+    var curr = getter(data[index]);
+    return ((curr - prev) / prev) * 100;
+}
 
-ROC.prototype = Object.create(IndicatorBase.prototype);
-ROC.prototype.constructor = ROC;
-
-ROC.prototype.addPoint = function (data) {
-    this.priceData.push(data);
-    var index = this.priceData.length - 1;
-    var price = this.indicators.getIndicatorOrPriceValue(this.priceData[index], this.options.appliedTo);
-    var nPrePrice = this.indicators.getIndicatorOrPriceValue(this.priceData[index - this.options.period], this.options.appliedTo);
-    var roc = toFixed((((price - nPrePrice) / nPrePrice) * 100), 4);
-    this.indicatorData.push({ time: data.time, value: roc });
-    return [{
-        id: this.uniqueID,
-        value: roc
-    }];
-};
-
-ROC.prototype.update = function (data) {
-    var index = this.priceData.length - 1;
-    this.priceData[index].open = data.open;
-    this.priceData[index].high = data.high;
-    this.priceData[index].low = data.low;
-    this.priceData[index].close = data.close;
-    var price = this.indicators.getIndicatorOrPriceValue(this.priceData[index], this.options.appliedTo);
-    var nPrePrice = this.indicators.getIndicatorOrPriceValue(this.priceData[index - this.options.period], this.options.appliedTo);
-    var roc = toFixed((((price - nPrePrice) / nPrePrice) * 100), 4);
-    this.indicatorData[index].value = roc;
-    return [{
-        id: this.uniqueID,
-        value: roc
-    }];
-};
+window.ROC = makeIndicator('roc', function(ind) {
+    var getter = (tick) => ind.indicators.getIndicatorOrPriceValue(tick, ind.options.appliedTo);
+    var data = ind.priceData;
+    ind.indicatorData = data.map((tick, index) => ({
+        time: tick.time,
+        value: getROC(data, index, ind.options.period, getter)
+    }));
+    var nextRoc = (tick) => {
+        var roc = getROC(
+            ind.priceData,
+            ind.priceData.length - 1,
+            ind.options.period,
+            getter
+        );
+        return [tick.time, toFixed(roc, 4)];
+    };
+    return {
+        update: nextRoc,
+        next: nextRoc,
+    };
+});
 
 ROC.prototype.toString = function () {
     return 'ROC (' + this.options.period + ', ' + this.indicators.appliedPriceString(this.options.appliedTo) + ')';
 };
-
-window.ROC = ROC;
