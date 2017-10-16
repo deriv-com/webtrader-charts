@@ -162,7 +162,7 @@ const init_state = (root) =>{
       if (type === 'candlestick' || type == 'ohlc') {
          dialog.data('type', 'line');
          dialog.trigger('chart-type-changed', 'line');
-         events.trigger('chart-type-update', [{ tabId: newTabId, type: false}]);
+         events.trigger('chart-type-update', [{ tabId: newTabId, type: 'line'}]);
          _.defer(fn);
       } else { fn(); }
 

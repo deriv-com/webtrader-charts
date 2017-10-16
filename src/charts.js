@@ -293,7 +293,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 // restore plot lines & points after refresh.
                                 chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                                 // hack for z-index of the crosshiar!
-                                // chart &&  chart.yAxis[0].update({ crosshair: chart.yAxis[0].crosshair});
+                                const crosshair = chart.yAxis[0].crosshair;
+                                chart &&  chart.yAxis[0].update({ crosshair: crosshair});
+                                $(containerIDWithHash).find('.highcharts-crosshair-labelundefined').remove();
                             });
                         });
                     });
