@@ -252,8 +252,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
     });
 
     var initialized = false;
-    var tooltip = $('<div class="webtrader-charts-tooltip"></div>');
-    var topHalf = $('<div class="webtrader-charts-tooltip-top-half"></div>')
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -261,8 +259,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 load: function(event) {
                     if(initialized) { return; }
                     initialized = true;
-                    $(containerIDWithHash).find('> .highcharts-container').append(topHalf);
-                    $(containerIDWithHash).find('> .highcharts-container').append(tooltip);
 
                     this.showLoading();
                     currentPrice.init();
@@ -392,9 +388,10 @@ export const drawChart = (containerIDWithHash, options, onload) => {
               dashStyle: 'LongDashDot',
               zIndex: 4,
               label: {
-                enabled: false,
+                enabled: true,
                 padding: 3,
-                fontSize: 10,
+                backgroundColor: '#2a3052',
+                borderRadius: 0,
                 shape: 'rect',
                 formatter: function(x) { 
                   const offset = options.timezoneOffset*-1 || 0;
@@ -403,7 +400,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 },
                 style: {
                   color: 'white',
-                  backgroundColor: '#2a3052'
+                  fontSize: '10px',
+                  padding: 1,
                 },
               },
             },
@@ -457,12 +455,11 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         tooltip: {
             formatter: function() {
                 if(!current_symbol || !current_symbol.pip) {
-                  tooltip.removeClass('with-content');
                   return;
                 }
                 const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
                 const offset = options.timezoneOffset*-1 || 0;
-                let s = `<span>${moment.utc(this.x).utcOffset(offset).format("ddd DD MMM HH:mm:ss")}</span></br>`;
+                let s = `<span>${moment.utc(this.x).utcOffset(offset).format("ddd DD MMM HH:mm:ss")}</span><br/>`;
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
@@ -476,11 +473,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     }
                     s += "<br>";
                 });
-                tooltip.html(s);
-                tooltip.addClass('with-content');
-                return false;
                 return s;
             },
+            borderColor: '#2a3052',
             hideDelay: 0,
             zIndex: 5,
             shape: 'square',
