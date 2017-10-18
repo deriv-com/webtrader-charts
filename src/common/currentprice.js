@@ -101,10 +101,12 @@ export const init = () => {
       function addPlotLines(currentPriceOptions, price) {
          var zIndex = this.chart.series.length + 1;
          var isChange = false;
-         if (!this.data[this.data.length - 1] || !price) return;
+         if (!this.data[this.data.length - 1] || !price) {
+           return;
+         }
 
-
-         let pip = 0;
+         const current_symbol = this.chart.userOptions && this.chart.userOptions.current_symbol;
+         let pip = (current_symbol && current_symbol.pip) ? (current_symbol.pip+"").split(".")[1].length : 0;
          for(var inx = this.data.length - 1; inx  > 0 && inx > this.data.length - 5; --inx) {
            const d = this.data[inx];
            if(d) {

@@ -15,6 +15,7 @@ import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import {i18n, isTick} from './common/utils.js';
+import { toggleCrossHair } from './crosshair.js';
 import chartDraw from './chartDraw.js';
 
 import './charts.scss';
@@ -212,10 +213,12 @@ export const generate_csv = (chart, data, dialog_id) => {
 export const drawChart = (containerIDWithHash, options, onload) => {
     let indicators = [];
     let overlays = [];
-    let current_symbol = [];
+    let current_symbol = {};
 
     liveapi.cached.send({active_symbols: "brief"}, 5*60).then((data)=>{
         current_symbol = _.filter(data.active_symbols,{symbol: options.instrumentCode})[0];
+        const chart = $(containerIDWithHash).highcharts();
+        chart.userOptions.current_symbol = current_symbol; // used in currentprice
     });
 
     if ($(containerIDWithHash).highcharts()) {
@@ -251,6 +254,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
     });
 
     var initialized = false;
+    const container = $(containerIDWithHash);
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -260,6 +264,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     initialized = true;
 
                     this.showLoading();
+                    toggleCrossHair(containerIDWithHash, {show: false});
                     currentPrice.init();
                     const chart = this;
                     liveapi.execute(() => {
@@ -288,8 +293,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 // restore plot lines & points after refresh.
                                 chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                                 // hack for z-index of the crosshiar!
-                                const crosshair = chart.yAxis[0].crosshair;
-                                chart &&  chart.yAxis[0].update({ crosshair: crosshair});
+                                toggleCrossHair(containerIDWithHash, {show: true});
                                 $(containerIDWithHash).find('.highcharts-crosshair-labelundefined').remove();
                             });
                         });
@@ -436,8 +440,12 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 borderRadius: 0,
                 formatter: function(value) {
                   if(!value || !current_symbol || !current_symbol.pip) return;
-                  const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
 
+                  if(this.chart.get_overlay_count() > 0) {
+                    return value.toFixed(2) + '%';
+                  }
+
+                  const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
                   return value.toFixed(digits_after_decimal);
                 },
                 style: {
