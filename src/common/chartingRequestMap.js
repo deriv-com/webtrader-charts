@@ -19,7 +19,7 @@ import notification from './notification.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
-   isTick, isLineDotType, isDotType,
+   isTick, isDotType,
    i18n
 } from './utils.js';
 
@@ -81,8 +81,13 @@ export const barsLoaded = function(instrumentCdAndTp) {
         if (!chartID) return;
         if (!$(chartID.containerIDWithHash).highcharts()) return;
         const series = $(chartID.containerIDWithHash).highcharts().get(key),
-            type = $(chartID.containerIDWithHash).data('type'),
             timePeriod = $(chartID.containerIDWithHash).data('timePeriod');
+        let type = $(chartID.containerIDWithHash).data('type');
+
+        if (type == 'linedot') {
+          type = 'line';
+          $(chartID.containerIDWithHash).data('type', 'line');
+        }
 
         if (series) { //Update mode
 
@@ -159,7 +164,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
                 id: key,
                 name: instrumentName,
                 data: dataInHighChartsFormat,
-                type: type ? type : 'candlestick', //area, candlestick, line, areaspline, column, ohlc, scatter, dot, linedot
+                type: type ? type : 'candlestick', //area, candlestick, line, areaspline, column, ohlc, scatter, dot
                 dataGrouping: {
                     enabled: false
                 },
@@ -171,15 +176,11 @@ export const barsLoaded = function(instrumentCdAndTp) {
                 },
                 isInstrument: true //Its our variable,
             };
-            if (isLineDotType(type) || isDotType(type)) {
+            if (isDotType(type)) {
                 seriesConf.type = 'line';
                 if (isDotType(type)) {
                     seriesConf.dashStyle = 'dot';
                 }
-                seriesConf.marker = {
-                    enabled: true,
-                    radius: isDotType(type) ? 0 : 2,
-                };
             }
             chart.addSeries(seriesConf);
         }
@@ -298,6 +299,9 @@ export const subscribe = function(key, chartID) {
     if (!map[key]) {
         return;
     }
+    if(map[key].chartIDs.indexOf(chartID) !== -1) {
+      return;
+    }
     map[key].subscribers += 1;
     if (chartID) {
         map[key].chartIDs.push(chartID);
@@ -318,44 +322,33 @@ export const unregister = function(key, containerIDWithHash) {
         clearInterval(map[key].timerHandler);
         map[key].timerHandler = null;
     }
-    /* Remove the following code if backend fixes this issue: 
-     * https://trello.com/c/1IZRihrH/4662-1-forget-call-for-one-stream-id-affects-all-other-streams-with-the-same-symbol
-     * Also remove instrument from function argument list.
-     */
-    //<<<<<<<<<<<<<<<<<<<<< start
-    const instrument = map[key].symbol;
-    const tickMap = map[keyFor(instrument, 0, undefined)];
-    //>>>>>>>>>>>>>>>>>>>> end
     if (map[key].subscribers === 0 && map[key].id) { /* id is set in stream_handler.js */
        liveapi.send({ forget: map[key].id })
-          //<<<<<<<<<<<<<<<<<<<<< start
-          .then(()=> {
-             // Resubscribe to tick stream if there are any tickSubscribers.
-             if(tickMap && tickMap.subscribers)
-                register({
-                   symbol: instrument,
-                   granularity: 0,
-                   subscribe: 1,
-                   count: 50 // To avoid missing any ticks.
-                }).then(() => {
-                   map[keyFor(instrument, 0, undefined)] = tickMap;
-                });
-          })
-          //>>>>>>>>>>>>>>>>>>>> end
           .catch((err) => { console.error(err); });
     }
     if (map[key].subscribers === 0) {
         delete map[key];
     }
 }
+export const unregister_all = function(containerIDWithHash) {
+  removeChart(containerIDWithHash);
+  _.each(map, (entry, key) => {
+    if (entry.subscribers === 0 && entry.id) {
+       liveapi.send({ forget: entry.id })
+          .catch((err) => { console.error(err); })
+          .then(() => { delete map[key] });
+    }
+  });
+}
 
 /* this will be use for charts.drawCharts method which wants to : Just make sure that everything has been cleared out before starting a new thread! */
-export const removeChart = function(key, containerIDWithHash) {
-    if (!map[key]) return;
-    if (_.includes(_.map(map[key].chartIDs,'containerIDWithHash'), containerIDWithHash)) {
-        map[key].subscribers -= 1;
-        _.remove(map[key].chartIDs, { containerIDWithHash: containerIDWithHash });
+export const removeChart = function(containerIDWithHash) {
+  _.each(map, (entry) => {
+    if (_.includes(_.map(entry.chartIDs,'containerIDWithHash'), containerIDWithHash)) {
+        _.remove(entry.chartIDs, { containerIDWithHash: containerIDWithHash });
+        entry.subscribers -= 1;
     }
+  });
 }
 
 export const events = $('<div/>');
@@ -367,6 +360,7 @@ export default {
     register,
     subscribe,
     unregister,
+    unregister_all,
     removeChart,
     mapFor,
     events,

@@ -106,7 +106,7 @@ export const destroy = (options) => {
 
     //granularity will be 0 for tick timePeriod
     const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, start);
-    chartingRequestMap.unregister(key, containerIDWithHash);
+    chartingRequestMap.unregister_all(containerIDWithHash);
 };
 
 export const generate_csv = (chart, data, dialog_id) => {
@@ -220,8 +220,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     if ($(containerIDWithHash).highcharts()) {
         //Just making sure that everything has been cleared out before starting a new thread
-        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod, options.start);
-        chartingRequestMap.removeChart(key, containerIDWithHash);
+        chartingRequestMap.removeChart(containerIDWithHash);
         const chart = $(containerIDWithHash).highcharts();
         indicators = chart.get_indicators() || [];
         overlays = options.overlays || [];
@@ -504,8 +503,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
     const options = $(containerIDWithHash).data();
     if (newTimePeriod) {
         //Unsubscribe from tickstream.
-        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod, options.start);
-        chartingRequestMap.unregister(key, containerIDWithHash);
+        chartingRequestMap.unregister_all(containerIDWithHash);
         dialog.data("timePeriod", newTimePeriod);
     }
     if (newChartType) {
@@ -636,6 +634,12 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
     return Promise.resolve();
 };
 
+export const overlay_unregister = (containerIDWithHash, instrumentCode, start) => {
+    const timePeriod = $(containerIDWithHash).data("timePeriod");
+    const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, start);
+    chartingRequestMap.unregister(key, containerIDWithHash);
+}
+
 export const changeTitle = (containerIDWithHash, newTitle) => {
     const chart = $(containerIDWithHash).highcharts();
     chart && chart.setTitle(newTitle);
@@ -649,5 +653,6 @@ export default {
     refresh,
     addIndicator,
     overlay,
+    overlay_unregister,
     changeTitle
 };

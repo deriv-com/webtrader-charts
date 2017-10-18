@@ -65,7 +65,6 @@ const getParameterByNameFromURL = (name) => {
 
 export const isTick = (ohlc) => ohlc && (ohlc.indexOf('t') != -1);
 export const isDotType = (type) => type === 'dot';
-export const isLineDotType = (type) => type === 'linedot';
 export const isDataTypeClosePriceOnly = (type) => !(type === 'candlestick' || type === 'ohlc');
 
 export const toFixed = (value, precision) =>
@@ -112,7 +111,6 @@ export default {
    local_storage,
    isTick,
    isDotType,
-   isLineDotType,
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
    isAffiliates,
