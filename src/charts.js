@@ -268,6 +268,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     currentPrice.init();
                     const chart = this;
                     liveapi.execute(() => {
+                        let errorHappened = false;
                         ohlc_handler.retrieveChartDataAndRender({
                             timePeriod: options.timePeriod,
                             instrumentCode: options.instrumentCode,
@@ -282,6 +283,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             notification.error(msg, containerIDWithHash.replace('_chart', ''));
                             chart && chart.showLoading(msg);
                             console.error(err);
+                            errorHappened = true;
                         }).then(() => {
                             /* the data is loaded but is not applied yet, its on the js event loop,
                                wait till the chart data is applied and then add the indicators */
@@ -293,7 +295,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 // restore plot lines & points after refresh.
                                 chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                                 // hack for z-index of the crosshiar!
-                                toggleCrossHair(containerIDWithHash, {show: true});
+                                if(!errorHappened) {
+                                  toggleCrossHair(containerIDWithHash, {show: true});
+                                }
                                 $(containerIDWithHash).find('.highcharts-crosshair-labelundefined').remove();
                             });
                         });
