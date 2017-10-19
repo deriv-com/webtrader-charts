@@ -630,13 +630,18 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                     instrumentName: overlayInsName,
                     series_compare: 'percent',
                     delayAmount: delayAmount
-                }).then(() => {
+                })
+                .catch((e) => {
+                   console.error(e);
+                })
+                .then(() => {
                     chart && chart.set_indicator_series(indicator_series);
                     if(chart.series[0].data.length ===0){
                         console.trace();
                     }
                     resolve();
-                }).catch((e) => {
+                })
+                .catch((e) => {
                    console.error(e);
                    resolve();
                 });
