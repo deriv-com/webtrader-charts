@@ -1,11 +1,13 @@
+import $ from 'jquery';
 import Highcharts from 'highstock-release/highstock';
+import {version} from '../package.json';
 import HighchartsMore from 'highstock-release/highcharts-more';
 import HighchartsExporting from 'highstock-release/modules/exporting';
 import HighcartsOfflineExporting from 'highstock-release/modules/offline-exporting';
 
 HighchartsMore && HighchartsMore(Highcharts);
 HighchartsExporting && HighchartsExporting(Highcharts);
-HighchartsExporting && HighcartsOfflineExporting(Highcharts);
+HighcartsOfflineExporting && HighcartsOfflineExporting(Highcharts);
 
 import indicatorBuilder from './indicatorBuilder'; 
 import indicatorManagement from './indicatorManagement';
@@ -53,5 +55,6 @@ export default {
    indicators,
    stream_handler,
    init,
-   liveapi
+   liveapi,
+   version
 };
