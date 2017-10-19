@@ -12,7 +12,6 @@ import html from 'rollup-plugin-html';
 import inliner from 'sass-inline-svg';
 import uglify from 'rollup-plugin-uglify';
 
-
 const preprocessor = (content, id) => new Promise((resolve, reject) => {
   sass.render({
     file: id,
@@ -88,7 +87,7 @@ export default {
     'highstock-release/highstock' : 'Highcharts',
     'highstock-release/highcharts-more' : 'HighchartsMore',
     'highstock-release/modules/exporting' : 'HighchartsExporting',
-    'highstock-release/modules/offline-exporting' : ' HighchartsOfflineExporting',
+    'highstock-release/modules/offline-exporting' : 'HighcartsOfflineExporting',
     'jquery': 'jQuery',
     'moment': 'moment',
   }

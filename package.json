@@ -1,12 +1,13 @@
 {
   "name": "webtrader-charts",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c && rollup -c rollup.config.iife.js",
     "build-translation": "node src/i18n/build.js",
     "watch": "rollup -c -w",
+    "watch2": "rollup -c rollup.config.iife.js -w",
     "deploy-example": "git subtree push --prefix example upstream gh-pages",
     "binary-static-clone": "git clone git@github.com:aminroosta/binary-static.git && cd binary-static && git remote add upstream git@github.com:binary-com/binary-static.git && git fetch upstream && git merge upstream/master && git push",
     "binary-static-init": "if cd binary-static; then git fetch upstream && git merge upstream/master && git push; else yarn binary-static-clone; fi",
