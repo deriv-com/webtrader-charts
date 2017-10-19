@@ -38,6 +38,7 @@
       </div>
 
       <button type="submit"
+              style="color: white"
               rv-disabled='templates.save_as_value | trim | eq ""'
               rv-css-opacity='templates.save_as_value | trim | eq "" | ternary 0.5 1' rv-text='"Save" | i18n'></button>
     </form>
@@ -67,7 +68,7 @@
     <div class="title">{templates.confirm_text}</div>
 
     <div class="button">
-      <button rv-on-click='templates.confirm_yes' rv-text='"Yes" | i18n'></button>
-      <button rv-on-click='templates.confirm_no' rv-text='"No" | i18n'></button>
+      <button rv-on-click='templates.confirm_yes' rv-text='"Yes" | i18n' style="color: white" ></button>
+      <button rv-on-click='templates.confirm_no' rv-text='"No" | i18n' style="color: white" ></button>
     </div>
 </div>

@@ -37,12 +37,13 @@
       .search {
         padding: 12px 12px;
         display: inline-block;
-        width: 16px;
-        height: 16px;
-        background-image: url("images/ic-search.svg");
+        width: 40px;
+        height: 40px;
+        background-image: svg("images/ic-search.svg");
         background-repeat: no-repeat;
         background-position: 12px 12px;
         background-size: 16px 16px;
+        box-sizing: border-box;
         cursor: pointer;
       }
       transition: width .3s linear 0s;
@@ -55,12 +56,12 @@
           font-size: 12px;
           color: #fff;
           line-height: 15px;
-          border-bottom: 1px #fff solid;
+          border-bottom: 1px #fff solid !important;
           border-right: none;
           border-left: none;
           border-top: none;
           border-radius: 0px;
-          height: 20px;
+          line-height: 18px;
           margin-top: 8px;
           outline: none;
           opacity: 0.9;
@@ -69,7 +70,7 @@
           box-shadow: none;
         }
         .search {
-          background-image: url("images/close-white.svg");
+          background-image: svg("images/close-white.svg");
         }
       }
     }
@@ -95,7 +96,7 @@
       height: 12px;
       margin: 14px 15px 14px 15px;
       display: inline-block;
-      background-image: url('images/back-arrow-w.svg');
+      background-image: svg('images/back-arrow-w.svg');
       background-repeat: round;
     }
     .text {
@@ -127,9 +128,8 @@
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 40px);
   position: absolute;
-  padding-bottom: 20px;
   &.indicator {
     overflow-y: hidden;
     > div {
@@ -204,7 +204,7 @@
             position: absolute;
             right: 46px;
             &.edit {
-              background-image: url("images/ic-edit.svg");              
+              background-image: svg("images/ic-edit.svg");              
             }
           }
           &.option-2 {
@@ -217,15 +217,15 @@
             position: absolute;
             right: 15px;
             &.empty-star {
-              background-image: url("images/favorite-normal.svg");
+              background-image: svg("images/favorite-normal.svg");
               cursor: pointer;
             }
             &.full-star {
-              background-image: url("images/favorite-active.svg");
+              background-image: svg("images/favorite-active.svg");
               cursor: pointer;
             }
             &.remove {
-              background-image: url("images/close-blue.svg");              
+              background-image: svg("images/close-blue.svg");              
             }
           }
         }

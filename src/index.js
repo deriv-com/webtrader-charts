@@ -40,7 +40,7 @@ export {default as stream_handler} from './common/stream_handler';
 export {init, default as liveapi} from './common/liveapi'; 
 export {globals} from './common/globals.js';
 
-module.exports = {
+export default {
    charts,
    tableView,
    chartWindow,

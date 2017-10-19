@@ -95,13 +95,6 @@ export const retrieveChartDataAndRender = (options) => {
       adjust_start_time: 1,
       start: options.start
    }, dialog_id)
-      .catch((err) => {
-         const msg = i18n('Error getting data for %1').replace('%1', instrumentName);
-         notification.error(msg, dialog_id);
-         const chart = $(containerIDWithHash).highcharts();
-         chart && chart.showLoading(msg);
-         console.error(err);
-      })
       .then((data) => {
          if(options.start) {
             const count = is_tick ? data.history.times.length : data.candles.length;

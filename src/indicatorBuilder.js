@@ -20,7 +20,7 @@ const init = (chart_series, indicator) => {
       $(setting_view).append($html);
       const state = {
          id: indicator.id,
-         fields: indicator.fields.map(f => ({...f, is_valid: true})),
+         fields: indicator.fields.map(f => Object.assign({}, f, {is_valid: true})),
          levels: indicator.levels, /* optional */
          formula: indicator.formula && indicatorImages[indicator.formula], /* optional */
          description: indicator.description,

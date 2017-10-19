@@ -26,9 +26,9 @@ export const init = () => {
          //Merge the options
          var seriesID = this.options.id;
          currentPriceOptions = $.extend({
-            stroke : 'red',
+            stroke : '#c03',
             strokeWidth : 1,
-            dashStyle : 'dash',
+            dashStyle : 'line',
             parentSeriesID : seriesID
          }, currentPriceOptions);
 
@@ -36,7 +36,6 @@ export const init = () => {
          var data = this.data || [];
          if (data && data.length > 0)
          {
-
             var lastData = data[data.length - 1];
             if(lastData){
                var price = lastData.y || lastData.close || lastData[4];
@@ -102,8 +101,23 @@ export const init = () => {
       function addPlotLines(currentPriceOptions, price) {
          var zIndex = this.chart.series.length + 1;
          var isChange = false;
-         if (!this.data[this.data.length - 1]) return;
+         if (!this.data[this.data.length - 1] || !price) {
+           return;
+         }
 
+         const current_symbol = this.chart.userOptions && this.chart.userOptions.current_symbol;
+         let pip = (current_symbol && current_symbol.pip) ? (current_symbol.pip+"").split(".")[1].length : 0;
+         for(var inx = this.data.length - 1; inx  > 0 && inx > this.data.length - 5; --inx) {
+           const d = this.data[inx];
+           if(d) {
+             const value = d.y  || d.close || d[4];
+             const digits = (value+'').split('.')[1];
+             if(digits) {
+               pip = Math.max(pip, digits.length);
+             }
+           }
+         }
+         price = price.toFixed(pip);
          if ($.isNumeric(this.data[this.data.length - 1].change)) {
             isChange = true;
             price = toFixed(this.data[this.data.length - 1].change, 2);
@@ -114,16 +128,20 @@ export const init = () => {
             dashStyle: currentPriceOptions.dashStyle,
             width: currentPriceOptions.strokeWidth || currentPriceOptions.width,
             value: price,
-            zIndex: zIndex,
+            zIndex: 5,
             textAlign: 'left',
             label: {
+               align: 'left',
                text:  price + (isChange ? '%' : ''),
                style: {
-                  'background': '#2E8836',
+                  'display': 'inline-block',
+                  'background': '#c03',
                   'color' : 'white',
-                  'padding' : '2px 2px 2px 2px'
+                  'font-size': '10px',
+                  'line-height': '14px',
+                  'padding' : '0 1px',
                },
-               x: -40,
+               x: 0,
                y: 4,
                useHTML: true,
             }

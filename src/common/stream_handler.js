@@ -58,8 +58,6 @@ liveapi.events.on('tick', (e, data) => {
             // used int bot.es6 -----------------
             events.trigger('chart-tick', [{ tick: { price: tick.price*1, time:tick.time }, containerId: chartID.containerIDWithHash, key: key}]);
             // ----------------------------------
-
-            //setExtremePointsForXAxis(chart, time);
          };
       }
    }

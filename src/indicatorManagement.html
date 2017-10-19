@@ -112,7 +112,7 @@
     </div>
   </div>
   <div class="indicator view" 
-    rv-css-height="indicators.current.cdl_indicator | ternary '100%' 'calc(100% - 40px)'"
+    style="height:100%; box-sizing: border-box;"
     rv-css-padding-top="indicators.current.cdl_indicator | ternary '0px' '40px'" 
     rv-show="route.value | contains 'indicatorBuilder'">
     <div rv-show="route.value | eq 'indicatorBuilder-d'">

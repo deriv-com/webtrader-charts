@@ -129,6 +129,25 @@ export const specificMarketDataSync = function(marketDataDisplayName, marketData
     return present;
 };
 
+const findOverlay = (state, display_name) => {
+  let break_loop = false;
+  let result = null;
+  state.overlays.array.forEach((market) => {
+    market.submarkets.forEach((submarket) => {
+      submarket.instruments.forEach((ind) => {
+        if (ind.display_name === display_name) {
+          result = ind;
+          break_loop = true;
+        }
+        return !break_loop;
+      });
+      return !break_loop;
+    });
+    return !break_loop;
+  });
+  return result;
+}
+
 const init_state = (root) =>{
    state = {
       dialog: {
@@ -162,7 +181,7 @@ const init_state = (root) =>{
       if (type === 'candlestick' || type == 'ohlc') {
          dialog.data('type', 'line');
          dialog.trigger('chart-type-changed', 'line');
-         events.trigger('chart-type-update', [{ tabId: newTabId, type: false}]);
+         events.trigger('chart-type-update', [{ tabId: newTabId, type: 'line'}]);
          _.defer(fn);
       } else { fn(); }
 
@@ -175,16 +194,17 @@ const init_state = (root) =>{
       const containerIDWithHash = state.dialog.container_id;
       const dialog = $(containerIDWithHash);
       const chart = dialog.highcharts();
+      const overlay = findOverlay(state, ovlay);
+      if(overlay) {
+        overlay.dont_show = false;
+      }
       if (chart && ovlay) {
          const series = _.find(chart.series, (s) => { return s.userOptions.name === ovlay && s.userOptions.id !== 'navigator'; });
          if (series) {
             const indicator_series = chart.get_indicator_series();
-            //Remove current price line first
-            series.removeCurrentPrice();
-            //Then remove the series
-            series.remove();
-            //Re-validate chart
-            _.defer(() => {
+            series.removeCurrentPrice();  //Remove current price line first
+            series.remove();              //Then remove the series
+            _.defer(() => {               // Re-validate chart
                let countInstrumentSeries = 0;
                chart.series.forEach((s) => {
                   if ((s.userOptions.isInstrument || s.userOptions.onChartIndicator) && s.userOptions.id.indexOf('navigator') == -1) {
@@ -200,31 +220,18 @@ const init_state = (root) =>{
                         $(containerIDWithHash).data('overlayIndicator', null);
                         const newTabId = containerIDWithHash.replace("#", "").replace("_chart", "");
                         events.trigger('ohlc-update', [{ tabId: newTabId, enable: true}]);
-                        _.defer(
-                           () => events.trigger('overlay-remove', [{ containerId: containerIDWithHash }])
-                        );
                         return false;
                      }
                   });
                }
                chart.set_indicator_series(indicator_series);
+               _.defer(
+                 () => events.trigger('overlay-remove', [{ containerId: containerIDWithHash, symbol: overlay.symbol }])
+               );
             });
          }
 
-         let break_loop = false;
-         state.overlays.array.forEach((market) => {
-            market.submarkets.forEach((submarket) => {
-               submarket.instruments.forEach((ind) => {
-                  if (ind.display_name === ovlay) {
-                     ind.dont_show = false;
-                     break_loop = true;
-                  }
-                  return !break_loop;
-               });
-               return !break_loop;
-            });
-            return !break_loop;
-         });
+
          state.overlays.current.splice(state.overlays.current.indexOf(ovlay), 1);
          dialog.trigger('chart-overlay-remove', {displaySymbol: ovlay});
       }

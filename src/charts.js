@@ -15,6 +15,7 @@ import notification from './common/notification.js';
 import HMW from './common/highchartsMousewheel.js';
 import {specificMarketDataSync, marketData} from './overlayManagement.js';
 import {i18n, isTick} from './common/utils.js';
+import { toggleCrossHair } from './crosshair.js';
 import chartDraw from './chartDraw.js';
 
 import './charts.scss';
@@ -106,7 +107,7 @@ export const destroy = (options) => {
 
     //granularity will be 0 for tick timePeriod
     const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, start);
-    chartingRequestMap.unregister(key, containerIDWithHash);
+    chartingRequestMap.unregister_all(containerIDWithHash);
 };
 
 export const generate_csv = (chart, data, dialog_id) => {
@@ -212,16 +213,17 @@ export const generate_csv = (chart, data, dialog_id) => {
 export const drawChart = (containerIDWithHash, options, onload) => {
     let indicators = [];
     let overlays = [];
-    let current_symbol = [];
+    let current_symbol = {};
 
     liveapi.cached.send({active_symbols: "brief"}, 5*60).then((data)=>{
         current_symbol = _.filter(data.active_symbols,{symbol: options.instrumentCode})[0];
+        const chart = $(containerIDWithHash).highcharts();
+        chart.userOptions.current_symbol = current_symbol; // used in currentprice
     });
 
     if ($(containerIDWithHash).highcharts()) {
         //Just making sure that everything has been cleared out before starting a new thread
-        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod, options.start);
-        chartingRequestMap.removeChart(key, containerIDWithHash);
+        chartingRequestMap.removeChart(containerIDWithHash);
         const chart = $(containerIDWithHash).highcharts();
         indicators = chart.get_indicators() || [];
         overlays = options.overlays || [];
@@ -252,6 +254,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
     });
 
     var initialized = false;
+    const container = $(containerIDWithHash);
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -261,9 +264,11 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     initialized = true;
 
                     this.showLoading();
+                    toggleCrossHair(containerIDWithHash, {show: false});
                     currentPrice.init();
                     const chart = this;
                     liveapi.execute(() => {
+                        let errorHappened = false;
                         ohlc_handler.retrieveChartDataAndRender({
                             timePeriod: options.timePeriod,
                             instrumentCode: options.instrumentCode,
@@ -278,6 +283,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             notification.error(msg, containerIDWithHash.replace('_chart', ''));
                             chart && chart.showLoading(msg);
                             console.error(err);
+                            errorHappened = true;
                         }).then(() => {
                             /* the data is loaded but is not applied yet, its on the js event loop,
                                wait till the chart data is applied and then add the indicators */
@@ -286,9 +292,14 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 overlays.forEach((ovlay) => {
                                     overlay(containerIDWithHash, ovlay.symbol, ovlay.displaySymbol, ovlay.delay_amount);
                                 });
+                                // restore plot lines & points after refresh.
+                                chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
+                                // hack for z-index of the crosshiar!
+                                if(!errorHappened) {
+                                  toggleCrossHair(containerIDWithHash, {show: true});
+                                }
+                                $(containerIDWithHash).find('.highcharts-crosshair-labelundefined').remove();
                             });
-                            // restore plot lines & points after refresh.
-                            chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                         });
                     });
 
@@ -300,11 +311,11 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     this.spacing[2] = 0;
                 }
             },
-            spacingLeft: 0,
-            marginLeft: 55,
-            /* disable the auto size labels so the Y axes become aligned */
-            marginBottom: 15,
-            spacingBottom: 15
+            backgroundColor: 'transparent',
+            marginLeft: 5,
+            marginRight: 5,
+            marginBottom: 0,
+            spacingBottom: 0,
         },
 
         navigator: {
@@ -369,13 +380,37 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                      'In future, I want to get more data from server if users is dragging the zoom control more.' +
                      'This will help to load data on chart forever! We can warn users if they are trying to load' +
                      'too much data!');*/
-                }
+                },
             },
             labels: {
                 formatter: function() {
                     const str = this.axis.defaultLabelFormatter.call(this);
                     return str.replace('.', '');
                 }
+            },
+            crosshair: {
+              enabled: true,
+              snap: false,
+              color: '#2a3052',
+              dashStyle: 'LongDashDot',
+              zIndex: 4,
+              label: {
+                enabled: true,
+                padding: 3,
+                backgroundColor: '#2a3052',
+                borderRadius: 0,
+                shape: 'rect',
+                formatter: function(x) { 
+                  const offset = options.timezoneOffset*-1 || 0;
+                  if(x) return moment.utc(x).utcOffset(offset).format("ddd DD MMM HH:mm:ss");
+                  return false;
+                },
+                style: {
+                  color: 'white',
+                  fontSize: '10px',
+                  padding: 1,
+                },
+              },
             },
             ordinal: false
         },
@@ -384,7 +419,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         yAxis: [{
             opposite: false,
             labels: {
-                reserveSpace: true,
+                reserveSpace: false,
                 formatter: function() {
                     if(!current_symbol || !current_symbol.pip) return;
                     const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
@@ -393,42 +428,70 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                     } 
                     return this.value.toFixed(digits_after_decimal);
                 },
-                align: 'center'
+                x: 0,
+                align: 'left',
+            },
+            crosshair: {
+              enabled: true,
+              snap: false,
+              color: '#2a3052',
+              dashStyle: 'LongDashDot',
+              label: {
+                enabled: true,
+                align: 'left',
+                backgroundColor: '#2a3052',
+                padding: 1,
+                borderRadius: 0,
+                formatter: function(value) {
+                  if(!value || !current_symbol || !current_symbol.pip) return;
+
+                  if(this.chart.get_overlay_count() > 0) {
+                    return value.toFixed(2) + '%';
+                  }
+
+                  const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
+                  return value.toFixed(digits_after_decimal);
+                },
+                style: {
+                  color : 'white',
+                  fontSize: '10px',
+                  textAlign: 'left',
+                },
+                x: 0,
+                y: 4,
+              },
             }
         }],
 
         tooltip: {
-            crosshairs: [{
-                width: 2,
-                color: 'red',
-                dashStyle: 'dash'
-            }, {
-                width: 2,
-                color: 'red',
-                dashStyle: 'dash'
-            }],
             formatter: function() {
-                // TODO: fix moment locale
-                // moment.locale(lang);
-                var offset = options.timezoneOffset*-1 || 0;
-                var s = "<i>" + moment.utc(this.x).utcOffset(offset).format("dddd, DD MMM YYYY, HH:mm:ss") + "</i><br>";
+                if(!current_symbol || !current_symbol.pip) {
+                  return;
+                }
+                const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
+                const offset = options.timezoneOffset*-1 || 0;
+                let s = `<span>${moment.utc(this.x).utcOffset(offset).format("ddd DD MMM HH:mm:ss")}</span><br/>`;
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
                         s += "<b>" + row.series.name + "</b>";
-                        s += `<br>  ${i18n('Open')}: ` + row.point.open;
-                        s += `<br>  ${i18n('High')}: ` + row.point.high;
-                        s += `<br>  ${i18n('Low')}: ` + row.point.low;
-                        s += `<br>  ${i18n('Close')}: ` + row.point.close;
+                        s += `<br>  ${i18n('Open')}: ` + row.point.open.toFixed(digits_after_decimal);
+                        s += `<br>  ${i18n('High')}: ` + row.point.high.toFixed(digits_after_decimal);
+                        s += `<br>  ${i18n('Low')}: ` + row.point.low.toFixed(digits_after_decimal);
+                        s += `<br>  ${i18n('Close')}: ` + row.point.close.toFixed(digits_after_decimal);
                     } else {
-                        s += row.series.name + ": <b>" + row.point.y + "</b>";
+                        s += row.series.name + ": <b>" + row.point.y.toFixed(digits_after_decimal) + "</b>";
                     }
                     s += "<br>";
                 });
                 return s;
             },
+            borderColor: '#2a3052',
+            hideDelay: 0,
+            zIndex: 5,
+            shape: 'square',
             enabled: true,
-            enabledIndicators: true
+            // enabledIndicators: true
         },
 
         exporting: {
@@ -452,8 +515,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
     const options = $(containerIDWithHash).data();
     if (newTimePeriod) {
         //Unsubscribe from tickstream.
-        const key = chartingRequestMap.keyFor(options.instrumentCode, options.timePeriod, options.start);
-        chartingRequestMap.unregister(key, containerIDWithHash);
+        chartingRequestMap.unregister_all(containerIDWithHash);
         dialog.data("timePeriod", newTimePeriod);
     }
     if (newChartType) {
@@ -510,6 +572,16 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
    });
 };
 
+liveapi.events.on('connection-reopen', () => {
+   const map = chartingRequestMap.getMap();
+   const map_clone = _.cloneDeep(map);
+   _.each(map_clone, (data, key) => {
+      const chartIds = _.map(data.chartIDs, 'containerIDWithHash');
+      delete map[key];
+      _.each(chartIds, chartId => refresh(chartId));
+   });
+});
+
 export const addIndicator = (containerIDWithHash, options) => {
     if ($(containerIDWithHash).highcharts()) {
         const chart = $(containerIDWithHash).highcharts();
@@ -542,18 +614,11 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
         const mainSeries_type = $(containerIDWithHash).data("type");
         chart.showLoading();
 
-        const barriers = chart.series.filter(series => series.userOptions.isBarrier).map(series => series.userOptions);
         chart.series.filter(series => series.userOptions.isBarrier).map(series => series.remove());
 
         chart.series.filter(
            series => (series.userOptions.isInstrument || series.userOptions.onChartIndicator) && series.userOptions.id !== 'navigator'
         ).forEach(series => series.update({ compare: 'percent' }));
-
-        // put barriers back!
-        barriers.forEach(barrier => {
-           barrier.compare = 'percent';
-           chart.addSeries(barrier);
-        });
 
         return new Promise((resolve, reject) => {
             liveapi.execute(() => {
@@ -565,13 +630,18 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                     instrumentName: overlayInsName,
                     series_compare: 'percent',
                     delayAmount: delayAmount
-                }).then(() => {
+                })
+                .catch((e) => {
+                   console.error(e);
+                })
+                .then(() => {
                     chart && chart.set_indicator_series(indicator_series);
                     if(chart.series[0].data.length ===0){
                         console.trace();
                     }
                     resolve();
-                }).catch((e) => {
+                })
+                .catch((e) => {
                    console.error(e);
                    resolve();
                 });
@@ -580,6 +650,12 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
     }
     return Promise.resolve();
 };
+
+export const overlay_unregister = (containerIDWithHash, instrumentCode, start) => {
+    const timePeriod = $(containerIDWithHash).data("timePeriod");
+    const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, start);
+    chartingRequestMap.unregister(key, containerIDWithHash);
+}
 
 export const changeTitle = (containerIDWithHash, newTitle) => {
     const chart = $(containerIDWithHash).highcharts();
@@ -594,5 +670,6 @@ export default {
     refresh,
     addIndicator,
     overlay,
+    overlay_unregister,
     changeTitle
 };

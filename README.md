@@ -77,11 +77,7 @@ Take a look at `webpack.config.js -> externals`.
    chart.draw.endTime(epoch); // dashed vertical line at epoch.
    chart.draw.entrySpot(epoch); // empty orange circle at epoch
    chart.draw.exitSpot(epoch); // filled orange circle at epoch
-
-   // for barriers use this to start a barrier line
-   chart.draw.barrier({from: epoch, to: null, value: value}); // draw from "from" to the end and keep updating.
-   // after the trade is finished and the end of contract is known:
-   chart.draw.barrier({from: epoch, to: endEpoch, value: value}); // draw from "from" to "to" and stop updating.
+   chart.draw.barrier({value: value}); // draws a gree horizontal barrier line
 ```
 
 ### How to extend it

@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import rv from 'rivets';
-import 'spectrum-colorpicker';
-import 'spectrum-colorpicker/spectrum.css';
+import '../lib/spectrum.js';
+import '../lib/spectrum.scss';
 import '../lib/jquery.ddslick.js';
 import {i18n} from './utils.js';
 

@@ -12,6 +12,7 @@ import {isTick, local_storage, isAffiliates, i18n} from './common/utils.js';
 import {globals} from './common/globals.js';
 import vertical_line from './draw/vertical_line.js';
 import horizontal_line from './draw/horizontal_line.js';
+import images from './images/images.js';
 
 const state = [],
     view = [];
@@ -33,9 +34,14 @@ const timeperiod_arr = [{ value: "1t", name: "1 Tick", digit: 1, type: "ticks" }
 ];
 
 const chartType_arr = [{ value: 'candlestick', name: 'Candles' }, { value: 'ohlc', name: 'OHLC' },
-        { value: 'line', name: 'Line' }, { value: 'dot', name: 'Dot' }, { value: 'linedot', name: 'Line Dot' },
+        { value: 'line', name: 'Line' }, { value: 'dot', name: 'Dot' },
         { value: 'spline', name: 'Spline' }, { value: 'table', name: 'Table' }
     ];
+const findChartType = type => {
+  if(type === 'linedot') // backward compatible
+    type = 'line';
+  return chartType_arr.filter((chart) => chart.value == type)[0];
+};
 
 const hideOverlays = (scope) => {
     scope.showTimePeriodSelector = false;
@@ -52,9 +58,7 @@ const changeChartType = (scope, chartType, newTimePeriod = null) => {
         state[scope.newTabId].showChartTypeSelector = false;
         scope.tableViewCallback && scope.tableViewCallback();
     } else {
-        state[scope.newTabId].chartType = chartType_arr.filter((chart) => {
-            return chart.value == chartType
-        })[0];
+        state[scope.newTabId].chartType = findChartType(chartType);
         state[scope.newTabId].showChartTypeSelector = false;
         charts.refresh('#' + scope.newTabId + '_chart', newTimePeriod, chartType);
         $('#' + scope.newTabId).trigger('chart-type-changed', chartType);
@@ -131,9 +135,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             return options.timePeriod == obj.value
         })[0],
         timeperiod_arr: timeperiod_arr,
-        chartType: chartType_arr.filter((chart) => {
-            return chart.value == options.chartType
-        })[0],
+        chartType: findChartType(options.chartType),
         tableViewCallback: m_tableViewCb, //Callback for table view
         instrumentName: options.instrumentName,
         instrumentCode: options.instrumentCode,
@@ -145,12 +147,14 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         showTableOption: true,
         enableCrosshair: true,
         showDrawingToolSelector: false,
+        showDrawingTools: !!options.showDrawingTools,
         showShareSelector: false,
         showLoadSaveSelector: false,
         showShare: options.showShare,
         showOverlay: options.showOverlays,
         showInstrumentName: options.showInstrumentName,
         showIndicatorDropDown: false,
+        images:images,
     };
     view[m_newTabId] = null;
 
@@ -196,6 +200,9 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             const tick = isTick(timePeriod);
             if (tick && (scope.chartType.value === 'candlestick' || scope.chartType.value === 'ohlc')) {
                 changeChartType(scope, 'line', timePeriod);
+            }
+            else if (!tick && (scope.chartType.value === 'line') && !isOverlaidView('#' + m_newTabId + '_chart')) {
+                changeChartType(scope, 'candlestick', timePeriod);
             }
             else {
                charts.refresh('#' + scope.newTabId + '_chart', timePeriod);
@@ -336,9 +343,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
 export const updateOptions = (newTabId, chartType, timePeriod, indicatorsCount, overlayCount) => {
     const s = state[newTabId];
     if (!s) return;
-    s.chartType = chartType_arr.filter((chart) => {
-        return chart.value == chartType;
-    })[0];
+    s.chartType = findChartType(chartType);
     s.timePeriod = timeperiod_arr.filter((tp) => {
         return timePeriod == tp.value;
     })[0];
@@ -351,7 +356,7 @@ export const updateOptions = (newTabId, chartType, timePeriod, indicatorsCount, 
 
 /* chartTypes are - candlestick, dot, line, dotline, ohlc, spline, table */
 overlayManagement.events.on('chart-type-update',  (e, {tabId, type}) => {
-   state[tabId].chartType = chartType_arr.filter((chart) => chart.value == type)[0];
+   state[tabId].chartType = findChartType(type);
 });
 overlayManagement.events.on('overlay-add', (e, {containerId, symbol, displaySymbol, delay_amount}) => {
    const dialog = $(containerId);
@@ -362,8 +367,9 @@ overlayManagement.events.on('overlay-add', (e, {containerId, symbol, displaySymb
          charts.refresh( containerId );
       }));
 });
-overlayManagement.events.on('overaly-remove', (e, {containerId}) => {
-   charts.refresh(containerId);
+overlayManagement.events.on('overlay-remove', (e, {containerId, symbol}) => {
+   // charts.refresh(containerId);
+   charts.overlay_unregister(containerId,  symbol);
 });
 overlayManagement.events.on('ohlc-update', (e, { tabId, enable}) => {
     if (state[tabId]) {
