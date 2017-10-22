@@ -1,61 +1,49 @@
 ﻿import {uuid, toFixed} from '../common/utils.js';
+import {makeIndicator} from './new_indicatorbase.js';
 /**
  * Created by Mahboob.M on 1/29/16.
  */
 
-var MAX = function (data, options, indicators) {
-    IndicatorBase.call(this, data, options, indicators);
-    this.priceData = [];
-    this.CalculateMAXValue = function (data, index) {
-        /* MAX :
-         max = max price over n, n - period*/
-        var max = this.indicators.getIndicatorOrPriceValue(data[index], this.options.appliedTo);
-        for (var i = 0; i < this.options.period; i++) {
-            var tempValue = this.indicators.getIndicatorOrPriceValue(data[index - i], this.options.appliedTo);
-            max = Math.max(max, tempValue);
-        }
-        return toFixed(max, 4);
-    };
-    for (var index = 0; index < data.length; index++) {
-        if (index >= (this.options.period - 1)) {
-            var max = this.CalculateMAXValue(data, index);
-            this.indicatorData.push({ time: data[index].time, value: max });
-        } else {
-            this.indicatorData.push({ time: data[index].time, value: 0.0 });
-        }
-        this.priceData.push(data[index]);
+
+function getMaxOverPeriod(data, index, period, getter) {
+    if (index < (period - 1)) {
+        return 0.0;
     }
-};
+    getter = getter || (x => x);
+    var max = getter(data[index]);
+    for (var i = 0; i < period; i++) {
+        max = Math.max(max, getter(data[index - i]));
+    }
+    return max;
+}
 
-MAX.prototype = Object.create(IndicatorBase.prototype);
-MAX.prototype.constructor = MAX;
+window.MAX = makeIndicator('max', function(ind) {
+    var data = ind.priceData;
+    var options = ind.options;
+    var indicators = ind.indicators;
+    var getter = tick => indicators.getIndicatorOrPriceValue(tick, options.appliedTo);
 
-MAX.prototype.addPoint = function (data) {
-    this.priceData.push(data);
-    var max = this.CalculateMAXValue(this.priceData, this.priceData.length - 1);
-    this.indicatorData.push({ time: data.time, value: max });
-    return [{
-        id: this.uniqueID,
-        value: max
-    }];
-};
+    ind.indicatorData = data.map((tick, i) => ({
+        time:  tick.time,
+        value: toFixed(getMaxOverPeriod(data, i, options.period, getter), 4),
+    }));
 
-MAX.prototype.update = function (data) {
-    var index = this.priceData.length - 1;
-    this.priceData[index].open = data.open;
-    this.priceData[index].high = data.high;
-    this.priceData[index].low = data.low;
-    this.priceData[index].close = data.close;
-    var max = this.CalculateMAXValue(this.priceData, index);
-    this.indicatorData[index].value = max;
-    return [{
-        id: this.uniqueID,
-        value: max
-    }];
-};
+    var eachTick = tick => {
+        var max = getMaxOverPeriod(
+            ind.priceData,
+            ind.priceData.length - 1,
+            options.period,
+            getter
+        );
+        return [tick.time, toFixed(max, 4)];
+    };
 
-MAX.prototype.toString = function () {
+    return {
+        next: eachTick,
+        update: eachTick,
+    };
+});
+
+MAX.prototype.toString = function() {
     return 'MAX (' + this.options.period + ', ' + this.indicators.appliedPriceString(this.options.appliedTo) + ')';
 };
-
-window.MAX = MAX;

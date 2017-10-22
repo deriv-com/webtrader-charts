@@ -116,4 +116,3 @@ T3.prototype.toString = function () {
 };
 
 window.T3 = T3;
-window.AddT3 = AddT3;

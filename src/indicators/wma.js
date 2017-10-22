@@ -25,7 +25,7 @@ window.WMA = makeIndicator('wma', function(ind) {
     ind.indicatorData = data.map((tick, i) => {
         var wma = null;
         if (i >= ind.options.period - 1) {
-            wma = getWMA(data, i, ind.options.period, getter);
+            wma = toFixed(getWMA(data, i, ind.options.period, getter), 4);
         }
         return {time: tick.time, value: wma};
     });
@@ -36,8 +36,7 @@ window.WMA = makeIndicator('wma', function(ind) {
             ind.options.period,
             getter
         );
-        wmaValue = toFixed(wmaValue, 4);
-        return [tick.time, wmaValue];
+        return [tick.time, toFixed(wmaValue, 4)];
     };
     return {
         update: eachTick,

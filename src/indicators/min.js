@@ -1,61 +1,49 @@
 ﻿import {uuid, toFixed} from '../common/utils.js';
+import {makeIndicator} from './new_indicatorbase.js';
 /**
  * Created by Mahboob.M on 1/29/16.
  */
 
-var MIN = function (data, options, indicators) {
-    IndicatorBase.call(this, data, options, indicators);
-    this.priceData = [];
-    this.CalculateMINValue = function (data, index) {
-        /* MIN :
-         min = min price over n, n - period*/
-        var min = this.indicators.getIndicatorOrPriceValue(data[index], this.options.appliedTo);
-        for (var i = 0; i < this.options.period; i++) {
-            var tempValue = this.indicators.getIndicatorOrPriceValue(data[index - i], this.options.appliedTo);
-            min = Math.min(min, tempValue);
-        }
-        return toFixed(min, 4);
-    };
-    for (var index = 0; index < data.length; index++) {
-        if (index >= (this.options.period - 1)) {
-            var min = this.CalculateMINValue(data, index);
-            this.indicatorData.push({ time: data[index].time, value: min });
-        } else {
-            this.indicatorData.push({ time: data[index].time, value: 0.0 });
-        }
-        this.priceData.push(data[index]);
+
+function getMinOverPeriod(data, index, period, getter) {
+    if (index < (period - 1)) {
+        return 0.0;
     }
-};
+    getter = getter || (x => x);
+    var min = getter(data[index]);
+    for (var i = 0; i < period; i++) {
+        min = Math.min(min, getter(data[index - i]));
+    }
+    return min;
+}
 
-MIN.prototype = Object.create(IndicatorBase.prototype);
-MIN.prototype.constructor = MIN;
+window.MIN = makeIndicator('min', function(ind) {
+    var data = ind.priceData;
+    var options = ind.options;
+    var indicators = ind.indicators;
+    var getter = tick => indicators.getIndicatorOrPriceValue(tick, options.appliedTo);
 
-MIN.prototype.addPoint = function (data) {
-    this.priceData.push(data);
-    var min = this.CalculateMINValue(this.priceData, this.priceData.length - 1);
-    this.indicatorData.push({ time: data.time, value: min });
-    return [{
-        id: this.uniqueID,
-        value: min
-    }];
-};
+    ind.indicatorData = data.map((tick, i) => ({
+        time:  tick.time,
+        value: toFixed(getMinOverPeriod(data, i, options.period, getter), 4),
+    }));
 
-MIN.prototype.update = function (data) {
-    var index = this.priceData.length - 1;
-    this.priceData[index].open = data.open;
-    this.priceData[index].high = data.high;
-    this.priceData[index].low = data.low;
-    this.priceData[index].close = data.close;
-    var min = this.CalculateMINValue(this.priceData, index);
-    this.indicatorData[index].value = min;
-    return [{
-        id: this.uniqueID,
-        value: min
-    }];
-};
+    var eachTick = tick => {
+        var min = getMinOverPeriod(
+            ind.priceData,
+            ind.priceData.length - 1,
+            options.period,
+            getter
+        );
+        return [tick.time, toFixed(min, 4)];
+    };
 
-MIN.prototype.toString = function () {
+    return {
+        next: eachTick,
+        update: eachTick,
+    };
+});
+
+MAX.prototype.toString = function() {
     return 'MIN (' + this.options.period + ', ' + this.indicators.appliedPriceString(this.options.appliedTo) + ')';
 };
-
-window.MIN = MIN;
