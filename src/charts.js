@@ -20,7 +20,7 @@ import chartDraw from './chartDraw.js';
 
 import './charts.scss';
 
-// TODO: moemnt local
+// TODO: moemnt locale
 // const lang = local_storage.get("i18n") ? local_storage.get("i18n").value.replace("_","-") : 'en';
 // if(lang !== "en") // Load moment js locale file.
 //     require(['moment-locale/'+lang]); 
@@ -294,6 +294,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 });
                                 // restore plot lines & points after refresh.
                                 chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
+                                // hack for z-index of the crosshiar!
                                 $(containerIDWithHash).find('.highcharts-crosshair-labelundefined').remove();
                             });
                         });
@@ -349,7 +350,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             // HMW.mousewheel(containerIDWithHash);
                         }
 
-                        toggleCrossHair(containerIDWithHash, {show: true});
                         this.chart.hideLoading();
                         //this.chart.redraw();
                     }

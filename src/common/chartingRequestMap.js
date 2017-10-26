@@ -16,6 +16,7 @@ import $ from 'jquery';
 import moment from 'moment';
 import liveapi from './liveapi.js';
 import notification from './notification.js';
+import { toggleCrossHair } from '../crosshair.js';
 import {
    convertToTimeperiodObject,
    isDataTypeClosePriceOnly,
@@ -183,6 +184,7 @@ export const barsLoaded = function(instrumentCdAndTp) {
                 }
             }
             chart.addSeries(seriesConf);
+            toggleCrossHair(chartID.containerIDWithHash, {show: true});
         }
     };
 }

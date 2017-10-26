@@ -223,6 +223,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
     state[m_newTabId].toggleCrosshair = (event, scope) => {
         scope.enableCrosshair = !scope.enableCrosshair;
         crosshair.toggleCrossHair('#' + scope.newTabId + '_chart');
+        hideOverlays(scope);
     };
 
     state[m_newTabId].toggleDrawingToolSelector = (event, scope) => {
