@@ -12,6 +12,13 @@ export const draw = {
       const interval = 6000;
       axis.setExtremes(Math.max(min, epoch - 10*interval), dataMax);
    },
+   zoomOut: (dialog) => {
+      const container = dialog.find(`#${dialog.attr('id')}_chart`);
+      const chart = container.highcharts();
+      const axis = chart.xAxis[0];
+      const {dataMin, dataMax} = axis.getExtremes();
+      axis.setExtremes(dataMin, dataMax);
+   },
    clear: (dialog) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();

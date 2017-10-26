@@ -54,6 +54,7 @@ export const addNewChart = function($parent, options) {
     }
 
     let drawChartPromise = null;
+    let chartDonePromise = null;
     const instance = {
        data: () => Store[id],
        actions: {
@@ -85,6 +86,7 @@ export const addNewChart = function($parent, options) {
           exitSpot: epoch => chartDraw.draw.exitSpot(dialog, epoch),
           barrier: config => chartDraw.draw.barrier(dialog, config),
           clear: () => chartDraw.draw.clear(dialog),
+          zoomOut: () => chartDraw.draw.zoomOut(dialog),
        },
        events: {
           typeChange: null,
@@ -93,7 +95,8 @@ export const addNewChart = function($parent, options) {
           overlaysChange: null,
           anyChange: null
        },
-       done: () => drawChartPromise,
+       drawn: () => drawChartPromise,
+       done: () => chartDonePromise,
     };
     dialog.on('chart-type-changed', function(e, type) {
         Store[id].type = type;
@@ -147,6 +150,12 @@ export const addNewChart = function($parent, options) {
             showShare: ('showShare' in options) ? options.showShare : true,
             showDrawingTools: ('showDrawingTools' in options) ? options.showDrawingTools : true,
          });
+      });
+    });
+    chartDonePromise = drawChartPromise.then(() => {
+      const container = dialog.find(`#${id}_chart`);
+      return new Promise((res, rej) => {
+        container.one('chartingRequestMap.barsLoaded', () => res());
       });
     });
 

@@ -93,7 +93,8 @@ export const retrieveChartDataAndRender = (options) => {
       delayAmount: options.delayAmount,
       count: 1000,                //We are only going to request 1000 bars if possible
       adjust_start_time: 1,
-      start: options.start
+      start: options.start,
+      end: options.end,
    }, dialog_id)
       .then((data) => {
          if(options.start) {

@@ -183,8 +183,9 @@ export const barsLoaded = function(instrumentCdAndTp) {
                     seriesConf.dashStyle = 'dot';
                 }
             }
-            chart.addSeries(seriesConf);
+            const theSeries = chart.addSeries(seriesConf);
             toggleCrossHair(chartID.containerIDWithHash, {show: true});
+            $(chartID.containerIDWithHash).trigger('chartingRequestMap.barsLoaded');
         }
     };
 }
@@ -272,8 +273,15 @@ export const register = function(options, dialog_id) {
        }
     } else { // for historical-data
        req.start = options.start;
-       req.end = options.start + (req.granularity*1000 || 60*60); // by default load 1 hour of ticks
-       req.end = Math.min(req.end, moment.utc().unix());
+       if (!options.end) {
+         req.end = options.start + (req.granularity*1000 || 60*60); // by default load 1 hour of ticks
+         req.end = Math.min(moment.utc().unix(), req.end);
+       } else {
+         req.end = options.end === 'latest' ? moment.utc().unix() :  Math.min(moment.utc().unix(), options.end);
+         if (options.end === 'latest' || moment.utc().unix() <= options.end) {
+           req.subscribe = 1;
+         }
+       }
     }
 
     map[key] = { symbol: options.symbol, granularity: granularity, subscribers: 0, chartIDs: [] };
