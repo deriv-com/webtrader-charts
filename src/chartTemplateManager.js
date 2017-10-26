@@ -14,7 +14,7 @@ if(!local_storage.get('templates')) {
 class ChartTemplateManager {
   constructor(root, dialog, dialog_id) {
     const _this = this;
-    const templates = local_storage.get("templates");
+    const templates = local_storage.get("templates") || [];
     templates.forEach(function(tmpl){
       if(!tmpl.random){
         tmpl = _this.setRandom(tmpl);

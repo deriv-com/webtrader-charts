@@ -295,9 +295,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 // restore plot lines & points after refresh.
                                 chart && chartDraw.restore(isTick(options.timePeriod), chart, containerIDWithHash);
                                 // hack for z-index of the crosshiar!
-                                if(!errorHappened) {
-                                  toggleCrossHair(containerIDWithHash, {show: true});
-                                }
                                 $(containerIDWithHash).find('.highcharts-crosshair-labelundefined').remove();
                             });
                         });
