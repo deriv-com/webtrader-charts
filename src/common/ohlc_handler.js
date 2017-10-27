@@ -27,7 +27,7 @@ const processCandles = (key, time, open, high, low, close) => {
 };
 
 liveapi.events.on('candles', (e, data) => {
-   const start = data.echo_req.end !== 'latest' ? data.echo_req.start : undefined;
+   const start = data.echo_req.count === 0 ? data.echo_req.start : undefined;
    const key = chartingRequestMap.keyFor(data.echo_req.ticks_history, data.echo_req.granularity*1, start);
    data.candles.forEach((eachData) => {
       const open  = parseFloat(eachData.open),
@@ -42,7 +42,7 @@ liveapi.events.on('candles', (e, data) => {
 
 liveapi.events.on('history', (e, data) => {
    //For tick history handling
-   const start = data.echo_req.end !== 'latest' ? data.echo_req.start : undefined;
+   const start = data.echo_req.count === 0 ? data.echo_req.start : undefined;
    const key = chartingRequestMap.keyFor(data.echo_req.ticks_history, 0, start);
    data.history.times.forEach((eachData,index) => {
       const time = parseInt(eachData) * 1000,

@@ -273,11 +273,12 @@ export const register = function(options, dialog_id) {
        }
     } else { // for historical-data
        req.start = options.start;
+       req.count = 0; // use count = 0 as a flag, this will get ignored by the api.
        if (!options.end) {
          req.end = options.start + (req.granularity*1000 || 60*60); // by default load 1 hour of ticks
          req.end = Math.min(moment.utc().unix(), req.end);
        } else {
-         req.end = options.end === 'latest' ? moment.utc().unix() :  Math.min(moment.utc().unix(), options.end);
+         req.end = options.end === 'latest' ? 'latest' :  Math.min(moment.utc().unix(), options.end);
          if (options.end === 'latest' || moment.utc().unix() <= options.end) {
            req.subscribe = 1;
          }
@@ -347,6 +348,8 @@ export const unregister_all = function(containerIDWithHash) {
        liveapi.send({ forget: entry.id })
           .catch((err) => { console.error(err); })
           .then(() => { delete map[key] });
+    } else if (entry.subscribers === 0) {
+      setTimeout(() => { delete map[key]; }, 0);
     }
   });
 }
@@ -356,7 +359,9 @@ export const removeChart = function(containerIDWithHash) {
   _.each(map, (entry) => {
     if (_.includes(_.map(entry.chartIDs,'containerIDWithHash'), containerIDWithHash)) {
         _.remove(entry.chartIDs, { containerIDWithHash: containerIDWithHash });
-        entry.subscribers -= 1;
+        if(entry.subscribers) {
+          entry.subscribers -= 1;
+        }
     }
   });
 }
