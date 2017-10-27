@@ -238,7 +238,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
     /* ignore overlays if chart type is candlestick or ohlc */
     if ((options.type === 'candlestick' || options.type === 'ohlc') && overlays.length > 0) {
         /* we should not come here, logging a warning as an alert if we somehow do */
-        console.warn("Ingoring overlays because chart type is " + options.type);
+        console.warn("Igoring overlays because chart type is " + options.type);
         overlays = [];
     }
 
@@ -277,7 +277,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             instrumentName: options.instrumentName,
                             series_compare: options.series_compare,
                             delayAmount: options.delayAmount,
-                            start: options.start
+                            start: options.start,
+                            end: options.end,
                         }).catch((err) => {
                             const msg = i18n('Error getting data for %1').replace('%1', options.instrumentName);
                             notification.error(msg, containerIDWithHash.replace('_chart', ''));
@@ -337,7 +338,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             series: {
                 events: {
                     afterAnimate: function() {
-                        if (this.options.isInstrument && this.options.id !== "navigator") {
+                        if (this.options.isInstrument && this.options.id !== "navigator" && !options.hideCurrentPrice) {
                             //this.isDirty = true;
                             //this.isDirtyData = true;
 

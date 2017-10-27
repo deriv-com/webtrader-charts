@@ -12,7 +12,7 @@ const setExtremePointsForXAxis = (chart, startTime, endTime) => {
 }
 
 liveapi.events.on('tick', (e, data) => {
-   const start = data.echo_req.end !== 'latest' ? data.echo_req.start : undefined;
+   const start = data.echo_req.count === 0 ? data.echo_req.start : undefined;
    let key = chartingRequestMap.keyFor(data.echo_req.ticks_history, data.echo_req.granularity*1, start);
    if (key && chartingRequestMap.mapFor(key)) {
 
@@ -64,7 +64,7 @@ liveapi.events.on('tick', (e, data) => {
 });
 
 liveapi.events.on('ohlc', (e, data) => {
-   const start = data.echo_req.end !== 'latest' ? data.echo_req.start : undefined;
+   const start = data.echo_req.count === 0 ? data.echo_req.start : undefined;
    let key = chartingRequestMap.keyFor(data.ohlc.symbol, data.ohlc.granularity*1, start);
    if (key && chartingRequestMap.mapFor(key)) {
 
