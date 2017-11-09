@@ -35,6 +35,7 @@ Take a look at `webpack.config.js -> externals`.
     "showInstrumentName": true, // default is false
     "showOverlays": false, // default is true
     "showShare": false, // default is true
+    "count": 1000, // number of bars to load, default is 1000
     "indicators": [
        {
           "id": "cks",
