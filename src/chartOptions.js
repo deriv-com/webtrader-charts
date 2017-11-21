@@ -193,15 +193,16 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         const timePeriod = event.target.dataset.timeperiod;
         if (timePeriod) {
             scope = state[scope.newTabId];
+            const tick = isTick(timePeriod);
+            const curTick = isTick(scope.timePeriod.value);
             scope.timePeriod = timeperiod_arr.filter((obj) => {
                 return timePeriod == obj.value
             })[0];
             responsiveButtons(scope, dialog);
-            const tick = isTick(timePeriod);
             if (tick && (scope.chartType.value === 'candlestick' || scope.chartType.value === 'ohlc')) {
                 changeChartType(scope, 'line', timePeriod);
             }
-            else if (!tick && (scope.chartType.value === 'line') && !isOverlaidView('#' + m_newTabId + '_chart')) {
+            else if (!tick && curTick && (scope.chartType.value === 'line') && !isOverlaidView('#' + m_newTabId + '_chart')) {
                 changeChartType(scope, 'candlestick', timePeriod);
             }
             else {
