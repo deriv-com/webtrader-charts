@@ -12,7 +12,7 @@ import {chartableMarkets} from './overlayManagement.js';
 const triggerResizeEffects = (dialog) => {
     const subContainer = dialog.find('.chartSubContainer');
     const subContainerHeader = dialog.find('.chartSubContainerHeader');
-    subContainer.width("100%").height(dialog.height() - 34);
+    subContainer.width("100%").height(dialog.height() - subContainerHeader.height());
 
     setTimeout(() => {
       subContainer.width("100%").height(dialog.height() - subContainerHeader.height());
@@ -152,12 +152,11 @@ export const addNewChart = function($parent, options) {
          });
       });
     });
-    chartDonePromise = drawChartPromise.then(() => {
+    const barsLoadedPromise = new Promise((res, rej) => {
       const container = dialog.find(`#${id}_chart`);
-      return new Promise((res, rej) => {
-        container.one('chartingRequestMap.barsLoaded', () => res());
-      });
+      container.one('chartingRequestMap.barsLoaded', () => res());
     });
+    chartDonePromise = Promise.all([drawChartPromise, barsLoadedPromise]);
 
     return instance;
 };
