@@ -67,7 +67,7 @@ export const addNewChart = function($parent, options) {
             return drawChartPromise.then(() => {
                table_view && table_view.destroy();
                container.highcharts().destroy();
-               charts.destroy({
+               const p = charts.destroy({
                    containerIDWithHash: `#${id}_chart`,
                    timePeriod: timePeriod,
                    instrumentCode: instrumentCode,
@@ -75,6 +75,7 @@ export const addNewChart = function($parent, options) {
                });
                chartOptions.cleanBinding(id);
                dialog.remove();
+               return p;
             });
           },
           refresh: () => charts.refresh(`#${id}_chart`),
