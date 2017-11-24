@@ -107,7 +107,7 @@ export const destroy = (options) => {
 
     //granularity will be 0 for tick timePeriod
     const key = chartingRequestMap.keyFor(instrumentCode, timePeriod, start);
-    chartingRequestMap.unregister_all(containerIDWithHash);
+    return chartingRequestMap.unregister_all(containerIDWithHash);
 };
 
 export const generate_csv = (chart, data, dialog_id) => {
