@@ -58,8 +58,8 @@
                 <div class="chartOptions_overlay primary-color chartTypeOverlay table" rv-show="showChartTypeSelector">
                     <div class="row" rv-each-item="chartTypes" rv-class-showBorder="item.showBorder">
                         <div class="cell" rv-data-charttype="item.value" rv-on-click="changeChartType">
-                            <div class="img"><div rv-data-charttype="item.value" rv-class="item.value | append '-icon'"></div></div>
-                            <span class="vertical-bottom" rv-data-charttype="item.value" rv-text="item.name | i18n"></span>
+                            <div class="img"><div rv-class="item.value | append '-icon'"></div></div>
+                            <span class="vertical-bottom" rv-text="item.name | i18n"></span>
                         </div>
                     </div>
                     <div class="row" rv-on-click="toggleCrosshair">
