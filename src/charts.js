@@ -318,7 +318,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         navigator: {
-            enabled: true,
+            enabled: options.enableNavigator === undefined ? true : options.enableNavigator,
             series: {
                 id: 'navigator'
             }
@@ -369,7 +369,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         credits: { href: '#', text: '' },
-        scrollbar: { liveRedraw: true },
         rangeSelector: { enabled: false },
 
         xAxis: {
@@ -463,6 +462,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         }],
 
         tooltip: {
+            followTouchMove: false,
             formatter: function() {
                 if(!current_symbol || !current_symbol.pip) {
                   return;
