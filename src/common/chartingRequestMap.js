@@ -343,15 +343,18 @@ export const unregister = function(key, containerIDWithHash) {
 }
 export const unregister_all = function(containerIDWithHash) {
   removeChart(containerIDWithHash);
+  const promises = [];
   _.each(map, (entry, key) => {
     if (entry.subscribers === 0 && entry.id) {
-       liveapi.send({ forget: entry.id })
+       const p = liveapi.send({ forget: entry.id })
           .catch((err) => { console.error(err); })
           .then(() => { delete map[key] });
+       promises.push(p);
     } else if (entry.subscribers === 0) {
       setTimeout(() => { delete map[key]; }, 0);
     }
   });
+  return Promise.all(promises);
 }
 
 /* this will be use for charts.drawCharts method which wants to : Just make sure that everything has been cleared out before starting a new thread! */
