@@ -279,7 +279,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             instrumentCode: options.instrumentCode,
                             containerIDWithHash: containerIDWithHash,
                             type: options.type,
-                            count: options.count,
                             instrumentName: options.instrumentName,
                             series_compare: options.series_compare,
                             delayAmount: options.delayAmount,
