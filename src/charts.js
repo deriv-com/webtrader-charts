@@ -19,6 +19,7 @@ import { toggleCrossHair } from './crosshair.js';
 import chartDraw from './chartDraw.js';
 
 import './charts.scss';
+import './mobileview.scss';
 
 // TODO: moemnt locale
 // const lang = local_storage.get("i18n") ? local_storage.get("i18n").value.replace("_","-") : 'en';
@@ -255,6 +256,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     var initialized = false;
     const container = $(containerIDWithHash);
+    const enableMobileView = options.enableMobileView === undefined ? false : options.enableMobileView;
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -318,7 +320,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         navigator: {
-            enabled: options.enableNavigator === undefined ? true : options.enableNavigator,
+            enabled: !enableMobileView,
             series: {
                 id: 'navigator'
             }
@@ -512,6 +514,7 @@ export const triggerReflow = (containerIDWithHash) => {
 export const refresh = function(containerIDWithHash, newTimePeriod, newChartType, indicators, overlays) {
     const dialog = $(containerIDWithHash);
     const options = $(containerIDWithHash).data();
+    const isMobile = $(containerIDWithHash).parents().eq(2).hasClass('mobile-chart');
     if (newTimePeriod) {
         //Unsubscribe from tickstream.
         chartingRequestMap.unregister_all(containerIDWithHash);
@@ -561,6 +564,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          timePeriod: options.timePeriod,
          timezoneOffset: options.timezoneOffset || 0,
          type: options.type,
+         enableMobileView: isMobile,
          series_compare: series_compare,
          delayAmount: options.delayAmount,
          overlays: overlays,

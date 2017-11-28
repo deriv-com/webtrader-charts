@@ -32,6 +32,9 @@ let idCounter = 0;
 export const addNewChart = function($parent, options) {
     const dialog = $(html);
     $parent.addClass('chart-dialog');
+    if (options.enableMobileView) {
+        $parent.addClass('mobile-chart');
+    }
     dialog.appendTo($parent);
     var id = `webtrader-charts-dialog-${++idCounter}`;
     dialog.attr('id', id);
