@@ -243,8 +243,11 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         overlays = [];
     }
 
+    const isMobile = $(containerIDWithHash).parents().eq(2).hasClass('mobile-chart');
+    
     //Save some data in DOM
     $(containerIDWithHash).data({
+        enableMobileView: isMobile,
         instrumentCode: options.instrumentCode,
         instrumentName: options.instrumentName,
         timePeriod: options.timePeriod,
@@ -514,7 +517,6 @@ export const triggerReflow = (containerIDWithHash) => {
 export const refresh = function(containerIDWithHash, newTimePeriod, newChartType, indicators, overlays) {
     const dialog = $(containerIDWithHash);
     const options = $(containerIDWithHash).data();
-    const isMobile = $(containerIDWithHash).parents().eq(2).hasClass('mobile-chart');
     if (newTimePeriod) {
         //Unsubscribe from tickstream.
         chartingRequestMap.unregister_all(containerIDWithHash);
@@ -564,7 +566,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          timePeriod: options.timePeriod,
          timezoneOffset: options.timezoneOffset || 0,
          type: options.type,
-         enableMobileView: isMobile,
+         enableMobileView: options.enableMobileView,
          series_compare: series_compare,
          delayAmount: options.delayAmount,
          overlays: overlays,
