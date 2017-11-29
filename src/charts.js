@@ -243,11 +243,10 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         overlays = [];
     }
 
-    const isMobile = $(containerIDWithHash).parents().eq(2).hasClass('mobile-chart');
-    
     //Save some data in DOM
     $(containerIDWithHash).data({
-        enableMobileView: isMobile,
+        enableMobileView: options.enableMobileView,
+        count: options.count,
         instrumentCode: options.instrumentCode,
         instrumentName: options.instrumentName,
         timePeriod: options.timePeriod,
@@ -567,6 +566,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          timezoneOffset: options.timezoneOffset || 0,
          type: options.type,
          enableMobileView: options.enableMobileView,
+         count: options.count,
          series_compare: series_compare,
          delayAmount: options.delayAmount,
          overlays: overlays,
