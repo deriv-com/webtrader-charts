@@ -52,6 +52,7 @@ Take a look at `webpack.config.js -> externals`.
        },
     ],
     "overlays": [ ],
+    enableMobileView: false, // default is false
      /* optional field timezoneOffset in minutes, see (http://api.highcharts.com/highstock/global.timezoneOffset)
         timezone is global in highcharts, this option will effect other charts on the page */
     "timezoneOffset": 0,
@@ -67,6 +68,13 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart. returns a promise.
 ```
+
+### Supporting mobile (Exprimental)
+
+Pass `enableMobileView: true` to make chart mobile friendly. This option disables the navigator and shrinks the scrollbar.
+
+In mobile devices it is recommended to reduce `count: 200`, this will improve performance but do not use a smaller value because some indicators might not work properly.
+
 ### Displaying trade results (Exprimental)
 
 ![Alt text](example/screenshots/0.png?raw=true "Displaying trade results")

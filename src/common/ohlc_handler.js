@@ -91,7 +91,7 @@ export const retrieveChartDataAndRender = (options) => {
       granularity: timePeriod,
       style: !is_tick ? 'candles' : 'ticks',
       delayAmount: options.delayAmount,
-      count: options.enableMobileView ? 100 : 1000, //We are only going to request 1000 bars if possible
+      count: options.count || 1000, //We are only going to request 1000 bars if possible
       adjust_start_time: 1,
       start: options.start,
       end: options.end,
