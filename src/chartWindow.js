@@ -8,6 +8,7 @@ import liveapi from './common/liveapi.js';
 import Highcharts from 'highstock-release/highstock';
 import chartDraw from './chartDraw.js';
 import {chartableMarkets} from './overlayManagement.js';
+import chartingRequestMap from './common/chartingRequestMap.js';
 
 const triggerResizeEffects = (dialog) => {
     const subContainer = dialog.find('.chartSubContainer');
@@ -82,14 +83,7 @@ export const addNewChart = function($parent, options) {
             });
           },
           stopStreaming: () => {
-            const timePeriod = Store[id].timePeriod;
-            const instrumentCode = Store[id].instrumentCode
-            charts.destroy({
-                containerIDWithHash: `#${id}_chart`,
-                timePeriod: timePeriod,
-                instrumentCode: instrumentCode,
-                start: options.start
-            });
+            chartingRequestMap.unregister_all(`#${id}_chart`);
           },
           refresh: () => charts.refresh(`#${id}_chart`),
        },
