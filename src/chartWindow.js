@@ -81,6 +81,16 @@ export const addNewChart = function($parent, options) {
                return p;
             });
           },
+          stopStreaming: () => {
+            const timePeriod = Store[id].timePeriod;
+            const instrumentCode = Store[id].instrumentCode
+            charts.destroy({
+                containerIDWithHash: `#${id}_chart`,
+                timePeriod: timePeriod,
+                instrumentCode: instrumentCode,
+                start: options.start
+            });
+          },
           refresh: () => charts.refresh(`#${id}_chart`),
        },
        draw: {
