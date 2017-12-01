@@ -67,6 +67,7 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.reflow(); // Resizes the chart, call it when container is resized.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart. returns a promise.
+ chart.actions.stopStreaming(); // Unsubcribe from the tick stream.
 ```
 
 ### Supporting mobile (Exprimental)
