@@ -87,7 +87,7 @@ In mobile devices it is recommended to reduce `count: 200`, this will improve pe
    chart.draw.endTime(epoch); // dashed vertical line at epoch.
    chart.draw.entrySpot(epoch); // empty orange circle at epoch
    chart.draw.exitSpot(epoch); // filled orange circle at epoch
-   chart.draw.barrier({value: value}); // draws a gree horizontal barrier line
+   chart.draw.barrier({value: value, label: label}); // draws a green horizontal barrier line
 ```
 
 ### How to extend it
