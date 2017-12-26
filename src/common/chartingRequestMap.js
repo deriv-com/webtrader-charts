@@ -251,6 +251,7 @@ export const register = function(options, dialog_id) {
            req.subscribe = 1;
        }
 
+       req.adjust_start_time = options.adjust_start_time || 1;
        if (!is_tick) {
            const count = options.count || 1;
            let start = (new Date().getTime() / 1000 - count * granularity) | 0;
@@ -265,7 +266,6 @@ export const register = function(options, dialog_id) {
 
            req.style = 'candles';
            req.start = start;
-           req.adjust_start_time = options.adjust_start_time || 1;
        }
     } else { // for historical-data
        req.start = options.start;
@@ -278,7 +278,7 @@ export const register = function(options, dialog_id) {
     return liveapi.send(req, /*timeout:*/ 30 * 1000) // 30 second timeout
         .catch((up) => {
             /* if the market is closed try the same request without subscribing */
-            if (req.subscribe && up.code == 'MarketIsClosed') {
+            if (req.subscribe && (up.code == 'MarketIsClosed' || up.code == 'NoRealtimeQuotes')) {
                 notification.warning(`${options.symbol} ${i18n('market is presently closed')}.`, dialog_id); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
