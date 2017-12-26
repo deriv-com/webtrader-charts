@@ -282,6 +282,7 @@ export const register = function(options, dialog_id) {
                 notification.warning(`${options.symbol} ${i18n('market is presently closed')}.`, dialog_id); 
                 events.trigger('market-is-close', [{symbol: options.symbol}]);
                 delete req.subscribe;
+                req.adjust_start_time = 1;
                 map[key].subscribers -= 1;
                 return liveapi.send(req, 30 * 1000);
             }
