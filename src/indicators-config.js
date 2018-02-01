@@ -150,12 +150,15 @@ export const config = {
     ],
     levels:{
       fields: [
-        {title: "Level", key: "value", min: 1, max: 100, value: 50, type: "slider"},
+        {title: "Level", key: "value", min: -100, max: 0, value: -50, type: "slider"},
         {title: "Stroke width", key: "width", min: 1, max: 10, value: 1, type: "slider"},
         {title: "Stroke", key: "color", value: "#D95B43", type: "colorpicker"},
         {title: "Dash style", key: "dashStyle", value: "Dash", type: "dashstyle"}
       ],
-      values: [ ]
+      values: [
+        {color: "#FA6B0D", dashStyle: "Dash", label: { text: -25}, value: -25, "width" : 1},
+        {color: "#FA6B0D", dashStyle: "Dash", label: { text: -75}, value: -75, "width" : 1}
+      ]
     },
     category: [
       "Momentum Indicators"
@@ -657,6 +660,18 @@ export const config = {
       {title: "Stroke width", key: "strokeWidth", min: 1, max: 10, value: 1, type: "slider"},
       {title: "Dash style", key: "dashStyle", value: "Solid", type: "dashstyle"}
     ],
+    levels:{
+      fields: [
+        {title: "Level", key: "value", min: -200, max: 200, value: 0, type: "slider"},
+        {title: "Stroke width", key: "width", min: 1, max: 10, value: 1, type: "slider"},
+        {title: "Stroke", key: "color", value: "#FA6B0D", type: "colorpicker"},
+        {title: "Dash style", key: "dashStyle", value: "Dash", type: "dashstyle"}
+      ],
+      values: [
+        {color: "#FA6B0D", dashStyle: "Dash", label: { text: -100}, value: -100, "width" : 1},
+        {color: "#FA6B0D", dashStyle: "Dash", label: { text: 100}, value: 100, "width" : 1}
+      ]
+    },
     category: [
       "Momentum Indicators"
     ],
