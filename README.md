@@ -7,7 +7,7 @@ See [Demo](http://aminroosta.ir/webtrader-charts)
 
 Use npm / yarn
 ```bash     
-npm install --save webtrader-charts
+npm install --save @binary-com/webtrader-charts
 yarn add webtrader-charts
 ```
 
