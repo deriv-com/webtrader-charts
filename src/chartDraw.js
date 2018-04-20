@@ -91,7 +91,7 @@ export const draw = {
    },
    exitSpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'orange' }),
    entrySpot: (dialog, epoch) => draw.point(dialog, { value: epoch, color: 'white' }),
-   barrier: (dialog, { value }) => {
+   barrier: (dialog, { value, label }) => {
       const container = dialog.find(`#${dialog.attr('id')}_chart`);
       const chart = container.highcharts();
 
@@ -115,7 +115,7 @@ export const draw = {
        textAlign: 'left',
        label: {
          align: 'left',
-         text:  'barrier: ' + value,
+         text:  `${label || 'barrier'}: ${value}`,
          style: {
            'display': 'inline-block',
            'background': 'green', // used in charts.scss selectors ([style*="green"]) ¯\_(ツ)_/¯

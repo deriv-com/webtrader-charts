@@ -8,6 +8,7 @@ import liveapi from './common/liveapi.js';
 import Highcharts from 'highstock-release/highstock';
 import chartDraw from './chartDraw.js';
 import {chartableMarkets} from './overlayManagement.js';
+import chartingRequestMap from './common/chartingRequestMap.js';
 
 const triggerResizeEffects = (dialog) => {
     const subContainer = dialog.find('.chartSubContainer');
@@ -32,6 +33,9 @@ let idCounter = 0;
 export const addNewChart = function($parent, options) {
     const dialog = $(html);
     $parent.addClass('chart-dialog');
+    if (options.enableMobileView) {
+        $parent.addClass('mobile-chart');
+    }
     dialog.appendTo($parent);
     var id = `webtrader-charts-dialog-${++idCounter}`;
     dialog.attr('id', id);
@@ -77,6 +81,9 @@ export const addNewChart = function($parent, options) {
                dialog.remove();
                return p;
             });
+          },
+          stopStreaming: () => {
+            chartingRequestMap.unregister_all(`#${id}_chart`);
           },
           refresh: () => charts.refresh(`#${id}_chart`),
        },

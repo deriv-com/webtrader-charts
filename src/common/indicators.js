@@ -244,7 +244,10 @@ var indicators = {
       var GAP = 5;
       var totalYAxes = chart.yAxis.length;
       totalYAxes--;//Excluding main chart
-      totalYAxes--;//Excluding navigator chart
+      // Exclude navigator, if it is enabled
+      if (chart.navigator.navigatorEnabled) {
+         totalYAxes--;
+      }
       var heightOfEachSubWindow = Math.round(45 / totalYAxes)-5;
       var topForNextSubWindow = 0;
 

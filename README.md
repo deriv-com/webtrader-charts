@@ -7,7 +7,7 @@ See [Demo](http://aminroosta.ir/webtrader-charts)
 
 Use npm / yarn
 ```bash     
-npm install --save webtrader-charts
+npm install --save @binary-com/webtrader-charts
 yarn add webtrader-charts
 ```
 
@@ -52,6 +52,7 @@ Take a look at `webpack.config.js -> externals`.
        },
     ],
     "overlays": [ ],
+    enableMobileView: false, // default is false
      /* optional field timezoneOffset in minutes, see (http://api.highcharts.com/highstock/global.timezoneOffset)
         timezone is global in highcharts, this option will effect other charts on the page */
     "timezoneOffset": 0,
@@ -66,7 +67,15 @@ Take a look at `webpack.config.js -> externals`.
  chart.actions.reflow(); // Resizes the chart, call it when container is resized.
  chart.actions.refresh(); // Refreshes the entire chart.
  chart.actions.destroy(); // Destroys the chart. returns a promise.
+ chart.actions.stopStreaming(); // Unsubcribe from the tick stream.
 ```
+
+### Supporting mobile (Exprimental)
+
+Pass `enableMobileView: true` to make chart mobile friendly. This option disables the navigator and shrinks the scrollbar.
+
+In mobile devices it is recommended to reduce `count: 200`, this will improve performance but do not use a smaller value because some indicators might not work properly.
+
 ### Displaying trade results (Exprimental)
 
 ![Alt text](example/screenshots/0.png?raw=true "Displaying trade results")
@@ -78,7 +87,7 @@ Take a look at `webpack.config.js -> externals`.
    chart.draw.endTime(epoch); // dashed vertical line at epoch.
    chart.draw.entrySpot(epoch); // empty orange circle at epoch
    chart.draw.exitSpot(epoch); // filled orange circle at epoch
-   chart.draw.barrier({value: value}); // draws a gree horizontal barrier line
+   chart.draw.barrier({value: value, label: label}); // draws a green horizontal barrier line
 ```
 
 ### How to extend it

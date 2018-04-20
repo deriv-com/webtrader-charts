@@ -1,6 +1,6 @@
 {
-  "name": "webtrader-charts",
-  "version": "0.4.8",
+  "name": "@binary-com/webtrader-charts",
+  "version": "0.4.12",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
@@ -66,5 +66,8 @@
     "lodash": "^4.17.4",
     "paralleljs": "^0.2.1",
     "rivets": "0.8.1"
+  },
+  "directories": {
+    "example": "example"
   }
 }

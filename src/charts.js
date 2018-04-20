@@ -19,6 +19,7 @@ import { toggleCrossHair } from './crosshair.js';
 import chartDraw from './chartDraw.js';
 
 import './charts.scss';
+import './mobileview.scss';
 
 // TODO: moemnt locale
 // const lang = local_storage.get("i18n") ? local_storage.get("i18n").value.replace("_","-") : 'en';
@@ -244,6 +245,8 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     //Save some data in DOM
     $(containerIDWithHash).data({
+        enableMobileView: options.enableMobileView,
+        count: options.count,
         instrumentCode: options.instrumentCode,
         instrumentName: options.instrumentName,
         timePeriod: options.timePeriod,
@@ -255,6 +258,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
     var initialized = false;
     const container = $(containerIDWithHash);
+    const enableMobileView = options.enableMobileView === undefined ? false : options.enableMobileView;
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', {
         chart: {
@@ -274,7 +278,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             instrumentCode: options.instrumentCode,
                             containerIDWithHash: containerIDWithHash,
                             type: options.type,
-                            count: options.count,
+                            count: options.count, 
                             instrumentName: options.instrumentName,
                             series_compare: options.series_compare,
                             delayAmount: options.delayAmount,
@@ -318,7 +322,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         navigator: {
-            enabled: true,
+            enabled: !enableMobileView,
             series: {
                 id: 'navigator'
             }
@@ -369,7 +373,6 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         credits: { href: '#', text: '' },
-        scrollbar: { liveRedraw: true },
         rangeSelector: { enabled: false },
 
         xAxis: {
@@ -463,6 +466,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         }],
 
         tooltip: {
+            followTouchMove: false,
             formatter: function() {
                 if(!current_symbol || !current_symbol.pip) {
                   return;
@@ -561,6 +565,8 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          timePeriod: options.timePeriod,
          timezoneOffset: options.timezoneOffset || 0,
          type: options.type,
+         enableMobileView: options.enableMobileView,
+         count: options.count,
          series_compare: series_compare,
          delayAmount: options.delayAmount,
          overlays: overlays,
