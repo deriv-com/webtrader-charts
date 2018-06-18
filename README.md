@@ -92,7 +92,7 @@ In mobile devices it is recommended to reduce `count: 200`, this will improve pe
 
 ### How to extend it
 - Clone the repo
-- Change `webpack.config.js` to write the output into `/example` folder.
+- Change `rollup.config.js` to write the output into `/example` folder.
 - `yarn install` on both main project and `/example` folder.
 - `yarn watch` on main project.
 - `yarn watch` on `/example` folder.
