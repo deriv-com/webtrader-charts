@@ -97,6 +97,7 @@ const init_state = (root) => {
    state.indicators.remove = (indicator) => {
       const inx = state.indicators.active.indexOf(indicator);
       inx !== -1 && state.indicators.active.splice(inx, 1);
+
       chart_series.forEach((series) => {
          if (series.options.isInstrument) {
             series.removeIndicator(indicator.series_ids);
