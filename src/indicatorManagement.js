@@ -41,7 +41,6 @@ rv.formatters['find-indicator'] = (array, ind) => {
 }
 
 const init = () => {
-      console.log('init() 123');
 	return root;
 };
 
