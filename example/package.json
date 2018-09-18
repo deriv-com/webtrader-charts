@@ -21,6 +21,6 @@
     "highcharts": "^6.1.3",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
-    "webtrader-charts": "^0.4.2"
+    "webtrader-charts": "^0.4.3"
   }
 }
