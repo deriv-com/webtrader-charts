@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import Highcharts from 'highstock-release/highstock';
+import Highcharts from 'highcharts/highstock';
 import indicatorsArray from '../indicators-config.js';
 
 const indicatorsMetaData = _.cloneDeep(indicatorsArray);
