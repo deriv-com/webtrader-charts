@@ -139,40 +139,44 @@ const init_state = (root) => {
 };
 
 const update_indicators = (series) => {
-   let indicators = _.cloneDeep(indicatorsArray);
-   const popular_ids = ["apo", "alligator", "alma", "adx", "atr", "ao", "bbands", "cks", "cdleveningdojistar", "fractal", "hma", "mass", "max", "sma", "stddev", "tema"];
-   const favorite_ids = local_storage.get('indicator-management-favorite-ids') || [];
-   indicators = _.filter(indicators, (ind) => {
-      ind.is_favorite = favorite_ids.indexOf(ind.id) !== -1;
-      ind.is_popular = popular_ids.indexOf(ind.id) !== -1;
-      return !(ind.isTickChartNotAllowed && state.dialog.is_tick_chart);
-   });
+   // Update state only if series has loaded
+   let should_update_state = series.every((seri) => !_.isEmpty(seri));
+   if (should_update_state) {
+      let indicators = _.cloneDeep(indicatorsArray);
+      const popular_ids = ["apo", "alligator", "alma", "adx", "atr", "ao", "bbands", "cks", "cdleveningdojistar", "fractal", "hma", "mass", "max", "sma", "stddev", "tema"];
+      const favorite_ids = local_storage.get('indicator-management-favorite-ids') || [];
+      indicators = _.filter(indicators, (ind) => {
+         ind.is_favorite = favorite_ids.indexOf(ind.id) !== -1;
+         ind.is_popular = popular_ids.indexOf(ind.id) !== -1;
+         return !(ind.isTickChartNotAllowed && state.dialog.is_tick_chart);
+      });
 
-   let active = [];
-   indicators.forEach((ind) => {
-      series.forEach((seri) => {
-         seri[ind.id] && seri[ind.id].forEach((instance) => {
-            const ind_clone = _.cloneDeep(ind);
-            //Show suffix if it is different than the long_display_name
-            const show = ind.long_display_name !== instance.toString();
-            ind_clone.name = ind.long_display_name;
-            ind_clone.shortName = (show ? instance.toString() : "");
-            ind_clone.showEdit = ind.editable;
-            ind_clone.series_ids = instance.getIDs();
-            ind_clone.current_options = _.cloneDeep(instance.options); /* used in indicatorBuilder.es6 */
-            active.push(ind_clone);
+      let active = [];
+      indicators.forEach((ind) => {
+         series.forEach((seri) => {
+            seri[ind.id] && seri[ind.id].forEach((instance) => {
+               const ind_clone = _.cloneDeep(ind);
+               //Show suffix if it is different than the long_display_name
+               const show = ind.long_display_name !== instance.toString();
+               ind_clone.name = ind.long_display_name;
+               ind_clone.shortName = (show ? instance.toString() : "");
+               ind_clone.showEdit = ind.editable;
+               ind_clone.series_ids = instance.getIDs();
+               ind_clone.current_options = _.cloneDeep(instance.options); /* used in indicatorBuilder.es6 */
+               active.push(ind_clone);
+            });
          });
       });
-   });
 
-   state.categories = _.uniq(_.flatten(_.map(indicators,'category')));
-   state.indicators.favorites = _.filter(indicators, 'is_favorite').sort(
-      (a, b) => a.long_display_name.toLowerCase() > b.long_display_name.toLowerCase() ? 1 : -1
-   );
-   state.indicators.popular = _.filter(indicators,'is_popular');
-   state.indicators.popular_cat = Object.keys(_.groupBy(state.indicators.popular, "category"));
-   state.indicators.array = indicators;
-   state.indicators.active = active;
+      state.categories = _.uniq(_.flatten(_.map(indicators,'category')));
+      state.indicators.favorites = _.filter(indicators, 'is_favorite').sort(
+         (a, b) => a.long_display_name.toLowerCase() > b.long_display_name.toLowerCase() ? 1 : -1
+      );
+      state.indicators.popular = _.filter(indicators,'is_popular');
+      state.indicators.popular_cat = Object.keys(_.groupBy(state.indicators.popular, "category"));
+      state.indicators.array = indicators;
+      state.indicators.active = active;
+   }
 };
 
 export const openDialog = (containerIDWithHash) => {
