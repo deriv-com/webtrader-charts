@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import Highcharts from 'highstock-release/highstock';
+import Highcharts from 'highcharts/highstock';
 import {version} from '../package.json';
-import HighchartsMore from 'highstock-release/highcharts-more';
-import HighchartsExporting from 'highstock-release/modules/exporting';
-import HighcartsOfflineExporting from 'highstock-release/modules/offline-exporting';
+import HighchartsMore from 'highcharts/highcharts-more';
+import HighchartsExporting from 'highcharts/modules/exporting';
+import HighcartsOfflineExporting from 'highcharts/modules/offline-exporting';
 
 HighchartsMore && HighchartsMore(Highcharts);
 HighchartsExporting && HighchartsExporting(Highcharts);

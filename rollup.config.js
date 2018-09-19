@@ -32,7 +32,7 @@ export default {
   input: 'src/index.js',
   output: {
     file: './dist/webtrader-charts.js',
-    // file: '../webtrader/dist/uncompressed/v2.2.2/lib/webtrader-charts/dist/webtrader-charts.js',
+    // file: '../webtrader/dist/uncompressed/v2.2.8/lib/webtrader-charts/dist/webtrader-charts.js',
     // file: '../binary-next-gen/node_modules/webtrader-charts/dist/webtrader-charts.js',
     format: 'umd',
     name: 'WebtraderCharts',
@@ -76,18 +76,18 @@ export default {
     include: 'src/**'
   },
   external: [
-    'highstock-release/highstock',
-    'highstock-release/highcharts-more',
-    'highstock-release/modules/exporting',
-    'highstock-release/modules/offline-exporting',
+    'highcharts/highstock',
+    'highcharts/highcharts-more',
+    'highcharts/modules/exporting',
+    'highcharts/modules/offline-exporting',
     'jquery',
     'moment',
   ],
   globals: {
-    'highstock-release/highstock' : 'Highcharts',
-    'highstock-release/highcharts-more' : 'HighchartsMore',
-    'highstock-release/modules/exporting' : 'HighchartsExporting',
-    'highstock-release/modules/offline-exporting' : 'HighcartsOfflineExporting',
+    'highcharts/highstock' : 'Highcharts',
+    'highcharts/highcharts-more' : 'HighchartsMore',
+    'highcharts/modules/exporting' : 'HighchartsExporting',
+    'highcharts/modules/offline-exporting' : 'HighcartsOfflineExporting',
     'jquery': 'jQuery',
     'moment': 'moment',
   }
