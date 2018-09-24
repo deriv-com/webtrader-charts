@@ -260,6 +260,7 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
         if (exportType) {
             const id = `#${scope.newTabId}_chart`;
             const chart = $(id).highcharts();
+            console.log(chart);
             const exporters = {
               png: () => chart.exportChartLocal(),
               pdf: () => chart.exportChart({ type: 'application/pdf' }),

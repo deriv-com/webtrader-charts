@@ -8,6 +8,7 @@ import HighcartsOfflineExporting from 'highstock-release/modules/offline-exporti
 HighchartsMore && HighchartsMore(Highcharts);
 HighchartsExporting && HighchartsExporting(Highcharts);
 HighcartsOfflineExporting && HighcartsOfflineExporting(Highcharts);
+console.log(Highcharts);
 
 import indicatorBuilder from './indicatorBuilder'; 
 import indicatorManagement from './indicatorManagement';
