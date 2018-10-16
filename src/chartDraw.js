@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import $ from 'jquery';
 import {i18n, isTick} from './common/utils.js';
-import Highcharts from 'highcharts/highstock';
+import Highcharts from 'highstock-release/highstock';
 
 const Store = { }; // 
 
