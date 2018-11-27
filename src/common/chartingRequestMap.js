@@ -243,9 +243,12 @@ export const register = function(options, dialog_id) {
 
     const req = {
         "ticks_history": options.symbol,
-        "granularity": granularity,
         "style": style
     };
+
+    if (granularity) {
+        req.granularity = granularity;
+    }
 
     if(!options.start) { // live-chart
        req.count = options.count || 1;
