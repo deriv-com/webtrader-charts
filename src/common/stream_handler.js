@@ -21,7 +21,6 @@ liveapi.events.on('tick', (e, data) => {
       const time = parseInt(data.tick.epoch) * 1000;
 
       const chartingRequest = chartingRequestMap.mapFor(key);
-      const granularity = data.echo_req.granularity || 0;
       chartingRequest.id = chartingRequest.id || data.tick.id;
 
       if (!granularity) {
