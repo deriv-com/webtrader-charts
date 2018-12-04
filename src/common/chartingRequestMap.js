@@ -225,6 +225,7 @@ export const keyFor = (symbol, granularity_or_timeperiod, start) => {
     will return a promise
 */
 export const register = function(options, dialog_id) {
+    console.log('register');
     const key = keyFor(options.symbol, options.granularity, options.start);
 
     let granularity = options.granularity || 0;
@@ -249,6 +250,7 @@ export const register = function(options, dialog_id) {
     if (granularity) {
         req.granularity = granularity;
     }
+    console.log(req);
 
     if(!options.start) { // live-chart
        req.count = options.count || 1;

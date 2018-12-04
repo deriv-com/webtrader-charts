@@ -23,43 +23,41 @@ liveapi.events.on('tick', (e, data) => {
       const chartingRequest = chartingRequestMap.mapFor(key);
       chartingRequest.id = chartingRequest.id || data.tick.id;
 
-      if (!granularity) {
-         const tick = {
-            instrumentCdAndTp: key,
-            time: time,
-            open: price,
-            high: price,
-            low: price,
-            close: price,
-            /* this will be used from trade confirmation dialog */
-            price: data.tick.quote, /* we need the original value for tick trades */
-         }
-         barsTable.insert(tick);
-         /* notify subscribers */
-         let preTick = tick;
-         const bars = barsTable.query({ instrumentCdAndTp: key, take: 2, reverse: true });
-         if (bars.length > 1)
-            preTick = bars[1];
-         events.trigger('tick', [{ tick: tick, key: key, preTick: preTick }]);
-
-         if (!(chartingRequest.chartIDs && chartingRequest.chartIDs.length > 0)) {
-            return;
-         }
-         //notify all registered charts
-         for(let i = 0; i < chartingRequest.chartIDs.length; i++) {
-            const chartID = chartingRequest.chartIDs[i];
-            const chart = $(chartID.containerIDWithHash).highcharts();
-            if (!chart) return;
-
-            const series = chart.get(key);
-            if (!series) return;
-
-            series.addPoint([time, price]);
-            // used int bot.es6 -----------------
-            events.trigger('chart-tick', [{ tick: { price: tick.price*1, time:tick.time }, containerId: chartID.containerIDWithHash, key: key}]);
-            // ----------------------------------
-         };
+      const tick = {
+         instrumentCdAndTp: key,
+         time: time,
+         open: price,
+         high: price,
+         low: price,
+         close: price,
+         /* this will be used from trade confirmation dialog */
+         price: data.tick.quote, /* we need the original value for tick trades */
       }
+      barsTable.insert(tick);
+      /* notify subscribers */
+      let preTick = tick;
+      const bars = barsTable.query({ instrumentCdAndTp: key, take: 2, reverse: true });
+      if (bars.length > 1)
+         preTick = bars[1];
+      events.trigger('tick', [{ tick: tick, key: key, preTick: preTick }]);
+
+      if (!(chartingRequest.chartIDs && chartingRequest.chartIDs.length > 0)) {
+         return;
+      }
+      //notify all registered charts
+      for(let i = 0; i < chartingRequest.chartIDs.length; i++) {
+         const chartID = chartingRequest.chartIDs[i];
+         const chart = $(chartID.containerIDWithHash).highcharts();
+         if (!chart) return;
+
+         const series = chart.get(key);
+         if (!series) return;
+
+         series.addPoint([time, price]);
+         // used int bot.es6 -----------------
+         events.trigger('chart-tick', [{ tick: { price: tick.price*1, time:tick.time }, containerId: chartID.containerIDWithHash, key: key}]);
+         // ----------------------------------
+      };
    }
 });
 
