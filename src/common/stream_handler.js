@@ -13,17 +13,17 @@ const setExtremePointsForXAxis = (chart, startTime, endTime) => {
 
 liveapi.events.on('tick', (e, data) => {
    const start = data.echo_req.count === 0 ? data.echo_req.start : undefined;
-   let key = chartingRequestMap.keyFor(data.echo_req.ticks_history, data.echo_req.granularity*1, start);
+   const { granularity } = data.echo_req;
+   let key = chartingRequestMap.keyFor(data.echo_req.ticks_history, granularity, start);
    if (key && chartingRequestMap.mapFor(key)) {
 
       const price = parseFloat(data.tick.quote);
       const time = parseInt(data.tick.epoch) * 1000;
 
       const chartingRequest = chartingRequestMap.mapFor(key);
-      const granularity = data.echo_req.granularity || 0;
       chartingRequest.id = chartingRequest.id || data.tick.id;
 
-      if(granularity === 0) {
+      if (!granularity) {
          const tick = {
             instrumentCdAndTp: key,
             time: time,
