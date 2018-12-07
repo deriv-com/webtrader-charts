@@ -76,18 +76,18 @@ export default {
     include: 'src/**'
   },
   external: [
-    'highcharts/highstock',
-    'highcharts/highcharts-more',
-    'highcharts/modules/exporting',
-    'highcharts/modules/offline-exporting',
+    'highstock-release/highstock',
+    'highstock-release/highcharts-more',
+    'highstock-release/modules/exporting',
+    'highstock-release/modules/offline-exporting',
     'jquery',
     'moment',
   ],
   globals: {
-    'highcharts/highstock' : 'Highcharts',
-    'highcharts/highcharts-more' : 'HighchartsMore',
-    'highcharts/modules/exporting' : 'HighchartsExporting',
-    'highcharts/modules/offline-exporting' : 'HighcartsOfflineExporting',
+    'highstock-release/highstock' : 'Highcharts',
+    'highstock-release/highcharts-more' : 'HighchartsMore',
+    'highstock-release/modules/exporting' : 'HighchartsExporting',
+    'highstock-release/modules/offline-exporting' : 'HighcartsOfflineExporting',
     'jquery': 'jQuery',
     'moment': 'moment',
   }

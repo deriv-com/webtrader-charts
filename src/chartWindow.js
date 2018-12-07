@@ -5,7 +5,7 @@ import charts from './charts.js';
 import tableView from './tableView.js';
 import chartOptions from './chartOptions.js';
 import liveapi from './common/liveapi.js';
-import Highcharts from 'highcharts/highstock';
+import Highcharts from 'highstock-release/highstock';
 import chartDraw from './chartDraw.js';
 import {chartableMarkets} from './overlayManagement.js';
 import chartingRequestMap from './common/chartingRequestMap.js';
