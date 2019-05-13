@@ -309,7 +309,6 @@ export const register = function(options, dialog_id) {
   when all dependent modules call unregister function.
   you should also make sure to call unregister when you no longer need the stream to avoid "stream leack!" */
 export const subscribe = function(key, chartID) {
-    console.log('hi1')
     if (!map[key]) {
         return;
     }
