@@ -2684,10 +2684,6 @@ spdy@^3.4.1:
     select-hose "^2.0.0"
     spdy-transport "^2.0.15"
 
-spectrum-colorpicker@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/spectrum-colorpicker/-/spectrum-colorpicker-1.8.0.tgz#b926cf5002c0a77860b5f8351e1c093c65200107"
-
 sshpk@^1.7.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.13.0.tgz#ff2a3e4fd04497555fed97b39a0fd82fafb3a33c"
@@ -3027,16 +3023,16 @@ websocket-extensions@>=0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
 
-webtrader-charts@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/webtrader-charts/-/webtrader-charts-0.3.5.tgz#3388421abcbbaa3850ca17c5e9a9e1d1ebef46c0"
+webtrader-charts@^0.4.0:
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/webtrader-charts/-/webtrader-charts-0.4.12.tgz#086715470270753fc0226407c152111eaccb4e9d"
+  integrity sha1-CGcVRwJwdT/AImQHwVIRHqzLTp0=
   dependencies:
     datatables.net-dt "^1.10.15"
     imports-loader "^0.7.1"
     lodash "^4.17.4"
     paralleljs "^0.2.1"
     rivets "0.8.1"
-    spectrum-colorpicker "^1.8.0"
 
 which-module@^1.0.0:
   version "1.0.0"

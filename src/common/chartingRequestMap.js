@@ -243,7 +243,8 @@ export const register = function(options, dialog_id) {
 
     const req = {
         "ticks_history": options.symbol,
-        "style": style
+        "style": style,
+        "adjust_start_time": options.adjust_start_time || 1,
     };
 
     if (granularity) {
@@ -272,7 +273,6 @@ export const register = function(options, dialog_id) {
 
            req.style = 'candles';
            req.start = start;
-           req.adjust_start_time = options.adjust_start_time || 1;
        }
     } else { // for historical-data
        req.start = options.start;
@@ -287,7 +287,6 @@ export const register = function(options, dialog_id) {
          }
        }
     }
-
     map[key] = { symbol: options.symbol, granularity: granularity, subscribers: 0, chartIDs: [] };
     if (req.subscribe) map[key].subscribers = 1; // how many charts have subscribed for a stream
     return liveapi.send(req, /*timeout:*/ 30 * 1000) // 30 second timeout
@@ -310,6 +309,7 @@ export const register = function(options, dialog_id) {
   when all dependent modules call unregister function.
   you should also make sure to call unregister when you no longer need the stream to avoid "stream leack!" */
 export const subscribe = function(key, chartID) {
+    console.log('hi1')
     if (!map[key]) {
         return;
     }
