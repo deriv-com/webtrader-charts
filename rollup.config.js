@@ -31,9 +31,9 @@ const preprocessor = (content, id) => new Promise((resolve, reject) => {
 export default {
   input: 'src/index.js',
   output: {
-    file: './dist/webtrader-charts.js',
+    // file: './dist/webtrader-charts.js',
     // file: './example/node_modules/webtrader-charts/dist/webtrader-charts.js',
-    // file: '../webtrader/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
+    file: '../webtrader/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
     // file: '../binary-static/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
     format: 'umd',
     name: 'WebtraderCharts',
