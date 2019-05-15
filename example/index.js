@@ -10,8 +10,8 @@ wtcharts.init({
 const $parent = $('#container');
 
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
-   "instrumentCode": "R_100",
-   "instrumentName": "Volatility index 100",
+   "instrumentCode": "OTC_NDX",
+   "instrumentName": "US Tech Index",
    // "showInstrumentName": true,
    "timePeriod": "1m",
    "type": "candlestick",
