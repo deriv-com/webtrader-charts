@@ -11,8 +11,9 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-stage-2": "^6.24.1",
-    "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.3"
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
     "watch": "node_modules/.bin/webpack-dev-server"
