@@ -12,9 +12,9 @@ const $parent = $('#container');
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
    "instrumentCode": "OTC_NDX",
    "instrumentName": "US Tech Index",
-   // "showInstrumentName": true,
-   "timePeriod": "1m",
-   "type": "candlestick",
+   "showInstrumentName": true,
+   "timePeriod": "1t",
+   "type": "line",
    "indicators": [],
    "overlays": []
 });
