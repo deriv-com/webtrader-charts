@@ -225,6 +225,7 @@ export const keyFor = (symbol, granularity_or_timeperiod, start) => {
     will return a promise
 */
 export const register = function(options, dialog_id) {
+    const start_time = liveapi.cached.send({ time: 1 })
     const key = keyFor(options.symbol, options.granularity, options.start);
 
     let granularity = options.granularity || 0;
@@ -242,8 +243,9 @@ export const register = function(options, dialog_id) {
     }
 
     const req = {
+        "adjust_start_time": options.adjust_start_time || 1,
         "ticks_history": options.symbol,
-        "style": style
+        "style": style,
     };
 
     if (granularity) {
@@ -272,7 +274,6 @@ export const register = function(options, dialog_id) {
 
            req.style = 'candles';
            req.start = start;
-           req.adjust_start_time = options.adjust_start_time || 1;
        }
     } else { // for historical-data
        req.start = options.start;
@@ -290,7 +291,10 @@ export const register = function(options, dialog_id) {
 
     map[key] = { symbol: options.symbol, granularity: granularity, subscribers: 0, chartIDs: [] };
     if (req.subscribe) map[key].subscribers = 1; // how many charts have subscribed for a stream
-    return liveapi.send(req, /*timeout:*/ 30 * 1000) // 30 second timeout
+    return start_time.then((time) => {
+        req.start = req.start ? req.start : time.time - 10 * 60;
+
+        return liveapi.send(req, /*timeout:*/ 30 * 1000) // 30 second timeout
         .catch((up) => {
             /* if the market is closed try the same request without subscribing */
             if (req.subscribe && up.code == 'MarketIsClosed') {
@@ -303,6 +307,8 @@ export const register = function(options, dialog_id) {
             delete map[key];
             throw up;
         });
+    })
+
 }
 
 /* use this method if there is already a stream with this key registered,
