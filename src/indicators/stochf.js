@@ -82,39 +82,34 @@ STOCHF.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) {
                 offset: 0,
                 rotation: 0,
                 y: 10,
-                x: 30+ this.toString().length * 7.5
+                x: 30 + this.toString().length * 7.5
             },
             lineWidth: 2,
             plotLines: this.options.levels
-          }
         },
-        {
-             seriesConf: {
-                 id: this.uniqueID[0],
-                 name: this.toString(),
-                 data: sochfData,
-                 type: 'line',
-                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                 color: this.options.stroke,
-                 lineWidth: this.options.strokeWidth,
-                 dashStyle: this.options.dashStyle,
-                 onChartIndicator: false
-             }
-         },
-        {
-            seriesConf: {
-                id: this.uniqueID[1],
-                name: '%D',
-                data: dData,
-                type: 'line',
-                yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                color: this.options.dStroke,
-                lineWidth: this.options.strokeWidth,
-                dashStyle: this.options.dashStyle,
-                onChartIndicator: false
-            }
+        seriesConf: {
+            id: this.uniqueID[0],
+            name: this.toString(),
+            data: sochfData,
+            type: 'line',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.stroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
+        },
+        seriesConf: {
+            id: this.uniqueID[1],
+            name: '%D',
+            data: dData,
+            type: 'line',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.dStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
         }
-    ];
+    }];
 };
 
 /**

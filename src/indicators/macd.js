@@ -111,59 +111,53 @@ MACD.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
     });
 
     return [{
-            axisConf: { // Secondary yAxis
-                id: indicatorMetadata.id + '-' + this.uniqueID[0],
-                title: {
-                    text: this.toString(),
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    y: 10, //Trying to show title inside the indicator chart
-                    x: 30+ this.toString().length * 7.5
-                },
-                lineWidth: 2,
-                plotLines: this.options.levels
-             }
-         },
-         {
-             seriesConf: {
-                 id: this.uniqueID[2],
-                 name: 'Histogram - ' + this.toString(),
-                 data: histogramData,
-                 type: 'column',
-                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                 color: this.options.macdHstgrmColor,
-                 lineWidth: this.options.strokeWidth,
-                 dashStyle: this.options.dashStyle,
-                 onChartIndicator: false
-             }
-         },
-         {
-             seriesConf: {
-                 id: this.uniqueID[0],
-                 name: 'MACD - ' + this.toString(),
-                 data: macdData,
-                 type: 'line',
-                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                 color: this.options.macdStroke,
-                 lineWidth: this.options.strokeWidth,
-                 dashStyle: this.options.dashStyle,
-                 onChartIndicator: false
-             }
-         },
-         {
-             seriesConf: {
-                 id: this.uniqueID[1],
-                 name: 'SIGNAL - ' + this.toString(),
-                 data: signaldata,
-                 type: 'line',
-                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                 color: this.options.signalLineStroke,
-                 lineWidth: this.options.strokeWidth,
-                 dashStyle: this.options.dashStyle,
-                 onChartIndicator: false
-             }
-         }];
+        axisConf: { // Secondary yAxis
+            id: indicatorMetadata.id + '-' + this.uniqueID[0],
+            title: {
+                text: this.toString(),
+                align: 'high',
+                offset: 0,
+                rotation: 0,
+                y: 10, //Trying to show title inside the indicator chart
+                x: 30 + this.toString().length * 7.5
+            },
+            lineWidth: 2,
+            plotLines: this.options.levels
+        },
+        seriesConf: {
+            id: this.uniqueID[2],
+            name: 'Histogram - ' + this.toString(),
+            data: histogramData,
+            type: 'column',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.macdHstgrmColor,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
+        },
+        seriesConf: {
+            id: this.uniqueID[0],
+            name: 'MACD - ' + this.toString(),
+            data: macdData,
+            type: 'line',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.macdStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
+        },
+        seriesConf: {
+            id: this.uniqueID[1],
+            name: 'SIGNAL - ' + this.toString(),
+            data: signaldata,
+            type: 'line',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.signalLineStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
+        }
+    }];
 };
 
 /**

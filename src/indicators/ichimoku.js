@@ -182,8 +182,7 @@ ICHIMOKU.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) 
             lineWidth: this.options.width,
             dashStyle: this.options.dashStyle,
             onChartIndicator: true
-        }
-    }, {
+        },
         seriesConf: {
             id: this.uniqueID[1],
             name: 'Kijun Sen - ' + this.toString(),
@@ -193,8 +192,7 @@ ICHIMOKU.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) 
             lineWidth: this.options.width,
             dashStyle: this.options.dashStyle,
             onChartIndicator: true
-        }
-    }, {
+        },
         seriesConf: {
             id: this.uniqueID[2],
             name: 'Chikou Span - ' + this.toString(),
@@ -204,8 +202,7 @@ ICHIMOKU.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) 
             lineWidth: this.options.width,
             dashStyle: this.options.dashStyle,
             onChartIndicator: true
-        }
-    }, {
+        },
         seriesConf: {
             id: this.uniqueID[3],
             name: 'Senkou Span A - ' + this.toString(),
@@ -215,8 +212,7 @@ ICHIMOKU.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) 
             lineWidth: this.options.width,
             dashStyle: this.options.dashStyle,
             onChartIndicator: true
-        }
-    }, {
+        },
         seriesConf: {
             id: this.uniqueID[4],
             name: 'Senkou Span B - ' + this.toString(),

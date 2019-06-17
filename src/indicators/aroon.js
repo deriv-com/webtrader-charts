@@ -109,47 +109,43 @@ AROON.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
 
 
     return [{
-            axisConf: { // Secondary yAxis
-                id: indicatorMetadata.id + '-' + this.uniqueID[0],
-                title: {
-                    text: this.toString(),
-                    align: 'high',
-                    offset: 0,
-                    rotation: 0,
-                    y: 10, 
-                    x: 30+ this.toString().length * 7.5
-                },
-                lineWidth: 2,
-                plotLines: this.options.levels
-             }
-         },
-         {
-             seriesConf: {
-                 id: this.uniqueID[0],
-                 name: 'AROONUP - ' + this.toString(),
-                 data: aroonUpData,
-                 type: 'line',
-                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                 color: this.options.aroonUpStroke,
-                 lineWidth: this.options.strokeWidth,
-                 dashStyle: this.options.dashStyle,
-                 onChartIndicator: false
-             }
-         },
-         {
-             seriesConf: {
-                 id: this.uniqueID[1],
-                 name: 'AROONDOWN - ' + this.toString(),
-                 data: aroonDownData,
-                 type: 'line',
-                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-                 color: this.options.aroonDownStroke,
-                 lineWidth: this.options.strokeWidth,
-                 dashStyle: this.options.dashStyle,
-                 onChartIndicator: false
-             }
-         }];
-};
+        axisConf: { // Secondary yAxis
+            id: indicatorMetadata.id + '-' + this.uniqueID[0],
+            title: {
+                text: this.toString(),
+                align: 'high',
+                offset: 0,
+                rotation: 0,
+                y: 10,
+                x: 30 + this.toString().length * 7.5
+            },
+            lineWidth: 2,
+            plotLines: this.options.levels
+        },
+        seriesConf: {
+            id: this.uniqueID[0],
+            name: 'AROONUP - ' + this.toString(),
+            data: aroonUpData,
+            type: 'line',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.aroonUpStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
+        },
+        seriesConf: {
+            id: this.uniqueID[1],
+            name: 'AROONDOWN - ' + this.toString(),
+            data: aroonDownData,
+            type: 'line',
+            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+            color: this.options.aroonDownStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: false
+        }
+    }];
+    };
 
 /**
  * This method will return all IDs that are used to identify data series configuration

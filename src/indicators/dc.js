@@ -99,58 +99,54 @@ DC.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) {
     this.areaRangeData.forEach(function(e) {
         rangeData.push(_.flattenDeep([e.time, e.value]));
     });
-    return [
-        {
-            seriesConf : {
-                id: this.uniqueID[0],
-                name: 'High - ' + this.toString(),
-                data: highData,
-                type: 'line',
-                color: this.options.highStroke,
-                lineWidth: this.options.strokeWidth,
-                dashStyle: this.options.dashStyle,
-                onChartIndicator: true
-            }
+    return [{
+        seriesConf: {
+            id: this.uniqueID[0],
+            name: 'High - ' + this.toString(),
+            data: highData,
+            type: 'line',
+            color: this.options.highStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: true
         },
-        {
-            seriesConf : {
-                id: this.uniqueID[1],
-                name: 'Low - ' + this.toString(),
-                data: lowData,
-                type: 'line',
-                color: this.options.lowStroke,
-                lineWidth: this.options.strokeWidth,
-                dashStyle: this.options.dashStyle,
-                onChartIndicator: true
-            }
+
+        seriesConf: {
+            id: this.uniqueID[1],
+            name: 'Low - ' + this.toString(),
+            data: lowData,
+            type: 'line',
+            color: this.options.lowStroke,
+            lineWidth: this.options.strokeWidth,
+            dashStyle: this.options.dashStyle,
+            onChartIndicator: true
         },
-        {
-            seriesConf: {
-                id: this.uniqueID[2],
-                data: rangeData,
-                name: "DC Range",
-                type: 'arearange',
-                color: 'white',
-                fillColor: 'rgba(28,28,28,0.2)',
-                connectNulls: true,
-                //Following properties, states, events, dataLabels, point are needed. Otherwise higcharts-more throws error
-                states: {
-                    hover: {
-                        enabled: false
-                    }
-                },
-                events: {},
-                dataLabels: {
+
+        seriesConf: {
+            id: this.uniqueID[2],
+            data: rangeData,
+            name: "DC Range",
+            type: 'arearange',
+            color: 'white',
+            fillColor: 'rgba(28,28,28,0.2)',
+            connectNulls: true,
+            //Following properties, states, events, dataLabels, point are needed. Otherwise higcharts-more throws error
+            states: {
+                hover: {
                     enabled: false
-                },
-                point: {
-                    events: {}
-                },
-                enableMouseTracking: false,
-                onChartIndicator: true
-            }
+                }
+            },
+            events: {},
+            dataLabels: {
+                enabled: false
+            },
+            point: {
+                events: {}
+            },
+            enableMouseTracking: false,
+            onChartIndicator: true
         }
-    ];
+    }];
 };
 
 /**
