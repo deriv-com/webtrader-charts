@@ -153,8 +153,7 @@ var indicators = {
                         var indicatorUpdated = eachInstanceOfTheIndicator.addPoint(bar);
                         indicatorUpdated.forEach(function(iu) {
                            var indicatorSeries = series.chart.get(iu.id);
-                           console.log('1')
-                           console.log(indicatorSeries)
+
                            if (_.isArray(iu.value)) {
                               var rangePoint = _.flattenDeep([time, iu.value]);
                               indicatorSeries.addPoint(rangePoint, true, false, false);
@@ -162,10 +161,6 @@ var indicators = {
                               updateOrAddScatterOrFlagSeriesData(iu, indicatorSeries, false);
                            } else {
                               //iu.color is used by Awesome indicator
-                              console.log(iu)
-                              console.log(series.chart)
-                              console.log('2')
-                              console.log(indicatorSeries)
                               if (iu.color) {
                                  indicatorSeries.addPoint({x:time, y:iu.value, color:iu.color}, false);
                               } else if (iu.time) { // iu.time is used by ichimoku indicator
