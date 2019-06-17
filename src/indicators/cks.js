@@ -140,28 +140,32 @@ CKS.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
         shortStopData.push([e.time, e.value]);
     });
 
-    return [{
-        seriesConf: {
-            id: this.uniqueID[0],
-            name: 'Short Stop - ' + this.toString(),
-            data: shortStopData,
-            type: 'line',
-            color: this.options.shortStopStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: true
+    return [
+        {
+            seriesConf: {
+                id: this.uniqueID[0],
+                name: 'Short Stop - ' + this.toString(),
+                data: shortStopData,
+                type: 'line',
+                color: this.options.shortStopStroke,
+                lineWidth: this.options.strokeWidth,
+                dashStyle: this.options.dashStyle,
+                onChartIndicator: true
+            }
         },
-        seriesConf: {
-            id: this.uniqueID[1],
-            name: 'Long Stop - ' + this.toString(),
-            data: longStopData,
-            type: 'line',
-            color: this.options.longStopStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: true
+        {
+            seriesConf: {
+                id: this.uniqueID[1],
+                name: 'Long Stop - ' + this.toString(),
+                data: longStopData,
+                type: 'line',
+                color: this.options.longStopStroke,
+                lineWidth: this.options.strokeWidth,
+                dashStyle: this.options.dashStyle,
+                onChartIndicator: true
+            }
         }
-    }];
+    ];
 };
 
 /**

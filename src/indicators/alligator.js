@@ -99,7 +99,8 @@ ALLIGATOR.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata)
             lineWidth: this.options.width,
             dashStyle: this.options.dashStyle,
             onChartIndicator: true
-        },
+        }
+    }, {
         seriesConf: {
             id: this.uniqueID[1],
             name: 'Alligator Teeth - ' + this.teeth.toString(),
@@ -109,7 +110,8 @@ ALLIGATOR.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata)
             lineWidth: this.options.width,
             dashStyle: this.options.dashStyle,
             onChartIndicator: true
-        },
+        }
+    }, {
         seriesConf: {
             id: this.uniqueID[2],
             name: 'Alligator Lips - ' + this.lips.toString(),
@@ -121,7 +123,7 @@ ALLIGATOR.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata)
             onChartIndicator: true
         }
     }];
-    }
+}
 
 ALLIGATOR.prototype.getIDs = function() {
     return this.uniqueID;

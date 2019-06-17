@@ -116,62 +116,70 @@ BBANDS.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) {
     this.areaRangeData.forEach(function(e) {
         rangeData.push(_.flattenDeep([e.time, e.value]));
     });
-    return [{
-        seriesConf: {
-            id: this.uniqueID[0],
-            name: 'Middle - ' + this.toString(),
-            data: middleData,
-            type: 'line',
-            color: this.options.mdlBndStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: true
+    return [
+        {
+            seriesConf : {
+                id: this.uniqueID[0],
+                name: 'Middle - ' + this.toString(),
+                data: middleData,
+                type: 'line',
+                color: this.options.mdlBndStroke,
+                lineWidth: this.options.strokeWidth,
+                dashStyle: this.options.dashStyle,
+                onChartIndicator: true
+            }
         },
-        seriesConf: {
-            id: this.uniqueID[1],
-            name: 'Upper - ' + this.toString(),
-            data: upperData,
-            type: 'line',
-            color: this.options.uprBndStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: true
+        {
+            seriesConf : {
+                id: this.uniqueID[1],
+                name: 'Upper - ' + this.toString(),
+                data: upperData,
+                type: 'line',
+                color: this.options.uprBndStroke,
+                lineWidth: this.options.strokeWidth,
+                dashStyle: this.options.dashStyle,
+                onChartIndicator: true
+            }
         },
-        seriesConf: {
-            id: this.uniqueID[2],
-            name: 'Lower - ' + this.toString(),
-            data: lowerData,
-            type: 'line',
-            color: this.options.lwrBndStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: true
+        {
+            seriesConf : {
+                id: this.uniqueID[2],
+                name: 'Lower - ' + this.toString(),
+                data: lowerData,
+                type: 'line',
+                color: this.options.lwrBndStroke,
+                lineWidth: this.options.strokeWidth,
+                dashStyle: this.options.dashStyle,
+                onChartIndicator: true
+            }
         },
-        seriesConf: {
-            id: this.uniqueID[3],
-            data: rangeData,
-            name: "BBANDS Range",
-            type: 'arearange',
-            color: 'white',
-            fillColor: this.options.backgroundColor,
-            connectNulls: true,
-            //Following properties, states, events, dataLabels, point are needed. Otherwise higcharts-more throws error
-            states: {
-                hover: {
+        {
+            seriesConf: {
+                id: this.uniqueID[3],
+                data: rangeData,
+                name: "BBANDS Range",
+                type: 'arearange',
+                color: 'white',
+                fillColor: this.options.backgroundColor,
+                connectNulls: true,
+                //Following properties, states, events, dataLabels, point are needed. Otherwise higcharts-more throws error
+                states: {
+                    hover: {
+                        enabled: false
+                    }
+                },
+                events: {},
+                dataLabels: {
                     enabled: false
-                }
-            },
-            events: {},
-            dataLabels: {
-                enabled: false
-            },
-            point: {
-                events: {}
-            },
-            enableMouseTracking: false,
-            onChartIndicator: true
+                },
+                point: {
+                    events: {}
+                },
+                enableMouseTracking: false,
+                onChartIndicator: true
+            }
         }
-    }];
+    ];
 };
 
 /**

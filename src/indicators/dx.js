@@ -85,53 +85,59 @@ DX.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
     });
 
     return [{
-        axisConf: { // Secondary yAxis
-            id: indicatorMetadata.id + '-' + this.uniqueID[0],
-            title: {
-                text: this.toString(),
-                align: 'high',
-                offset: 0,
-                rotation: 0,
-                y: 10, //Trying to show title inside the indicator chart
-                x: 30 + this.toString().length * 7.5
-            },
-            lineWidth: 2,
-            plotLines: this.options.levels
-        },
-        seriesConf: {
-            id: this.uniqueID[0],
-            name: 'ADX ' + this.toString(),
-            data: adxData,
-            type: 'line',
-            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-            color: this.options.dxStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: false
-        },
-        seriesConf: {
-            id: this.uniqueID[1],
-            name: '+DI ' + this.toString(),
-            data: plusDIData,
-            type: 'line',
-            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-            color: this.options.plusDIStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: false
-        },
-        seriesConf: {
-            id: this.uniqueID[2],
-            name: '-DI ' + this.toString(),
-            data: minusData,
-            type: 'line',
-            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-            color: this.options.minusDIStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: false
-        }
-    }];
+            axisConf: { // Secondary yAxis
+                id: indicatorMetadata.id + '-' + this.uniqueID[0],
+                title: {
+                    text: this.toString(),
+                    align: 'high',
+                    offset: 0,
+                    rotation: 0,
+                    y: 10, //Trying to show title inside the indicator chart
+                    x: 30+ this.toString().length * 7.5
+                },
+                lineWidth: 2,
+                plotLines: this.options.levels
+             }
+         },
+         {
+            seriesConf: {
+                 id: this.uniqueID[0],
+                 name: 'ADX ' + this.toString(),
+                 data: adxData,
+                 type: 'line',
+                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+                 color: this.options.dxStroke,
+                 lineWidth: this.options.strokeWidth,
+                 dashStyle: this.options.dashStyle,
+                 onChartIndicator: false
+             }
+         },
+         {
+             seriesConf: {
+                 id: this.uniqueID[1],
+                 name: '+DI ' + this.toString(),
+                 data: plusDIData,
+                 type: 'line',
+                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+                 color: this.options.plusDIStroke,
+                 lineWidth: this.options.strokeWidth,
+                 dashStyle: this.options.dashStyle,
+                 onChartIndicator: false
+             }
+         },
+         {
+             seriesConf: {
+                 id: this.uniqueID[2],
+                 name: '-DI ' + this.toString(),
+                 data: minusData,
+                 type: 'line',
+                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+                 color: this.options.minusDIStroke,
+                 lineWidth: this.options.strokeWidth,
+                 dashStyle: this.options.dashStyle,
+                 onChartIndicator: false
+             }
+         }];
 };
 
 /**

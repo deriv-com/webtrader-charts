@@ -95,23 +95,25 @@ AO.prototype.buildSeriesAndAxisConfFromData = function (indicatorMetadata) {
                 align: 'high',
                 offset: 0,
                 rotation: 0,
-                y: 10,
-                x: 30 + this.toString().length * 7.5
+                y: 10, 
+                x: 30+ this.toString().length * 7.5
             },
             lineWidth: 2,
             plotLines: this.options.levels
+             }
         },
-        seriesConf: {
-            id: this.uniqueID,
-            name: this.toString(),
-            data: aoData,
-            type: 'column',
-            turboThreshold: 0,
-            yAxis: indicatorMetadata.id + '-' + this.uniqueID,
-            onChartIndicator: false
-        }
-    }];
-    };
+        {
+             seriesConf: {
+                 id: this.uniqueID,
+                 name: this.toString(),
+                 data: aoData,
+                 type: 'column',
+                 turboThreshold: 0,
+                 yAxis: indicatorMetadata.id + '-' + this.uniqueID,
+                 onChartIndicator: false
+             }
+        }];
+};
 
 
 window.AO = AO;

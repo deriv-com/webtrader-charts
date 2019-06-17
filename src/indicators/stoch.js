@@ -116,30 +116,35 @@ STOCH.prototype.buildSeriesAndAxisConfFromData = function(indicatorMetadata) {
             },
             lineWidth: 2,
             plotLines: this.options.levels
+          }
         },
-        seriesConf: {
-            id: this.uniqueID[0],
-            name: this.toString(),
-            data: stochData,
-            type: 'line',
-            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-            color: this.options.stroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: false
-        },
-        seriesConf: {
-            id: this.uniqueID[1],
-            name: '%D',
-            data: dData,
-            type: 'line',
-            yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
-            color: this.options.dStroke,
-            lineWidth: this.options.strokeWidth,
-            dashStyle: this.options.dashStyle,
-            onChartIndicator: false
+        {
+             seriesConf: {
+                 id: this.uniqueID[0],
+                 name: this.toString(),
+                 data: stochData,
+                 type: 'line',
+                 yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+                 color: this.options.stroke,
+                 lineWidth: this.options.strokeWidth,
+                 dashStyle: this.options.dashStyle,
+                 onChartIndicator: false
+             }
+         },
+        {
+            seriesConf: {
+                id: this.uniqueID[1],
+                name: '%D',
+                data: dData,
+                type: 'line',
+                yAxis: indicatorMetadata.id + '-' + this.uniqueID[0],
+                color: this.options.dStroke,
+                lineWidth: this.options.strokeWidth,
+                dashStyle: this.options.dashStyle,
+                onChartIndicator: false
+            }
         }
-    }];
+    ];
 };
 
 /**
