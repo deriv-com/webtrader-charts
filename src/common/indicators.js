@@ -63,11 +63,11 @@ var indicators = {
 
             // send notification, used in bot.es6 -----------
             const filteredSeries = seriesAndAxisConfArr
-                                    .filter(r => r.seriesConf.type === 'line')
+                                    .filter(r => r.seriesConf ? r.seriesConf.type === 'line' : false)
                                     .map(r => r.seriesConf);
             if(filteredSeries.length) {
                var dialog_id = chart.renderTo.id.replace("_chart", "");
-               var uniqueIds = seriesAndAxisConfArr.map(r => r.seriesConf.id);
+               var uniqueIds = seriesAndAxisConfArr.map(r => r.seriesConf ? r.seriesConf.id : null);
                var values = filteredSeries.map(r => r.data[r.data.length-1][1]);
                events.trigger('indicator-add', [{
                   dialogId: dialog_id,
@@ -153,6 +153,7 @@ var indicators = {
                         var indicatorUpdated = eachInstanceOfTheIndicator.addPoint(bar);
                         indicatorUpdated.forEach(function(iu) {
                            var indicatorSeries = series.chart.get(iu.id);
+
                            if (_.isArray(iu.value)) {
                               var rangePoint = _.flattenDeep([time, iu.value]);
                               indicatorSeries.addPoint(rangePoint, true, false, false);
