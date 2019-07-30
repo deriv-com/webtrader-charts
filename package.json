@@ -69,5 +69,9 @@
   },
   "directories": {
     "example": "example"
+  },
+  "resolutions": {
+    "js-yaml": "^3.13.1",
+    "braces": "^2.3.1"
   }
 }
