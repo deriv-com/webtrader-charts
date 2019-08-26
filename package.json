@@ -1,6 +1,6 @@
 {
   "name": "@binary-com/webtrader-charts",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
@@ -38,12 +38,12 @@
     "moment": "^2.18.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.24.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-lodash": "^3.2.11",
     "babel-preset-es2015": "^6.24.1",
-    "css-loader": "^0.28.0",
+    "css-loader": "^3.1.0",
     "cssnano": "v4.0.0-rc.2",
     "cssnano-preset-default": "^4.0.0-rc.2",
     "node-sass": "^4.5.2",
@@ -57,17 +57,21 @@
     "rollup-plugin-postcss": "^0.5.5",
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-pluginutils": "^2.0.1",
-    "sass-inline-svg": "^1.0.0",
+    "sass-inline-svg": "^1.2.0",
     "uglify-js": "^2.8.22"
   },
   "dependencies": {
     "datatables.net-dt": "^1.10.15",
     "imports-loader": "^0.7.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "paralleljs": "^0.2.1",
     "rivets": "0.8.1"
   },
   "directories": {
     "example": "example"
+  },
+  "resolutions": {
+    "js-yaml": "^3.13.1",
+    "braces": "^2.3.1"
   }
 }
