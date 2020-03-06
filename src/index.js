@@ -47,6 +47,7 @@ export default {
    tableView,
    chartWindow,
    chartOptions,
+   Highcharts,
    indicatorBuilder,
    indicatorManagement,
    overlayManagement,
