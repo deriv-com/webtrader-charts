@@ -30,7 +30,7 @@ const delayAmountFor = (symbol) => chartableMarkets().then(markets => {
 
 const Store = {};
 let idCounter = 0;
-export const addNewChart = function($parent, options) {
+export const addNewChart = function($parent, options, highcharts_options = {}) {
     const dialog = $(html);
     $parent.addClass('chart-dialog');
     if (options.enableMobileView) {
@@ -145,7 +145,7 @@ export const addNewChart = function($parent, options) {
          charts.drawChart("#" + id + "_chart", options, () => {
             instance.actions.reflow();
             _.delay(resolve);
-         });
+         }, highcharts_options);
          /* initialize chartOptions & table-view once chart is rendered */
          table_view = tableView.init(dialog, timezoneOffset);
          chartOptions.init(dialog, id, table_view.show, {

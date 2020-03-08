@@ -211,7 +211,7 @@ export const generate_csv = (chart, data, dialog_id) => {
  * @param type
  * @param onload // optional onload callback
  */
-export const drawChart = (containerIDWithHash, options, onload) => {
+export const drawChart = (containerIDWithHash, options, onload, highcharts_options = {}) => {
     let indicators = [];
     let overlays = [];
     let current_symbol = {};
@@ -502,7 +502,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             url: 'https://export.highcharts.com',
             // Naming the File
             filename: options.instrumentName.split(' ').join('_') + "(" + options.timePeriod + ")"
-        }
+        },
+
+        ...highcharts_options,
 
     });
 };
