@@ -259,7 +259,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
     var initialized = false;
     const container = $(containerIDWithHash);
     const enableMobileView = options.enableMobileView === undefined ? false : options.enableMobileView;
-    const options = {
+    const chart_options = {
         chart: {
             events: {
                 load: function(event) {
@@ -503,7 +503,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
         },
     }
 
-    Object.assign(options, highcharts_options);
+    Object.assign(chart_options, highcharts_options);
 
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', highcharts_options);
