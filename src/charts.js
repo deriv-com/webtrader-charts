@@ -211,7 +211,7 @@ export const generate_csv = (chart, data, dialog_id) => {
  * @param type
  * @param onload // optional onload callback
  */
-export const drawChart = (containerIDWithHash, options, onload) => {
+export const drawChart = (containerIDWithHash, options, onload, highcharts_options = {}) => {
     let indicators = [];
     let overlays = [];
     let current_symbol = {};
@@ -259,8 +259,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
     var initialized = false;
     const container = $(containerIDWithHash);
     const enableMobileView = options.enableMobileView === undefined ? false : options.enableMobileView;
-    // Create the chart
-    $(containerIDWithHash).highcharts('StockChart', {
+    const chart_options = {
         chart: {
             events: {
                 load: function(event) {
@@ -292,7 +291,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                             errorHappened = true;
                         }).then(() => {
                             /* the data is loaded but is not applied yet, its on the js event loop,
-                               wait till the chart data is applied and then add the indicators */
+                            wait till the chart data is applied and then add the indicators */
                             _.defer(() => {
                                 chart && chart.set_indicators(indicators); // put back removed indicators
                                 overlays.forEach((ovlay) => {
@@ -364,12 +363,12 @@ export const drawChart = (containerIDWithHash, options, onload) => {
         },
 
         subtitle: {
-           text: `<div class="wt-line wt-line-solid"></div> ${i18n('Start time')} ` +
-                 `<div class="wt-circle wt-circle-empty"></div> ${i18n('Entry spot')} ` +
-                 `<div class="wt-circle wt-circle-fill"></div> ${i18n('Exit spot')} ` +
-                 `<div class="wt-line wt-line-dashed"></div> ${i18n('End time')} `,
-                 // `<span class="chart-delay"> ${i18n('Charting for this underlying is delayed')} </span>`,
-           useHTML: true
+        text: `<div class="wt-line wt-line-solid"></div> ${i18n('Start time')} ` +
+                `<div class="wt-circle wt-circle-empty"></div> ${i18n('Entry spot')} ` +
+                `<div class="wt-circle wt-circle-fill"></div> ${i18n('Exit spot')} ` +
+                `<div class="wt-line wt-line-dashed"></div> ${i18n('End time')} `,
+                // `<span class="chart-delay"> ${i18n('Charting for this underlying is delayed')} </span>`,
+        useHTML: true
         },
 
         credits: { href: '#', text: '' },
@@ -379,9 +378,9 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             events: {
                 afterSetExtremes: function() {
                     /*console.log('This method is called every time the zoom control is changed. TODO.' +
-                     'In future, I want to get more data from server if users is dragging the zoom control more.' +
-                     'This will help to load data on chart forever! We can warn users if they are trying to load' +
-                     'too much data!');*/
+                    'In future, I want to get more data from server if users is dragging the zoom control more.' +
+                    'This will help to load data on chart forever! We can warn users if they are trying to load' +
+                    'too much data!');*/
                 },
             },
             labels: {
@@ -391,32 +390,31 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 }
             },
             crosshair: {
-              enabled: true,
-              snap: false,
-              color: '#2a3052',
-              dashStyle: 'LongDashDot',
-              zIndex: 4,
-              label: {
+            enabled: true,
+            snap: false,
+            color: '#2a3052',
+            dashStyle: 'LongDashDot',
+            zIndex: 4,
+            label: {
                 enabled: true,
                 padding: 3,
                 backgroundColor: '#2a3052',
                 borderRadius: 0,
                 shape: 'rect',
                 formatter: function(x) { 
-                  const offset = options.timezoneOffset*-1 || 0;
-                  if(x) return moment.utc(x).utcOffset(offset).format("ddd DD MMM HH:mm:ss");
-                  return false;
+                const offset = options.timezoneOffset*-1 || 0;
+                if(x) return moment.utc(x).utcOffset(offset).format("ddd DD MMM HH:mm:ss");
+                return false;
                 },
                 style: {
-                  color: 'white',
-                  fontSize: '10px',
-                  padding: 1,
+                color: 'white',
+                fontSize: '10px',
+                padding: 1,
                 },
-              },
+            },
             },
             ordinal: false
         },
-
 
         yAxis: [{
             opposite: false,
@@ -434,34 +432,34 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                 align: 'left',
             },
             crosshair: {
-              enabled: true,
-              snap: false,
-              color: '#2a3052',
-              dashStyle: 'LongDashDot',
-              label: {
+            enabled: true,
+            snap: false,
+            color: '#2a3052',
+            dashStyle: 'LongDashDot',
+            label: {
                 enabled: true,
                 align: 'left',
                 backgroundColor: '#2a3052',
                 padding: 1,
                 borderRadius: 0,
                 formatter: function(value) {
-                  if(!value || !current_symbol || !current_symbol.pip) return;
+                if(!value || !current_symbol || !current_symbol.pip) return;
 
-                  if(this.chart.get_overlay_count() > 0) {
+                if(this.chart.get_overlay_count() > 0) {
                     return value.toFixed(2) + '%';
-                  }
+                }
 
-                  const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
-                  return value.toFixed(digits_after_decimal);
+                const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
+                return value.toFixed(digits_after_decimal);
                 },
                 style: {
-                  color : 'white',
-                  fontSize: '10px',
-                  textAlign: 'left',
+                color : 'white',
+                fontSize: '10px',
+                textAlign: 'left',
                 },
                 x: 0,
                 y: 4,
-              },
+            },
             }
         }],
 
@@ -469,7 +467,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             followTouchMove: false,
             formatter: function() {
                 if(!current_symbol || !current_symbol.pip) {
-                  return;
+                return;
                 }
                 const digits_after_decimal = (current_symbol.pip+"").split(".")[1].length;
                 const offset = options.timezoneOffset*-1 || 0;
@@ -502,9 +500,13 @@ export const drawChart = (containerIDWithHash, options, onload) => {
             url: 'https://export.highcharts.com',
             // Naming the File
             filename: options.instrumentName.split(' ').join('_') + "(" + options.timePeriod + ")"
-        }
+        },
+    }
 
-    });
+    Object.assign(chart_options, highcharts_options);
+
+    // Create the chart
+    $(containerIDWithHash).highcharts('StockChart', highcharts_options);
 };
 
 export const triggerReflow = (containerIDWithHash) => {
