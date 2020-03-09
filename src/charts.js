@@ -506,7 +506,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
     Object.assign(chart_options, highcharts_options);
 
     // Create the chart
-    $(containerIDWithHash).highcharts('StockChart', highcharts_options);
+    $(containerIDWithHash).highcharts('StockChart', chart_options);
 };
 
 export const triggerReflow = (containerIDWithHash) => {
