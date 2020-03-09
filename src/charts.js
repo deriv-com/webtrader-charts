@@ -503,7 +503,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
         },
     }
 
-    Object.assign(chart_options, highcharts_options);
+    _.merge(chart_options, highcharts_options);
 
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', chart_options);
