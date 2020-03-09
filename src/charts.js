@@ -27,6 +27,8 @@ import './mobileview.scss';
 //     require(['moment-locale/'+lang]); 
 
 const indicator_values = _.values(_.cloneDeep(indicatorsArray));
+let custom_highcharts_options = {};
+
 Highcharts.Chart.prototype.get_indicators = function() {
     const chart = this;
     const indicators = [];
@@ -215,6 +217,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
     let indicators = [];
     let overlays = [];
     let current_symbol = {};
+    custom_highcharts_options = highcharts_options;
 
     liveapi.cached.send({active_symbols: "brief"}, 5*60).then((data)=>{
         current_symbol = _.filter(data.active_symbols,{symbol: options.instrumentCode})[0];
@@ -259,6 +262,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
     var initialized = false;
     const container = $(containerIDWithHash);
     const enableMobileView = options.enableMobileView === undefined ? false : options.enableMobileView;
+    const webtrader_options = custom_highcharts_options.webtrader || {};
     const chart_options = {
         chart: {
             events: {
@@ -349,7 +353,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
                             //Add current price indicator
                             //If we already added currentPriceLine for this series, ignore it
                             this.removeCurrentPrice();
-                            this.addCurrentPrice();
+                            this.addCurrentPrice(webtrader_options.currentPrice);
 
                             //Add mouse wheel zooming
                             // HMW.mousewheel(containerIDWithHash);
@@ -503,7 +507,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
         },
     }
 
-    _.merge(chart_options, highcharts_options);
+    _.merge(chart_options, custom_highcharts_options);
 
     // Create the chart
     $(containerIDWithHash).highcharts('StockChart', chart_options);
@@ -575,7 +579,7 @@ export const refresh = function(containerIDWithHash, newTimePeriod, newChartType
          indicators: indicators,
          start: options.start
       }, (new_chart) => {
-      });
+      }, custom_highcharts_options);
    });
 };
 
