@@ -271,7 +271,7 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
                     initialized = true;
 
                     this.showLoading();
-                    toggleCrossHair(containerIDWithHash, {show: false});
+                    toggleCrossHair(containerIDWithHash, {show: false }, webtrader_options);
                     currentPrice.init();
                     const chart = this;
                     liveapi.execute(() => {
