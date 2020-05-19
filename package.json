@@ -1,6 +1,6 @@
 {
   "name": "@binary-com/webtrader-charts",
-  "version": "0.5.15",
+  "version": "0.5.16",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
@@ -73,6 +73,8 @@
   "resolutions": {
     "js-yaml": "^3.13.1",
     "braces": "^2.3.1",
+    "set-value": "^2.0.1",
+    "lodash": "^4.17.15",
     "**/lodash": "^4.17.15"
   }
 }
