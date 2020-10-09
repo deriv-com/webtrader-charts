@@ -109,3 +109,10 @@ In mobile devices it is recommended to reduce `count: 200`, this will improve pe
 - `yarn deploy-hard` to deploy latest version embedded in binary-static (for testing)
 - `yarn deploy-soft` same as `yarn deploy-hard` (use it the second time you are deploying).
 - `app-id` for `aminroosta.github.io/binary-static` is `7770`
+
+### Publishing to npm
+- Run `yarn install`
+- Run `yarn run build` to update the files `dist/webtrader-charts.js` and `dist/webtrader-charts.iife.js`
+- Update the package version in package.json
+- Commit the modified files and merge them into the repo
+- Run `npm publish`
