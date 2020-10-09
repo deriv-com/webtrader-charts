@@ -6,11 +6,12 @@ import {i18n} from './utils.js';
 
 let socket = null;
 
-export const init = ({appId, lang = 'en', server = 'wss://frontend.binaryws.com/websockets/v3'}) => {
+export const init = ({appId, brand = 'binary', lang = 'en', server = 'wss://frontend.binaryws.com/websockets/v3'}) => {
    if(!appId) {
       throw new Error("appId is requried");
    }
    globals.config.appId = appId;
+   globals.config.brand = brand;
    globals.config.lang = lang;
    globals.config.server = server;
    connect();

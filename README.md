@@ -22,6 +22,7 @@ Take a look at `webpack.config.js -> externals`.
  // init must be called before anything else.
  wtcharts.init({
     appId: 11,
+    brand: 'binary',
     lang: 'en',
     server: 'wss://ws.binaryws.com/websockets/v3'
  });
