@@ -1,6 +1,6 @@
 {
   "name": "@binary-com/webtrader-charts",
-  "version": "0.5.17",
+  "version": "0.5.18",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
