@@ -1,7 +1,6 @@
 # webtrader-charts ![Build Status](https://travis-ci.org/binary-com/webtrader-charts.svg?branch=master)
 
 The charting library extracted from [Webtrader](https://github.com/binary-com/webtrader).
-See [Demo](http://aminroosta.ir/webtrader-charts)
 
 ## How to use it
 
