@@ -107,7 +107,6 @@ In mobile devices it is recommended to reduce `count: 200`, this will improve pe
 - `yarn deploy-example` to deploy the `/example` folder. 
 - `yarn deploy-hard` to deploy latest version embedded in binary-static (for testing)
 - `yarn deploy-soft` same as `yarn deploy-hard` (use it the second time you are deploying).
-- `app-id` for `aminroosta.github.io/binary-static` is `7770`
 
 ### Publishing to npm
 - Run `yarn install`
