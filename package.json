@@ -7,15 +7,8 @@
     "build": "rollup -c && rollup -c rollup.config.iife.js",
     "build-translation": "node src/i18n/build.js",
     "watch": "rollup -c -w",
-    "watch2": "rollup -c rollup.config.iife.js -w",
+    "watchiife": "rollup -c rollup.config.iife.js -w",
     "deploy-example": "git subtree push --prefix example upstream gh-pages",
-    "binary-static-clone": "git clone git@github.com:binary-com/binary-static.git && cd binary-static && git remote add upstream git@github.com:binary-com/binary-static.git && git fetch upstream && git merge upstream/master && git push",
-    "binary-static-init": "if cd ../binary-static; then git fetch upstream && git merge upstream/master && git push; else yarn binary-static-clone; fi",
-    "binary-static-setup": "cd ../binary-static && npm install && sudo cpanm Carton &&  cd scripts  && sudo carton install",
-    "copy-dist": "cp dist/webtrader-charts.js binary-static/node_modules/webtrader-charts/dist/webtrader-charts.js",
-    "deploy-hard": "yarn build && yarn binary-static-init && yarn binary-static-setup && yarn copy-dist && cd ../binary-static && grunt dev",
-    "deploy-soft": "rollup -c && yarn copy-dist && cd binary-static && grunt js && grunt gh-pages:main",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
