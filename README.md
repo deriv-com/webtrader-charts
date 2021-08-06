@@ -1,116 +1,154 @@
-# webtrader-charts ![Build Status](https://travis-ci.org/binary-com/webtrader-charts.svg?branch=master)
+<h1 align="center">
+  webtrader-charts
+</h1>
 
-The charting library extracted from [Webtrader](https://github.com/binary-com/webtrader).
+The charting library extracted from [Webtrader](https://github.com/binary-com/webtrader) is used for binary-static and webtrader.
 
-## How to use it
+![Build Status](https://travis-ci.org/binary-com/webtrader-charts.svg?branch=master)
 
-Use npm / yarn
-```bash     
-npm install --save @binary-com/webtrader-charts
-yarn add webtrader-charts
-```
+## In this document:
 
-You need to provide these dependences `jquery`, `moment` and `highstock#5.0.x`.  
-Take a look at `webpack.config.js -> externals`.  
+-   [Other Documents](#other-documents)
+-   [Pre-installation](#pre-installation)
+-   [Quick start](#quick-start)
+-   [How to contribute](#how-to-contribute)
+-   [Manage translations](#manage-translations)
+-   [Deploying to gh-pages](#deploying-to-gh-pages)
+-   [Publishing to npm](#publishing-to-npm)
 
-### Basic usage
+## Other Documents
 
-```js
- import wtcharts from 'webtrader-charts';
+-   [General implementation](documents/implementation-guide.md) - Contain ways to use the library
 
- // init must be called before anything else.
- wtcharts.init({
-    appId: 11,
-    brand: 'binary',
-    lang: 'en',
-    server: 'wss://ws.binaryws.com/websockets/v3'
- });
- // supported langauges are [ 'ar', 'ja', 'en', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw']
- 
- const chart =  wtcharts.chartWindow.addNewChart($parent, {
-    "type": "line", // default is 'line'
-    "timePeriod": "1m", // default is '1t'
-    "instrumentCode": "RDBULL",
-    "instrumentName": "Bull Market Index",
-    "showInstrumentName": true, // default is false
-    "showOverlays": false, // default is true
-    "showShare": false, // default is true
-    "count": 1000, // number of bars to load, default is 1000
-    "indicators": [
-       {
-          "id": "cks",
-          "name": "Chande Kroll Stop",
-          "options": {
-             "period": 10,
-             "maxMinPeriod": 20,
-             "multiplier": 3,
-             "longStopStroke": "#00C176",
-             "shortStopStroke": "#FF003C",
-             "strokeWidth": 1,
-             "dashStyle": "Solid"
-          }
-       },
-    ],
-    "overlays": [ ],
-    enableMobileView: false, // default is false
-     /* optional field timezoneOffset in minutes, see (http://api.highcharts.com/highstock/global.timezoneOffset)
-        timezone is global in highcharts, this option will effect other charts on the page */
-    "timezoneOffset": 0,
- });
+## Pre-installation
 
- // Will be called every time user makes a change
- chart.events.anyChange = () => {
-    console.warn(chart.data());
-    // Pass chart.data() to addNewChart() to restore a chart.
- }; 
+Before running or contribute to this project, you need to have the setup of the following packages in your environment
 
- chart.actions.reflow(); // Resizes the chart, call it when container is resized.
- chart.actions.refresh(); // Refreshes the entire chart.
- chart.actions.destroy(); // Destroys the chart. returns a promise.
- chart.actions.stopStreaming(); // Unsubcribe from the tick stream.
-```
+-   node 
+-   npm
+-   git 
 
-### Supporting mobile (Exprimental)
+## Quick start
 
-Pass `enableMobileView: true` to make chart mobile friendly. This option disables the navigator and shrinks the scrollbar.
+1.  **Fork the project**
 
-In mobile devices it is recommended to reduce `count: 200`, this will improve performance but do not use a smaller value because some indicators might not work properly.
+    In order to work on your own version, please fork the project to your own repo.
 
-### Displaying trade results (Exprimental)
+2.  **Clone using SSH**
 
-![Alt text](example/screenshots/0.png?raw=true "Displaying trade results")
+    ```sh
+    git clone git@github.com:your-github-username/webtrader-charts.git
+    ```
 
-**Note:** This is an exprimental api, it might change in future releases.
-```js
-   // epoch is in milliseconds for all draw methods.
-   chart.darw.startTime(epoch); // draws a vertical orange line at epoch.
-   chart.draw.endTime(epoch); // dashed vertical line at epoch.
-   chart.draw.entrySpot(epoch); // empty orange circle at epoch
-   chart.draw.exitSpot(epoch); // filled orange circle at epoch
-   chart.draw.barrier({value: value, label: label}); // draws a green horizontal barrier line
-```
+3.  **Enter project directory**
 
-### How to extend it
-- Clone the repo
-- Change `rollup.config.js` to write the output into `/example` folder.
-- `yarn install` on both main project and `/example` folder.
-- `yarn watch` on main project.
-- `yarn watch` on `/example` folder.
-- Open `localhost:8080`
+    ```sh
+    cd webtrader-charts
+    ```
 
-### building translations
-- Run `yarn build-translation` to get `dictionary.json` file.
+4.  **Change output folder:**
+
+   - Change `rollup.config.js` to write the output into `/example` folder.
+
+    **NOTE: you can change the `dist` file config in `rollup.config.js` by uncommenting the file prop for `example`, `webtrader` or `binary-static`
+
+5.  **Install your dependencies:**
+
+   - run the following command on both main project and `/example` folder:
+
+    ```sh
+    yarn install
+    ```
+
+6.  **Start developing:**
+
+   - run the following command on both main project and `/example` folder:
+
+    ```sh
+    yarn watch
+    ```
+
+7.  **Open the source code and start editing!**
+
+    Your site is now running at `http://localhost:8000`!
+
+
+## How to contribute
+
+1. Create branch from the latest dev branch
+
+    ```sh
+    git checkout dev
+    git pull upstream dev
+    git checkout -b [_your_branch_name]
+    ```
+
+2. Make your changes
+
+3. Make pull request
+
+-   Push your changes to your origin
+
+    ```sh
+    git push -u origin [_your_branch_name]
+    ```
+
+-   Click on the autogenerated link from the terminal to open the PR
+
+-   Make sure to change the PR base to `dev` branch
+
+## Manage translations
+
+- to get the `dictionary.json` file:
+
+   ```sh
+   yarn build-translation
+   ```
+
 - The language files `/src/i18/{lang}.json` files.
 - The library uses the generated `dictionary.json` file.
 
-### deploying to gh-pages
-- `yarn deploy-example` to deploy the `/example` folder. 
-- `yarn deploy-hard` to deploy latest version embedded in binary-static (for testing)
-- `yarn deploy-soft` same as `yarn deploy-hard` (use it the second time you are deploying).
+## Deploying to gh-pages
 
-### Publishing to npm
-- Run `yarn install`
-- Run `yarn run build` to update the files `dist/webtrader-charts.js` and `dist/webtrader-charts.iife.js`
-- Update the package version in package.json
-- Commit the modified files and merge them into the repo
-- Run `npm publish`
+- To deploy the `/example` folder:
+   
+   ```sh
+   yarn deploy-example
+   ```
+
+- To deploy latest version embedded in binary-static (for testing)
+
+   ```sh
+   yarn deploy-hard
+   ```
+
+   **NOTE: For the second time you are deploying, run the following command:
+
+   ```sh
+   yarn deploy-soft
+   ```
+
+## Publishing to npm
+
+1. Run:
+
+   ```sh
+   yarn install
+   ```
+
+2. Update the files `dist/webtrader-charts.js` and `dist/webtrader-charts.iife.js`
+
+   ```sh 
+   yarn run build
+   ```
+
+3. Update the package version in package.json
+
+4. Commit the modified files and merge them into the repo
+
+5. Run: 
+
+   ```sh 
+   npm publish
+   ```
+
