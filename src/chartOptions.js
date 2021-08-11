@@ -262,7 +262,12 @@ export const init = (dialog, m_newTabId, m_tableViewCb, options) => {
             const chart = $(id).highcharts();
             const exporters = {
               png: () => chart.exportChartLocal(),
-              pdf: () => chart.exportChart({ type: 'application/pdf' }),
+              pdf: () => chart.exportChart({ 
+                type: 'application/pdf',
+                formAttributes: {
+                    target: '_blank',
+                }
+              }),
               svg: () => chart.exportChartLocal({ type: 'image/svg+xml' }),
               csv: () => charts.generate_csv(chart, $(id).data(), m_newTabId),
             };

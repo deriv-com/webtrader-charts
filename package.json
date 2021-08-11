@@ -1,6 +1,6 @@
 {
   "name": "@binary-com/webtrader-charts",
-  "version": "0.5.19",
+  "version": "0.5.20",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build-translation": "node src/i18n/build.js",
     "watch": "rollup -c -w",
     "watchiife": "rollup -c rollup.config.iife.js -w",
-    "deploy-example": "git subtree push --prefix example upstream gh-pages",
+    "deploy-example": "git subtree push --prefix example upstream gh-pages"
   },
   "repository": {
     "type": "git",
