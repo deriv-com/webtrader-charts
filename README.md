@@ -57,7 +57,7 @@ Before running or contribute to this project, you need to have the setup of the 
    - run the following command on both main project and `/example` folder:
 
     ```sh
-    yarn install
+    npm install
     ```
 
 6.  **Start developing:**
@@ -65,7 +65,7 @@ Before running or contribute to this project, you need to have the setup of the 
    - run the following command on both main project and `/example` folder:
 
     ```sh
-    yarn watch
+    npm run watch
     ```
 
 7.  **Open the source code and start editing!**
@@ -102,7 +102,7 @@ Before running or contribute to this project, you need to have the setup of the 
 - to get the `dictionary.json` file:
 
    ```sh
-   yarn build-translation
+   npm run build-translation
    ```
 
 - The language files `/src/i18/{lang}.json` files.
@@ -113,19 +113,19 @@ Before running or contribute to this project, you need to have the setup of the 
 - To deploy the `/example` folder:
    
    ```sh
-   yarn deploy-example
+   npm run deploy-example
    ```
 
 - To deploy latest version embedded in binary-static (for testing)
 
    ```sh
-   yarn deploy-hard
+   npm run deploy-hard
    ```
 
    **NOTE: For the second time you are deploying, run the following command:
 
    ```sh
-   yarn deploy-soft
+   npm run deploy-soft
    ```
 
 ## Publishing to npm
@@ -133,13 +133,13 @@ Before running or contribute to this project, you need to have the setup of the 
 1. Run:
 
    ```sh
-   yarn install
+   npm install
    ```
 
 2. Update the files `dist/webtrader-charts.js` and `dist/webtrader-charts.iife.js`
 
    ```sh 
-   yarn run build
+   npm run build
    ```
 
 3. Update the package version in package.json

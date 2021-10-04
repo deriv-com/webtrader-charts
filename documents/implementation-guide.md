@@ -11,11 +11,11 @@
 
 ## How to use it
 
-Use npm / yarn:
+Use npm :
 
 ```sh    
 npm install --save @binary-com/webtrader-charts
-yarn add webtrader-charts
+npm add webtrader-charts
 ```
 
 **NOTE: You need to provide these dependences `jquery`, `moment` and `highstock#5.0.x`.  
