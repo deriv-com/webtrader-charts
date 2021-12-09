@@ -127,7 +127,9 @@ const init = (chart_series, indicator) => {
          before_add_callback && before_add_callback();
 
          //Add indicator for the main series
-         chart_series[0]?.addIndicator(state.id, options);
+         if (chart_series !== "undefined") {
+            chart_series[0].addIndicator(state.id, options);
+         }
          state.cancel(); // Close Overlay
          return false;
       };
