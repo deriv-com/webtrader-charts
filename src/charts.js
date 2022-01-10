@@ -646,6 +646,7 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                    console.error(e);
                 })
                 .then(() => {
+                    if(chart === undefined) return;
                     chart && chart.set_indicator_series(indicator_series);
                     if(chart.series[0].data.length ===0){
                         console.trace();
