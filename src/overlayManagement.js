@@ -187,6 +187,7 @@ const init_state = (root) =>{
 
       state.overlays.current.push(displaySymbol);
       ovlay.dont_show = true;
+      win.trigger("close");
    };
 
    state.overlays.remove = (ovlay) => {
