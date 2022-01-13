@@ -654,7 +654,6 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                     resolve();
                 })
                 .catch((e) => {
-                   console.error(e);
                    resolve();
                 });
             });

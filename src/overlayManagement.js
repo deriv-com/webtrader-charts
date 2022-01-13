@@ -10,6 +10,7 @@ import {isAffiliates, i18n} from './common/utils.js';
 let win = null;
 let win_view = null;
 let state = {};
+let comparisons = [];
 
 /* rviets formatter to filter indicators based on their category */
 rv.formatters['overlays-filter'] = (array, search) => {
@@ -186,6 +187,7 @@ const init_state = (root) =>{
       } else { fn(); }
 
       state.overlays.current.push(displaySymbol);
+      comparisons.push(displaySymbol);
       ovlay.dont_show = true;
    };
 
@@ -235,6 +237,7 @@ const init_state = (root) =>{
          dialog.trigger('chart-overlay-remove', {displaySymbol: ovlay});
       }
 
+      comparisons.splice(comparisons.indexOf(ovlay), 1);
    };
 
    win_view = rv.bind(root[0], state);
@@ -269,7 +272,7 @@ export const openDialog = (containerIDWithHash, title ) => {
 
       state.dialog.title = i18n('Add/remove comparisons') + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;
-      state.overlays.current = $(containerIDWithHash).data('overlays-current') || [];
+      comparisons.length > 0 ? comparisons.map(item => state.overlays.current.push(item)) : state.overlays.current = [];
 
       const chart = $(containerIDWithHash).highcharts();
       update_overlays(chart);
