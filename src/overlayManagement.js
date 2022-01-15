@@ -5,9 +5,8 @@ import liveapi from './common/liveapi.js';
 import './common/rivetsExtra.js';
 import html from './overlayManagement.html';
 import './overlayManagement.scss';
-import {isAffiliates, i18n} from './common/utils.js';
+import {i18n} from './common/utils.js';
 
-let win = null;
 let win_view = null;
 let state = {};
 let comparisons = [];
