@@ -214,8 +214,6 @@ export const generate_csv = (chart, data, dialog_id) => {
  * @param onload // optional onload callback
  */
 
-export let current_chart_symbol = {};
-
 export const drawChart = (containerIDWithHash, options, onload, highcharts_options = {}) => {
     let indicators = [];
     let overlays = [];
@@ -226,8 +224,6 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
         current_symbol = _.filter(data.active_symbols,{symbol: options.instrumentCode})[0];
         const chart = $(containerIDWithHash).highcharts();
         chart.userOptions.current_symbol = current_symbol; // used in currentprice
-        current_chart_symbol.symbol = current_symbol.symbol;
-        current_chart_symbol.display_name = current_symbol.display_name;
     });
 
     if ($(containerIDWithHash).highcharts()) {
