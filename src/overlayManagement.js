@@ -249,7 +249,7 @@ const update_overlays = (chart) => {
    marketData().then((markets) => {
       const mainSeriesId = chart.series[0].userOptions.id.split('-')[0];
       const current = _.filter(chart.series, (s, index) => {
-            return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
+         return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
       }).map((s) => s.userOptions.name) || [];
 
       markets.forEach((market) => {
