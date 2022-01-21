@@ -12,7 +12,6 @@ let win = null;
 let win_view = null;
 let state = {};
 let comparisons = [];
-let comparisons2 = [];
 
 /* rviets formatter to filter indicators based on their category */
 rv.formatters['overlays-filter'] = (array, search) => {
@@ -188,26 +187,16 @@ const init_state = (root) =>{
          _.defer(fn);
       } else { fn(); }
 
-      // state.overlays.current.push({item: displaySymbol, isS: true });//////////// displaySymbol
       state.overlays.current.push(displaySymbol);
-      // comparisons.push({item: displaySymbol, isS: true });//////////// displaySymbol
       comparisons.push(displaySymbol);
-      comparisons2.push({displaySymbol: displaySymbol, dont_show: false});
-      console.log('comparisons2', comparisons2);
       ovlay.dont_show = true;
-      console.log('%c%s', 'color: green; font-weight: bold;', 'ADD comparisons: ', comparisons);
    };
 
    state.overlays.remove = (ovlay) => {
-      if(ovlay === current_chart_symbol.display_name){
-         return;
-      }
-      console.log('%c%s', 'color: green; font-weight: bold;', 'REMOVE', 'ovlay', ovlay);
       const containerIDWithHash = state.dialog.container_id;
       const dialog = $(containerIDWithHash);
       const chart = dialog.highcharts();
       const overlay = findOverlay(state, ovlay);
-      // console.log('overlay', overlay);
       if(overlay) {
         overlay.dont_show = false;
       }
@@ -250,7 +239,6 @@ const init_state = (root) =>{
       }
 
       comparisons.splice(comparisons.indexOf(ovlay), 1);
-      console.log('REMOVE comparisons: ', comparisons);
    };
 
    win_view = rv.bind(root[0], state);
@@ -258,39 +246,20 @@ const init_state = (root) =>{
 
 
 const update_overlays = (chart) => {
-   // console.log('%c%s', 'color: green; font-weight: bold;', 'UPDATE chart: ', chart);
-   console.log('%c%s', 'color: red; font-weight: bold;', 'comparisons', comparisons, 'current', state.overlays.current);
    marketData().then((markets) => {
       const mainSeriesId = chart.series[0].userOptions.id.split('-')[0];
-      console.log('UPDATE !! current_chart_symbol: ', current_chart_symbol);
       const current = _.filter(chart.series, (s, index) => {
-         // console.log('333', s.userOptions, s.userOptions.name, current_chart_symbol.display_name, current_chart_symbol.symbol);
-         if(current_chart_symbol.symbol === s.userOptions.name || current_chart_symbol.display_name === s.userOptions.name){
-            s.userOptions.name = current_chart_symbol.display_name;
-            comparisons2.push({displaySymbol: s.userOptions.name, dont_show: true});
-            console.log('comparisons2', comparisons2);
-
-            // console.log('if display_name', current_chart_symbol.display_name );
-            return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && s.userOptions.name;
-         }
-         else{
-            // console.log('else');
-            comparisons2.push({displaySymbol: s.userOptions.name, dont_show: false});
-            console.log('comparisons2 2', comparisons2);
-
             return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
-         }
       }).map((s) => s.userOptions.name) || [];
 
       markets.forEach((market) => {
          market.submarkets.forEach((submarket) => {
             submarket.instruments.forEach((ind) => {
-               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol) ind.dont_show = true;
+               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol || ind.display_name === current_chart_symbol.display_name ) ind.dont_show = true;
                else ind.dont_show = false;
             });
          });
       });
-
       state.overlays.array = markets;
       state.overlays.current = current;
    });
@@ -304,8 +273,6 @@ export const openDialog = (containerIDWithHash, title ) => {
       state.dialog.title = i18n('Add/remove comparisons') + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;
       comparisons.length > 0 ? comparisons.map(item => state.overlays.current.push(item)) : state.overlays.current = [];
-      // comparisons.length > 0 ? comparisons.map(item => state.overlays.current.push({item: item, isS: true })) : state.overlays.current = [];//////////// item
-      console.log('%c%s', 'color: green; font-weight: bold;', 'OPEN comparisons', comparisons, 'current', state.overlays.current);
 
       const chart = $(containerIDWithHash).highcharts();
       update_overlays(chart);
