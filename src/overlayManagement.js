@@ -166,9 +166,6 @@ const init_state = (root) =>{
    state.overlays.clear_search = () => { state.overlays.search = ''; };
 
    state.overlays.add = (ovlay) => {
-      if(ovlay === current_chart_symbol.display_name){
-         return;
-      }
       const symbol = ovlay.symbol;
       const delay_amount = ovlay.delay_amount;
       const displaySymbol = ovlay.display_name;
@@ -264,8 +261,7 @@ const update_overlays = (chart) => {
          market.submarkets.forEach((submarket) => {
             submarket.instruments.forEach((ind) => {
                console.log('!', 'ind.display_name: ', ind.display_name, 'ind.symbol: ', ind.symbol,);
-               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol || ind.display_name === current_chart_symbol.display_name
-                || mainSeriesId.toLowerCase() === ind.symbol.toLowerCase() ) ind.dont_show = true;
+               if(_.includes(current, ind.display_name) || mainSeriesId.toLowerCase() === ind.symbol.toLowerCase() ) ind.dont_show = true;
                else ind.dont_show = false;
             });
          });
