@@ -374,7 +374,6 @@ overlayManagement.events.on('overlay-add', (e, {containerId, symbol, displaySymb
       }));
 });
 overlayManagement.events.on('overlay-remove', (e, {containerId, symbol}) => {
-   // charts.refresh(containerId);
    charts.overlay_unregister(containerId,  symbol);
 });
 overlayManagement.events.on('ohlc-update', (e, { tabId, enable}) => {
