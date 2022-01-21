@@ -166,6 +166,9 @@ const init_state = (root) =>{
    state.overlays.clear_search = () => { state.overlays.search = ''; };
 
    state.overlays.add = (ovlay) => {
+      if(ovlay === current_chart_symbol.display_name){
+         return;
+      }
       const symbol = ovlay.symbol;
       const delay_amount = ovlay.delay_amount;
       const displaySymbol = ovlay.display_name;
@@ -246,16 +249,23 @@ const init_state = (root) =>{
 
 
 const update_overlays = (chart) => {
+   console.log('update current_chart_symbol.display_name: ', current_chart_symbol.display_name);
    marketData().then((markets) => {
       const mainSeriesId = chart.series[0].userOptions.id.split('-')[0];
       const current = _.filter(chart.series, (s, index) => {
          return s.userOptions.isInstrument && s.userOptions.id !== 'navigator' && index !== 0;
       }).map((s) => s.userOptions.name) || [];
 
+      console.log('!', 'mainSeriesId: ',
+      mainSeriesId,
+      'display_name: ', current_chart_symbol.display_name, current_chart_symbol.symbol);
+
       markets.forEach((market) => {
          market.submarkets.forEach((submarket) => {
             submarket.instruments.forEach((ind) => {
-               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol || ind.display_name === current_chart_symbol.display_name ) ind.dont_show = true;
+               console.log('!', 'ind.display_name: ', ind.display_name, 'ind.symbol: ', ind.symbol,);
+               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol || ind.display_name === current_chart_symbol.display_name
+                || mainSeriesId.toLowerCase() === ind.symbol.toLowerCase() ) ind.dont_show = true;
                else ind.dont_show = false;
             });
          });
@@ -266,6 +276,7 @@ const update_overlays = (chart) => {
 };
 
 export const openDialog = (containerIDWithHash, title ) => {
+   console.log('openDialog');
       const root = $(html);
 
       init_state(root);
