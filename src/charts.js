@@ -221,8 +221,10 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
 
     liveapi.cached.send({active_symbols: "brief"}, 5*60).then((data)=>{
         current_symbol = _.filter(data.active_symbols,{symbol: options.instrumentCode})[0];
-        const chart = $(containerIDWithHash).highcharts();
-        chart.userOptions.current_symbol = current_symbol; // used in currentprice
+        if ($(containerIDWithHash).highcharts()) {
+            const chart = $(containerIDWithHash).highcharts();
+            chart.userOptions.current_symbol = current_symbol; // used in currentprice
+        }
     });
 
     if ($(containerIDWithHash).highcharts()) {
