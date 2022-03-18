@@ -213,6 +213,7 @@ export const generate_csv = (chart, data, dialog_id) => {
  * @param type
  * @param onload // optional onload callback
  */
+
 export const drawChart = (containerIDWithHash, options, onload, highcharts_options = {}) => {
     let indicators = [];
     let overlays = [];
@@ -646,6 +647,7 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                    console.error(e);
                 })
                 .then(() => {
+                    if(chart === undefined) return;
                     chart && chart.set_indicator_series(indicator_series);
                     if(chart.series[0].data.length ===0){
                         console.trace();
@@ -653,7 +655,6 @@ export const overlay = (containerIDWithHash, overlayInsCode, overlayInsName, del
                     resolve();
                 })
                 .catch((e) => {
-                   console.error(e);
                    resolve();
                 });
             });

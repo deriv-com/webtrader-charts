@@ -371,11 +371,9 @@ overlayManagement.events.on('overlay-add', (e, {containerId, symbol, displaySymb
       .then(() => _.defer(() => { //Waiting for overlays to be applied.
          const overlay = { symbol: symbol, displaySymbol: displaySymbol, delay_amount};
          dialog.trigger('chart-overlay-add', overlay);
-         charts.refresh( containerId );
       }));
 });
 overlayManagement.events.on('overlay-remove', (e, {containerId, symbol}) => {
-   // charts.refresh(containerId);
    charts.overlay_unregister(containerId,  symbol);
 });
 overlayManagement.events.on('ohlc-update', (e, { tabId, enable}) => {

@@ -5,11 +5,12 @@ import liveapi from './common/liveapi.js';
 import './common/rivetsExtra.js';
 import html from './overlayManagement.html';
 import './overlayManagement.scss';
-import {isAffiliates, i18n} from './common/utils.js';
+import {i18n} from './common/utils.js';
 
 let win = null;
 let win_view = null;
 let state = {};
+let comparisons = [];
 
 /* rviets formatter to filter indicators based on their category */
 rv.formatters['overlays-filter'] = (array, search) => {
@@ -186,8 +187,8 @@ const init_state = (root) =>{
       } else { fn(); }
 
       state.overlays.current.push(displaySymbol);
+      comparisons.push(displaySymbol);
       ovlay.dont_show = true;
-      win.trigger("close");
    };
 
    state.overlays.remove = (ovlay) => {
@@ -236,6 +237,7 @@ const init_state = (root) =>{
          dialog.trigger('chart-overlay-remove', {displaySymbol: ovlay});
       }
 
+      comparisons.splice(comparisons.indexOf(ovlay), 1);
    };
 
    win_view = rv.bind(root[0], state);
@@ -252,12 +254,11 @@ const update_overlays = (chart) => {
       markets.forEach((market) => {
          market.submarkets.forEach((submarket) => {
             submarket.instruments.forEach((ind) => {
-               if(_.includes(current, ind.display_name) || mainSeriesId === ind.symbol) ind.dont_show = true;
+               if(_.includes(current, ind.display_name) || mainSeriesId.toLowerCase() === ind.symbol.toLowerCase() ) ind.dont_show = true;
                else ind.dont_show = false;
             });
          });
       });
-
       state.overlays.array = markets;
       state.overlays.current = current;
    });
@@ -270,7 +271,7 @@ export const openDialog = (containerIDWithHash, title ) => {
 
       state.dialog.title = i18n('Add/remove comparisons') + (title ? ' - ' + title : '');
       state.dialog.container_id = containerIDWithHash;
-      state.overlays.current = $(containerIDWithHash).data('overlays-current') || [];
+      comparisons.length > 0 ? comparisons.map(item => state.overlays.current.push(item)) : state.overlays.current = [];
 
       const chart = $(containerIDWithHash).highcharts();
       update_overlays(chart);
