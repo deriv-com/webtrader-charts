@@ -1,6 +1,6 @@
 git:
  depth: 1
-cache: yarn
+cache: npm
 matrix:
   fast_finish: true
 language: node_js
@@ -14,4 +14,4 @@ branches:
   only:
     - master
 script:
-  - yarn build
+  - npm run build
