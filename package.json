@@ -39,7 +39,7 @@
     "css-loader": "^3.1.0",
     "cssnano": "v4.0.0-rc.2",
     "cssnano-preset-default": "^4.0.0-rc.2",
-    "node-sass": "^4.5.2",
+    "node-sass": "^9.0.0",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.1",
