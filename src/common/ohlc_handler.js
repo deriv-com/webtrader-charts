@@ -44,6 +44,11 @@ liveapi.events.on('history', (e, data) => {
    //For tick history handling
    const start = data.echo_req.count === 0 ? data.echo_req.start : undefined;
    const key = chartingRequestMap.keyFor(data.echo_req.ticks_history, 0, start);
+
+   // add subscription id to the map in order to be able to unsubscribe
+   const chartingRequest = chartingRequestMap.mapFor(key);
+   chartingRequest.id = chartingRequest.id || data.subscription.id;
+
    data.history.times.forEach((eachData,index) => {
       const time = parseInt(eachData) * 1000,
          price = parseFloat(data.history.prices[index]);
