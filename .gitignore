@@ -5,4 +5,6 @@ npm-debug.log
 .DS_Store
 .idea
 webtrader-charts.js.map
-
+dist/
+example/bundle.js
+example/bundle.js.map
