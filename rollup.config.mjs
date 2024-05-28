@@ -3,21 +3,25 @@ import { extname } from 'path';
 import { createFilter } from 'rollup-pluginutils';
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
-import sass from 'node-sass';
-import json from 'rollup-plugin-json';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import html from 'rollup-plugin-html';
-import inliner from 'sass-inline-svg';
-import uglify from 'rollup-plugin-uglify';
+import sass from 'sass';
+import json from '@rollup/plugin-json';
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import string from '@bkuri/rollup-plugin-string'
+import svg from 'sass-svg-inline';
+import terser from '@rollup/plugin-terser';
+import pluginImage from '@rollup/plugin-image';
 
 const preprocessor = (content, id) => new Promise((resolve, reject) => {
   sass.render({
     file: id,
     functions: {
-      svg: inliner('./src', { }),
-      'inline-svg': inliner('./src', { })
+      'svg($path)': svg.setDir('./img'),
+      'inline-svg($path)': svg.setDir('./img')
+
+      // svg: inliner('./src', { }),
+      // 'inline-svg': inliner('./src', { })
     }
   }, (err, result) => {
     if(err) { reject(err); return; }
@@ -39,6 +43,7 @@ export default {
     name: 'WebtraderCharts',
   },
   plugins: [
+    pluginImage(),
     image(),
     postcss({
       preprocessor,
@@ -52,15 +57,15 @@ export default {
       })]
     }),
     json(),
-    html({
-			include: '**/*.html'
-		}),
+    string({
+      // Required to be specified
+      include: ['**/*.html'],
+    }),
     babel({
       exclude: 'node_modules/**',
-      presets: [ [ "es2015", { "modules": false } ] ],
-      plugins: [ "lodash" ],
-      externalHelpers: false,
-      babelrc: false
+      presets: ["@babel/preset-env"],
+      babelrc: false,
+      babelHelpers: 'bundled'
     }),
     nodeResolve({
       jsnext: true,
@@ -71,7 +76,7 @@ export default {
       exclude: [],
       sourceMap: false, 
     }),
-    uglify(),
+    terser(),
   ],
   watch: {
     include: 'src/**'
@@ -93,9 +98,6 @@ export default {
     'moment': 'moment',
   }
 };
-
-
-
 
 function image(options) {
   options = options || {};
