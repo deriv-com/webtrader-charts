@@ -19,9 +19,6 @@ const preprocessor = (content, id) => new Promise((resolve, reject) => {
     functions: {
       'svg($path)': svg.setDir('./img'),
       'inline-svg($path)': svg.setDir('./img')
-
-      // svg: inliner('./src', { }),
-      // 'inline-svg': inliner('./src', { })
     }
   }, (err, result) => {
     if(err) { reject(err); return; }
@@ -58,7 +55,6 @@ export default {
     }),
     json(),
     string({
-      // Required to be specified
       include: ['**/*.html'],
     }),
     babel({
