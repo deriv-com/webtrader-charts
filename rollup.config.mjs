@@ -3,7 +3,7 @@ import { extname } from 'path';
 import { createFilter } from 'rollup-pluginutils';
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
-import sass from 'sass';
+import * as sass from 'sass';
 import json from '@rollup/plugin-json';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
@@ -13,27 +13,12 @@ import svg from 'sass-svg-inline';
 import terser from '@rollup/plugin-terser';
 import pluginImage from '@rollup/plugin-image';
 
-const preprocessor = (content, id) => new Promise((resolve, reject) => {
-  sass.render({
-    file: id,
-    functions: {
-      'svg($path)': svg.setDir('./img'),
-      'inline-svg($path)': svg.setDir('./img')
-    }
-  }, (err, result) => {
-    if(err) { reject(err); return; }
-
-    resolve({
-      code: result.css.toString('utf-8'),
-    });
-  });
-});
 
 export default {
   input: 'src/index.js',
   output: {
     file: './dist/webtrader-charts.js',
-    // file: './example/node_modules/webtrader-charts/dist/webtrader-charts.js',
+    // file: './example/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
     // file: '../webtrader/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
     // file: '../binary-static/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
     format: 'umd',
@@ -43,7 +28,6 @@ export default {
     pluginImage(),
     image(),
     postcss({
-      preprocessor,
       extensions: ['.scss'],
       plugins: [cssnano({ preset: [
         'default',
@@ -53,6 +37,7 @@ export default {
       ]
       })]
     }),
+    scssProcessor(),
     json(),
     string({
       include: ['**/*.html'],
@@ -128,6 +113,31 @@ function image(options) {
 			};
 
 			return { ast, code, map: { mappings: '' } };
+		}
+	};
+}
+
+
+function scssProcessor(options) {
+  options = options || {};
+	const filter = createFilter( options.include, options.exclude );
+
+	return {
+		name: 'scss',
+		load (id) {
+			if (!filter(id)) return null;
+
+      if(!id.endsWith(".scss")) return null;
+
+      let result = sass.renderSync({
+        file: id,
+        functions: {
+          'svg($path)': svg.setDir('./src'),
+          'inline-svg($path)': svg.setDir('./src')
+        }
+      });
+
+			return { code: result.css.toString('utf-8'), map: { mappings: '' } };
 		}
 	};
 }
