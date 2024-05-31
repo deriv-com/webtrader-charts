@@ -1,22 +1,23 @@
 import $ from 'jquery';
-import wtcharts from 'webtrader-charts';
+import wtcharts from '@binary-com/webtrader-charts';
 
 wtcharts.init({
    appId: 11,
    lang: 'en', // default is 'en'
-   server: 'wss://ws.binaryws.com/websockets/v3'
+   server: 'wss://ws.derivws.com/websockets/v3'
 });
 
 const $parent = $('#container');
 
 const chart =  wtcharts.chartWindow.addNewChart($parent, {
-   "instrumentCode": "OTC_NDX",
-   "instrumentName": "US Tech Index",
+   "instrumentCode": "JD10",
+   "instrumentName": "Jump 10 Index",
    "showInstrumentName": true,
    "timePeriod": "1t",
    "type": "line",
    "indicators": [],
-   "overlays": []
+   "overlays": [],
+   "delayAmount": 0
 });
 const chart2 =  wtcharts.chartWindow.addNewChart($('#container2'), {
   "instrumentCode": "R_50",
@@ -55,6 +56,7 @@ const run_timing_issue_test = () => {
                }
             },
          ],
+         "delayAmount": 0
       },
       {
          "instrumentCode": "GDAXI",
@@ -62,7 +64,8 @@ const run_timing_issue_test = () => {
          "timePeriod": "1d",
          "type": "candlestick",
          "indicators": [],
-         "overlays": []
+         "overlays": [],
+         "delayAmount": 0
       }
    ];
 

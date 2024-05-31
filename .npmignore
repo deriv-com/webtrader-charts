@@ -4,3 +4,5 @@ npm-debug.log
 example/
 **/.tern-port
 .DS_Store
+crowdin.yml
+documents/
