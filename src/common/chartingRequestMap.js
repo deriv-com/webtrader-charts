@@ -261,23 +261,10 @@ export const register = function(options, dialog_id) {
        }
 
        if (!is_tick) {
-           const count = options.count || 1;
-           let start = (new Date().getTime() / 1000 - count * granularity) | 0;
-
-           //If the start time is less than 3 years, adjust the start time
-           const _3YearsBack = new Date();
-           _3YearsBack.setUTCFullYear(_3YearsBack.getUTCFullYear() - 3);
-           //Going back exactly 3 years fails. I am adding 1 day
-           _3YearsBack.setDate(_3YearsBack.getDate() + 1);
-
-           if ((start * 1000) < _3YearsBack.getTime()) { start = (_3YearsBack.getTime() / 1000) | 0; }
-
            req.style = 'candles';
-           req.start = start;
        }
     } else { // for historical-data
        req.start = options.start;
-       req.count = 0; // use count = 0 as a flag, this will get ignored by the api.
        if (!options.end) {
          req.end = options.start + (req.granularity*1000 || 60*60); // by default load 1 hour of ticks
          req.end = Math.min(moment.utc().unix(), req.end);
@@ -288,11 +275,11 @@ export const register = function(options, dialog_id) {
          }
        }
     }
-
+    
     map[key] = { symbol: options.symbol, granularity: granularity, subscribers: 0, chartIDs: [] };
     if (req.subscribe) map[key].subscribers = 1; // how many charts have subscribed for a stream
     return start_time.then((time) => {
-        req.start = req.start ? req.start : time.time - 10 * 60;
+        console.log('time', time);
 
         return liveapi.send(req, /*timeout:*/ 30 * 1000) // 30 second timeout
         .catch((up) => {
