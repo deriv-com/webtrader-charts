@@ -279,7 +279,6 @@ export const register = function(options, dialog_id) {
     map[key] = { symbol: options.symbol, granularity: granularity, subscribers: 0, chartIDs: [] };
     if (req.subscribe) map[key].subscribers = 1; // how many charts have subscribed for a stream
     return start_time.then((time) => {
-        console.log('time', time);
 
         return liveapi.send(req, /*timeout:*/ 30 * 1000) // 30 second timeout
         .catch((up) => {
