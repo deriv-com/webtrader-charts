@@ -14,7 +14,7 @@
 Use npm :
 
 ```sh    
-npm install --save @binary-com/webtrader-charts
+npm install --save @deriv-com/webtrader-charts
 npm add webtrader-charts
 ```
 
@@ -29,9 +29,8 @@ Take a look at `webpack.config.js -> externals`.
  // init must be called before anything else.
  wtcharts.init({
     appId: 11,
-    brand: 'binary',
     lang: 'en',
-    server: 'wss://ws.binaryws.com/websockets/v3'
+    server: 'wss://ws.derivws.com/websockets/v3'
  });
  // supported langauges are [ 'ar', 'ja', 'en', 'de', 'es', 'fr', 'id', 'it', 'pl', 'pt', 'ru', 'th', 'vi', 'zh_cn', 'zh_tw']
  

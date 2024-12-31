@@ -2,9 +2,9 @@
   webtrader-charts
 </h1>
 
-The charting library extracted from [Webtrader](https://github.com/binary-com/webtrader) is used for binary-static and webtrader.
+The charting library extracted from [Webtrader](https://github.com/deriv-com/webtrader) is used for binary-static and webtrader.
 
-![Build Status](https://travis-ci.org/binary-com/webtrader-charts.svg?branch=master)
+![Build Status](https://travis-ci.org/deriv-com/webtrader-charts.svg?branch=master)
 
 ## In this document:
 

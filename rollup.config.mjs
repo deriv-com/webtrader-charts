@@ -17,9 +17,9 @@ export default {
   input: "src/index.js",
   output: {
     file: "./dist/webtrader-charts.js",
-    // file: './example/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
-    // file: '../webtrader/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
-    // file: '../binary-static/node_modules/@binary-com/webtrader-charts/dist/webtrader-charts.js',
+    // file: './example/node_modules/@deriv-com/webtrader-charts/dist/webtrader-charts.js',
+    // file: '../webtrader/node_modules/@deriv-com/webtrader-charts/dist/webtrader-charts.js',
+    // file: '../binary-static/node_modules/@deriv-com/webtrader-charts/dist/webtrader-charts.js',
     format: "umd",
     name: "WebtraderCharts",
   },
