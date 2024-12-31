@@ -47,7 +47,7 @@ liveapi.events.on('history', (e, data) => {
 
    // add subscription id to the map in order to be able to unsubscribe
    const chartingRequest = chartingRequestMap.mapFor(key);
-   chartingRequest.id = chartingRequest.id || data.subscription.id;
+   chartingRequest.id = chartingRequest.id || data?.subscription?.id;
 
    data.history.times.forEach((eachData,index) => {
       const time = parseInt(eachData) * 1000,
