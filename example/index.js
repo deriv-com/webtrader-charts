@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import wtcharts from '@binary-com/webtrader-charts';
+import wtcharts from '@deriv-com/webtrader-charts';
 
 wtcharts.init({
    appId: 11,
