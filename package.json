@@ -1,5 +1,5 @@
 {
-  "name": "@binary-com/webtrader-charts",
+  "name": "@deriv-com/webtrader-charts",
   "version": "0.6.3",
   "description": "webtrader charts",
   "main": "dist/webtrader-charts.js",
@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/binary-com/webtrader-charts.git"
+    "url": "git+ssh://git@github.com/deriv-com/webtrader-charts.git"
   },
   "keywords": [
     "webtrader",
     "charts",
-    "binary.com"
+    "deriv.com"
   ],
   "author": "amin@binary.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/binary-com/webtrader-charts/issues"
+    "url": "https://github.com/deriv-com/webtrader-charts/issues"
   },
-  "homepage": "https://github.com/binary-com/webtrader-charts#readme",
+  "homepage": "https://github.com/deriv-com/webtrader-charts#readme",
   "peerDependencies": {
     "highstock-release": "^5.0.10",
     "jquery": "^3.2.1",
