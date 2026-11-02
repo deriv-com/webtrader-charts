@@ -482,13 +482,13 @@ export const drawChart = (containerIDWithHash, options, onload, highcharts_optio
                 _.each(this.points, (row) => {
                     s += '<span style="color:' + row.point.color + '">\u25CF </span>';
                     if(typeof row.point.open !=="undefined") { //OHLC chart
-                        s += "<b>" + row.series.name + "</b>";
+                        s += "<b>" + _.escape(row.series.name) + "</b>";
                         s += `<br>  ${i18n('Open')}: ` + row.point.open.toFixed(digits_after_decimal);
                         s += `<br>  ${i18n('High')}: ` + row.point.high.toFixed(digits_after_decimal);
                         s += `<br>  ${i18n('Low')}: ` + row.point.low.toFixed(digits_after_decimal);
                         s += `<br>  ${i18n('Close')}: ` + row.point.close.toFixed(digits_after_decimal);
                     } else {
-                        s += row.series.name + ": <b>" + row.point.y.toFixed(digits_after_decimal) + "</b>";
+                        s += _.escape(row.series.name) + ": <b>" + row.point.y.toFixed(digits_after_decimal) + "</b>";
                     }
                     s += "<br>";
                 });

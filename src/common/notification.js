@@ -16,7 +16,8 @@ toastr.options = {
   showEasing: 'swing',
   hideEasing: 'linear',
   showMethod: 'fadeIn',
-  hideMethod: 'fadeOut'
+  hideMethod: 'fadeOut',
+  escapeHtml: true // messages can contain user/template supplied values, never render them as HTML
 };
 export const error = (msg, target = 'body') => {
    toastr.error(msg, '', { target: target });
