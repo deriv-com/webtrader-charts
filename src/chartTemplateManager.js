@@ -117,7 +117,7 @@ class ChartTemplateManager {
             return;
           }
 
-          if(!data.indicators) {
+          if(!_this.isValidTemplate(data)) {
             throw i18n('Invalid template type');
           }
         } catch(e) {
@@ -142,7 +142,7 @@ class ChartTemplateManager {
         array.push(data);
         local_storage.set('templates', array);
         templates.array = array;
-        notification.warning(`${i18n('Successfully applied the template and saved it as')} <b>${data.name}</b>`, this.target);
+        notification.warning(`${i18n('Successfully applied the template and saved it as')} (${data.name})`, this.target);
       };
 
       reader.readAsText(file);
@@ -171,7 +171,7 @@ class ChartTemplateManager {
     templates.download = (tmpl) => {
       var json = JSON.stringify(tmpl);
       this.download_file_in_browser(tmpl.name + '.json', 'text/json;charset=utf-8;', json);
-      notification.info(`${i18n('Downloading template as')} <b>${tmpl.name}.json</b>`, this.target);
+      notification.info(`${i18n('Downloading template as')} (${tmpl.name}.json)`, this.target);
     };
 
     templates.remove = (tmpl) => {
@@ -258,10 +258,22 @@ class ChartTemplateManager {
     // get template with same values.
     const tmpl_copy = _.find(array, ['random', tmpl.random]);
     if(tmpl_copy){
-      notification.error(`${i18n('Template already saved as')} <b>${tmpl_copy.name}</b>.`, this.target);
+      notification.error(`${i18n('Template already saved as')} (${tmpl_copy.name}).`, this.target);
       return true;
     }
     return false;
+  }
+
+  // Uploaded templates are untrusted, reject overlays that don't look like real market data.
+  isValidTemplate(tmpl) {
+    const isValidOverlay = ovlay => ovlay
+      && typeof ovlay.symbol === 'string' && /^[\w.-]+$/.test(ovlay.symbol)
+      && typeof ovlay.displaySymbol === 'string' && !/[<>]/.test(ovlay.displaySymbol)
+      && (ovlay.delay_amount == null || (typeof ovlay.delay_amount === 'number' && ovlay.delay_amount >= 0));
+
+    return Array.isArray(tmpl.indicators)
+      && Array.isArray(tmpl.overlays)
+      && tmpl.overlays.every(isValidOverlay);
   }
 
 
